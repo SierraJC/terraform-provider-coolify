@@ -1,9 +1,11 @@
 module terraform-provider-coolify
 
-go 1.22.5
+go 1.22.7
+
+toolchain go1.23.2
 
 require (
-	github.com/hashicorp/terraform-plugin-codegen-framework v0.4.0
+	github.com/hashicorp/terraform-plugin-codegen-framework v0.4.1
 	github.com/hashicorp/terraform-plugin-codegen-openapi v0.3.0
 	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-framework v1.10.0
@@ -56,7 +58,7 @@ require (
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-exec v0.21.0 // indirect
 	github.com/hashicorp/terraform-json v0.22.1 // indirect
-	github.com/hashicorp/terraform-plugin-codegen-spec v0.1.1 // indirect
+	github.com/hashicorp/terraform-plugin-codegen-spec v0.2.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.2.3 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect

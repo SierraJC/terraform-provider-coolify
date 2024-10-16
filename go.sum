@@ -134,10 +134,12 @@ github.com/hashicorp/terraform-json v0.22.1 h1:xft84GZR0QzjPVWs4lRUwvTcPnegqlyS7
 github.com/hashicorp/terraform-json v0.22.1/go.mod h1:JbWSQCLFSXFFhg42T7l9iJwdGXBYV8fmmD6o/ML4p3A=
 github.com/hashicorp/terraform-plugin-codegen-framework v0.4.0 h1:xB96Rakulnn7ZxikDj8glCyojKpTbW+SGm6QxipoNxU=
 github.com/hashicorp/terraform-plugin-codegen-framework v0.4.0/go.mod h1:nXlVjqHFBDr6EXnKTT9RCLmwnuTYj/3LE4ffkIdOtog=
+github.com/hashicorp/terraform-plugin-codegen-framework v0.4.1/go.mod h1:kpYM23L7NtcfaQdWAN0QFkV/lU0w16qJ2ddAPCI4zAg=
 github.com/hashicorp/terraform-plugin-codegen-openapi v0.3.0 h1:IKpc337XKk50QyQPSxLrHwdqSo1E2XqCMxFkWsZcTvc=
 github.com/hashicorp/terraform-plugin-codegen-openapi v0.3.0/go.mod h1:tT6wl80h7nsMBw+1yZRgJXi+Ys85PUai11weDqysvp4=
 github.com/hashicorp/terraform-plugin-codegen-spec v0.1.1 h1:7djpLeqtz0x6w01W4hckWwINJUnfXn2zGr/EhSC8rek=
 github.com/hashicorp/terraform-plugin-codegen-spec v0.1.1/go.mod h1:PQn6bDD8UWoAVJoHXqFk2i/RmLbeQBjbiP38i+E+YIw=
+github.com/hashicorp/terraform-plugin-codegen-spec v0.2.0/go.mod h1:fywrEKpordQypmAjz/HIfm2LuNVmyJ6KDe8XT9GdJxQ=
 github.com/hashicorp/terraform-plugin-docs v0.19.4 h1:G3Bgo7J22OMtegIgn8Cd/CaSeyEljqjH3G39w28JK4c=
 github.com/hashicorp/terraform-plugin-docs v0.19.4/go.mod h1:4pLASsatTmRynVzsjEhbXZ6s7xBlUw/2Kt0zfrq8HxA=
 github.com/hashicorp/terraform-plugin-framework v1.10.0 h1:xXhICE2Fns1RYZxEQebwkB2+kXouLC932Li9qelozrc=
