@@ -16,6 +16,7 @@ import (
 
 	"github.com/oapi-codegen/nullable"
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
@@ -37,176 +38,191 @@ const (
 	ApplicationRedirectWww    ApplicationRedirect = "www"
 )
 
-// Defines values for N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack.
+// Defines values for CreateDockerfileApplicationJSONBodyBuildPack.
 const (
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPackDockercompose N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack = "dockercompose"
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPackDockerfile    N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack = "dockerfile"
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPackNixpacks      N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack = "nixpacks"
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPackStatic        N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack = "static"
+	CreateDockerfileApplicationJSONBodyBuildPackDockercompose CreateDockerfileApplicationJSONBodyBuildPack = "dockercompose"
+	CreateDockerfileApplicationJSONBodyBuildPackDockerfile    CreateDockerfileApplicationJSONBodyBuildPack = "dockerfile"
+	CreateDockerfileApplicationJSONBodyBuildPackNixpacks      CreateDockerfileApplicationJSONBodyBuildPack = "nixpacks"
+	CreateDockerfileApplicationJSONBodyBuildPackStatic        CreateDockerfileApplicationJSONBodyBuildPack = "static"
 )
 
-// Defines values for N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect.
+// Defines values for CreateDockerfileApplicationJSONBodyRedirect.
 const (
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirectBoth   N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect = "both"
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirectNonWww N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect = "non-www"
-	N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirectWww    N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect = "www"
+	CreateDockerfileApplicationJSONBodyRedirectBoth   CreateDockerfileApplicationJSONBodyRedirect = "both"
+	CreateDockerfileApplicationJSONBodyRedirectNonWww CreateDockerfileApplicationJSONBodyRedirect = "non-www"
+	CreateDockerfileApplicationJSONBodyRedirectWww    CreateDockerfileApplicationJSONBodyRedirect = "www"
 )
 
-// Defines values for E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect.
+// Defines values for CreateDockerimageApplicationJSONBodyRedirect.
 const (
-	E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirectBoth   E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect = "both"
-	E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirectNonWww E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect = "non-www"
-	E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirectWww    E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect = "www"
+	CreateDockerimageApplicationJSONBodyRedirectBoth   CreateDockerimageApplicationJSONBodyRedirect = "both"
+	CreateDockerimageApplicationJSONBodyRedirectNonWww CreateDockerimageApplicationJSONBodyRedirect = "non-www"
+	CreateDockerimageApplicationJSONBodyRedirectWww    CreateDockerimageApplicationJSONBodyRedirect = "www"
 )
 
-// Defines values for E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack.
+// Defines values for CreatePrivateDeployKeyApplicationJSONBodyBuildPack.
 const (
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPackDockercompose E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack = "dockercompose"
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPackDockerfile    E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack = "dockerfile"
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPackNixpacks      E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack = "nixpacks"
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPackStatic        E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack = "static"
+	CreatePrivateDeployKeyApplicationJSONBodyBuildPackDockercompose CreatePrivateDeployKeyApplicationJSONBodyBuildPack = "dockercompose"
+	CreatePrivateDeployKeyApplicationJSONBodyBuildPackDockerfile    CreatePrivateDeployKeyApplicationJSONBodyBuildPack = "dockerfile"
+	CreatePrivateDeployKeyApplicationJSONBodyBuildPackNixpacks      CreatePrivateDeployKeyApplicationJSONBodyBuildPack = "nixpacks"
+	CreatePrivateDeployKeyApplicationJSONBodyBuildPackStatic        CreatePrivateDeployKeyApplicationJSONBodyBuildPack = "static"
 )
 
-// Defines values for E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect.
+// Defines values for CreatePrivateDeployKeyApplicationJSONBodyRedirect.
 const (
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirectBoth   E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect = "both"
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirectNonWww E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect = "non-www"
-	E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirectWww    E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect = "www"
+	CreatePrivateDeployKeyApplicationJSONBodyRedirectBoth   CreatePrivateDeployKeyApplicationJSONBodyRedirect = "both"
+	CreatePrivateDeployKeyApplicationJSONBodyRedirectNonWww CreatePrivateDeployKeyApplicationJSONBodyRedirect = "non-www"
+	CreatePrivateDeployKeyApplicationJSONBodyRedirectWww    CreatePrivateDeployKeyApplicationJSONBodyRedirect = "www"
 )
 
-// Defines values for N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack.
+// Defines values for CreatePrivateDeployKeyApplicationJSONBodyStaticImage.
 const (
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPackDockercompose N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack = "dockercompose"
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPackDockerfile    N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack = "dockerfile"
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPackNixpacks      N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack = "nixpacks"
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPackStatic        N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack = "static"
+	CreatePrivateDeployKeyApplicationJSONBodyStaticImageNginxAlpine CreatePrivateDeployKeyApplicationJSONBodyStaticImage = "nginx:alpine"
 )
 
-// Defines values for N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect.
+// Defines values for CreatePrivateGithubAppApplicationJSONBodyBuildPack.
 const (
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirectBoth   N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect = "both"
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirectNonWww N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect = "non-www"
-	N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirectWww    N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect = "www"
+	CreatePrivateGithubAppApplicationJSONBodyBuildPackDockercompose CreatePrivateGithubAppApplicationJSONBodyBuildPack = "dockercompose"
+	CreatePrivateGithubAppApplicationJSONBodyBuildPackDockerfile    CreatePrivateGithubAppApplicationJSONBodyBuildPack = "dockerfile"
+	CreatePrivateGithubAppApplicationJSONBodyBuildPackNixpacks      CreatePrivateGithubAppApplicationJSONBodyBuildPack = "nixpacks"
+	CreatePrivateGithubAppApplicationJSONBodyBuildPackStatic        CreatePrivateGithubAppApplicationJSONBodyBuildPack = "static"
 )
 
-// Defines values for Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack.
+// Defines values for CreatePrivateGithubAppApplicationJSONBodyRedirect.
 const (
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPackDockercompose Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack = "dockercompose"
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPackDockerfile    Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack = "dockerfile"
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPackNixpacks      Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack = "nixpacks"
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPackStatic        Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack = "static"
+	CreatePrivateGithubAppApplicationJSONBodyRedirectBoth   CreatePrivateGithubAppApplicationJSONBodyRedirect = "both"
+	CreatePrivateGithubAppApplicationJSONBodyRedirectNonWww CreatePrivateGithubAppApplicationJSONBodyRedirect = "non-www"
+	CreatePrivateGithubAppApplicationJSONBodyRedirectWww    CreatePrivateGithubAppApplicationJSONBodyRedirect = "www"
 )
 
-// Defines values for Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect.
+// Defines values for CreatePrivateGithubAppApplicationJSONBodyStaticImage.
 const (
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirectBoth   Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect = "both"
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirectNonWww Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect = "non-www"
-	Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirectWww    Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect = "www"
+	CreatePrivateGithubAppApplicationJSONBodyStaticImageNginxAlpine CreatePrivateGithubAppApplicationJSONBodyStaticImage = "nginx:alpine"
 )
 
-// Defines values for N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack.
+// Defines values for CreatePublicApplicationJSONBodyBuildPack.
 const (
-	N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPackDockercompose N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack = "dockercompose"
-	N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPackDockerfile    N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack = "dockerfile"
-	N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPackNixpacks      N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack = "nixpacks"
-	N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPackStatic        N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack = "static"
+	CreatePublicApplicationJSONBodyBuildPackDockercompose CreatePublicApplicationJSONBodyBuildPack = "dockercompose"
+	CreatePublicApplicationJSONBodyBuildPackDockerfile    CreatePublicApplicationJSONBodyBuildPack = "dockerfile"
+	CreatePublicApplicationJSONBodyBuildPackNixpacks      CreatePublicApplicationJSONBodyBuildPack = "nixpacks"
+	CreatePublicApplicationJSONBodyBuildPackStatic        CreatePublicApplicationJSONBodyBuildPack = "static"
 )
 
-// Defines values for N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect.
+// Defines values for CreatePublicApplicationJSONBodyRedirect.
 const (
-	Both   N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect = "both"
-	NonWww N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect = "non-www"
-	Www    N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect = "www"
+	CreatePublicApplicationJSONBodyRedirectBoth   CreatePublicApplicationJSONBodyRedirect = "both"
+	CreatePublicApplicationJSONBodyRedirectNonWww CreatePublicApplicationJSONBodyRedirect = "non-www"
+	CreatePublicApplicationJSONBodyRedirectWww    CreatePublicApplicationJSONBodyRedirect = "www"
 )
 
-// Defines values for N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType.
+// Defines values for CreatePublicApplicationJSONBodyStaticImage.
 const (
-	Activepieces                N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "activepieces"
-	Appsmith                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "appsmith"
-	Appwrite                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "appwrite"
-	Authentik                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "authentik"
-	Babybuddy                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "babybuddy"
-	Budge                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "budge"
-	Changedetection             N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "changedetection"
-	Chatwoot                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "chatwoot"
-	ClassicpressWithMariadb     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "classicpress-with-mariadb"
-	ClassicpressWithMysql       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "classicpress-with-mysql"
-	ClassicpressWithoutDatabase N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "classicpress-without-database"
-	Cloudflared                 N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "cloudflared"
-	CodeServer                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "code-server"
-	Dashboard                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "dashboard"
-	Directus                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "directus"
-	DirectusWithPostgresql      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "directus-with-postgresql"
-	DockerRegistry              N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "docker-registry"
-	Docuseal                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "docuseal"
-	DocusealWithPostgres        N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "docuseal-with-postgres"
-	Dokuwiki                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "dokuwiki"
-	Duplicati                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "duplicati"
-	Emby                        N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "emby"
-	Embystat                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "embystat"
-	Fider                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "fider"
-	Filebrowser                 N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "filebrowser"
-	Firefly                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "firefly"
-	Formbricks                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "formbricks"
-	Ghost                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "ghost"
-	Gitea                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "gitea"
-	GiteaWithMariadb            N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "gitea-with-mariadb"
-	GiteaWithMysql              N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "gitea-with-mysql"
-	GiteaWithPostgresql         N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "gitea-with-postgresql"
-	Glance                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "glance"
-	Glances                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "glances"
-	Glitchtip                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "glitchtip"
-	Grafana                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "grafana"
-	GrafanaWithPostgresql       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "grafana-with-postgresql"
-	Grocy                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "grocy"
-	Heimdall                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "heimdall"
-	Homepage                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "homepage"
-	Jellyfin                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "jellyfin"
-	Kuzzle                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "kuzzle"
-	Listmonk                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "listmonk"
-	Logto                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "logto"
-	Mediawiki                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "mediawiki"
-	Meilisearch                 N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "meilisearch"
-	Metabase                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "metabase"
-	Metube                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "metube"
-	Minio                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "minio"
-	Moodle                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "moodle"
-	N8n                         N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "n8n"
-	N8nWithPostgresql           N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "n8n-with-postgresql"
-	NextImageTransformation     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "next-image-transformation"
-	Nextcloud                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "nextcloud"
-	Nocodb                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "nocodb"
-	Odoo                        N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "odoo"
-	Openblocks                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "openblocks"
-	Pairdrop                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "pairdrop"
-	Penpot                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "penpot"
-	Phpmyadmin                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "phpmyadmin"
-	Pocketbase                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "pocketbase"
-	Posthog                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "posthog"
-	ReactiveResume              N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "reactive-resume"
-	Rocketchat                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "rocketchat"
-	Shlink                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "shlink"
-	Slash                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "slash"
-	Snapdrop                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "snapdrop"
-	Statusnook                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "statusnook"
-	StirlingPdf                 N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "stirling-pdf"
-	Supabase                    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "supabase"
-	Syncthing                   N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "syncthing"
-	Tolgee                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "tolgee"
-	Trigger                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "trigger"
-	TriggerWithExternalDatabase N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "trigger-with-external-database"
-	Twenty                      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "twenty"
-	Umami                       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "umami"
-	UnleashWithPostgresql       N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "unleash-with-postgresql"
-	UnleashWithoutDatabase      N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "unleash-without-database"
-	UptimeKuma                  N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "uptime-kuma"
-	Vaultwarden                 N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "vaultwarden"
-	Vikunja                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "vikunja"
-	Weblate                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "weblate"
-	Whoogle                     N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "whoogle"
-	WordpressWithMariadb        N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "wordpress-with-mariadb"
-	WordpressWithMysql          N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "wordpress-with-mysql"
-	WordpressWithoutDatabase    N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType = "wordpress-without-database"
+	NginxAlpine CreatePublicApplicationJSONBodyStaticImage = "nginx:alpine"
+)
+
+// Defines values for UpdateApplicationByUuidJSONBodyBuildPack.
+const (
+	UpdateApplicationByUuidJSONBodyBuildPackDockercompose UpdateApplicationByUuidJSONBodyBuildPack = "dockercompose"
+	UpdateApplicationByUuidJSONBodyBuildPackDockerfile    UpdateApplicationByUuidJSONBodyBuildPack = "dockerfile"
+	UpdateApplicationByUuidJSONBodyBuildPackNixpacks      UpdateApplicationByUuidJSONBodyBuildPack = "nixpacks"
+	UpdateApplicationByUuidJSONBodyBuildPackStatic        UpdateApplicationByUuidJSONBodyBuildPack = "static"
+)
+
+// Defines values for UpdateApplicationByUuidJSONBodyRedirect.
+const (
+	Both   UpdateApplicationByUuidJSONBodyRedirect = "both"
+	NonWww UpdateApplicationByUuidJSONBodyRedirect = "non-www"
+	Www    UpdateApplicationByUuidJSONBodyRedirect = "www"
+)
+
+// Defines values for CreateServiceJSONBodyType.
+const (
+	Activepieces                CreateServiceJSONBodyType = "activepieces"
+	Appsmith                    CreateServiceJSONBodyType = "appsmith"
+	Appwrite                    CreateServiceJSONBodyType = "appwrite"
+	Authentik                   CreateServiceJSONBodyType = "authentik"
+	Babybuddy                   CreateServiceJSONBodyType = "babybuddy"
+	Budge                       CreateServiceJSONBodyType = "budge"
+	Changedetection             CreateServiceJSONBodyType = "changedetection"
+	Chatwoot                    CreateServiceJSONBodyType = "chatwoot"
+	ClassicpressWithMariadb     CreateServiceJSONBodyType = "classicpress-with-mariadb"
+	ClassicpressWithMysql       CreateServiceJSONBodyType = "classicpress-with-mysql"
+	ClassicpressWithoutDatabase CreateServiceJSONBodyType = "classicpress-without-database"
+	Cloudflared                 CreateServiceJSONBodyType = "cloudflared"
+	CodeServer                  CreateServiceJSONBodyType = "code-server"
+	Dashboard                   CreateServiceJSONBodyType = "dashboard"
+	Directus                    CreateServiceJSONBodyType = "directus"
+	DirectusWithPostgresql      CreateServiceJSONBodyType = "directus-with-postgresql"
+	DockerRegistry              CreateServiceJSONBodyType = "docker-registry"
+	Docuseal                    CreateServiceJSONBodyType = "docuseal"
+	DocusealWithPostgres        CreateServiceJSONBodyType = "docuseal-with-postgres"
+	Dokuwiki                    CreateServiceJSONBodyType = "dokuwiki"
+	Duplicati                   CreateServiceJSONBodyType = "duplicati"
+	Emby                        CreateServiceJSONBodyType = "emby"
+	Embystat                    CreateServiceJSONBodyType = "embystat"
+	Fider                       CreateServiceJSONBodyType = "fider"
+	Filebrowser                 CreateServiceJSONBodyType = "filebrowser"
+	Firefly                     CreateServiceJSONBodyType = "firefly"
+	Formbricks                  CreateServiceJSONBodyType = "formbricks"
+	Ghost                       CreateServiceJSONBodyType = "ghost"
+	Gitea                       CreateServiceJSONBodyType = "gitea"
+	GiteaWithMariadb            CreateServiceJSONBodyType = "gitea-with-mariadb"
+	GiteaWithMysql              CreateServiceJSONBodyType = "gitea-with-mysql"
+	GiteaWithPostgresql         CreateServiceJSONBodyType = "gitea-with-postgresql"
+	Glance                      CreateServiceJSONBodyType = "glance"
+	Glances                     CreateServiceJSONBodyType = "glances"
+	Glitchtip                   CreateServiceJSONBodyType = "glitchtip"
+	Grafana                     CreateServiceJSONBodyType = "grafana"
+	GrafanaWithPostgresql       CreateServiceJSONBodyType = "grafana-with-postgresql"
+	Grocy                       CreateServiceJSONBodyType = "grocy"
+	Heimdall                    CreateServiceJSONBodyType = "heimdall"
+	Homepage                    CreateServiceJSONBodyType = "homepage"
+	Jellyfin                    CreateServiceJSONBodyType = "jellyfin"
+	Kuzzle                      CreateServiceJSONBodyType = "kuzzle"
+	Listmonk                    CreateServiceJSONBodyType = "listmonk"
+	Logto                       CreateServiceJSONBodyType = "logto"
+	Mediawiki                   CreateServiceJSONBodyType = "mediawiki"
+	Meilisearch                 CreateServiceJSONBodyType = "meilisearch"
+	Metabase                    CreateServiceJSONBodyType = "metabase"
+	Metube                      CreateServiceJSONBodyType = "metube"
+	Minio                       CreateServiceJSONBodyType = "minio"
+	Moodle                      CreateServiceJSONBodyType = "moodle"
+	N8n                         CreateServiceJSONBodyType = "n8n"
+	N8nWithPostgresql           CreateServiceJSONBodyType = "n8n-with-postgresql"
+	NextImageTransformation     CreateServiceJSONBodyType = "next-image-transformation"
+	Nextcloud                   CreateServiceJSONBodyType = "nextcloud"
+	Nocodb                      CreateServiceJSONBodyType = "nocodb"
+	Odoo                        CreateServiceJSONBodyType = "odoo"
+	Openblocks                  CreateServiceJSONBodyType = "openblocks"
+	Pairdrop                    CreateServiceJSONBodyType = "pairdrop"
+	Penpot                      CreateServiceJSONBodyType = "penpot"
+	Phpmyadmin                  CreateServiceJSONBodyType = "phpmyadmin"
+	Pocketbase                  CreateServiceJSONBodyType = "pocketbase"
+	Posthog                     CreateServiceJSONBodyType = "posthog"
+	ReactiveResume              CreateServiceJSONBodyType = "reactive-resume"
+	Rocketchat                  CreateServiceJSONBodyType = "rocketchat"
+	Shlink                      CreateServiceJSONBodyType = "shlink"
+	Slash                       CreateServiceJSONBodyType = "slash"
+	Snapdrop                    CreateServiceJSONBodyType = "snapdrop"
+	Statusnook                  CreateServiceJSONBodyType = "statusnook"
+	StirlingPdf                 CreateServiceJSONBodyType = "stirling-pdf"
+	Supabase                    CreateServiceJSONBodyType = "supabase"
+	Syncthing                   CreateServiceJSONBodyType = "syncthing"
+	Tolgee                      CreateServiceJSONBodyType = "tolgee"
+	Trigger                     CreateServiceJSONBodyType = "trigger"
+	TriggerWithExternalDatabase CreateServiceJSONBodyType = "trigger-with-external-database"
+	Twenty                      CreateServiceJSONBodyType = "twenty"
+	Umami                       CreateServiceJSONBodyType = "umami"
+	UnleashWithPostgresql       CreateServiceJSONBodyType = "unleash-with-postgresql"
+	UnleashWithoutDatabase      CreateServiceJSONBodyType = "unleash-without-database"
+	UptimeKuma                  CreateServiceJSONBodyType = "uptime-kuma"
+	Vaultwarden                 CreateServiceJSONBodyType = "vaultwarden"
+	Vikunja                     CreateServiceJSONBodyType = "vikunja"
+	Weblate                     CreateServiceJSONBodyType = "weblate"
+	Whoogle                     CreateServiceJSONBodyType = "whoogle"
+	WordpressWithMariadb        CreateServiceJSONBodyType = "wordpress-with-mariadb"
+	WordpressWithMysql          CreateServiceJSONBodyType = "wordpress-with-mysql"
+	WordpressWithoutDatabase    CreateServiceJSONBodyType = "wordpress-without-database"
 )
 
 // Application Application model
@@ -530,6 +546,8 @@ type Project struct {
 
 // Server Server model
 type Server struct {
+	DeleteUnusedNetworks          *bool                   `json:"delete_unused_networks,omitempty"`
+	DeleteUnusedVolumes           *bool                   `json:"delete_unused_volumes,omitempty"`
 	Description                   *string                 `json:"description,omitempty"`
 	HighDiskUsageNotificationSent *bool                   `json:"high_disk_usage_notification_sent,omitempty"`
 	Id                            *int                    `json:"id,omitempty"`
@@ -551,38 +569,40 @@ type Server struct {
 
 // ServerSetting Server Settings model
 type ServerSetting struct {
-	CleanupAfterPercentage     *int    `json:"cleanup_after_percentage,omitempty"`
-	ConcurrentBuilds           *int    `json:"concurrent_builds,omitempty"`
-	CreatedAt                  *string `json:"created_at,omitempty"`
-	DynamicTimeout             *int    `json:"dynamic_timeout,omitempty"`
-	ForceDisabled              *bool   `json:"force_disabled,omitempty"`
-	Id                         *int    `json:"id,omitempty"`
-	IsBuildServer              *bool   `json:"is_build_server,omitempty"`
-	IsCloudflareTunnel         *bool   `json:"is_cloudflare_tunnel,omitempty"`
-	IsJumpServer               *bool   `json:"is_jump_server,omitempty"`
-	IsLogdrainAxiomEnabled     *bool   `json:"is_logdrain_axiom_enabled,omitempty"`
-	IsLogdrainCustomEnabled    *bool   `json:"is_logdrain_custom_enabled,omitempty"`
-	IsLogdrainHighlightEnabled *bool   `json:"is_logdrain_highlight_enabled,omitempty"`
-	IsLogdrainNewrelicEnabled  *bool   `json:"is_logdrain_newrelic_enabled,omitempty"`
-	IsMetricsEnabled           *bool   `json:"is_metrics_enabled,omitempty"`
-	IsReachable                *bool   `json:"is_reachable,omitempty"`
-	IsServerApiEnabled         *bool   `json:"is_server_api_enabled,omitempty"`
-	IsSwarmManager             *bool   `json:"is_swarm_manager,omitempty"`
-	IsSwarmWorker              *bool   `json:"is_swarm_worker,omitempty"`
-	IsUsable                   *bool   `json:"is_usable,omitempty"`
-	LogdrainAxiomApiKey        *string `json:"logdrain_axiom_api_key,omitempty"`
-	LogdrainAxiomDatasetName   *string `json:"logdrain_axiom_dataset_name,omitempty"`
-	LogdrainCustomConfig       *string `json:"logdrain_custom_config,omitempty"`
-	LogdrainCustomConfigParser *string `json:"logdrain_custom_config_parser,omitempty"`
-	LogdrainHighlightProjectId *string `json:"logdrain_highlight_project_id,omitempty"`
-	LogdrainNewrelicBaseUri    *string `json:"logdrain_newrelic_base_uri,omitempty"`
-	LogdrainNewrelicLicenseKey *string `json:"logdrain_newrelic_license_key,omitempty"`
-	MetricsHistoryDays         *int    `json:"metrics_history_days,omitempty"`
-	MetricsRefreshRateSeconds  *int    `json:"metrics_refresh_rate_seconds,omitempty"`
-	MetricsToken               *string `json:"metrics_token,omitempty"`
-	ServerId                   *int    `json:"server_id,omitempty"`
-	UpdatedAt                  *string `json:"updated_at,omitempty"`
-	WildcardDomain             *string `json:"wildcard_domain,omitempty"`
+	ConcurrentBuilds                  *int    `json:"concurrent_builds,omitempty"`
+	CreatedAt                         *string `json:"created_at,omitempty"`
+	DockerCleanupFrequency            *string `json:"docker_cleanup_frequency,omitempty"`
+	DockerCleanupThreshold            *int    `json:"docker_cleanup_threshold,omitempty"`
+	DynamicTimeout                    *int    `json:"dynamic_timeout,omitempty"`
+	ForceDisabled                     *bool   `json:"force_disabled,omitempty"`
+	ForceServerCleanup                *bool   `json:"force_server_cleanup,omitempty"`
+	Id                                *int    `json:"id,omitempty"`
+	IsBuildServer                     *bool   `json:"is_build_server,omitempty"`
+	IsCloudflareTunnel                *bool   `json:"is_cloudflare_tunnel,omitempty"`
+	IsJumpServer                      *bool   `json:"is_jump_server,omitempty"`
+	IsLogdrainAxiomEnabled            *bool   `json:"is_logdrain_axiom_enabled,omitempty"`
+	IsLogdrainCustomEnabled           *bool   `json:"is_logdrain_custom_enabled,omitempty"`
+	IsLogdrainHighlightEnabled        *bool   `json:"is_logdrain_highlight_enabled,omitempty"`
+	IsLogdrainNewrelicEnabled         *bool   `json:"is_logdrain_newrelic_enabled,omitempty"`
+	IsMetricsEnabled                  *bool   `json:"is_metrics_enabled,omitempty"`
+	IsReachable                       *bool   `json:"is_reachable,omitempty"`
+	IsSentinelEnabled                 *bool   `json:"is_sentinel_enabled,omitempty"`
+	IsSwarmManager                    *bool   `json:"is_swarm_manager,omitempty"`
+	IsSwarmWorker                     *bool   `json:"is_swarm_worker,omitempty"`
+	IsUsable                          *bool   `json:"is_usable,omitempty"`
+	LogdrainAxiomApiKey               *string `json:"logdrain_axiom_api_key,omitempty"`
+	LogdrainAxiomDatasetName          *string `json:"logdrain_axiom_dataset_name,omitempty"`
+	LogdrainCustomConfig              *string `json:"logdrain_custom_config,omitempty"`
+	LogdrainCustomConfigParser        *string `json:"logdrain_custom_config_parser,omitempty"`
+	LogdrainHighlightProjectId        *string `json:"logdrain_highlight_project_id,omitempty"`
+	LogdrainNewrelicBaseUri           *string `json:"logdrain_newrelic_base_uri,omitempty"`
+	LogdrainNewrelicLicenseKey        *string `json:"logdrain_newrelic_license_key,omitempty"`
+	SentinelMetricsHistoryDays        *int    `json:"sentinel_metrics_history_days,omitempty"`
+	SentinelMetricsRefreshRateSeconds *int    `json:"sentinel_metrics_refresh_rate_seconds,omitempty"`
+	SentinelToken                     *string `json:"sentinel_token,omitempty"`
+	ServerId                          *int    `json:"server_id,omitempty"`
+	UpdatedAt                         *string `json:"updated_at,omitempty"`
+	WildcardDomain                    *string `json:"wildcard_domain,omitempty"`
 }
 
 // Service Service model
@@ -604,6 +624,9 @@ type Service struct {
 
 	// DestinationId The unique identifier of the destination where the service is running.
 	DestinationId *int `json:"destination_id,omitempty"`
+
+	// DestinationType Destination type.
+	DestinationType *string `json:"destination_type,omitempty"`
 
 	// DockerCompose The docker-compose.yml file that is parsed and modified by Coolify.
 	DockerCompose *string `json:"docker_compose,omitempty"`
@@ -828,8 +851,8 @@ type N404 struct {
 	Message *string `json:"message,omitempty"`
 }
 
-// N3731add8226c2d664455978cac46c242JSONBody defines parameters for N3731add8226c2d664455978cac46c242.
-type N3731add8226c2d664455978cac46c242JSONBody struct {
+// CreateDockercomposeApplicationJSONBody defines parameters for CreateDockercomposeApplication.
+type CreateDockercomposeApplicationJSONBody struct {
 	// Description The application description.
 	Description *string `json:"description,omitempty"`
 
@@ -853,15 +876,18 @@ type N3731add8226c2d664455978cac46c242JSONBody struct {
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
 }
 
-// N2b433ad6f5d259eb7f4f3b5af9913708JSONBody defines parameters for N2b433ad6f5d259eb7f4f3b5af9913708.
-type N2b433ad6f5d259eb7f4f3b5af9913708JSONBody struct {
+// CreateDockerfileApplicationJSONBody defines parameters for CreateDockerfileApplication.
+type CreateDockerfileApplicationJSONBody struct {
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
 	// BuildPack The build pack type.
-	BuildPack *N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack `json:"build_pack,omitempty"`
+	BuildPack *CreateDockerfileApplicationJSONBodyBuildPack `json:"build_pack,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -987,20 +1013,23 @@ type N2b433ad6f5d259eb7f4f3b5af9913708JSONBody struct {
 	ProjectUuid string `json:"project_uuid"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[CreateDockerfileApplicationJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
 }
 
-// N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack defines parameters for N2b433ad6f5d259eb7f4f3b5af9913708.
-type N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyBuildPack string
+// CreateDockerfileApplicationJSONBodyBuildPack defines parameters for CreateDockerfileApplication.
+type CreateDockerfileApplicationJSONBodyBuildPack string
 
-// N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect defines parameters for N2b433ad6f5d259eb7f4f3b5af9913708.
-type N2b433ad6f5d259eb7f4f3b5af9913708JSONBodyRedirect string
+// CreateDockerfileApplicationJSONBodyRedirect defines parameters for CreateDockerfileApplication.
+type CreateDockerfileApplicationJSONBodyRedirect string
 
-// E9a2d6dd9404acf880dc3053f09477fcJSONBody defines parameters for E9a2d6dd9404acf880dc3053f09477fc.
-type E9a2d6dd9404acf880dc3053f09477fcJSONBody struct {
+// CreateDockerimageApplicationJSONBody defines parameters for CreateDockerimageApplication.
+type CreateDockerimageApplicationJSONBody struct {
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
 
@@ -1122,17 +1151,20 @@ type E9a2d6dd9404acf880dc3053f09477fcJSONBody struct {
 	ProjectUuid string `json:"project_uuid"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[CreateDockerimageApplicationJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
 }
 
-// E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect defines parameters for E9a2d6dd9404acf880dc3053f09477fc.
-type E9a2d6dd9404acf880dc3053f09477fcJSONBodyRedirect string
+// CreateDockerimageApplicationJSONBodyRedirect defines parameters for CreateDockerimageApplication.
+type CreateDockerimageApplicationJSONBodyRedirect string
 
-// E3eaa989ffb05366247a00cdfd551efaJSONBody defines parameters for E3eaa989ffb05366247a00cdfd551efa.
-type E3eaa989ffb05366247a00cdfd551efaJSONBody struct {
+// CreatePrivateDeployKeyApplicationJSONBody defines parameters for CreatePrivateDeployKeyApplication.
+type CreatePrivateDeployKeyApplicationJSONBody struct {
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1140,7 +1172,7 @@ type E3eaa989ffb05366247a00cdfd551efaJSONBody struct {
 	BuildCommand *string `json:"build_command,omitempty"`
 
 	// BuildPack The build pack type.
-	BuildPack E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack `json:"build_pack"`
+	BuildPack CreatePrivateDeployKeyApplicationJSONBodyBuildPack `json:"build_pack"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1302,7 +1334,7 @@ type E3eaa989ffb05366247a00cdfd551efaJSONBody struct {
 	PublishDirectory *string `json:"publish_directory,omitempty"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[CreatePrivateDeployKeyApplicationJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
@@ -1310,18 +1342,27 @@ type E3eaa989ffb05366247a00cdfd551efaJSONBody struct {
 	// StartCommand The start command.
 	StartCommand *string `json:"start_command,omitempty"`
 
+	// StaticImage The static image.
+	StaticImage *CreatePrivateDeployKeyApplicationJSONBodyStaticImage `json:"static_image,omitempty"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
+
 	// WatchPaths The watch paths.
 	WatchPaths *string `json:"watch_paths,omitempty"`
 }
 
-// E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack defines parameters for E3eaa989ffb05366247a00cdfd551efa.
-type E3eaa989ffb05366247a00cdfd551efaJSONBodyBuildPack string
+// CreatePrivateDeployKeyApplicationJSONBodyBuildPack defines parameters for CreatePrivateDeployKeyApplication.
+type CreatePrivateDeployKeyApplicationJSONBodyBuildPack string
 
-// E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect defines parameters for E3eaa989ffb05366247a00cdfd551efa.
-type E3eaa989ffb05366247a00cdfd551efaJSONBodyRedirect string
+// CreatePrivateDeployKeyApplicationJSONBodyRedirect defines parameters for CreatePrivateDeployKeyApplication.
+type CreatePrivateDeployKeyApplicationJSONBodyRedirect string
 
-// N4d46c84bda4f1a411f6dda15fce4061fJSONBody defines parameters for N4d46c84bda4f1a411f6dda15fce4061f.
-type N4d46c84bda4f1a411f6dda15fce4061fJSONBody struct {
+// CreatePrivateDeployKeyApplicationJSONBodyStaticImage defines parameters for CreatePrivateDeployKeyApplication.
+type CreatePrivateDeployKeyApplicationJSONBodyStaticImage string
+
+// CreatePrivateGithubAppApplicationJSONBody defines parameters for CreatePrivateGithubAppApplication.
+type CreatePrivateGithubAppApplicationJSONBody struct {
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1329,7 +1370,7 @@ type N4d46c84bda4f1a411f6dda15fce4061fJSONBody struct {
 	BuildCommand *string `json:"build_command,omitempty"`
 
 	// BuildPack The build pack type.
-	BuildPack N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack `json:"build_pack"`
+	BuildPack CreatePrivateGithubAppApplicationJSONBodyBuildPack `json:"build_pack"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1491,7 +1532,7 @@ type N4d46c84bda4f1a411f6dda15fce4061fJSONBody struct {
 	PublishDirectory *string `json:"publish_directory,omitempty"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[CreatePrivateGithubAppApplicationJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
@@ -1499,18 +1540,27 @@ type N4d46c84bda4f1a411f6dda15fce4061fJSONBody struct {
 	// StartCommand The start command.
 	StartCommand *string `json:"start_command,omitempty"`
 
+	// StaticImage The static image.
+	StaticImage *CreatePrivateGithubAppApplicationJSONBodyStaticImage `json:"static_image,omitempty"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
+
 	// WatchPaths The watch paths.
 	WatchPaths *string `json:"watch_paths,omitempty"`
 }
 
-// N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack defines parameters for N4d46c84bda4f1a411f6dda15fce4061f.
-type N4d46c84bda4f1a411f6dda15fce4061fJSONBodyBuildPack string
+// CreatePrivateGithubAppApplicationJSONBodyBuildPack defines parameters for CreatePrivateGithubAppApplication.
+type CreatePrivateGithubAppApplicationJSONBodyBuildPack string
 
-// N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect defines parameters for N4d46c84bda4f1a411f6dda15fce4061f.
-type N4d46c84bda4f1a411f6dda15fce4061fJSONBodyRedirect string
+// CreatePrivateGithubAppApplicationJSONBodyRedirect defines parameters for CreatePrivateGithubAppApplication.
+type CreatePrivateGithubAppApplicationJSONBodyRedirect string
 
-// Cb56324ad19693469b4461d3f6065a5bJSONBody defines parameters for Cb56324ad19693469b4461d3f6065a5b.
-type Cb56324ad19693469b4461d3f6065a5bJSONBody struct {
+// CreatePrivateGithubAppApplicationJSONBodyStaticImage defines parameters for CreatePrivateGithubAppApplication.
+type CreatePrivateGithubAppApplicationJSONBodyStaticImage string
+
+// CreatePublicApplicationJSONBody defines parameters for CreatePublicApplication.
+type CreatePublicApplicationJSONBody struct {
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1518,7 +1568,7 @@ type Cb56324ad19693469b4461d3f6065a5bJSONBody struct {
 	BuildCommand *string `json:"build_command,omitempty"`
 
 	// BuildPack The build pack type.
-	BuildPack Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack `json:"build_pack"`
+	BuildPack CreatePublicApplicationJSONBodyBuildPack `json:"build_pack"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1677,7 +1727,7 @@ type Cb56324ad19693469b4461d3f6065a5bJSONBody struct {
 	PublishDirectory *string `json:"publish_directory,omitempty"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[CreatePublicApplicationJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid string `json:"server_uuid"`
@@ -1685,24 +1735,42 @@ type Cb56324ad19693469b4461d3f6065a5bJSONBody struct {
 	// StartCommand The start command.
 	StartCommand *string `json:"start_command,omitempty"`
 
+	// StaticImage The static image.
+	StaticImage *CreatePublicApplicationJSONBodyStaticImage `json:"static_image,omitempty"`
+
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
+
 	// WatchPaths The watch paths.
 	WatchPaths *string `json:"watch_paths,omitempty"`
 }
 
-// Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack defines parameters for Cb56324ad19693469b4461d3f6065a5b.
-type Cb56324ad19693469b4461d3f6065a5bJSONBodyBuildPack string
+// CreatePublicApplicationJSONBodyBuildPack defines parameters for CreatePublicApplication.
+type CreatePublicApplicationJSONBodyBuildPack string
 
-// Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect defines parameters for Cb56324ad19693469b4461d3f6065a5b.
-type Cb56324ad19693469b4461d3f6065a5bJSONBodyRedirect string
+// CreatePublicApplicationJSONBodyRedirect defines parameters for CreatePublicApplication.
+type CreatePublicApplicationJSONBodyRedirect string
 
-// N1e110b190a1045d34f3e1c61608a8702Params defines parameters for N1e110b190a1045d34f3e1c61608a8702.
-type N1e110b190a1045d34f3e1c61608a8702Params struct {
-	// Cleanup Delete configurations and volumes.
-	Cleanup *bool `form:"cleanup,omitempty" json:"cleanup,omitempty"`
+// CreatePublicApplicationJSONBodyStaticImage defines parameters for CreatePublicApplication.
+type CreatePublicApplicationJSONBodyStaticImage string
+
+// DeleteApplicationByUuidParams defines parameters for DeleteApplicationByUuid.
+type DeleteApplicationByUuidParams struct {
+	// DeleteConfigurations Delete configurations.
+	DeleteConfigurations *bool `form:"delete_configurations,omitempty" json:"delete_configurations,omitempty"`
+
+	// DeleteVolumes Delete volumes.
+	DeleteVolumes *bool `form:"delete_volumes,omitempty" json:"delete_volumes,omitempty"`
+
+	// DockerCleanup Run docker cleanup.
+	DockerCleanup *bool `form:"docker_cleanup,omitempty" json:"docker_cleanup,omitempty"`
+
+	// DeleteConnectedNetworks Delete connected networks.
+	DeleteConnectedNetworks *bool `form:"delete_connected_networks,omitempty" json:"delete_connected_networks,omitempty"`
 }
 
-// N62a3b1775e8cba5d39a236ebb69830b7JSONBody defines parameters for N62a3b1775e8cba5d39a236ebb69830b7.
-type N62a3b1775e8cba5d39a236ebb69830b7JSONBody struct {
+// UpdateApplicationByUuidJSONBody defines parameters for UpdateApplicationByUuid.
+type UpdateApplicationByUuidJSONBody struct {
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1710,7 +1778,7 @@ type N62a3b1775e8cba5d39a236ebb69830b7JSONBody struct {
 	BuildCommand *string `json:"build_command,omitempty"`
 
 	// BuildPack The build pack type.
-	BuildPack *N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack `json:"build_pack,omitempty"`
+	BuildPack *UpdateApplicationByUuidJSONBodyBuildPack `json:"build_pack,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1872,7 +1940,7 @@ type N62a3b1775e8cba5d39a236ebb69830b7JSONBody struct {
 	PublishDirectory *string `json:"publish_directory,omitempty"`
 
 	// Redirect How to set redirect with Traefik / Caddy. www<->non-www.
-	Redirect nullable.Nullable[N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect] `json:"redirect,omitempty"`
+	Redirect nullable.Nullable[UpdateApplicationByUuidJSONBodyRedirect] `json:"redirect,omitempty"`
 
 	// ServerUuid The server UUID.
 	ServerUuid *string `json:"server_uuid,omitempty"`
@@ -1880,18 +1948,21 @@ type N62a3b1775e8cba5d39a236ebb69830b7JSONBody struct {
 	// StartCommand The start command.
 	StartCommand *string `json:"start_command,omitempty"`
 
+	// UseBuildServer Use build server.
+	UseBuildServer nullable.Nullable[bool] `json:"use_build_server,omitempty"`
+
 	// WatchPaths The watch paths.
 	WatchPaths *string `json:"watch_paths,omitempty"`
 }
 
-// N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack defines parameters for N62a3b1775e8cba5d39a236ebb69830b7.
-type N62a3b1775e8cba5d39a236ebb69830b7JSONBodyBuildPack string
+// UpdateApplicationByUuidJSONBodyBuildPack defines parameters for UpdateApplicationByUuid.
+type UpdateApplicationByUuidJSONBodyBuildPack string
 
-// N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect defines parameters for N62a3b1775e8cba5d39a236ebb69830b7.
-type N62a3b1775e8cba5d39a236ebb69830b7JSONBodyRedirect string
+// UpdateApplicationByUuidJSONBodyRedirect defines parameters for UpdateApplicationByUuid.
+type UpdateApplicationByUuidJSONBodyRedirect string
 
-// N3d70a2d569f395be220b3f09ad36674bJSONBody defines parameters for N3d70a2d569f395be220b3f09ad36674b.
-type N3d70a2d569f395be220b3f09ad36674bJSONBody struct {
+// UpdateEnvByApplicationUuidJSONBody defines parameters for UpdateEnvByApplicationUuid.
+type UpdateEnvByApplicationUuidJSONBody struct {
 	// IsBuildTime The flag to indicate if the environment variable is used in build time.
 	IsBuildTime *bool `json:"is_build_time,omitempty"`
 
@@ -1914,8 +1985,8 @@ type N3d70a2d569f395be220b3f09ad36674bJSONBody struct {
 	Value string `json:"value"`
 }
 
-// N4699ffbb7d6e58581fd0b0a14f36ffc2JSONBody defines parameters for N4699ffbb7d6e58581fd0b0a14f36ffc2.
-type N4699ffbb7d6e58581fd0b0a14f36ffc2JSONBody struct {
+// CreateEnvByApplicationUuidJSONBody defines parameters for CreateEnvByApplicationUuid.
+type CreateEnvByApplicationUuidJSONBody struct {
 	// IsBuildTime The flag to indicate if the environment variable is used in build time.
 	IsBuildTime *bool `json:"is_build_time,omitempty"`
 
@@ -1938,8 +2009,8 @@ type N4699ffbb7d6e58581fd0b0a14f36ffc2JSONBody struct {
 	Value *string `json:"value,omitempty"`
 }
 
-// Ae96f0f585ed158b2abd2d9ba40f3cf9JSONBody defines parameters for Ae96f0f585ed158b2abd2d9ba40f3cf9.
-type Ae96f0f585ed158b2abd2d9ba40f3cf9JSONBody struct {
+// UpdateEnvsByApplicationUuidJSONBody defines parameters for UpdateEnvsByApplicationUuid.
+type UpdateEnvsByApplicationUuidJSONBody struct {
 	Data []struct {
 		// IsBuildTime The flag to indicate if the environment variable is used in build time.
 		IsBuildTime *bool `json:"is_build_time,omitempty"`
@@ -1964,8 +2035,14 @@ type Ae96f0f585ed158b2abd2d9ba40f3cf9JSONBody struct {
 	} `json:"data"`
 }
 
-// Dc87c2061ab303757a0e061f87900c4cParams defines parameters for Dc87c2061ab303757a0e061f87900c4c.
-type Dc87c2061ab303757a0e061f87900c4cParams struct {
+// ExecuteCommandApplicationJSONBody defines parameters for ExecuteCommandApplication.
+type ExecuteCommandApplicationJSONBody struct {
+	// Command Command to execute.
+	Command *string `json:"command,omitempty"`
+}
+
+// StartApplicationByUuidParams defines parameters for StartApplicationByUuid.
+type StartApplicationByUuidParams struct {
 	// Force Force rebuild.
 	Force *bool `form:"force,omitempty" json:"force,omitempty"`
 
@@ -1973,8 +2050,8 @@ type Dc87c2061ab303757a0e061f87900c4cParams struct {
 	InstantDeploy *bool `form:"instant_deploy,omitempty" json:"instant_deploy,omitempty"`
 }
 
-// A1189fa7f956f238f0e95c9150ff57f6JSONBody defines parameters for A1189fa7f956f238f0e95c9150ff57f6.
-type A1189fa7f956f238f0e95c9150ff57f6JSONBody struct {
+// CreateDatabaseClickhouseJSONBody defines parameters for CreateDatabaseClickhouse.
+type CreateDatabaseClickhouseJSONBody struct {
 	// ClickhouseAdminPassword Clickhouse admin password
 	ClickhouseAdminPassword *string `json:"clickhouse_admin_password,omitempty"`
 
@@ -2033,8 +2110,8 @@ type A1189fa7f956f238f0e95c9150ff57f6JSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// E73f7de1c8eee4219e5ec98c4b9b7efeJSONBody defines parameters for E73f7de1c8eee4219e5ec98c4b9b7efe.
-type E73f7de1c8eee4219e5ec98c4b9b7efeJSONBody struct {
+// CreateDatabaseDragonflyJSONBody defines parameters for CreateDatabaseDragonfly.
+type CreateDatabaseDragonflyJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2090,8 +2167,8 @@ type E73f7de1c8eee4219e5ec98c4b9b7efeJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// B908f3929c371c217d489638e0a21ff6JSONBody defines parameters for B908f3929c371c217d489638e0a21ff6.
-type B908f3929c371c217d489638e0a21ff6JSONBody struct {
+// CreateDatabaseKeydbJSONBody defines parameters for CreateDatabaseKeydb.
+type CreateDatabaseKeydbJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2150,8 +2227,8 @@ type B908f3929c371c217d489638e0a21ff6JSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// N6bea521ddcd738dcbb5f3783a7308acfJSONBody defines parameters for N6bea521ddcd738dcbb5f3783a7308acf.
-type N6bea521ddcd738dcbb5f3783a7308acfJSONBody struct {
+// CreateDatabaseMariadbJSONBody defines parameters for CreateDatabaseMariadb.
+type CreateDatabaseMariadbJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2219,8 +2296,8 @@ type N6bea521ddcd738dcbb5f3783a7308acfJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// Fdba3de84d02519bb37599fea34b115dJSONBody defines parameters for Fdba3de84d02519bb37599fea34b115d.
-type Fdba3de84d02519bb37599fea34b115dJSONBody struct {
+// CreateDatabaseMongodbJSONBody defines parameters for CreateDatabaseMongodb.
+type CreateDatabaseMongodbJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2279,8 +2356,8 @@ type Fdba3de84d02519bb37599fea34b115dJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// N0a1158cf759c4493cbb1e30024c60623JSONBody defines parameters for N0a1158cf759c4493cbb1e30024c60623.
-type N0a1158cf759c4493cbb1e30024c60623JSONBody struct {
+// CreateDatabaseMysqlJSONBody defines parameters for CreateDatabaseMysql.
+type CreateDatabaseMysqlJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2345,8 +2422,8 @@ type N0a1158cf759c4493cbb1e30024c60623JSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// N8f7f491ddc46a9fa065b4424512231cdJSONBody defines parameters for N8f7f491ddc46a9fa065b4424512231cd.
-type N8f7f491ddc46a9fa065b4424512231cdJSONBody struct {
+// CreateDatabasePostgresqlJSONBody defines parameters for CreateDatabasePostgresql.
+type CreateDatabasePostgresqlJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2417,8 +2494,8 @@ type N8f7f491ddc46a9fa065b4424512231cdJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// N4d352d13544ee2953fd48ad7b0651098JSONBody defines parameters for N4d352d13544ee2953fd48ad7b0651098.
-type N4d352d13544ee2953fd48ad7b0651098JSONBody struct {
+// CreateDatabaseRedisJSONBody defines parameters for CreateDatabaseRedis.
+type CreateDatabaseRedisJSONBody struct {
 	// Description Description of the database
 	Description *string `json:"description,omitempty"`
 
@@ -2477,14 +2554,23 @@ type N4d352d13544ee2953fd48ad7b0651098JSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 }
 
-// N20610931b2bae8aba34eee68624ab673Params defines parameters for N20610931b2bae8aba34eee68624ab673.
-type N20610931b2bae8aba34eee68624ab673Params struct {
-	// Cleanup Delete configurations and volumes.
-	Cleanup *bool `form:"cleanup,omitempty" json:"cleanup,omitempty"`
+// DeleteDatabaseByUuidParams defines parameters for DeleteDatabaseByUuid.
+type DeleteDatabaseByUuidParams struct {
+	// DeleteConfigurations Delete configurations.
+	DeleteConfigurations *bool `form:"delete_configurations,omitempty" json:"delete_configurations,omitempty"`
+
+	// DeleteVolumes Delete volumes.
+	DeleteVolumes *bool `form:"delete_volumes,omitempty" json:"delete_volumes,omitempty"`
+
+	// DockerCleanup Run docker cleanup.
+	DockerCleanup *bool `form:"docker_cleanup,omitempty" json:"docker_cleanup,omitempty"`
+
+	// DeleteConnectedNetworks Delete connected networks.
+	DeleteConnectedNetworks *bool `form:"delete_connected_networks,omitempty" json:"delete_connected_networks,omitempty"`
 }
 
-// N5ba459ed390a721711a1708760e9de3bJSONBody defines parameters for N5ba459ed390a721711a1708760e9de3b.
-type N5ba459ed390a721711a1708760e9de3bJSONBody struct {
+// UpdateDatabaseByUuidJSONBody defines parameters for UpdateDatabaseByUuid.
+type UpdateDatabaseByUuidJSONBody struct {
 	// ClickhouseAdminPassword Clickhouse admin password
 	ClickhouseAdminPassword *string `json:"clickhouse_admin_password,omitempty"`
 
@@ -2600,8 +2686,8 @@ type N5ba459ed390a721711a1708760e9de3bJSONBody struct {
 	RedisPassword *string `json:"redis_password,omitempty"`
 }
 
-// N700eb6e51f4c9e86d722f600c65ed1d4Params defines parameters for N700eb6e51f4c9e86d722f600c65ed1d4.
-type N700eb6e51f4c9e86d722f600c65ed1d4Params struct {
+// DeployByTagOrUuidParams defines parameters for DeployByTagOrUuid.
+type DeployByTagOrUuidParams struct {
 	// Tag Tag name(s). Comma separated list is also accepted.
 	Tag *string `form:"tag,omitempty" json:"tag,omitempty"`
 
@@ -2612,8 +2698,8 @@ type N700eb6e51f4c9e86d722f600c65ed1d4Params struct {
 	Force *bool `form:"force,omitempty" json:"force,omitempty"`
 }
 
-// Cf067eb7cf18216cda3239329a2eeadbJSONBody defines parameters for Cf067eb7cf18216cda3239329a2eeadb.
-type Cf067eb7cf18216cda3239329a2eeadbJSONBody struct {
+// CreateProjectJSONBody defines parameters for CreateProject.
+type CreateProjectJSONBody struct {
 	// Description The description of the project.
 	Description *string `json:"description,omitempty"`
 
@@ -2621,8 +2707,8 @@ type Cf067eb7cf18216cda3239329a2eeadbJSONBody struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// N2db343bd6fc14c658cb51a2b73b2f842JSONBody defines parameters for N2db343bd6fc14c658cb51a2b73b2f842.
-type N2db343bd6fc14c658cb51a2b73b2f842JSONBody struct {
+// UpdateProjectByUuidJSONBody defines parameters for UpdateProjectByUuid.
+type UpdateProjectByUuidJSONBody struct {
 	// Description The description of the project.
 	Description *string `json:"description,omitempty"`
 
@@ -2630,22 +2716,22 @@ type N2db343bd6fc14c658cb51a2b73b2f842JSONBody struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// Eb4780acaa990c594cdbe8ffa80b4fb0JSONBody defines parameters for Eb4780acaa990c594cdbe8ffa80b4fb0.
-type Eb4780acaa990c594cdbe8ffa80b4fb0JSONBody struct {
+// CreatePrivateKeyJSONBody defines parameters for CreatePrivateKey.
+type CreatePrivateKeyJSONBody struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
 	PrivateKey  string  `json:"private_key"`
 }
 
-// N9feff464b78c24957ed3173324c9cd14JSONBody defines parameters for N9feff464b78c24957ed3173324c9cd14.
-type N9feff464b78c24957ed3173324c9cd14JSONBody struct {
+// UpdatePrivateKeyJSONBody defines parameters for UpdatePrivateKey.
+type UpdatePrivateKeyJSONBody struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
 	PrivateKey  string  `json:"private_key"`
 }
 
-// Fa44b42490379e428ba5b8747716a8d9JSONBody defines parameters for Fa44b42490379e428ba5b8747716a8d9.
-type Fa44b42490379e428ba5b8747716a8d9JSONBody struct {
+// CreateServerJSONBody defines parameters for CreateServer.
+type CreateServerJSONBody struct {
 	// Description The description of the server.
 	Description *string `json:"description,omitempty"`
 
@@ -2671,8 +2757,8 @@ type Fa44b42490379e428ba5b8747716a8d9JSONBody struct {
 	User *string `json:"user,omitempty"`
 }
 
-// N41bbdaf79eb1938592494fc5494442a0JSONBody defines parameters for N41bbdaf79eb1938592494fc5494442a0.
-type N41bbdaf79eb1938592494fc5494442a0JSONBody struct {
+// UpdateServerByUuidJSONBody defines parameters for UpdateServerByUuid.
+type UpdateServerByUuidJSONBody struct {
 	// Description The description of the server.
 	Description *string `json:"description,omitempty"`
 
@@ -2698,8 +2784,8 @@ type N41bbdaf79eb1938592494fc5494442a0JSONBody struct {
 	User *string `json:"user,omitempty"`
 }
 
-// N3d6cbfb54d919b53ba3984a113e837d7JSONBody defines parameters for N3d6cbfb54d919b53ba3984a113e837d7.
-type N3d6cbfb54d919b53ba3984a113e837d7JSONBody struct {
+// CreateServiceJSONBody defines parameters for CreateService.
+type CreateServiceJSONBody struct {
 	// Description Description of the service.
 	Description nullable.Nullable[string] `json:"description,omitempty"`
 
@@ -2722,89 +2808,190 @@ type N3d6cbfb54d919b53ba3984a113e837d7JSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 
 	// Type The one-click service type
-	Type N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType `json:"type"`
+	Type CreateServiceJSONBodyType `json:"type"`
 }
 
-// N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType defines parameters for N3d6cbfb54d919b53ba3984a113e837d7.
-type N3d6cbfb54d919b53ba3984a113e837d7JSONBodyType string
+// CreateServiceJSONBodyType defines parameters for CreateService.
+type CreateServiceJSONBodyType string
 
-// N3731add8226c2d664455978cac46c242JSONRequestBody defines body for N3731add8226c2d664455978cac46c242 for application/json ContentType.
-type N3731add8226c2d664455978cac46c242JSONRequestBody N3731add8226c2d664455978cac46c242JSONBody
+// DeleteServiceByUuidParams defines parameters for DeleteServiceByUuid.
+type DeleteServiceByUuidParams struct {
+	// DeleteConfigurations Delete configurations.
+	DeleteConfigurations *bool `form:"delete_configurations,omitempty" json:"delete_configurations,omitempty"`
 
-// N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody defines body for N2b433ad6f5d259eb7f4f3b5af9913708 for application/json ContentType.
-type N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody N2b433ad6f5d259eb7f4f3b5af9913708JSONBody
+	// DeleteVolumes Delete volumes.
+	DeleteVolumes *bool `form:"delete_volumes,omitempty" json:"delete_volumes,omitempty"`
 
-// E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody defines body for E9a2d6dd9404acf880dc3053f09477fc for application/json ContentType.
-type E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody E9a2d6dd9404acf880dc3053f09477fcJSONBody
+	// DockerCleanup Run docker cleanup.
+	DockerCleanup *bool `form:"docker_cleanup,omitempty" json:"docker_cleanup,omitempty"`
 
-// E3eaa989ffb05366247a00cdfd551efaJSONRequestBody defines body for E3eaa989ffb05366247a00cdfd551efa for application/json ContentType.
-type E3eaa989ffb05366247a00cdfd551efaJSONRequestBody E3eaa989ffb05366247a00cdfd551efaJSONBody
+	// DeleteConnectedNetworks Delete connected networks.
+	DeleteConnectedNetworks *bool `form:"delete_connected_networks,omitempty" json:"delete_connected_networks,omitempty"`
+}
 
-// N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody defines body for N4d46c84bda4f1a411f6dda15fce4061f for application/json ContentType.
-type N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody N4d46c84bda4f1a411f6dda15fce4061fJSONBody
+// UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
+type UpdateEnvByServiceUuidJSONBody struct {
+	// IsBuildTime The flag to indicate if the environment variable is used in build time.
+	IsBuildTime *bool `json:"is_build_time,omitempty"`
 
-// Cb56324ad19693469b4461d3f6065a5bJSONRequestBody defines body for Cb56324ad19693469b4461d3f6065a5b for application/json ContentType.
-type Cb56324ad19693469b4461d3f6065a5bJSONRequestBody Cb56324ad19693469b4461d3f6065a5bJSONBody
+	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
+	IsLiteral *bool `json:"is_literal,omitempty"`
 
-// N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody defines body for N62a3b1775e8cba5d39a236ebb69830b7 for application/json ContentType.
-type N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody N62a3b1775e8cba5d39a236ebb69830b7JSONBody
+	// IsMultiline The flag to indicate if the environment variable is multiline.
+	IsMultiline *bool `json:"is_multiline,omitempty"`
 
-// N3d70a2d569f395be220b3f09ad36674bJSONRequestBody defines body for N3d70a2d569f395be220b3f09ad36674b for application/json ContentType.
-type N3d70a2d569f395be220b3f09ad36674bJSONRequestBody N3d70a2d569f395be220b3f09ad36674bJSONBody
+	// IsPreview The flag to indicate if the environment variable is used in preview deployments.
+	IsPreview *bool `json:"is_preview,omitempty"`
 
-// N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody defines body for N4699ffbb7d6e58581fd0b0a14f36ffc2 for application/json ContentType.
-type N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody N4699ffbb7d6e58581fd0b0a14f36ffc2JSONBody
+	// IsShownOnce The flag to indicate if the environment variable's value is shown on the UI.
+	IsShownOnce *bool `json:"is_shown_once,omitempty"`
 
-// Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody defines body for Ae96f0f585ed158b2abd2d9ba40f3cf9 for application/json ContentType.
-type Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody Ae96f0f585ed158b2abd2d9ba40f3cf9JSONBody
+	// Key The key of the environment variable.
+	Key string `json:"key"`
 
-// A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody defines body for A1189fa7f956f238f0e95c9150ff57f6 for application/json ContentType.
-type A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody A1189fa7f956f238f0e95c9150ff57f6JSONBody
+	// Value The value of the environment variable.
+	Value string `json:"value"`
+}
 
-// E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody defines body for E73f7de1c8eee4219e5ec98c4b9b7efe for application/json ContentType.
-type E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody E73f7de1c8eee4219e5ec98c4b9b7efeJSONBody
+// CreateEnvByServiceUuidJSONBody defines parameters for CreateEnvByServiceUuid.
+type CreateEnvByServiceUuidJSONBody struct {
+	// IsBuildTime The flag to indicate if the environment variable is used in build time.
+	IsBuildTime *bool `json:"is_build_time,omitempty"`
 
-// B908f3929c371c217d489638e0a21ff6JSONRequestBody defines body for B908f3929c371c217d489638e0a21ff6 for application/json ContentType.
-type B908f3929c371c217d489638e0a21ff6JSONRequestBody B908f3929c371c217d489638e0a21ff6JSONBody
+	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
+	IsLiteral *bool `json:"is_literal,omitempty"`
 
-// N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody defines body for N6bea521ddcd738dcbb5f3783a7308acf for application/json ContentType.
-type N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody N6bea521ddcd738dcbb5f3783a7308acfJSONBody
+	// IsMultiline The flag to indicate if the environment variable is multiline.
+	IsMultiline *bool `json:"is_multiline,omitempty"`
 
-// Fdba3de84d02519bb37599fea34b115dJSONRequestBody defines body for Fdba3de84d02519bb37599fea34b115d for application/json ContentType.
-type Fdba3de84d02519bb37599fea34b115dJSONRequestBody Fdba3de84d02519bb37599fea34b115dJSONBody
+	// IsPreview The flag to indicate if the environment variable is used in preview deployments.
+	IsPreview *bool `json:"is_preview,omitempty"`
 
-// N0a1158cf759c4493cbb1e30024c60623JSONRequestBody defines body for N0a1158cf759c4493cbb1e30024c60623 for application/json ContentType.
-type N0a1158cf759c4493cbb1e30024c60623JSONRequestBody N0a1158cf759c4493cbb1e30024c60623JSONBody
+	// IsShownOnce The flag to indicate if the environment variable's value is shown on the UI.
+	IsShownOnce *bool `json:"is_shown_once,omitempty"`
 
-// N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody defines body for N8f7f491ddc46a9fa065b4424512231cd for application/json ContentType.
-type N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody N8f7f491ddc46a9fa065b4424512231cdJSONBody
+	// Key The key of the environment variable.
+	Key *string `json:"key,omitempty"`
 
-// N4d352d13544ee2953fd48ad7b0651098JSONRequestBody defines body for N4d352d13544ee2953fd48ad7b0651098 for application/json ContentType.
-type N4d352d13544ee2953fd48ad7b0651098JSONRequestBody N4d352d13544ee2953fd48ad7b0651098JSONBody
+	// Value The value of the environment variable.
+	Value *string `json:"value,omitempty"`
+}
 
-// N5ba459ed390a721711a1708760e9de3bJSONRequestBody defines body for N5ba459ed390a721711a1708760e9de3b for application/json ContentType.
-type N5ba459ed390a721711a1708760e9de3bJSONRequestBody N5ba459ed390a721711a1708760e9de3bJSONBody
+// UpdateEnvsByServiceUuidJSONBody defines parameters for UpdateEnvsByServiceUuid.
+type UpdateEnvsByServiceUuidJSONBody struct {
+	Data []struct {
+		// IsBuildTime The flag to indicate if the environment variable is used in build time.
+		IsBuildTime *bool `json:"is_build_time,omitempty"`
 
-// Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody defines body for Cf067eb7cf18216cda3239329a2eeadb for application/json ContentType.
-type Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody Cf067eb7cf18216cda3239329a2eeadbJSONBody
+		// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
+		IsLiteral *bool `json:"is_literal,omitempty"`
 
-// N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody defines body for N2db343bd6fc14c658cb51a2b73b2f842 for application/json ContentType.
-type N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody N2db343bd6fc14c658cb51a2b73b2f842JSONBody
+		// IsMultiline The flag to indicate if the environment variable is multiline.
+		IsMultiline *bool `json:"is_multiline,omitempty"`
 
-// Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody defines body for Eb4780acaa990c594cdbe8ffa80b4fb0 for application/json ContentType.
-type Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody Eb4780acaa990c594cdbe8ffa80b4fb0JSONBody
+		// IsPreview The flag to indicate if the environment variable is used in preview deployments.
+		IsPreview *bool `json:"is_preview,omitempty"`
 
-// N9feff464b78c24957ed3173324c9cd14JSONRequestBody defines body for N9feff464b78c24957ed3173324c9cd14 for application/json ContentType.
-type N9feff464b78c24957ed3173324c9cd14JSONRequestBody N9feff464b78c24957ed3173324c9cd14JSONBody
+		// IsShownOnce The flag to indicate if the environment variable's value is shown on the UI.
+		IsShownOnce *bool `json:"is_shown_once,omitempty"`
 
-// Fa44b42490379e428ba5b8747716a8d9JSONRequestBody defines body for Fa44b42490379e428ba5b8747716a8d9 for application/json ContentType.
-type Fa44b42490379e428ba5b8747716a8d9JSONRequestBody Fa44b42490379e428ba5b8747716a8d9JSONBody
+		// Key The key of the environment variable.
+		Key *string `json:"key,omitempty"`
 
-// N41bbdaf79eb1938592494fc5494442a0JSONRequestBody defines body for N41bbdaf79eb1938592494fc5494442a0 for application/json ContentType.
-type N41bbdaf79eb1938592494fc5494442a0JSONRequestBody N41bbdaf79eb1938592494fc5494442a0JSONBody
+		// Value The value of the environment variable.
+		Value *string `json:"value,omitempty"`
+	} `json:"data"`
+}
 
-// N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody defines body for N3d6cbfb54d919b53ba3984a113e837d7 for application/json ContentType.
-type N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody N3d6cbfb54d919b53ba3984a113e837d7JSONBody
+// CreateDockercomposeApplicationJSONRequestBody defines body for CreateDockercomposeApplication for application/json ContentType.
+type CreateDockercomposeApplicationJSONRequestBody CreateDockercomposeApplicationJSONBody
+
+// CreateDockerfileApplicationJSONRequestBody defines body for CreateDockerfileApplication for application/json ContentType.
+type CreateDockerfileApplicationJSONRequestBody CreateDockerfileApplicationJSONBody
+
+// CreateDockerimageApplicationJSONRequestBody defines body for CreateDockerimageApplication for application/json ContentType.
+type CreateDockerimageApplicationJSONRequestBody CreateDockerimageApplicationJSONBody
+
+// CreatePrivateDeployKeyApplicationJSONRequestBody defines body for CreatePrivateDeployKeyApplication for application/json ContentType.
+type CreatePrivateDeployKeyApplicationJSONRequestBody CreatePrivateDeployKeyApplicationJSONBody
+
+// CreatePrivateGithubAppApplicationJSONRequestBody defines body for CreatePrivateGithubAppApplication for application/json ContentType.
+type CreatePrivateGithubAppApplicationJSONRequestBody CreatePrivateGithubAppApplicationJSONBody
+
+// CreatePublicApplicationJSONRequestBody defines body for CreatePublicApplication for application/json ContentType.
+type CreatePublicApplicationJSONRequestBody CreatePublicApplicationJSONBody
+
+// UpdateApplicationByUuidJSONRequestBody defines body for UpdateApplicationByUuid for application/json ContentType.
+type UpdateApplicationByUuidJSONRequestBody UpdateApplicationByUuidJSONBody
+
+// UpdateEnvByApplicationUuidJSONRequestBody defines body for UpdateEnvByApplicationUuid for application/json ContentType.
+type UpdateEnvByApplicationUuidJSONRequestBody UpdateEnvByApplicationUuidJSONBody
+
+// CreateEnvByApplicationUuidJSONRequestBody defines body for CreateEnvByApplicationUuid for application/json ContentType.
+type CreateEnvByApplicationUuidJSONRequestBody CreateEnvByApplicationUuidJSONBody
+
+// UpdateEnvsByApplicationUuidJSONRequestBody defines body for UpdateEnvsByApplicationUuid for application/json ContentType.
+type UpdateEnvsByApplicationUuidJSONRequestBody UpdateEnvsByApplicationUuidJSONBody
+
+// ExecuteCommandApplicationJSONRequestBody defines body for ExecuteCommandApplication for application/json ContentType.
+type ExecuteCommandApplicationJSONRequestBody ExecuteCommandApplicationJSONBody
+
+// CreateDatabaseClickhouseJSONRequestBody defines body for CreateDatabaseClickhouse for application/json ContentType.
+type CreateDatabaseClickhouseJSONRequestBody CreateDatabaseClickhouseJSONBody
+
+// CreateDatabaseDragonflyJSONRequestBody defines body for CreateDatabaseDragonfly for application/json ContentType.
+type CreateDatabaseDragonflyJSONRequestBody CreateDatabaseDragonflyJSONBody
+
+// CreateDatabaseKeydbJSONRequestBody defines body for CreateDatabaseKeydb for application/json ContentType.
+type CreateDatabaseKeydbJSONRequestBody CreateDatabaseKeydbJSONBody
+
+// CreateDatabaseMariadbJSONRequestBody defines body for CreateDatabaseMariadb for application/json ContentType.
+type CreateDatabaseMariadbJSONRequestBody CreateDatabaseMariadbJSONBody
+
+// CreateDatabaseMongodbJSONRequestBody defines body for CreateDatabaseMongodb for application/json ContentType.
+type CreateDatabaseMongodbJSONRequestBody CreateDatabaseMongodbJSONBody
+
+// CreateDatabaseMysqlJSONRequestBody defines body for CreateDatabaseMysql for application/json ContentType.
+type CreateDatabaseMysqlJSONRequestBody CreateDatabaseMysqlJSONBody
+
+// CreateDatabasePostgresqlJSONRequestBody defines body for CreateDatabasePostgresql for application/json ContentType.
+type CreateDatabasePostgresqlJSONRequestBody CreateDatabasePostgresqlJSONBody
+
+// CreateDatabaseRedisJSONRequestBody defines body for CreateDatabaseRedis for application/json ContentType.
+type CreateDatabaseRedisJSONRequestBody CreateDatabaseRedisJSONBody
+
+// UpdateDatabaseByUuidJSONRequestBody defines body for UpdateDatabaseByUuid for application/json ContentType.
+type UpdateDatabaseByUuidJSONRequestBody UpdateDatabaseByUuidJSONBody
+
+// CreateProjectJSONRequestBody defines body for CreateProject for application/json ContentType.
+type CreateProjectJSONRequestBody CreateProjectJSONBody
+
+// UpdateProjectByUuidJSONRequestBody defines body for UpdateProjectByUuid for application/json ContentType.
+type UpdateProjectByUuidJSONRequestBody UpdateProjectByUuidJSONBody
+
+// CreatePrivateKeyJSONRequestBody defines body for CreatePrivateKey for application/json ContentType.
+type CreatePrivateKeyJSONRequestBody CreatePrivateKeyJSONBody
+
+// UpdatePrivateKeyJSONRequestBody defines body for UpdatePrivateKey for application/json ContentType.
+type UpdatePrivateKeyJSONRequestBody UpdatePrivateKeyJSONBody
+
+// CreateServerJSONRequestBody defines body for CreateServer for application/json ContentType.
+type CreateServerJSONRequestBody CreateServerJSONBody
+
+// UpdateServerByUuidJSONRequestBody defines body for UpdateServerByUuid for application/json ContentType.
+type UpdateServerByUuidJSONRequestBody UpdateServerByUuidJSONBody
+
+// CreateServiceJSONRequestBody defines body for CreateService for application/json ContentType.
+type CreateServiceJSONRequestBody CreateServiceJSONBody
+
+// UpdateEnvByServiceUuidJSONRequestBody defines body for UpdateEnvByServiceUuid for application/json ContentType.
+type UpdateEnvByServiceUuidJSONRequestBody UpdateEnvByServiceUuidJSONBody
+
+// CreateEnvByServiceUuidJSONRequestBody defines body for CreateEnvByServiceUuid for application/json ContentType.
+type CreateEnvByServiceUuidJSONRequestBody CreateEnvByServiceUuidJSONBody
+
+// UpdateEnvsByServiceUuidJSONRequestBody defines body for UpdateEnvsByServiceUuid for application/json ContentType.
+type UpdateEnvsByServiceUuidJSONRequestBody UpdateEnvsByServiceUuidJSONBody
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -2879,277 +3066,423 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 
 // The interface specification for the client above.
 type ClientInterface interface {
-	// N02978e79fc0b54d573b2359f2a1f7d86 request
-	N02978e79fc0b54d573b2359f2a1f7d86(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListApplications request
+	ListApplications(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N3731add8226c2d664455978cac46c242WithBody request with any body
-	N3731add8226c2d664455978cac46c242WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDockercomposeApplicationWithBody request with any body
+	CreateDockercomposeApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N3731add8226c2d664455978cac46c242(ctx context.Context, body N3731add8226c2d664455978cac46c242JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDockercomposeApplication(ctx context.Context, body CreateDockercomposeApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N2b433ad6f5d259eb7f4f3b5af9913708WithBody request with any body
-	N2b433ad6f5d259eb7f4f3b5af9913708WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDockerfileApplicationWithBody request with any body
+	CreateDockerfileApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N2b433ad6f5d259eb7f4f3b5af9913708(ctx context.Context, body N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDockerfileApplication(ctx context.Context, body CreateDockerfileApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// E9a2d6dd9404acf880dc3053f09477fcWithBody request with any body
-	E9a2d6dd9404acf880dc3053f09477fcWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDockerimageApplicationWithBody request with any body
+	CreateDockerimageApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	E9a2d6dd9404acf880dc3053f09477fc(ctx context.Context, body E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDockerimageApplication(ctx context.Context, body CreateDockerimageApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// E3eaa989ffb05366247a00cdfd551efaWithBody request with any body
-	E3eaa989ffb05366247a00cdfd551efaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreatePrivateDeployKeyApplicationWithBody request with any body
+	CreatePrivateDeployKeyApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	E3eaa989ffb05366247a00cdfd551efa(ctx context.Context, body E3eaa989ffb05366247a00cdfd551efaJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreatePrivateDeployKeyApplication(ctx context.Context, body CreatePrivateDeployKeyApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N4d46c84bda4f1a411f6dda15fce4061fWithBody request with any body
-	N4d46c84bda4f1a411f6dda15fce4061fWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreatePrivateGithubAppApplicationWithBody request with any body
+	CreatePrivateGithubAppApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N4d46c84bda4f1a411f6dda15fce4061f(ctx context.Context, body N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreatePrivateGithubAppApplication(ctx context.Context, body CreatePrivateGithubAppApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Cb56324ad19693469b4461d3f6065a5bWithBody request with any body
-	Cb56324ad19693469b4461d3f6065a5bWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreatePublicApplicationWithBody request with any body
+	CreatePublicApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Cb56324ad19693469b4461d3f6065a5b(ctx context.Context, body Cb56324ad19693469b4461d3f6065a5bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreatePublicApplication(ctx context.Context, body CreatePublicApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N1e110b190a1045d34f3e1c61608a8702 request
-	N1e110b190a1045d34f3e1c61608a8702(ctx context.Context, uuid string, params *N1e110b190a1045d34f3e1c61608a8702Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteApplicationByUuid request
+	DeleteApplicationByUuid(ctx context.Context, uuid string, params *DeleteApplicationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N3630b62c28e7358e7f0087c1d8fe1845 request
-	N3630b62c28e7358e7f0087c1d8fe1845(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetApplicationByUuid request
+	GetApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N62a3b1775e8cba5d39a236ebb69830b7WithBody request with any body
-	N62a3b1775e8cba5d39a236ebb69830b7WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateApplicationByUuidWithBody request with any body
+	UpdateApplicationByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N62a3b1775e8cba5d39a236ebb69830b7(ctx context.Context, uuid string, body N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateApplicationByUuid(ctx context.Context, uuid string, body UpdateApplicationByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N7c8e0c286870e23294a075cc0584df2f request
-	N7c8e0c286870e23294a075cc0584df2f(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListEnvsByApplicationUuid request
+	ListEnvsByApplicationUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N3d70a2d569f395be220b3f09ad36674bWithBody request with any body
-	N3d70a2d569f395be220b3f09ad36674bWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateEnvByApplicationUuidWithBody request with any body
+	UpdateEnvByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N3d70a2d569f395be220b3f09ad36674b(ctx context.Context, uuid string, body N3d70a2d569f395be220b3f09ad36674bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEnvByApplicationUuid(ctx context.Context, uuid string, body UpdateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N4699ffbb7d6e58581fd0b0a14f36ffc2WithBody request with any body
-	N4699ffbb7d6e58581fd0b0a14f36ffc2WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateEnvByApplicationUuidWithBody request with any body
+	CreateEnvByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N4699ffbb7d6e58581fd0b0a14f36ffc2(ctx context.Context, uuid string, body N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEnvByApplicationUuid(ctx context.Context, uuid string, body CreateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Ae96f0f585ed158b2abd2d9ba40f3cf9WithBody request with any body
-	Ae96f0f585ed158b2abd2d9ba40f3cf9WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateEnvsByApplicationUuidWithBody request with any body
+	UpdateEnvsByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Ae96f0f585ed158b2abd2d9ba40f3cf9(ctx context.Context, uuid string, body Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEnvsByApplicationUuid(ctx context.Context, uuid string, body UpdateEnvsByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N96097c5cfc7dc0e7a3de229645f630c7 request
-	N96097c5cfc7dc0e7a3de229645f630c7(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteEnvByApplicationUuid request
+	DeleteEnvByApplicationUuid(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// B231ae7baab9ef47f0627be820e735bc request
-	B231ae7baab9ef47f0627be820e735bc(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ExecuteCommandApplicationWithBody request with any body
+	ExecuteCommandApplicationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Dc87c2061ab303757a0e061f87900c4c request
-	Dc87c2061ab303757a0e061f87900c4c(ctx context.Context, uuid string, params *Dc87c2061ab303757a0e061f87900c4cParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ExecuteCommandApplication(ctx context.Context, uuid openapi_types.UUID, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N133ef3c7bd5043901f24bb5002a536eb request
-	N133ef3c7bd5043901f24bb5002a536eb(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RestartApplicationByUuid request
+	RestartApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Ecd0ee1e46e4c854c18e6c9daa3d37f3 request
-	Ecd0ee1e46e4c854c18e6c9daa3d37f3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// StartApplicationByUuid request
+	StartApplicationByUuid(ctx context.Context, uuid string, params *StartApplicationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// A1189fa7f956f238f0e95c9150ff57f6WithBody request with any body
-	A1189fa7f956f238f0e95c9150ff57f6WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// StopApplicationByUuid request
+	StopApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	A1189fa7f956f238f0e95c9150ff57f6(ctx context.Context, body A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListDatabases request
+	ListDatabases(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// E73f7de1c8eee4219e5ec98c4b9b7efeWithBody request with any body
-	E73f7de1c8eee4219e5ec98c4b9b7efeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseClickhouseWithBody request with any body
+	CreateDatabaseClickhouseWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	E73f7de1c8eee4219e5ec98c4b9b7efe(ctx context.Context, body E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseClickhouse(ctx context.Context, body CreateDatabaseClickhouseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// B908f3929c371c217d489638e0a21ff6WithBody request with any body
-	B908f3929c371c217d489638e0a21ff6WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseDragonflyWithBody request with any body
+	CreateDatabaseDragonflyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	B908f3929c371c217d489638e0a21ff6(ctx context.Context, body B908f3929c371c217d489638e0a21ff6JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseDragonfly(ctx context.Context, body CreateDatabaseDragonflyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N6bea521ddcd738dcbb5f3783a7308acfWithBody request with any body
-	N6bea521ddcd738dcbb5f3783a7308acfWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseKeydbWithBody request with any body
+	CreateDatabaseKeydbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N6bea521ddcd738dcbb5f3783a7308acf(ctx context.Context, body N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseKeydb(ctx context.Context, body CreateDatabaseKeydbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Fdba3de84d02519bb37599fea34b115dWithBody request with any body
-	Fdba3de84d02519bb37599fea34b115dWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseMariadbWithBody request with any body
+	CreateDatabaseMariadbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Fdba3de84d02519bb37599fea34b115d(ctx context.Context, body Fdba3de84d02519bb37599fea34b115dJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseMariadb(ctx context.Context, body CreateDatabaseMariadbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N0a1158cf759c4493cbb1e30024c60623WithBody request with any body
-	N0a1158cf759c4493cbb1e30024c60623WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseMongodbWithBody request with any body
+	CreateDatabaseMongodbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N0a1158cf759c4493cbb1e30024c60623(ctx context.Context, body N0a1158cf759c4493cbb1e30024c60623JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseMongodb(ctx context.Context, body CreateDatabaseMongodbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N8f7f491ddc46a9fa065b4424512231cdWithBody request with any body
-	N8f7f491ddc46a9fa065b4424512231cdWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseMysqlWithBody request with any body
+	CreateDatabaseMysqlWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N8f7f491ddc46a9fa065b4424512231cd(ctx context.Context, body N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseMysql(ctx context.Context, body CreateDatabaseMysqlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N4d352d13544ee2953fd48ad7b0651098WithBody request with any body
-	N4d352d13544ee2953fd48ad7b0651098WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabasePostgresqlWithBody request with any body
+	CreateDatabasePostgresqlWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N4d352d13544ee2953fd48ad7b0651098(ctx context.Context, body N4d352d13544ee2953fd48ad7b0651098JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabasePostgresql(ctx context.Context, body CreateDatabasePostgresqlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N20610931b2bae8aba34eee68624ab673 request
-	N20610931b2bae8aba34eee68624ab673(ctx context.Context, uuid string, params *N20610931b2bae8aba34eee68624ab673Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateDatabaseRedisWithBody request with any body
+	CreateDatabaseRedisWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// B49cb2d3e8f34c4e80cdffd8a201031d request
-	B49cb2d3e8f34c4e80cdffd8a201031d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateDatabaseRedis(ctx context.Context, body CreateDatabaseRedisJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N5ba459ed390a721711a1708760e9de3bWithBody request with any body
-	N5ba459ed390a721711a1708760e9de3bWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteDatabaseByUuid request
+	DeleteDatabaseByUuid(ctx context.Context, uuid string, params *DeleteDatabaseByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N5ba459ed390a721711a1708760e9de3b(ctx context.Context, uuid string, body N5ba459ed390a721711a1708760e9de3bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetDatabaseByUuid request
+	GetDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N04c7a5e4752b4a00036addb433f3f218 request
-	N04c7a5e4752b4a00036addb433f3f218(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateDatabaseByUuidWithBody request with any body
+	UpdateDatabaseByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N4c6eb21e734d411e2b3388578761123d request
-	N4c6eb21e734d411e2b3388578761123d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateDatabaseByUuid(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Cb6d983c2679aff841c7501ce612a372 request
-	Cb6d983c2679aff841c7501ce612a372(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RestartDatabaseByUuid request
+	RestartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N700eb6e51f4c9e86d722f600c65ed1d4 request
-	N700eb6e51f4c9e86d722f600c65ed1d4(ctx context.Context, params *N700eb6e51f4c9e86d722f600c65ed1d4Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// StartDatabaseByUuid request
+	StartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// A2c05736269191ad0d99cadfd4708986 request
-	A2c05736269191ad0d99cadfd4708986(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// StopDatabaseByUuid request
+	StopDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Ccf9856174c115a1430d952ccbd36aea request
-	Ccf9856174c115a1430d952ccbd36aea(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeployByTagOrUuid request
+	DeployByTagOrUuid(ctx context.Context, params *DeployByTagOrUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N50e2486a2d196a996b24a284a283bcdb request
-	N50e2486a2d196a996b24a284a283bcdb(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListDeployments request
+	ListDeployments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N595019bae03d08277def667609779ff3 request
-	N595019bae03d08277def667609779ff3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetDeploymentByUuid request
+	GetDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N64db893135e686704bb88c3c238022c1 request
-	N64db893135e686704bb88c3c238022c1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DisableApi request
+	DisableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N762788f00f2dabb981df9adbc948d3f6 request
-	N762788f00f2dabb981df9adbc948d3f6(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnableApi request
+	EnableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Cf067eb7cf18216cda3239329a2eeadbWithBody request with any body
-	Cf067eb7cf18216cda3239329a2eeadbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// Healthcheck request
+	Healthcheck(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Cf067eb7cf18216cda3239329a2eeadb(ctx context.Context, body Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListProjects request
+	ListProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// F668a936f505b4401948c74b6a663029 request
-	F668a936f505b4401948c74b6a663029(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateProjectWithBody request with any body
+	CreateProjectWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N63bf8b6a68fbb757f09ab519331f6298 request
-	N63bf8b6a68fbb757f09ab519331f6298(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateProject(ctx context.Context, body CreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N2db343bd6fc14c658cb51a2b73b2f842WithBody request with any body
-	N2db343bd6fc14c658cb51a2b73b2f842WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteProjectByUuid request
+	DeleteProjectByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N2db343bd6fc14c658cb51a2b73b2f842(ctx context.Context, uuid string, body N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetProjectByUuid request
+	GetProjectByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N7e44845dce5aa47ed7b0daf5595ad2e1 request
-	N7e44845dce5aa47ed7b0daf5595ad2e1(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateProjectByUuidWithBody request with any body
+	UpdateProjectByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// C399903694eb1314596832e49f7c66d7 request
-	C399903694eb1314596832e49f7c66d7(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N8a5d8d3ccbbcef54ed0e913a27faea9d request
-	N8a5d8d3ccbbcef54ed0e913a27faea9d(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetEnvironmentByName request
+	GetEnvironmentByName(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Eb4780acaa990c594cdbe8ffa80b4fb0WithBody request with any body
-	Eb4780acaa990c594cdbe8ffa80b4fb0WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListResources request
+	ListResources(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Eb4780acaa990c594cdbe8ffa80b4fb0(ctx context.Context, body Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListPrivateKeys request
+	ListPrivateKeys(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N8faa0bb399142f0084dfc3e003c42cf6 request
-	N8faa0bb399142f0084dfc3e003c42cf6(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreatePrivateKeyWithBody request with any body
+	CreatePrivateKeyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N2f743a85eb65d5ddb8cd5b362bb3d26a request
-	N2f743a85eb65d5ddb8cd5b362bb3d26a(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreatePrivateKey(ctx context.Context, body CreatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N9feff464b78c24957ed3173324c9cd14WithBody request with any body
-	N9feff464b78c24957ed3173324c9cd14WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeletePrivateKeyByUuid request
+	DeletePrivateKeyByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N9feff464b78c24957ed3173324c9cd14(ctx context.Context, uuid string, body N9feff464b78c24957ed3173324c9cd14JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetPrivateKeyByUuid request
+	GetPrivateKeyByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N787448df856cefd2d9a313566be30d34 request
-	N787448df856cefd2d9a313566be30d34(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdatePrivateKeyWithBody request with any body
+	UpdatePrivateKeyWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Fa44b42490379e428ba5b8747716a8d9WithBody request with any body
-	Fa44b42490379e428ba5b8747716a8d9WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatePrivateKey(ctx context.Context, uuid string, body UpdatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Fa44b42490379e428ba5b8747716a8d9(ctx context.Context, body Fa44b42490379e428ba5b8747716a8d9JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListServers request
+	ListServers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N0231fe0134f0306b21f006ce51b0a3dc request
-	N0231fe0134f0306b21f006ce51b0a3dc(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateServerWithBody request with any body
+	CreateServerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N5baf04bddb8302c7e07f5b4c41aad10c request
-	N5baf04bddb8302c7e07f5b4c41aad10c(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateServer(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N41bbdaf79eb1938592494fc5494442a0WithBody request with any body
-	N41bbdaf79eb1938592494fc5494442a0WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteServerByUuid request
+	DeleteServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N41bbdaf79eb1938592494fc5494442a0(ctx context.Context, uuid string, body N41bbdaf79eb1938592494fc5494442a0JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetServerByUuid request
+	GetServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N1ee227755be848d572f412272f53dd93 request
-	N1ee227755be848d572f412272f53dd93(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateServerByUuidWithBody request with any body
+	UpdateServerByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Cef26c059941b44fbd8de3a7a58c10a5 request
-	Cef26c059941b44fbd8de3a7a58c10a5(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateServerByUuid(ctx context.Context, uuid string, body UpdateServerByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// A543a12ef2cbc7a3dd22c3dbe6cbee89 request
-	A543a12ef2cbc7a3dd22c3dbe6cbee89(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetDomainsByServerUuid request
+	GetDomainsByServerUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N5d014ac25d33391b8f4c2316060ba452 request
-	N5d014ac25d33391b8f4c2316060ba452(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetResourcesByServerUuid request
+	GetResourcesByServerUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N3d6cbfb54d919b53ba3984a113e837d7WithBody request with any body
-	N3d6cbfb54d919b53ba3984a113e837d7WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ValidateServerByUuid request
+	ValidateServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	N3d6cbfb54d919b53ba3984a113e837d7(ctx context.Context, body N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListServices request
+	ListServices(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N6e1a61e4fddaa9d95bb9fc66dfaf0442 request
-	N6e1a61e4fddaa9d95bb9fc66dfaf0442(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateServiceWithBody request with any body
+	CreateServiceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N895d39ee2cb3994285de57256c2d428d request
-	N895d39ee2cb3994285de57256c2d428d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateService(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N836645faa615b75052759dae78639469 request
-	N836645faa615b75052759dae78639469(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteServiceByUuid request
+	DeleteServiceByUuid(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// D2ddd9c028d123fbdec830dc4b25b4cb request
-	D2ddd9c028d123fbdec830dc4b25b4cb(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetServiceByUuid request
+	GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N87399d34758ce16830740c68626614db request
-	N87399d34758ce16830740c68626614db(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListEnvsByServiceUuid request
+	ListEnvsByServiceUuid(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// F9c530b5b25df9601cb87d6a58646f0a request
-	F9c530b5b25df9601cb87d6a58646f0a(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateEnvByServiceUuidWithBody request with any body
+	UpdateEnvByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N6a4ec9fed1aad7b0b38356c47d7ac509 request
-	N6a4ec9fed1aad7b0b38356c47d7ac509(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N97e636a5796dbe71afb0bbcf1eec6e41 request
-	N97e636a5796dbe71afb0bbcf1eec6e41(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateEnvByServiceUuidWithBody request with any body
+	CreateEnvByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Ac57ff546c002032cef44602c46a4e76 request
-	Ac57ff546c002032cef44602c46a4e76(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body CreateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N7858f5a45d9ea55184c182852a7f0f6c request
-	N7858f5a45d9ea55184c182852a7f0f6c(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateEnvsByServiceUuidWithBody request with any body
+	UpdateEnvsByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// N187b37139844731110757711ee71c215 request
-	N187b37139844731110757711ee71c215(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEnvsByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvsByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteEnvByServiceUuid request
+	DeleteEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, envUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RestartServiceByUuid request
+	RestartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StartServiceByUuid request
+	StartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StopServiceByUuid request
+	StopServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListTeams request
+	ListTeams(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetCurrentTeam request
+	GetCurrentTeam(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetCurrentTeamMembers request
+	GetCurrentTeamMembers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetTeamById request
+	GetTeamById(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetMembersByTeamId request
+	GetMembersByTeamId(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// Version request
+	Version(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+}
+
+func (c *Client) ListApplications(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListApplicationsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockercomposeApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockercomposeApplicationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockercomposeApplication(ctx context.Context, body CreateDockercomposeApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockercomposeApplicationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockerfileApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockerfileApplicationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockerfileApplication(ctx context.Context, body CreateDockerfileApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockerfileApplicationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockerimageApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockerimageApplicationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDockerimageApplication(ctx context.Context, body CreateDockerimageApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDockerimageApplicationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreatePrivateDeployKeyApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateDeployKeyApplicationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreatePrivateDeployKeyApplication(ctx context.Context, body CreatePrivateDeployKeyApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateDeployKeyApplicationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreatePrivateGithubAppApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateGithubAppApplicationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
 }
 
-func (c *Client) N02978e79fc0b54d573b2359f2a1f7d86(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN02978e79fc0b54d573b2359f2a1f7d86Request(c.Server)
+func (c *Client) CreatePrivateGithubAppApplication(ctx context.Context, body CreatePrivateGithubAppApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateGithubAppApplicationRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3160,8 +3493,8 @@ func (c *Client) N02978e79fc0b54d573b2359f2a1f7d86(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3731add8226c2d664455978cac46c242WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3731add8226c2d664455978cac46c242RequestWithBody(c.Server, contentType, body)
+func (c *Client) CreatePublicApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePublicApplicationRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3172,8 +3505,8 @@ func (c *Client) N3731add8226c2d664455978cac46c242WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3731add8226c2d664455978cac46c242(ctx context.Context, body N3731add8226c2d664455978cac46c242JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3731add8226c2d664455978cac46c242Request(c.Server, body)
+func (c *Client) CreatePublicApplication(ctx context.Context, body CreatePublicApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePublicApplicationRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3184,8 +3517,8 @@ func (c *Client) N3731add8226c2d664455978cac46c242(ctx context.Context, body N37
 	return c.Client.Do(req)
 }
 
-func (c *Client) N2b433ad6f5d259eb7f4f3b5af9913708WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN2b433ad6f5d259eb7f4f3b5af9913708RequestWithBody(c.Server, contentType, body)
+func (c *Client) DeleteApplicationByUuid(ctx context.Context, uuid string, params *DeleteApplicationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteApplicationByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3196,8 +3529,8 @@ func (c *Client) N2b433ad6f5d259eb7f4f3b5af9913708WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N2b433ad6f5d259eb7f4f3b5af9913708(ctx context.Context, body N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN2b433ad6f5d259eb7f4f3b5af9913708Request(c.Server, body)
+func (c *Client) GetApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetApplicationByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3208,8 +3541,8 @@ func (c *Client) N2b433ad6f5d259eb7f4f3b5af9913708(ctx context.Context, body N2b
 	return c.Client.Do(req)
 }
 
-func (c *Client) E9a2d6dd9404acf880dc3053f09477fcWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE9a2d6dd9404acf880dc3053f09477fcRequestWithBody(c.Server, contentType, body)
+func (c *Client) UpdateApplicationByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateApplicationByUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3220,8 +3553,8 @@ func (c *Client) E9a2d6dd9404acf880dc3053f09477fcWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) E9a2d6dd9404acf880dc3053f09477fc(ctx context.Context, body E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE9a2d6dd9404acf880dc3053f09477fcRequest(c.Server, body)
+func (c *Client) UpdateApplicationByUuid(ctx context.Context, uuid string, body UpdateApplicationByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateApplicationByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3232,8 +3565,8 @@ func (c *Client) E9a2d6dd9404acf880dc3053f09477fc(ctx context.Context, body E9a2
 	return c.Client.Do(req)
 }
 
-func (c *Client) E3eaa989ffb05366247a00cdfd551efaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE3eaa989ffb05366247a00cdfd551efaRequestWithBody(c.Server, contentType, body)
+func (c *Client) ListEnvsByApplicationUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListEnvsByApplicationUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3244,8 +3577,8 @@ func (c *Client) E3eaa989ffb05366247a00cdfd551efaWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) E3eaa989ffb05366247a00cdfd551efa(ctx context.Context, body E3eaa989ffb05366247a00cdfd551efaJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE3eaa989ffb05366247a00cdfd551efaRequest(c.Server, body)
+func (c *Client) UpdateEnvByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvByApplicationUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3256,8 +3589,8 @@ func (c *Client) E3eaa989ffb05366247a00cdfd551efa(ctx context.Context, body E3ea
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4d46c84bda4f1a411f6dda15fce4061fWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody(c.Server, contentType, body)
+func (c *Client) UpdateEnvByApplicationUuid(ctx context.Context, uuid string, body UpdateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvByApplicationUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3268,8 +3601,8 @@ func (c *Client) N4d46c84bda4f1a411f6dda15fce4061fWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4d46c84bda4f1a411f6dda15fce4061f(ctx context.Context, body N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4d46c84bda4f1a411f6dda15fce4061fRequest(c.Server, body)
+func (c *Client) CreateEnvByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvByApplicationUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3280,8 +3613,8 @@ func (c *Client) N4d46c84bda4f1a411f6dda15fce4061f(ctx context.Context, body N4d
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cb56324ad19693469b4461d3f6065a5bWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCb56324ad19693469b4461d3f6065a5bRequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateEnvByApplicationUuid(ctx context.Context, uuid string, body CreateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvByApplicationUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3292,8 +3625,8 @@ func (c *Client) Cb56324ad19693469b4461d3f6065a5bWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cb56324ad19693469b4461d3f6065a5b(ctx context.Context, body Cb56324ad19693469b4461d3f6065a5bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCb56324ad19693469b4461d3f6065a5bRequest(c.Server, body)
+func (c *Client) UpdateEnvsByApplicationUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvsByApplicationUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3304,8 +3637,8 @@ func (c *Client) Cb56324ad19693469b4461d3f6065a5b(ctx context.Context, body Cb56
 	return c.Client.Do(req)
 }
 
-func (c *Client) N1e110b190a1045d34f3e1c61608a8702(ctx context.Context, uuid string, params *N1e110b190a1045d34f3e1c61608a8702Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN1e110b190a1045d34f3e1c61608a8702Request(c.Server, uuid, params)
+func (c *Client) UpdateEnvsByApplicationUuid(ctx context.Context, uuid string, body UpdateEnvsByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvsByApplicationUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3316,8 +3649,8 @@ func (c *Client) N1e110b190a1045d34f3e1c61608a8702(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3630b62c28e7358e7f0087c1d8fe1845(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3630b62c28e7358e7f0087c1d8fe1845Request(c.Server, uuid)
+func (c *Client) DeleteEnvByApplicationUuid(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteEnvByApplicationUuidRequest(c.Server, uuid, envUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3328,8 +3661,8 @@ func (c *Client) N3630b62c28e7358e7f0087c1d8fe1845(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N62a3b1775e8cba5d39a236ebb69830b7WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN62a3b1775e8cba5d39a236ebb69830b7RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) ExecuteCommandApplicationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExecuteCommandApplicationRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3340,8 +3673,8 @@ func (c *Client) N62a3b1775e8cba5d39a236ebb69830b7WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N62a3b1775e8cba5d39a236ebb69830b7(ctx context.Context, uuid string, body N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN62a3b1775e8cba5d39a236ebb69830b7Request(c.Server, uuid, body)
+func (c *Client) ExecuteCommandApplication(ctx context.Context, uuid openapi_types.UUID, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExecuteCommandApplicationRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3352,8 +3685,8 @@ func (c *Client) N62a3b1775e8cba5d39a236ebb69830b7(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N7c8e0c286870e23294a075cc0584df2f(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN7c8e0c286870e23294a075cc0584df2fRequest(c.Server, uuid)
+func (c *Client) RestartApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRestartApplicationByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3364,8 +3697,8 @@ func (c *Client) N7c8e0c286870e23294a075cc0584df2f(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3d70a2d569f395be220b3f09ad36674bWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3d70a2d569f395be220b3f09ad36674bRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) StartApplicationByUuid(ctx context.Context, uuid string, params *StartApplicationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStartApplicationByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3376,8 +3709,8 @@ func (c *Client) N3d70a2d569f395be220b3f09ad36674bWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3d70a2d569f395be220b3f09ad36674b(ctx context.Context, uuid string, body N3d70a2d569f395be220b3f09ad36674bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3d70a2d569f395be220b3f09ad36674bRequest(c.Server, uuid, body)
+func (c *Client) StopApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStopApplicationByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3388,8 +3721,8 @@ func (c *Client) N3d70a2d569f395be220b3f09ad36674b(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4699ffbb7d6e58581fd0b0a14f36ffc2WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4699ffbb7d6e58581fd0b0a14f36ffc2RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) ListDatabases(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListDatabasesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3400,8 +3733,8 @@ func (c *Client) N4699ffbb7d6e58581fd0b0a14f36ffc2WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4699ffbb7d6e58581fd0b0a14f36ffc2(ctx context.Context, uuid string, body N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4699ffbb7d6e58581fd0b0a14f36ffc2Request(c.Server, uuid, body)
+func (c *Client) CreateDatabaseClickhouseWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseClickhouseRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3412,8 +3745,8 @@ func (c *Client) N4699ffbb7d6e58581fd0b0a14f36ffc2(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) Ae96f0f585ed158b2abd2d9ba40f3cf9WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAe96f0f585ed158b2abd2d9ba40f3cf9RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) CreateDatabaseClickhouse(ctx context.Context, body CreateDatabaseClickhouseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseClickhouseRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3424,8 +3757,8 @@ func (c *Client) Ae96f0f585ed158b2abd2d9ba40f3cf9WithBody(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) Ae96f0f585ed158b2abd2d9ba40f3cf9(ctx context.Context, uuid string, body Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAe96f0f585ed158b2abd2d9ba40f3cf9Request(c.Server, uuid, body)
+func (c *Client) CreateDatabaseDragonflyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseDragonflyRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3436,8 +3769,8 @@ func (c *Client) Ae96f0f585ed158b2abd2d9ba40f3cf9(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N96097c5cfc7dc0e7a3de229645f630c7(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN96097c5cfc7dc0e7a3de229645f630c7Request(c.Server, uuid, envUuid)
+func (c *Client) CreateDatabaseDragonfly(ctx context.Context, body CreateDatabaseDragonflyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseDragonflyRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3448,8 +3781,8 @@ func (c *Client) N96097c5cfc7dc0e7a3de229645f630c7(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) B231ae7baab9ef47f0627be820e735bc(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewB231ae7baab9ef47f0627be820e735bcRequest(c.Server, uuid)
+func (c *Client) CreateDatabaseKeydbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseKeydbRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3460,8 +3793,8 @@ func (c *Client) B231ae7baab9ef47f0627be820e735bc(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) Dc87c2061ab303757a0e061f87900c4c(ctx context.Context, uuid string, params *Dc87c2061ab303757a0e061f87900c4cParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDc87c2061ab303757a0e061f87900c4cRequest(c.Server, uuid, params)
+func (c *Client) CreateDatabaseKeydb(ctx context.Context, body CreateDatabaseKeydbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseKeydbRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3472,8 +3805,8 @@ func (c *Client) Dc87c2061ab303757a0e061f87900c4c(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N133ef3c7bd5043901f24bb5002a536eb(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN133ef3c7bd5043901f24bb5002a536ebRequest(c.Server, uuid)
+func (c *Client) CreateDatabaseMariadbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMariadbRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3484,8 +3817,8 @@ func (c *Client) N133ef3c7bd5043901f24bb5002a536eb(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) Ecd0ee1e46e4c854c18e6c9daa3d37f3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEcd0ee1e46e4c854c18e6c9daa3d37f3Request(c.Server)
+func (c *Client) CreateDatabaseMariadb(ctx context.Context, body CreateDatabaseMariadbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMariadbRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3496,8 +3829,8 @@ func (c *Client) Ecd0ee1e46e4c854c18e6c9daa3d37f3(ctx context.Context, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) A1189fa7f956f238f0e95c9150ff57f6WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewA1189fa7f956f238f0e95c9150ff57f6RequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateDatabaseMongodbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMongodbRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3508,8 +3841,8 @@ func (c *Client) A1189fa7f956f238f0e95c9150ff57f6WithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) A1189fa7f956f238f0e95c9150ff57f6(ctx context.Context, body A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewA1189fa7f956f238f0e95c9150ff57f6Request(c.Server, body)
+func (c *Client) CreateDatabaseMongodb(ctx context.Context, body CreateDatabaseMongodbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMongodbRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3520,8 +3853,8 @@ func (c *Client) A1189fa7f956f238f0e95c9150ff57f6(ctx context.Context, body A118
 	return c.Client.Do(req)
 }
 
-func (c *Client) E73f7de1c8eee4219e5ec98c4b9b7efeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE73f7de1c8eee4219e5ec98c4b9b7efeRequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateDatabaseMysqlWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMysqlRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3532,8 +3865,8 @@ func (c *Client) E73f7de1c8eee4219e5ec98c4b9b7efeWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) E73f7de1c8eee4219e5ec98c4b9b7efe(ctx context.Context, body E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewE73f7de1c8eee4219e5ec98c4b9b7efeRequest(c.Server, body)
+func (c *Client) CreateDatabaseMysql(ctx context.Context, body CreateDatabaseMysqlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseMysqlRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3544,8 +3877,8 @@ func (c *Client) E73f7de1c8eee4219e5ec98c4b9b7efe(ctx context.Context, body E73f
 	return c.Client.Do(req)
 }
 
-func (c *Client) B908f3929c371c217d489638e0a21ff6WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewB908f3929c371c217d489638e0a21ff6RequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateDatabasePostgresqlWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabasePostgresqlRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3556,8 +3889,8 @@ func (c *Client) B908f3929c371c217d489638e0a21ff6WithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) B908f3929c371c217d489638e0a21ff6(ctx context.Context, body B908f3929c371c217d489638e0a21ff6JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewB908f3929c371c217d489638e0a21ff6Request(c.Server, body)
+func (c *Client) CreateDatabasePostgresql(ctx context.Context, body CreateDatabasePostgresqlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabasePostgresqlRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3568,8 +3901,8 @@ func (c *Client) B908f3929c371c217d489638e0a21ff6(ctx context.Context, body B908
 	return c.Client.Do(req)
 }
 
-func (c *Client) N6bea521ddcd738dcbb5f3783a7308acfWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN6bea521ddcd738dcbb5f3783a7308acfRequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateDatabaseRedisWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseRedisRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3580,8 +3913,8 @@ func (c *Client) N6bea521ddcd738dcbb5f3783a7308acfWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N6bea521ddcd738dcbb5f3783a7308acf(ctx context.Context, body N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN6bea521ddcd738dcbb5f3783a7308acfRequest(c.Server, body)
+func (c *Client) CreateDatabaseRedis(ctx context.Context, body CreateDatabaseRedisJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseRedisRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3592,8 +3925,8 @@ func (c *Client) N6bea521ddcd738dcbb5f3783a7308acf(ctx context.Context, body N6b
 	return c.Client.Do(req)
 }
 
-func (c *Client) Fdba3de84d02519bb37599fea34b115dWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFdba3de84d02519bb37599fea34b115dRequestWithBody(c.Server, contentType, body)
+func (c *Client) DeleteDatabaseByUuid(ctx context.Context, uuid string, params *DeleteDatabaseByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteDatabaseByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3604,8 +3937,8 @@ func (c *Client) Fdba3de84d02519bb37599fea34b115dWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) Fdba3de84d02519bb37599fea34b115d(ctx context.Context, body Fdba3de84d02519bb37599fea34b115dJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFdba3de84d02519bb37599fea34b115dRequest(c.Server, body)
+func (c *Client) GetDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDatabaseByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3616,8 +3949,8 @@ func (c *Client) Fdba3de84d02519bb37599fea34b115d(ctx context.Context, body Fdba
 	return c.Client.Do(req)
 }
 
-func (c *Client) N0a1158cf759c4493cbb1e30024c60623WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN0a1158cf759c4493cbb1e30024c60623RequestWithBody(c.Server, contentType, body)
+func (c *Client) UpdateDatabaseByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateDatabaseByUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3628,8 +3961,8 @@ func (c *Client) N0a1158cf759c4493cbb1e30024c60623WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N0a1158cf759c4493cbb1e30024c60623(ctx context.Context, body N0a1158cf759c4493cbb1e30024c60623JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN0a1158cf759c4493cbb1e30024c60623Request(c.Server, body)
+func (c *Client) UpdateDatabaseByUuid(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateDatabaseByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3640,8 +3973,8 @@ func (c *Client) N0a1158cf759c4493cbb1e30024c60623(ctx context.Context, body N0a
 	return c.Client.Do(req)
 }
 
-func (c *Client) N8f7f491ddc46a9fa065b4424512231cdWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN8f7f491ddc46a9fa065b4424512231cdRequestWithBody(c.Server, contentType, body)
+func (c *Client) RestartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRestartDatabaseByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3652,8 +3985,8 @@ func (c *Client) N8f7f491ddc46a9fa065b4424512231cdWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N8f7f491ddc46a9fa065b4424512231cd(ctx context.Context, body N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN8f7f491ddc46a9fa065b4424512231cdRequest(c.Server, body)
+func (c *Client) StartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStartDatabaseByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3664,8 +3997,8 @@ func (c *Client) N8f7f491ddc46a9fa065b4424512231cd(ctx context.Context, body N8f
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4d352d13544ee2953fd48ad7b0651098WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4d352d13544ee2953fd48ad7b0651098RequestWithBody(c.Server, contentType, body)
+func (c *Client) StopDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStopDatabaseByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3676,8 +4009,8 @@ func (c *Client) N4d352d13544ee2953fd48ad7b0651098WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4d352d13544ee2953fd48ad7b0651098(ctx context.Context, body N4d352d13544ee2953fd48ad7b0651098JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4d352d13544ee2953fd48ad7b0651098Request(c.Server, body)
+func (c *Client) DeployByTagOrUuid(ctx context.Context, params *DeployByTagOrUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeployByTagOrUuidRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3688,8 +4021,8 @@ func (c *Client) N4d352d13544ee2953fd48ad7b0651098(ctx context.Context, body N4d
 	return c.Client.Do(req)
 }
 
-func (c *Client) N20610931b2bae8aba34eee68624ab673(ctx context.Context, uuid string, params *N20610931b2bae8aba34eee68624ab673Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN20610931b2bae8aba34eee68624ab673Request(c.Server, uuid, params)
+func (c *Client) ListDeployments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListDeploymentsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3700,8 +4033,8 @@ func (c *Client) N20610931b2bae8aba34eee68624ab673(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) B49cb2d3e8f34c4e80cdffd8a201031d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewB49cb2d3e8f34c4e80cdffd8a201031dRequest(c.Server, uuid)
+func (c *Client) GetDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDeploymentByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3712,8 +4045,8 @@ func (c *Client) B49cb2d3e8f34c4e80cdffd8a201031d(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N5ba459ed390a721711a1708760e9de3bWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN5ba459ed390a721711a1708760e9de3bRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) DisableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDisableApiRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3724,8 +4057,8 @@ func (c *Client) N5ba459ed390a721711a1708760e9de3bWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N5ba459ed390a721711a1708760e9de3b(ctx context.Context, uuid string, body N5ba459ed390a721711a1708760e9de3bJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN5ba459ed390a721711a1708760e9de3bRequest(c.Server, uuid, body)
+func (c *Client) EnableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnableApiRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3736,8 +4069,8 @@ func (c *Client) N5ba459ed390a721711a1708760e9de3b(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N04c7a5e4752b4a00036addb433f3f218(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN04c7a5e4752b4a00036addb433f3f218Request(c.Server, uuid)
+func (c *Client) Healthcheck(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHealthcheckRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3748,8 +4081,8 @@ func (c *Client) N04c7a5e4752b4a00036addb433f3f218(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N4c6eb21e734d411e2b3388578761123d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN4c6eb21e734d411e2b3388578761123dRequest(c.Server, uuid)
+func (c *Client) ListProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListProjectsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3760,8 +4093,8 @@ func (c *Client) N4c6eb21e734d411e2b3388578761123d(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cb6d983c2679aff841c7501ce612a372(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCb6d983c2679aff841c7501ce612a372Request(c.Server, uuid)
+func (c *Client) CreateProjectWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateProjectRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3772,8 +4105,8 @@ func (c *Client) Cb6d983c2679aff841c7501ce612a372(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N700eb6e51f4c9e86d722f600c65ed1d4(ctx context.Context, params *N700eb6e51f4c9e86d722f600c65ed1d4Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN700eb6e51f4c9e86d722f600c65ed1d4Request(c.Server, params)
+func (c *Client) CreateProject(ctx context.Context, body CreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateProjectRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3784,8 +4117,8 @@ func (c *Client) N700eb6e51f4c9e86d722f600c65ed1d4(ctx context.Context, params *
 	return c.Client.Do(req)
 }
 
-func (c *Client) A2c05736269191ad0d99cadfd4708986(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewA2c05736269191ad0d99cadfd4708986Request(c.Server)
+func (c *Client) DeleteProjectByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteProjectByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3796,8 +4129,8 @@ func (c *Client) A2c05736269191ad0d99cadfd4708986(ctx context.Context, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) Ccf9856174c115a1430d952ccbd36aea(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCcf9856174c115a1430d952ccbd36aeaRequest(c.Server, uuid)
+func (c *Client) GetProjectByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProjectByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3808,8 +4141,8 @@ func (c *Client) Ccf9856174c115a1430d952ccbd36aea(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N50e2486a2d196a996b24a284a283bcdb(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN50e2486a2d196a996b24a284a283bcdbRequest(c.Server)
+func (c *Client) UpdateProjectByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProjectByUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3820,8 +4153,8 @@ func (c *Client) N50e2486a2d196a996b24a284a283bcdb(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N595019bae03d08277def667609779ff3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN595019bae03d08277def667609779ff3Request(c.Server)
+func (c *Client) UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProjectByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3832,8 +4165,8 @@ func (c *Client) N595019bae03d08277def667609779ff3(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N64db893135e686704bb88c3c238022c1(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN64db893135e686704bb88c3c238022c1Request(c.Server)
+func (c *Client) GetEnvironmentByName(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEnvironmentByNameRequest(c.Server, uuid, environmentName)
 	if err != nil {
 		return nil, err
 	}
@@ -3844,8 +4177,8 @@ func (c *Client) N64db893135e686704bb88c3c238022c1(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N762788f00f2dabb981df9adbc948d3f6(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN762788f00f2dabb981df9adbc948d3f6Request(c.Server)
+func (c *Client) ListResources(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListResourcesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3856,8 +4189,8 @@ func (c *Client) N762788f00f2dabb981df9adbc948d3f6(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cf067eb7cf18216cda3239329a2eeadbWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCf067eb7cf18216cda3239329a2eeadbRequestWithBody(c.Server, contentType, body)
+func (c *Client) ListPrivateKeys(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListPrivateKeysRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3868,8 +4201,8 @@ func (c *Client) Cf067eb7cf18216cda3239329a2eeadbWithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cf067eb7cf18216cda3239329a2eeadb(ctx context.Context, body Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCf067eb7cf18216cda3239329a2eeadbRequest(c.Server, body)
+func (c *Client) CreatePrivateKeyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateKeyRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3880,8 +4213,8 @@ func (c *Client) Cf067eb7cf18216cda3239329a2eeadb(ctx context.Context, body Cf06
 	return c.Client.Do(req)
 }
 
-func (c *Client) F668a936f505b4401948c74b6a663029(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewF668a936f505b4401948c74b6a663029Request(c.Server, uuid)
+func (c *Client) CreatePrivateKey(ctx context.Context, body CreatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreatePrivateKeyRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3892,8 +4225,8 @@ func (c *Client) F668a936f505b4401948c74b6a663029(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N63bf8b6a68fbb757f09ab519331f6298(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN63bf8b6a68fbb757f09ab519331f6298Request(c.Server, uuid)
+func (c *Client) DeletePrivateKeyByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeletePrivateKeyByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3904,8 +4237,8 @@ func (c *Client) N63bf8b6a68fbb757f09ab519331f6298(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N2db343bd6fc14c658cb51a2b73b2f842WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN2db343bd6fc14c658cb51a2b73b2f842RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) GetPrivateKeyByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetPrivateKeyByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3916,8 +4249,8 @@ func (c *Client) N2db343bd6fc14c658cb51a2b73b2f842WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N2db343bd6fc14c658cb51a2b73b2f842(ctx context.Context, uuid string, body N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN2db343bd6fc14c658cb51a2b73b2f842Request(c.Server, uuid, body)
+func (c *Client) UpdatePrivateKeyWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePrivateKeyRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3928,8 +4261,8 @@ func (c *Client) N2db343bd6fc14c658cb51a2b73b2f842(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N7e44845dce5aa47ed7b0daf5595ad2e1(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN7e44845dce5aa47ed7b0daf5595ad2e1Request(c.Server, uuid, environmentName)
+func (c *Client) UpdatePrivateKey(ctx context.Context, uuid string, body UpdatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdatePrivateKeyRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3940,8 +4273,8 @@ func (c *Client) N7e44845dce5aa47ed7b0daf5595ad2e1(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) C399903694eb1314596832e49f7c66d7(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewC399903694eb1314596832e49f7c66d7Request(c.Server)
+func (c *Client) ListServers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListServersRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3952,8 +4285,8 @@ func (c *Client) C399903694eb1314596832e49f7c66d7(ctx context.Context, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) N8a5d8d3ccbbcef54ed0e913a27faea9d(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN8a5d8d3ccbbcef54ed0e913a27faea9dRequest(c.Server)
+func (c *Client) CreateServerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateServerRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3964,8 +4297,8 @@ func (c *Client) N8a5d8d3ccbbcef54ed0e913a27faea9d(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) Eb4780acaa990c594cdbe8ffa80b4fb0WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEb4780acaa990c594cdbe8ffa80b4fb0RequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateServer(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateServerRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3976,8 +4309,8 @@ func (c *Client) Eb4780acaa990c594cdbe8ffa80b4fb0WithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) Eb4780acaa990c594cdbe8ffa80b4fb0(ctx context.Context, body Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEb4780acaa990c594cdbe8ffa80b4fb0Request(c.Server, body)
+func (c *Client) DeleteServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteServerByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -3988,8 +4321,8 @@ func (c *Client) Eb4780acaa990c594cdbe8ffa80b4fb0(ctx context.Context, body Eb47
 	return c.Client.Do(req)
 }
 
-func (c *Client) N8faa0bb399142f0084dfc3e003c42cf6(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN8faa0bb399142f0084dfc3e003c42cf6Request(c.Server, uuid)
+func (c *Client) GetServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetServerByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4000,8 +4333,8 @@ func (c *Client) N8faa0bb399142f0084dfc3e003c42cf6(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N2f743a85eb65d5ddb8cd5b362bb3d26a(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN2f743a85eb65d5ddb8cd5b362bb3d26aRequest(c.Server, uuid)
+func (c *Client) UpdateServerByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServerByUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4012,8 +4345,8 @@ func (c *Client) N2f743a85eb65d5ddb8cd5b362bb3d26a(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N9feff464b78c24957ed3173324c9cd14WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN9feff464b78c24957ed3173324c9cd14RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) UpdateServerByUuid(ctx context.Context, uuid string, body UpdateServerByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServerByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4024,8 +4357,8 @@ func (c *Client) N9feff464b78c24957ed3173324c9cd14WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N9feff464b78c24957ed3173324c9cd14(ctx context.Context, uuid string, body N9feff464b78c24957ed3173324c9cd14JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN9feff464b78c24957ed3173324c9cd14Request(c.Server, uuid, body)
+func (c *Client) GetDomainsByServerUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDomainsByServerUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4036,8 +4369,8 @@ func (c *Client) N9feff464b78c24957ed3173324c9cd14(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N787448df856cefd2d9a313566be30d34(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN787448df856cefd2d9a313566be30d34Request(c.Server)
+func (c *Client) GetResourcesByServerUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetResourcesByServerUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4048,8 +4381,8 @@ func (c *Client) N787448df856cefd2d9a313566be30d34(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) Fa44b42490379e428ba5b8747716a8d9WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFa44b42490379e428ba5b8747716a8d9RequestWithBody(c.Server, contentType, body)
+func (c *Client) ValidateServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewValidateServerByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4060,8 +4393,8 @@ func (c *Client) Fa44b42490379e428ba5b8747716a8d9WithBody(ctx context.Context, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) Fa44b42490379e428ba5b8747716a8d9(ctx context.Context, body Fa44b42490379e428ba5b8747716a8d9JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewFa44b42490379e428ba5b8747716a8d9Request(c.Server, body)
+func (c *Client) ListServices(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListServicesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4072,8 +4405,8 @@ func (c *Client) Fa44b42490379e428ba5b8747716a8d9(ctx context.Context, body Fa44
 	return c.Client.Do(req)
 }
 
-func (c *Client) N0231fe0134f0306b21f006ce51b0a3dc(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN0231fe0134f0306b21f006ce51b0a3dcRequest(c.Server, uuid)
+func (c *Client) CreateServiceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateServiceRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4084,8 +4417,8 @@ func (c *Client) N0231fe0134f0306b21f006ce51b0a3dc(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N5baf04bddb8302c7e07f5b4c41aad10c(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN5baf04bddb8302c7e07f5b4c41aad10cRequest(c.Server, uuid)
+func (c *Client) CreateService(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateServiceRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4096,8 +4429,8 @@ func (c *Client) N5baf04bddb8302c7e07f5b4c41aad10c(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N41bbdaf79eb1938592494fc5494442a0WithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN41bbdaf79eb1938592494fc5494442a0RequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) DeleteServiceByUuid(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteServiceByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4108,8 +4441,8 @@ func (c *Client) N41bbdaf79eb1938592494fc5494442a0WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N41bbdaf79eb1938592494fc5494442a0(ctx context.Context, uuid string, body N41bbdaf79eb1938592494fc5494442a0JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN41bbdaf79eb1938592494fc5494442a0Request(c.Server, uuid, body)
+func (c *Client) GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetServiceByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4120,8 +4453,8 @@ func (c *Client) N41bbdaf79eb1938592494fc5494442a0(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N1ee227755be848d572f412272f53dd93(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN1ee227755be848d572f412272f53dd93Request(c.Server, uuid)
+func (c *Client) ListEnvsByServiceUuid(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListEnvsByServiceUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4132,8 +4465,8 @@ func (c *Client) N1ee227755be848d572f412272f53dd93(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) Cef26c059941b44fbd8de3a7a58c10a5(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCef26c059941b44fbd8de3a7a58c10a5Request(c.Server, uuid)
+func (c *Client) UpdateEnvByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvByServiceUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4144,8 +4477,8 @@ func (c *Client) Cef26c059941b44fbd8de3a7a58c10a5(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) A543a12ef2cbc7a3dd22c3dbe6cbee89(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewA543a12ef2cbc7a3dd22c3dbe6cbee89Request(c.Server, uuid)
+func (c *Client) UpdateEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvByServiceUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4156,8 +4489,8 @@ func (c *Client) A543a12ef2cbc7a3dd22c3dbe6cbee89(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N5d014ac25d33391b8f4c2316060ba452(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN5d014ac25d33391b8f4c2316060ba452Request(c.Server)
+func (c *Client) CreateEnvByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvByServiceUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4168,8 +4501,8 @@ func (c *Client) N5d014ac25d33391b8f4c2316060ba452(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3d6cbfb54d919b53ba3984a113e837d7WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3d6cbfb54d919b53ba3984a113e837d7RequestWithBody(c.Server, contentType, body)
+func (c *Client) CreateEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body CreateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvByServiceUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4180,8 +4513,8 @@ func (c *Client) N3d6cbfb54d919b53ba3984a113e837d7WithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N3d6cbfb54d919b53ba3984a113e837d7(ctx context.Context, body N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN3d6cbfb54d919b53ba3984a113e837d7Request(c.Server, body)
+func (c *Client) UpdateEnvsByServiceUuidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvsByServiceUuidRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4192,8 +4525,8 @@ func (c *Client) N3d6cbfb54d919b53ba3984a113e837d7(ctx context.Context, body N3d
 	return c.Client.Do(req)
 }
 
-func (c *Client) N6e1a61e4fddaa9d95bb9fc66dfaf0442(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN6e1a61e4fddaa9d95bb9fc66dfaf0442Request(c.Server, uuid)
+func (c *Client) UpdateEnvsByServiceUuid(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvsByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateEnvsByServiceUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4204,8 +4537,8 @@ func (c *Client) N6e1a61e4fddaa9d95bb9fc66dfaf0442(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N895d39ee2cb3994285de57256c2d428d(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN895d39ee2cb3994285de57256c2d428dRequest(c.Server, uuid)
+func (c *Client) DeleteEnvByServiceUuid(ctx context.Context, uuid openapi_types.UUID, envUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteEnvByServiceUuidRequest(c.Server, uuid, envUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4216,8 +4549,8 @@ func (c *Client) N895d39ee2cb3994285de57256c2d428d(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) N836645faa615b75052759dae78639469(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN836645faa615b75052759dae78639469Request(c.Server, uuid)
+func (c *Client) RestartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRestartServiceByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4228,8 +4561,8 @@ func (c *Client) N836645faa615b75052759dae78639469(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) D2ddd9c028d123fbdec830dc4b25b4cb(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewD2ddd9c028d123fbdec830dc4b25b4cbRequest(c.Server, uuid)
+func (c *Client) StartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStartServiceByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4240,8 +4573,8 @@ func (c *Client) D2ddd9c028d123fbdec830dc4b25b4cb(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
-func (c *Client) N87399d34758ce16830740c68626614db(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN87399d34758ce16830740c68626614dbRequest(c.Server, uuid)
+func (c *Client) StopServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStopServiceByUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4252,8 +4585,8 @@ func (c *Client) N87399d34758ce16830740c68626614db(ctx context.Context, uuid str
 	return c.Client.Do(req)
 }
 
-func (c *Client) F9c530b5b25df9601cb87d6a58646f0a(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewF9c530b5b25df9601cb87d6a58646f0aRequest(c.Server)
+func (c *Client) ListTeams(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListTeamsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4264,8 +4597,8 @@ func (c *Client) F9c530b5b25df9601cb87d6a58646f0a(ctx context.Context, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) N6a4ec9fed1aad7b0b38356c47d7ac509(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN6a4ec9fed1aad7b0b38356c47d7ac509Request(c.Server)
+func (c *Client) GetCurrentTeam(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCurrentTeamRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4276,8 +4609,8 @@ func (c *Client) N6a4ec9fed1aad7b0b38356c47d7ac509(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) N97e636a5796dbe71afb0bbcf1eec6e41(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN97e636a5796dbe71afb0bbcf1eec6e41Request(c.Server)
+func (c *Client) GetCurrentTeamMembers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCurrentTeamMembersRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4288,8 +4621,8 @@ func (c *Client) N97e636a5796dbe71afb0bbcf1eec6e41(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) Ac57ff546c002032cef44602c46a4e76(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAc57ff546c002032cef44602c46a4e76Request(c.Server, id)
+func (c *Client) GetTeamById(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTeamByIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -4300,8 +4633,8 @@ func (c *Client) Ac57ff546c002032cef44602c46a4e76(ctx context.Context, id int, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) N7858f5a45d9ea55184c182852a7f0f6c(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN7858f5a45d9ea55184c182852a7f0f6cRequest(c.Server, id)
+func (c *Client) GetMembersByTeamId(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMembersByTeamIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -4312,8 +4645,8 @@ func (c *Client) N7858f5a45d9ea55184c182852a7f0f6c(ctx context.Context, id int, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) N187b37139844731110757711ee71c215(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewN187b37139844731110757711ee71c215Request(c.Server)
+func (c *Client) Version(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVersionRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4324,8 +4657,8 @@ func (c *Client) N187b37139844731110757711ee71c215(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-// NewN02978e79fc0b54d573b2359f2a1f7d86Request generates requests for N02978e79fc0b54d573b2359f2a1f7d86
-func NewN02978e79fc0b54d573b2359f2a1f7d86Request(server string) (*http.Request, error) {
+// NewListApplicationsRequest generates requests for ListApplications
+func NewListApplicationsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4351,19 +4684,19 @@ func NewN02978e79fc0b54d573b2359f2a1f7d86Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN3731add8226c2d664455978cac46c242Request calls the generic N3731add8226c2d664455978cac46c242 builder with application/json body
-func NewN3731add8226c2d664455978cac46c242Request(server string, body N3731add8226c2d664455978cac46c242JSONRequestBody) (*http.Request, error) {
+// NewCreateDockercomposeApplicationRequest calls the generic CreateDockercomposeApplication builder with application/json body
+func NewCreateDockercomposeApplicationRequest(server string, body CreateDockercomposeApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN3731add8226c2d664455978cac46c242RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDockercomposeApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN3731add8226c2d664455978cac46c242RequestWithBody generates requests for N3731add8226c2d664455978cac46c242 with any type of body
-func NewN3731add8226c2d664455978cac46c242RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDockercomposeApplicationRequestWithBody generates requests for CreateDockercomposeApplication with any type of body
+func NewCreateDockercomposeApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4391,19 +4724,19 @@ func NewN3731add8226c2d664455978cac46c242RequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewN2b433ad6f5d259eb7f4f3b5af9913708Request calls the generic N2b433ad6f5d259eb7f4f3b5af9913708 builder with application/json body
-func NewN2b433ad6f5d259eb7f4f3b5af9913708Request(server string, body N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody) (*http.Request, error) {
+// NewCreateDockerfileApplicationRequest calls the generic CreateDockerfileApplication builder with application/json body
+func NewCreateDockerfileApplicationRequest(server string, body CreateDockerfileApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN2b433ad6f5d259eb7f4f3b5af9913708RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDockerfileApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN2b433ad6f5d259eb7f4f3b5af9913708RequestWithBody generates requests for N2b433ad6f5d259eb7f4f3b5af9913708 with any type of body
-func NewN2b433ad6f5d259eb7f4f3b5af9913708RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDockerfileApplicationRequestWithBody generates requests for CreateDockerfileApplication with any type of body
+func NewCreateDockerfileApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4431,19 +4764,19 @@ func NewN2b433ad6f5d259eb7f4f3b5af9913708RequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewE9a2d6dd9404acf880dc3053f09477fcRequest calls the generic E9a2d6dd9404acf880dc3053f09477fc builder with application/json body
-func NewE9a2d6dd9404acf880dc3053f09477fcRequest(server string, body E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody) (*http.Request, error) {
+// NewCreateDockerimageApplicationRequest calls the generic CreateDockerimageApplication builder with application/json body
+func NewCreateDockerimageApplicationRequest(server string, body CreateDockerimageApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewE9a2d6dd9404acf880dc3053f09477fcRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDockerimageApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewE9a2d6dd9404acf880dc3053f09477fcRequestWithBody generates requests for E9a2d6dd9404acf880dc3053f09477fc with any type of body
-func NewE9a2d6dd9404acf880dc3053f09477fcRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDockerimageApplicationRequestWithBody generates requests for CreateDockerimageApplication with any type of body
+func NewCreateDockerimageApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4471,19 +4804,19 @@ func NewE9a2d6dd9404acf880dc3053f09477fcRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewE3eaa989ffb05366247a00cdfd551efaRequest calls the generic E3eaa989ffb05366247a00cdfd551efa builder with application/json body
-func NewE3eaa989ffb05366247a00cdfd551efaRequest(server string, body E3eaa989ffb05366247a00cdfd551efaJSONRequestBody) (*http.Request, error) {
+// NewCreatePrivateDeployKeyApplicationRequest calls the generic CreatePrivateDeployKeyApplication builder with application/json body
+func NewCreatePrivateDeployKeyApplicationRequest(server string, body CreatePrivateDeployKeyApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewE3eaa989ffb05366247a00cdfd551efaRequestWithBody(server, "application/json", bodyReader)
+	return NewCreatePrivateDeployKeyApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewE3eaa989ffb05366247a00cdfd551efaRequestWithBody generates requests for E3eaa989ffb05366247a00cdfd551efa with any type of body
-func NewE3eaa989ffb05366247a00cdfd551efaRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreatePrivateDeployKeyApplicationRequestWithBody generates requests for CreatePrivateDeployKeyApplication with any type of body
+func NewCreatePrivateDeployKeyApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4511,19 +4844,19 @@ func NewE3eaa989ffb05366247a00cdfd551efaRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN4d46c84bda4f1a411f6dda15fce4061fRequest calls the generic N4d46c84bda4f1a411f6dda15fce4061f builder with application/json body
-func NewN4d46c84bda4f1a411f6dda15fce4061fRequest(server string, body N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody) (*http.Request, error) {
+// NewCreatePrivateGithubAppApplicationRequest calls the generic CreatePrivateGithubAppApplication builder with application/json body
+func NewCreatePrivateGithubAppApplicationRequest(server string, body CreatePrivateGithubAppApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody(server, "application/json", bodyReader)
+	return NewCreatePrivateGithubAppApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody generates requests for N4d46c84bda4f1a411f6dda15fce4061f with any type of body
-func NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreatePrivateGithubAppApplicationRequestWithBody generates requests for CreatePrivateGithubAppApplication with any type of body
+func NewCreatePrivateGithubAppApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4531,7 +4864,7 @@ func NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody(server string, contentT
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/applications/private-gh-app")
+	operationPath := fmt.Sprintf("/applications/private-github-app")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -4551,19 +4884,19 @@ func NewN4d46c84bda4f1a411f6dda15fce4061fRequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewCb56324ad19693469b4461d3f6065a5bRequest calls the generic Cb56324ad19693469b4461d3f6065a5b builder with application/json body
-func NewCb56324ad19693469b4461d3f6065a5bRequest(server string, body Cb56324ad19693469b4461d3f6065a5bJSONRequestBody) (*http.Request, error) {
+// NewCreatePublicApplicationRequest calls the generic CreatePublicApplication builder with application/json body
+func NewCreatePublicApplicationRequest(server string, body CreatePublicApplicationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCb56324ad19693469b4461d3f6065a5bRequestWithBody(server, "application/json", bodyReader)
+	return NewCreatePublicApplicationRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewCb56324ad19693469b4461d3f6065a5bRequestWithBody generates requests for Cb56324ad19693469b4461d3f6065a5b with any type of body
-func NewCb56324ad19693469b4461d3f6065a5bRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreatePublicApplicationRequestWithBody generates requests for CreatePublicApplication with any type of body
+func NewCreatePublicApplicationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4591,8 +4924,8 @@ func NewCb56324ad19693469b4461d3f6065a5bRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN1e110b190a1045d34f3e1c61608a8702Request generates requests for N1e110b190a1045d34f3e1c61608a8702
-func NewN1e110b190a1045d34f3e1c61608a8702Request(server string, uuid string, params *N1e110b190a1045d34f3e1c61608a8702Params) (*http.Request, error) {
+// NewDeleteApplicationByUuidRequest generates requests for DeleteApplicationByUuid
+func NewDeleteApplicationByUuidRequest(server string, uuid string, params *DeleteApplicationByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4620,9 +4953,57 @@ func NewN1e110b190a1045d34f3e1c61608a8702Request(server string, uuid string, par
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Cleanup != nil {
+		if params.DeleteConfigurations != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cleanup", runtime.ParamLocationQuery, *params.Cleanup); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_configurations", runtime.ParamLocationQuery, *params.DeleteConfigurations); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteVolumes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_volumes", runtime.ParamLocationQuery, *params.DeleteVolumes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DockerCleanup != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "docker_cleanup", runtime.ParamLocationQuery, *params.DockerCleanup); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteConnectedNetworks != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_connected_networks", runtime.ParamLocationQuery, *params.DeleteConnectedNetworks); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -4647,8 +5028,8 @@ func NewN1e110b190a1045d34f3e1c61608a8702Request(server string, uuid string, par
 	return req, nil
 }
 
-// NewN3630b62c28e7358e7f0087c1d8fe1845Request generates requests for N3630b62c28e7358e7f0087c1d8fe1845
-func NewN3630b62c28e7358e7f0087c1d8fe1845Request(server string, uuid string) (*http.Request, error) {
+// NewGetApplicationByUuidRequest generates requests for GetApplicationByUuid
+func NewGetApplicationByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4681,19 +5062,19 @@ func NewN3630b62c28e7358e7f0087c1d8fe1845Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN62a3b1775e8cba5d39a236ebb69830b7Request calls the generic N62a3b1775e8cba5d39a236ebb69830b7 builder with application/json body
-func NewN62a3b1775e8cba5d39a236ebb69830b7Request(server string, uuid string, body N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody) (*http.Request, error) {
+// NewUpdateApplicationByUuidRequest calls the generic UpdateApplicationByUuid builder with application/json body
+func NewUpdateApplicationByUuidRequest(server string, uuid string, body UpdateApplicationByUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN62a3b1775e8cba5d39a236ebb69830b7RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateApplicationByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN62a3b1775e8cba5d39a236ebb69830b7RequestWithBody generates requests for N62a3b1775e8cba5d39a236ebb69830b7 with any type of body
-func NewN62a3b1775e8cba5d39a236ebb69830b7RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateApplicationByUuidRequestWithBody generates requests for UpdateApplicationByUuid with any type of body
+func NewUpdateApplicationByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4728,8 +5109,8 @@ func NewN62a3b1775e8cba5d39a236ebb69830b7RequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN7c8e0c286870e23294a075cc0584df2fRequest generates requests for N7c8e0c286870e23294a075cc0584df2f
-func NewN7c8e0c286870e23294a075cc0584df2fRequest(server string, uuid string) (*http.Request, error) {
+// NewListEnvsByApplicationUuidRequest generates requests for ListEnvsByApplicationUuid
+func NewListEnvsByApplicationUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4762,19 +5143,19 @@ func NewN7c8e0c286870e23294a075cc0584df2fRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN3d70a2d569f395be220b3f09ad36674bRequest calls the generic N3d70a2d569f395be220b3f09ad36674b builder with application/json body
-func NewN3d70a2d569f395be220b3f09ad36674bRequest(server string, uuid string, body N3d70a2d569f395be220b3f09ad36674bJSONRequestBody) (*http.Request, error) {
+// NewUpdateEnvByApplicationUuidRequest calls the generic UpdateEnvByApplicationUuid builder with application/json body
+func NewUpdateEnvByApplicationUuidRequest(server string, uuid string, body UpdateEnvByApplicationUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN3d70a2d569f395be220b3f09ad36674bRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateEnvByApplicationUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN3d70a2d569f395be220b3f09ad36674bRequestWithBody generates requests for N3d70a2d569f395be220b3f09ad36674b with any type of body
-func NewN3d70a2d569f395be220b3f09ad36674bRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateEnvByApplicationUuidRequestWithBody generates requests for UpdateEnvByApplicationUuid with any type of body
+func NewUpdateEnvByApplicationUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4809,19 +5190,19 @@ func NewN3d70a2d569f395be220b3f09ad36674bRequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN4699ffbb7d6e58581fd0b0a14f36ffc2Request calls the generic N4699ffbb7d6e58581fd0b0a14f36ffc2 builder with application/json body
-func NewN4699ffbb7d6e58581fd0b0a14f36ffc2Request(server string, uuid string, body N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody) (*http.Request, error) {
+// NewCreateEnvByApplicationUuidRequest calls the generic CreateEnvByApplicationUuid builder with application/json body
+func NewCreateEnvByApplicationUuidRequest(server string, uuid string, body CreateEnvByApplicationUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN4699ffbb7d6e58581fd0b0a14f36ffc2RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewCreateEnvByApplicationUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN4699ffbb7d6e58581fd0b0a14f36ffc2RequestWithBody generates requests for N4699ffbb7d6e58581fd0b0a14f36ffc2 with any type of body
-func NewN4699ffbb7d6e58581fd0b0a14f36ffc2RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateEnvByApplicationUuidRequestWithBody generates requests for CreateEnvByApplicationUuid with any type of body
+func NewCreateEnvByApplicationUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4856,19 +5237,19 @@ func NewN4699ffbb7d6e58581fd0b0a14f36ffc2RequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewAe96f0f585ed158b2abd2d9ba40f3cf9Request calls the generic Ae96f0f585ed158b2abd2d9ba40f3cf9 builder with application/json body
-func NewAe96f0f585ed158b2abd2d9ba40f3cf9Request(server string, uuid string, body Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody) (*http.Request, error) {
+// NewUpdateEnvsByApplicationUuidRequest calls the generic UpdateEnvsByApplicationUuid builder with application/json body
+func NewUpdateEnvsByApplicationUuidRequest(server string, uuid string, body UpdateEnvsByApplicationUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewAe96f0f585ed158b2abd2d9ba40f3cf9RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateEnvsByApplicationUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewAe96f0f585ed158b2abd2d9ba40f3cf9RequestWithBody generates requests for Ae96f0f585ed158b2abd2d9ba40f3cf9 with any type of body
-func NewAe96f0f585ed158b2abd2d9ba40f3cf9RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateEnvsByApplicationUuidRequestWithBody generates requests for UpdateEnvsByApplicationUuid with any type of body
+func NewUpdateEnvsByApplicationUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4903,8 +5284,8 @@ func NewAe96f0f585ed158b2abd2d9ba40f3cf9RequestWithBody(server string, uuid stri
 	return req, nil
 }
 
-// NewN96097c5cfc7dc0e7a3de229645f630c7Request generates requests for N96097c5cfc7dc0e7a3de229645f630c7
-func NewN96097c5cfc7dc0e7a3de229645f630c7Request(server string, uuid string, envUuid string) (*http.Request, error) {
+// NewDeleteEnvByApplicationUuidRequest generates requests for DeleteEnvByApplicationUuid
+func NewDeleteEnvByApplicationUuidRequest(server string, uuid string, envUuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4944,8 +5325,55 @@ func NewN96097c5cfc7dc0e7a3de229645f630c7Request(server string, uuid string, env
 	return req, nil
 }
 
-// NewB231ae7baab9ef47f0627be820e735bcRequest generates requests for B231ae7baab9ef47f0627be820e735bc
-func NewB231ae7baab9ef47f0627be820e735bcRequest(server string, uuid string) (*http.Request, error) {
+// NewExecuteCommandApplicationRequest calls the generic ExecuteCommandApplication builder with application/json body
+func NewExecuteCommandApplicationRequest(server string, uuid openapi_types.UUID, body ExecuteCommandApplicationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewExecuteCommandApplicationRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewExecuteCommandApplicationRequestWithBody generates requests for ExecuteCommandApplication with any type of body
+func NewExecuteCommandApplicationRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/applications/%s/execute", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRestartApplicationByUuidRequest generates requests for RestartApplicationByUuid
+func NewRestartApplicationByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4978,8 +5406,8 @@ func NewB231ae7baab9ef47f0627be820e735bcRequest(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewDc87c2061ab303757a0e061f87900c4cRequest generates requests for Dc87c2061ab303757a0e061f87900c4c
-func NewDc87c2061ab303757a0e061f87900c4cRequest(server string, uuid string, params *Dc87c2061ab303757a0e061f87900c4cParams) (*http.Request, error) {
+// NewStartApplicationByUuidRequest generates requests for StartApplicationByUuid
+func NewStartApplicationByUuidRequest(server string, uuid string, params *StartApplicationByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5050,8 +5478,8 @@ func NewDc87c2061ab303757a0e061f87900c4cRequest(server string, uuid string, para
 	return req, nil
 }
 
-// NewN133ef3c7bd5043901f24bb5002a536ebRequest generates requests for N133ef3c7bd5043901f24bb5002a536eb
-func NewN133ef3c7bd5043901f24bb5002a536ebRequest(server string, uuid string) (*http.Request, error) {
+// NewStopApplicationByUuidRequest generates requests for StopApplicationByUuid
+func NewStopApplicationByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5084,8 +5512,8 @@ func NewN133ef3c7bd5043901f24bb5002a536ebRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewEcd0ee1e46e4c854c18e6c9daa3d37f3Request generates requests for Ecd0ee1e46e4c854c18e6c9daa3d37f3
-func NewEcd0ee1e46e4c854c18e6c9daa3d37f3Request(server string) (*http.Request, error) {
+// NewListDatabasesRequest generates requests for ListDatabases
+func NewListDatabasesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5111,19 +5539,19 @@ func NewEcd0ee1e46e4c854c18e6c9daa3d37f3Request(server string) (*http.Request, e
 	return req, nil
 }
 
-// NewA1189fa7f956f238f0e95c9150ff57f6Request calls the generic A1189fa7f956f238f0e95c9150ff57f6 builder with application/json body
-func NewA1189fa7f956f238f0e95c9150ff57f6Request(server string, body A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseClickhouseRequest calls the generic CreateDatabaseClickhouse builder with application/json body
+func NewCreateDatabaseClickhouseRequest(server string, body CreateDatabaseClickhouseJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewA1189fa7f956f238f0e95c9150ff57f6RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseClickhouseRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewA1189fa7f956f238f0e95c9150ff57f6RequestWithBody generates requests for A1189fa7f956f238f0e95c9150ff57f6 with any type of body
-func NewA1189fa7f956f238f0e95c9150ff57f6RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseClickhouseRequestWithBody generates requests for CreateDatabaseClickhouse with any type of body
+func NewCreateDatabaseClickhouseRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5151,19 +5579,19 @@ func NewA1189fa7f956f238f0e95c9150ff57f6RequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewE73f7de1c8eee4219e5ec98c4b9b7efeRequest calls the generic E73f7de1c8eee4219e5ec98c4b9b7efe builder with application/json body
-func NewE73f7de1c8eee4219e5ec98c4b9b7efeRequest(server string, body E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseDragonflyRequest calls the generic CreateDatabaseDragonfly builder with application/json body
+func NewCreateDatabaseDragonflyRequest(server string, body CreateDatabaseDragonflyJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewE73f7de1c8eee4219e5ec98c4b9b7efeRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseDragonflyRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewE73f7de1c8eee4219e5ec98c4b9b7efeRequestWithBody generates requests for E73f7de1c8eee4219e5ec98c4b9b7efe with any type of body
-func NewE73f7de1c8eee4219e5ec98c4b9b7efeRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseDragonflyRequestWithBody generates requests for CreateDatabaseDragonfly with any type of body
+func NewCreateDatabaseDragonflyRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5191,19 +5619,19 @@ func NewE73f7de1c8eee4219e5ec98c4b9b7efeRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewB908f3929c371c217d489638e0a21ff6Request calls the generic B908f3929c371c217d489638e0a21ff6 builder with application/json body
-func NewB908f3929c371c217d489638e0a21ff6Request(server string, body B908f3929c371c217d489638e0a21ff6JSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseKeydbRequest calls the generic CreateDatabaseKeydb builder with application/json body
+func NewCreateDatabaseKeydbRequest(server string, body CreateDatabaseKeydbJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewB908f3929c371c217d489638e0a21ff6RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseKeydbRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewB908f3929c371c217d489638e0a21ff6RequestWithBody generates requests for B908f3929c371c217d489638e0a21ff6 with any type of body
-func NewB908f3929c371c217d489638e0a21ff6RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseKeydbRequestWithBody generates requests for CreateDatabaseKeydb with any type of body
+func NewCreateDatabaseKeydbRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5231,19 +5659,19 @@ func NewB908f3929c371c217d489638e0a21ff6RequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN6bea521ddcd738dcbb5f3783a7308acfRequest calls the generic N6bea521ddcd738dcbb5f3783a7308acf builder with application/json body
-func NewN6bea521ddcd738dcbb5f3783a7308acfRequest(server string, body N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseMariadbRequest calls the generic CreateDatabaseMariadb builder with application/json body
+func NewCreateDatabaseMariadbRequest(server string, body CreateDatabaseMariadbJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN6bea521ddcd738dcbb5f3783a7308acfRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseMariadbRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN6bea521ddcd738dcbb5f3783a7308acfRequestWithBody generates requests for N6bea521ddcd738dcbb5f3783a7308acf with any type of body
-func NewN6bea521ddcd738dcbb5f3783a7308acfRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseMariadbRequestWithBody generates requests for CreateDatabaseMariadb with any type of body
+func NewCreateDatabaseMariadbRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5271,19 +5699,19 @@ func NewN6bea521ddcd738dcbb5f3783a7308acfRequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewFdba3de84d02519bb37599fea34b115dRequest calls the generic Fdba3de84d02519bb37599fea34b115d builder with application/json body
-func NewFdba3de84d02519bb37599fea34b115dRequest(server string, body Fdba3de84d02519bb37599fea34b115dJSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseMongodbRequest calls the generic CreateDatabaseMongodb builder with application/json body
+func NewCreateDatabaseMongodbRequest(server string, body CreateDatabaseMongodbJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewFdba3de84d02519bb37599fea34b115dRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseMongodbRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewFdba3de84d02519bb37599fea34b115dRequestWithBody generates requests for Fdba3de84d02519bb37599fea34b115d with any type of body
-func NewFdba3de84d02519bb37599fea34b115dRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseMongodbRequestWithBody generates requests for CreateDatabaseMongodb with any type of body
+func NewCreateDatabaseMongodbRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5311,19 +5739,19 @@ func NewFdba3de84d02519bb37599fea34b115dRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN0a1158cf759c4493cbb1e30024c60623Request calls the generic N0a1158cf759c4493cbb1e30024c60623 builder with application/json body
-func NewN0a1158cf759c4493cbb1e30024c60623Request(server string, body N0a1158cf759c4493cbb1e30024c60623JSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseMysqlRequest calls the generic CreateDatabaseMysql builder with application/json body
+func NewCreateDatabaseMysqlRequest(server string, body CreateDatabaseMysqlJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN0a1158cf759c4493cbb1e30024c60623RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseMysqlRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN0a1158cf759c4493cbb1e30024c60623RequestWithBody generates requests for N0a1158cf759c4493cbb1e30024c60623 with any type of body
-func NewN0a1158cf759c4493cbb1e30024c60623RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseMysqlRequestWithBody generates requests for CreateDatabaseMysql with any type of body
+func NewCreateDatabaseMysqlRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5351,19 +5779,19 @@ func NewN0a1158cf759c4493cbb1e30024c60623RequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewN8f7f491ddc46a9fa065b4424512231cdRequest calls the generic N8f7f491ddc46a9fa065b4424512231cd builder with application/json body
-func NewN8f7f491ddc46a9fa065b4424512231cdRequest(server string, body N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody) (*http.Request, error) {
+// NewCreateDatabasePostgresqlRequest calls the generic CreateDatabasePostgresql builder with application/json body
+func NewCreateDatabasePostgresqlRequest(server string, body CreateDatabasePostgresqlJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN8f7f491ddc46a9fa065b4424512231cdRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabasePostgresqlRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN8f7f491ddc46a9fa065b4424512231cdRequestWithBody generates requests for N8f7f491ddc46a9fa065b4424512231cd with any type of body
-func NewN8f7f491ddc46a9fa065b4424512231cdRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabasePostgresqlRequestWithBody generates requests for CreateDatabasePostgresql with any type of body
+func NewCreateDatabasePostgresqlRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5391,19 +5819,19 @@ func NewN8f7f491ddc46a9fa065b4424512231cdRequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewN4d352d13544ee2953fd48ad7b0651098Request calls the generic N4d352d13544ee2953fd48ad7b0651098 builder with application/json body
-func NewN4d352d13544ee2953fd48ad7b0651098Request(server string, body N4d352d13544ee2953fd48ad7b0651098JSONRequestBody) (*http.Request, error) {
+// NewCreateDatabaseRedisRequest calls the generic CreateDatabaseRedis builder with application/json body
+func NewCreateDatabaseRedisRequest(server string, body CreateDatabaseRedisJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN4d352d13544ee2953fd48ad7b0651098RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateDatabaseRedisRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN4d352d13544ee2953fd48ad7b0651098RequestWithBody generates requests for N4d352d13544ee2953fd48ad7b0651098 with any type of body
-func NewN4d352d13544ee2953fd48ad7b0651098RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateDatabaseRedisRequestWithBody generates requests for CreateDatabaseRedis with any type of body
+func NewCreateDatabaseRedisRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5431,8 +5859,8 @@ func NewN4d352d13544ee2953fd48ad7b0651098RequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewN20610931b2bae8aba34eee68624ab673Request generates requests for N20610931b2bae8aba34eee68624ab673
-func NewN20610931b2bae8aba34eee68624ab673Request(server string, uuid string, params *N20610931b2bae8aba34eee68624ab673Params) (*http.Request, error) {
+// NewDeleteDatabaseByUuidRequest generates requests for DeleteDatabaseByUuid
+func NewDeleteDatabaseByUuidRequest(server string, uuid string, params *DeleteDatabaseByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5460,9 +5888,57 @@ func NewN20610931b2bae8aba34eee68624ab673Request(server string, uuid string, par
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Cleanup != nil {
+		if params.DeleteConfigurations != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cleanup", runtime.ParamLocationQuery, *params.Cleanup); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_configurations", runtime.ParamLocationQuery, *params.DeleteConfigurations); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteVolumes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_volumes", runtime.ParamLocationQuery, *params.DeleteVolumes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DockerCleanup != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "docker_cleanup", runtime.ParamLocationQuery, *params.DockerCleanup); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteConnectedNetworks != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_connected_networks", runtime.ParamLocationQuery, *params.DeleteConnectedNetworks); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -5487,8 +5963,8 @@ func NewN20610931b2bae8aba34eee68624ab673Request(server string, uuid string, par
 	return req, nil
 }
 
-// NewB49cb2d3e8f34c4e80cdffd8a201031dRequest generates requests for B49cb2d3e8f34c4e80cdffd8a201031d
-func NewB49cb2d3e8f34c4e80cdffd8a201031dRequest(server string, uuid string) (*http.Request, error) {
+// NewGetDatabaseByUuidRequest generates requests for GetDatabaseByUuid
+func NewGetDatabaseByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5521,19 +5997,19 @@ func NewB49cb2d3e8f34c4e80cdffd8a201031dRequest(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN5ba459ed390a721711a1708760e9de3bRequest calls the generic N5ba459ed390a721711a1708760e9de3b builder with application/json body
-func NewN5ba459ed390a721711a1708760e9de3bRequest(server string, uuid string, body N5ba459ed390a721711a1708760e9de3bJSONRequestBody) (*http.Request, error) {
+// NewUpdateDatabaseByUuidRequest calls the generic UpdateDatabaseByUuid builder with application/json body
+func NewUpdateDatabaseByUuidRequest(server string, uuid string, body UpdateDatabaseByUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN5ba459ed390a721711a1708760e9de3bRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateDatabaseByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN5ba459ed390a721711a1708760e9de3bRequestWithBody generates requests for N5ba459ed390a721711a1708760e9de3b with any type of body
-func NewN5ba459ed390a721711a1708760e9de3bRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateDatabaseByUuidRequestWithBody generates requests for UpdateDatabaseByUuid with any type of body
+func NewUpdateDatabaseByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5568,8 +6044,8 @@ func NewN5ba459ed390a721711a1708760e9de3bRequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN04c7a5e4752b4a00036addb433f3f218Request generates requests for N04c7a5e4752b4a00036addb433f3f218
-func NewN04c7a5e4752b4a00036addb433f3f218Request(server string, uuid string) (*http.Request, error) {
+// NewRestartDatabaseByUuidRequest generates requests for RestartDatabaseByUuid
+func NewRestartDatabaseByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5602,8 +6078,8 @@ func NewN04c7a5e4752b4a00036addb433f3f218Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN4c6eb21e734d411e2b3388578761123dRequest generates requests for N4c6eb21e734d411e2b3388578761123d
-func NewN4c6eb21e734d411e2b3388578761123dRequest(server string, uuid string) (*http.Request, error) {
+// NewStartDatabaseByUuidRequest generates requests for StartDatabaseByUuid
+func NewStartDatabaseByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5636,8 +6112,8 @@ func NewN4c6eb21e734d411e2b3388578761123dRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewCb6d983c2679aff841c7501ce612a372Request generates requests for Cb6d983c2679aff841c7501ce612a372
-func NewCb6d983c2679aff841c7501ce612a372Request(server string, uuid string) (*http.Request, error) {
+// NewStopDatabaseByUuidRequest generates requests for StopDatabaseByUuid
+func NewStopDatabaseByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5670,8 +6146,8 @@ func NewCb6d983c2679aff841c7501ce612a372Request(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN700eb6e51f4c9e86d722f600c65ed1d4Request generates requests for N700eb6e51f4c9e86d722f600c65ed1d4
-func NewN700eb6e51f4c9e86d722f600c65ed1d4Request(server string, params *N700eb6e51f4c9e86d722f600c65ed1d4Params) (*http.Request, error) {
+// NewDeployByTagOrUuidRequest generates requests for DeployByTagOrUuid
+func NewDeployByTagOrUuidRequest(server string, params *DeployByTagOrUuidParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5751,8 +6227,8 @@ func NewN700eb6e51f4c9e86d722f600c65ed1d4Request(server string, params *N700eb6e
 	return req, nil
 }
 
-// NewA2c05736269191ad0d99cadfd4708986Request generates requests for A2c05736269191ad0d99cadfd4708986
-func NewA2c05736269191ad0d99cadfd4708986Request(server string) (*http.Request, error) {
+// NewListDeploymentsRequest generates requests for ListDeployments
+func NewListDeploymentsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5778,8 +6254,8 @@ func NewA2c05736269191ad0d99cadfd4708986Request(server string) (*http.Request, e
 	return req, nil
 }
 
-// NewCcf9856174c115a1430d952ccbd36aeaRequest generates requests for Ccf9856174c115a1430d952ccbd36aea
-func NewCcf9856174c115a1430d952ccbd36aeaRequest(server string, uuid string) (*http.Request, error) {
+// NewGetDeploymentByUuidRequest generates requests for GetDeploymentByUuid
+func NewGetDeploymentByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5812,8 +6288,8 @@ func NewCcf9856174c115a1430d952ccbd36aeaRequest(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN50e2486a2d196a996b24a284a283bcdbRequest generates requests for N50e2486a2d196a996b24a284a283bcdb
-func NewN50e2486a2d196a996b24a284a283bcdbRequest(server string) (*http.Request, error) {
+// NewDisableApiRequest generates requests for DisableApi
+func NewDisableApiRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5839,8 +6315,8 @@ func NewN50e2486a2d196a996b24a284a283bcdbRequest(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN595019bae03d08277def667609779ff3Request generates requests for N595019bae03d08277def667609779ff3
-func NewN595019bae03d08277def667609779ff3Request(server string) (*http.Request, error) {
+// NewEnableApiRequest generates requests for EnableApi
+func NewEnableApiRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5866,8 +6342,8 @@ func NewN595019bae03d08277def667609779ff3Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN64db893135e686704bb88c3c238022c1Request generates requests for N64db893135e686704bb88c3c238022c1
-func NewN64db893135e686704bb88c3c238022c1Request(server string) (*http.Request, error) {
+// NewHealthcheckRequest generates requests for Healthcheck
+func NewHealthcheckRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5893,8 +6369,8 @@ func NewN64db893135e686704bb88c3c238022c1Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN762788f00f2dabb981df9adbc948d3f6Request generates requests for N762788f00f2dabb981df9adbc948d3f6
-func NewN762788f00f2dabb981df9adbc948d3f6Request(server string) (*http.Request, error) {
+// NewListProjectsRequest generates requests for ListProjects
+func NewListProjectsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5920,19 +6396,19 @@ func NewN762788f00f2dabb981df9adbc948d3f6Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewCf067eb7cf18216cda3239329a2eeadbRequest calls the generic Cf067eb7cf18216cda3239329a2eeadb builder with application/json body
-func NewCf067eb7cf18216cda3239329a2eeadbRequest(server string, body Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody) (*http.Request, error) {
+// NewCreateProjectRequest calls the generic CreateProject builder with application/json body
+func NewCreateProjectRequest(server string, body CreateProjectJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCf067eb7cf18216cda3239329a2eeadbRequestWithBody(server, "application/json", bodyReader)
+	return NewCreateProjectRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewCf067eb7cf18216cda3239329a2eeadbRequestWithBody generates requests for Cf067eb7cf18216cda3239329a2eeadb with any type of body
-func NewCf067eb7cf18216cda3239329a2eeadbRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateProjectRequestWithBody generates requests for CreateProject with any type of body
+func NewCreateProjectRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5960,8 +6436,8 @@ func NewCf067eb7cf18216cda3239329a2eeadbRequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewF668a936f505b4401948c74b6a663029Request generates requests for F668a936f505b4401948c74b6a663029
-func NewF668a936f505b4401948c74b6a663029Request(server string, uuid string) (*http.Request, error) {
+// NewDeleteProjectByUuidRequest generates requests for DeleteProjectByUuid
+func NewDeleteProjectByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5994,8 +6470,8 @@ func NewF668a936f505b4401948c74b6a663029Request(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN63bf8b6a68fbb757f09ab519331f6298Request generates requests for N63bf8b6a68fbb757f09ab519331f6298
-func NewN63bf8b6a68fbb757f09ab519331f6298Request(server string, uuid string) (*http.Request, error) {
+// NewGetProjectByUuidRequest generates requests for GetProjectByUuid
+func NewGetProjectByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6028,19 +6504,19 @@ func NewN63bf8b6a68fbb757f09ab519331f6298Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN2db343bd6fc14c658cb51a2b73b2f842Request calls the generic N2db343bd6fc14c658cb51a2b73b2f842 builder with application/json body
-func NewN2db343bd6fc14c658cb51a2b73b2f842Request(server string, uuid string, body N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody) (*http.Request, error) {
+// NewUpdateProjectByUuidRequest calls the generic UpdateProjectByUuid builder with application/json body
+func NewUpdateProjectByUuidRequest(server string, uuid string, body UpdateProjectByUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN2db343bd6fc14c658cb51a2b73b2f842RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateProjectByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN2db343bd6fc14c658cb51a2b73b2f842RequestWithBody generates requests for N2db343bd6fc14c658cb51a2b73b2f842 with any type of body
-func NewN2db343bd6fc14c658cb51a2b73b2f842RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateProjectByUuidRequestWithBody generates requests for UpdateProjectByUuid with any type of body
+func NewUpdateProjectByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6075,8 +6551,8 @@ func NewN2db343bd6fc14c658cb51a2b73b2f842RequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN7e44845dce5aa47ed7b0daf5595ad2e1Request generates requests for N7e44845dce5aa47ed7b0daf5595ad2e1
-func NewN7e44845dce5aa47ed7b0daf5595ad2e1Request(server string, uuid string, environmentName string) (*http.Request, error) {
+// NewGetEnvironmentByNameRequest generates requests for GetEnvironmentByName
+func NewGetEnvironmentByNameRequest(server string, uuid string, environmentName string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6116,8 +6592,8 @@ func NewN7e44845dce5aa47ed7b0daf5595ad2e1Request(server string, uuid string, env
 	return req, nil
 }
 
-// NewC399903694eb1314596832e49f7c66d7Request generates requests for C399903694eb1314596832e49f7c66d7
-func NewC399903694eb1314596832e49f7c66d7Request(server string) (*http.Request, error) {
+// NewListResourcesRequest generates requests for ListResources
+func NewListResourcesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6143,8 +6619,8 @@ func NewC399903694eb1314596832e49f7c66d7Request(server string) (*http.Request, e
 	return req, nil
 }
 
-// NewN8a5d8d3ccbbcef54ed0e913a27faea9dRequest generates requests for N8a5d8d3ccbbcef54ed0e913a27faea9d
-func NewN8a5d8d3ccbbcef54ed0e913a27faea9dRequest(server string) (*http.Request, error) {
+// NewListPrivateKeysRequest generates requests for ListPrivateKeys
+func NewListPrivateKeysRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6170,19 +6646,19 @@ func NewN8a5d8d3ccbbcef54ed0e913a27faea9dRequest(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewEb4780acaa990c594cdbe8ffa80b4fb0Request calls the generic Eb4780acaa990c594cdbe8ffa80b4fb0 builder with application/json body
-func NewEb4780acaa990c594cdbe8ffa80b4fb0Request(server string, body Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody) (*http.Request, error) {
+// NewCreatePrivateKeyRequest calls the generic CreatePrivateKey builder with application/json body
+func NewCreatePrivateKeyRequest(server string, body CreatePrivateKeyJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewEb4780acaa990c594cdbe8ffa80b4fb0RequestWithBody(server, "application/json", bodyReader)
+	return NewCreatePrivateKeyRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewEb4780acaa990c594cdbe8ffa80b4fb0RequestWithBody generates requests for Eb4780acaa990c594cdbe8ffa80b4fb0 with any type of body
-func NewEb4780acaa990c594cdbe8ffa80b4fb0RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreatePrivateKeyRequestWithBody generates requests for CreatePrivateKey with any type of body
+func NewCreatePrivateKeyRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6210,8 +6686,8 @@ func NewEb4780acaa990c594cdbe8ffa80b4fb0RequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN8faa0bb399142f0084dfc3e003c42cf6Request generates requests for N8faa0bb399142f0084dfc3e003c42cf6
-func NewN8faa0bb399142f0084dfc3e003c42cf6Request(server string, uuid string) (*http.Request, error) {
+// NewDeletePrivateKeyByUuidRequest generates requests for DeletePrivateKeyByUuid
+func NewDeletePrivateKeyByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6244,8 +6720,8 @@ func NewN8faa0bb399142f0084dfc3e003c42cf6Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN2f743a85eb65d5ddb8cd5b362bb3d26aRequest generates requests for N2f743a85eb65d5ddb8cd5b362bb3d26a
-func NewN2f743a85eb65d5ddb8cd5b362bb3d26aRequest(server string, uuid string) (*http.Request, error) {
+// NewGetPrivateKeyByUuidRequest generates requests for GetPrivateKeyByUuid
+func NewGetPrivateKeyByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6278,19 +6754,19 @@ func NewN2f743a85eb65d5ddb8cd5b362bb3d26aRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN9feff464b78c24957ed3173324c9cd14Request calls the generic N9feff464b78c24957ed3173324c9cd14 builder with application/json body
-func NewN9feff464b78c24957ed3173324c9cd14Request(server string, uuid string, body N9feff464b78c24957ed3173324c9cd14JSONRequestBody) (*http.Request, error) {
+// NewUpdatePrivateKeyRequest calls the generic UpdatePrivateKey builder with application/json body
+func NewUpdatePrivateKeyRequest(server string, uuid string, body UpdatePrivateKeyJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN9feff464b78c24957ed3173324c9cd14RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdatePrivateKeyRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN9feff464b78c24957ed3173324c9cd14RequestWithBody generates requests for N9feff464b78c24957ed3173324c9cd14 with any type of body
-func NewN9feff464b78c24957ed3173324c9cd14RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdatePrivateKeyRequestWithBody generates requests for UpdatePrivateKey with any type of body
+func NewUpdatePrivateKeyRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6325,8 +6801,8 @@ func NewN9feff464b78c24957ed3173324c9cd14RequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN787448df856cefd2d9a313566be30d34Request generates requests for N787448df856cefd2d9a313566be30d34
-func NewN787448df856cefd2d9a313566be30d34Request(server string) (*http.Request, error) {
+// NewListServersRequest generates requests for ListServers
+func NewListServersRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6352,19 +6828,19 @@ func NewN787448df856cefd2d9a313566be30d34Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewFa44b42490379e428ba5b8747716a8d9Request calls the generic Fa44b42490379e428ba5b8747716a8d9 builder with application/json body
-func NewFa44b42490379e428ba5b8747716a8d9Request(server string, body Fa44b42490379e428ba5b8747716a8d9JSONRequestBody) (*http.Request, error) {
+// NewCreateServerRequest calls the generic CreateServer builder with application/json body
+func NewCreateServerRequest(server string, body CreateServerJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewFa44b42490379e428ba5b8747716a8d9RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateServerRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewFa44b42490379e428ba5b8747716a8d9RequestWithBody generates requests for Fa44b42490379e428ba5b8747716a8d9 with any type of body
-func NewFa44b42490379e428ba5b8747716a8d9RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateServerRequestWithBody generates requests for CreateServer with any type of body
+func NewCreateServerRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6392,8 +6868,8 @@ func NewFa44b42490379e428ba5b8747716a8d9RequestWithBody(server string, contentTy
 	return req, nil
 }
 
-// NewN0231fe0134f0306b21f006ce51b0a3dcRequest generates requests for N0231fe0134f0306b21f006ce51b0a3dc
-func NewN0231fe0134f0306b21f006ce51b0a3dcRequest(server string, uuid string) (*http.Request, error) {
+// NewDeleteServerByUuidRequest generates requests for DeleteServerByUuid
+func NewDeleteServerByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6426,8 +6902,8 @@ func NewN0231fe0134f0306b21f006ce51b0a3dcRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN5baf04bddb8302c7e07f5b4c41aad10cRequest generates requests for N5baf04bddb8302c7e07f5b4c41aad10c
-func NewN5baf04bddb8302c7e07f5b4c41aad10cRequest(server string, uuid string) (*http.Request, error) {
+// NewGetServerByUuidRequest generates requests for GetServerByUuid
+func NewGetServerByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6460,19 +6936,19 @@ func NewN5baf04bddb8302c7e07f5b4c41aad10cRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN41bbdaf79eb1938592494fc5494442a0Request calls the generic N41bbdaf79eb1938592494fc5494442a0 builder with application/json body
-func NewN41bbdaf79eb1938592494fc5494442a0Request(server string, uuid string, body N41bbdaf79eb1938592494fc5494442a0JSONRequestBody) (*http.Request, error) {
+// NewUpdateServerByUuidRequest calls the generic UpdateServerByUuid builder with application/json body
+func NewUpdateServerByUuidRequest(server string, uuid string, body UpdateServerByUuidJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN41bbdaf79eb1938592494fc5494442a0RequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUpdateServerByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewN41bbdaf79eb1938592494fc5494442a0RequestWithBody generates requests for N41bbdaf79eb1938592494fc5494442a0 with any type of body
-func NewN41bbdaf79eb1938592494fc5494442a0RequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateServerByUuidRequestWithBody generates requests for UpdateServerByUuid with any type of body
+func NewUpdateServerByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6507,8 +6983,8 @@ func NewN41bbdaf79eb1938592494fc5494442a0RequestWithBody(server string, uuid str
 	return req, nil
 }
 
-// NewN1ee227755be848d572f412272f53dd93Request generates requests for N1ee227755be848d572f412272f53dd93
-func NewN1ee227755be848d572f412272f53dd93Request(server string, uuid string) (*http.Request, error) {
+// NewGetDomainsByServerUuidRequest generates requests for GetDomainsByServerUuid
+func NewGetDomainsByServerUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6541,8 +7017,8 @@ func NewN1ee227755be848d572f412272f53dd93Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewCef26c059941b44fbd8de3a7a58c10a5Request generates requests for Cef26c059941b44fbd8de3a7a58c10a5
-func NewCef26c059941b44fbd8de3a7a58c10a5Request(server string, uuid string) (*http.Request, error) {
+// NewGetResourcesByServerUuidRequest generates requests for GetResourcesByServerUuid
+func NewGetResourcesByServerUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6575,8 +7051,8 @@ func NewCef26c059941b44fbd8de3a7a58c10a5Request(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewA543a12ef2cbc7a3dd22c3dbe6cbee89Request generates requests for A543a12ef2cbc7a3dd22c3dbe6cbee89
-func NewA543a12ef2cbc7a3dd22c3dbe6cbee89Request(server string, uuid string) (*http.Request, error) {
+// NewValidateServerByUuidRequest generates requests for ValidateServerByUuid
+func NewValidateServerByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6609,8 +7085,8 @@ func NewA543a12ef2cbc7a3dd22c3dbe6cbee89Request(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN5d014ac25d33391b8f4c2316060ba452Request generates requests for N5d014ac25d33391b8f4c2316060ba452
-func NewN5d014ac25d33391b8f4c2316060ba452Request(server string) (*http.Request, error) {
+// NewListServicesRequest generates requests for ListServices
+func NewListServicesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6636,19 +7112,19 @@ func NewN5d014ac25d33391b8f4c2316060ba452Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN3d6cbfb54d919b53ba3984a113e837d7Request calls the generic N3d6cbfb54d919b53ba3984a113e837d7 builder with application/json body
-func NewN3d6cbfb54d919b53ba3984a113e837d7Request(server string, body N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody) (*http.Request, error) {
+// NewCreateServiceRequest calls the generic CreateService builder with application/json body
+func NewCreateServiceRequest(server string, body CreateServiceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewN3d6cbfb54d919b53ba3984a113e837d7RequestWithBody(server, "application/json", bodyReader)
+	return NewCreateServiceRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewN3d6cbfb54d919b53ba3984a113e837d7RequestWithBody generates requests for N3d6cbfb54d919b53ba3984a113e837d7 with any type of body
-func NewN3d6cbfb54d919b53ba3984a113e837d7RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateServiceRequestWithBody generates requests for CreateService with any type of body
+func NewCreateServiceRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6676,8 +7152,8 @@ func NewN3d6cbfb54d919b53ba3984a113e837d7RequestWithBody(server string, contentT
 	return req, nil
 }
 
-// NewN6e1a61e4fddaa9d95bb9fc66dfaf0442Request generates requests for N6e1a61e4fddaa9d95bb9fc66dfaf0442
-func NewN6e1a61e4fddaa9d95bb9fc66dfaf0442Request(server string, uuid string) (*http.Request, error) {
+// NewDeleteServiceByUuidRequest generates requests for DeleteServiceByUuid
+func NewDeleteServiceByUuidRequest(server string, uuid string, params *DeleteServiceByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6702,6 +7178,76 @@ func NewN6e1a61e4fddaa9d95bb9fc66dfaf0442Request(server string, uuid string) (*h
 		return nil, err
 	}
 
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DeleteConfigurations != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_configurations", runtime.ParamLocationQuery, *params.DeleteConfigurations); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteVolumes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_volumes", runtime.ParamLocationQuery, *params.DeleteVolumes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DockerCleanup != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "docker_cleanup", runtime.ParamLocationQuery, *params.DockerCleanup); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeleteConnectedNetworks != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_connected_networks", runtime.ParamLocationQuery, *params.DeleteConnectedNetworks); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
 	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
@@ -6710,8 +7256,8 @@ func NewN6e1a61e4fddaa9d95bb9fc66dfaf0442Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN895d39ee2cb3994285de57256c2d428dRequest generates requests for N895d39ee2cb3994285de57256c2d428d
-func NewN895d39ee2cb3994285de57256c2d428dRequest(server string, uuid string) (*http.Request, error) {
+// NewGetServiceByUuidRequest generates requests for GetServiceByUuid
+func NewGetServiceByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6744,8 +7290,224 @@ func NewN895d39ee2cb3994285de57256c2d428dRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewN836645faa615b75052759dae78639469Request generates requests for N836645faa615b75052759dae78639469
-func NewN836645faa615b75052759dae78639469Request(server string, uuid string) (*http.Request, error) {
+// NewListEnvsByServiceUuidRequest generates requests for ListEnvsByServiceUuid
+func NewListEnvsByServiceUuidRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s/envs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateEnvByServiceUuidRequest calls the generic UpdateEnvByServiceUuid builder with application/json body
+func NewUpdateEnvByServiceUuidRequest(server string, uuid openapi_types.UUID, body UpdateEnvByServiceUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateEnvByServiceUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUpdateEnvByServiceUuidRequestWithBody generates requests for UpdateEnvByServiceUuid with any type of body
+func NewUpdateEnvByServiceUuidRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s/envs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCreateEnvByServiceUuidRequest calls the generic CreateEnvByServiceUuid builder with application/json body
+func NewCreateEnvByServiceUuidRequest(server string, uuid openapi_types.UUID, body CreateEnvByServiceUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateEnvByServiceUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCreateEnvByServiceUuidRequestWithBody generates requests for CreateEnvByServiceUuid with any type of body
+func NewCreateEnvByServiceUuidRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s/envs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUpdateEnvsByServiceUuidRequest calls the generic UpdateEnvsByServiceUuid builder with application/json body
+func NewUpdateEnvsByServiceUuidRequest(server string, uuid openapi_types.UUID, body UpdateEnvsByServiceUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateEnvsByServiceUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUpdateEnvsByServiceUuidRequestWithBody generates requests for UpdateEnvsByServiceUuid with any type of body
+func NewUpdateEnvsByServiceUuidRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s/envs/bulk", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteEnvByServiceUuidRequest generates requests for DeleteEnvByServiceUuid
+func NewDeleteEnvByServiceUuidRequest(server string, uuid openapi_types.UUID, envUuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "env_uuid", runtime.ParamLocationPath, envUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s/envs/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRestartServiceByUuidRequest generates requests for RestartServiceByUuid
+func NewRestartServiceByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6778,8 +7540,8 @@ func NewN836645faa615b75052759dae78639469Request(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewD2ddd9c028d123fbdec830dc4b25b4cbRequest generates requests for D2ddd9c028d123fbdec830dc4b25b4cb
-func NewD2ddd9c028d123fbdec830dc4b25b4cbRequest(server string, uuid string) (*http.Request, error) {
+// NewStartServiceByUuidRequest generates requests for StartServiceByUuid
+func NewStartServiceByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6812,8 +7574,8 @@ func NewD2ddd9c028d123fbdec830dc4b25b4cbRequest(server string, uuid string) (*ht
 	return req, nil
 }
 
-// NewN87399d34758ce16830740c68626614dbRequest generates requests for N87399d34758ce16830740c68626614db
-func NewN87399d34758ce16830740c68626614dbRequest(server string, uuid string) (*http.Request, error) {
+// NewStopServiceByUuidRequest generates requests for StopServiceByUuid
+func NewStopServiceByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6846,8 +7608,8 @@ func NewN87399d34758ce16830740c68626614dbRequest(server string, uuid string) (*h
 	return req, nil
 }
 
-// NewF9c530b5b25df9601cb87d6a58646f0aRequest generates requests for F9c530b5b25df9601cb87d6a58646f0a
-func NewF9c530b5b25df9601cb87d6a58646f0aRequest(server string) (*http.Request, error) {
+// NewListTeamsRequest generates requests for ListTeams
+func NewListTeamsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6873,8 +7635,8 @@ func NewF9c530b5b25df9601cb87d6a58646f0aRequest(server string) (*http.Request, e
 	return req, nil
 }
 
-// NewN6a4ec9fed1aad7b0b38356c47d7ac509Request generates requests for N6a4ec9fed1aad7b0b38356c47d7ac509
-func NewN6a4ec9fed1aad7b0b38356c47d7ac509Request(server string) (*http.Request, error) {
+// NewGetCurrentTeamRequest generates requests for GetCurrentTeam
+func NewGetCurrentTeamRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6900,8 +7662,8 @@ func NewN6a4ec9fed1aad7b0b38356c47d7ac509Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewN97e636a5796dbe71afb0bbcf1eec6e41Request generates requests for N97e636a5796dbe71afb0bbcf1eec6e41
-func NewN97e636a5796dbe71afb0bbcf1eec6e41Request(server string) (*http.Request, error) {
+// NewGetCurrentTeamMembersRequest generates requests for GetCurrentTeamMembers
+func NewGetCurrentTeamMembersRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6927,8 +7689,8 @@ func NewN97e636a5796dbe71afb0bbcf1eec6e41Request(server string) (*http.Request, 
 	return req, nil
 }
 
-// NewAc57ff546c002032cef44602c46a4e76Request generates requests for Ac57ff546c002032cef44602c46a4e76
-func NewAc57ff546c002032cef44602c46a4e76Request(server string, id int) (*http.Request, error) {
+// NewGetTeamByIdRequest generates requests for GetTeamById
+func NewGetTeamByIdRequest(server string, id int) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6961,8 +7723,8 @@ func NewAc57ff546c002032cef44602c46a4e76Request(server string, id int) (*http.Re
 	return req, nil
 }
 
-// NewN7858f5a45d9ea55184c182852a7f0f6cRequest generates requests for N7858f5a45d9ea55184c182852a7f0f6c
-func NewN7858f5a45d9ea55184c182852a7f0f6cRequest(server string, id int) (*http.Request, error) {
+// NewGetMembersByTeamIdRequest generates requests for GetMembersByTeamId
+func NewGetMembersByTeamIdRequest(server string, id int) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6995,8 +7757,8 @@ func NewN7858f5a45d9ea55184c182852a7f0f6cRequest(server string, id int) (*http.R
 	return req, nil
 }
 
-// NewN187b37139844731110757711ee71c215Request generates requests for N187b37139844731110757711ee71c215
-func NewN187b37139844731110757711ee71c215Request(server string) (*http.Request, error) {
+// NewVersionRequest generates requests for Version
+func NewVersionRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -7065,276 +7827,302 @@ func WithBaseURL(baseURL string) ClientOption {
 
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
-	// N02978e79fc0b54d573b2359f2a1f7d86WithResponse request
-	N02978e79fc0b54d573b2359f2a1f7d86WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N02978e79fc0b54d573b2359f2a1f7d86Response, error)
+	// ListApplicationsWithResponse request
+	ListApplicationsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error)
 
-	// N3731add8226c2d664455978cac46c242WithBodyWithResponse request with any body
-	N3731add8226c2d664455978cac46c242WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3731add8226c2d664455978cac46c242Response, error)
+	// CreateDockercomposeApplicationWithBodyWithResponse request with any body
+	CreateDockercomposeApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockercomposeApplicationResponse, error)
 
-	N3731add8226c2d664455978cac46c242WithResponse(ctx context.Context, body N3731add8226c2d664455978cac46c242JSONRequestBody, reqEditors ...RequestEditorFn) (*N3731add8226c2d664455978cac46c242Response, error)
+	CreateDockercomposeApplicationWithResponse(ctx context.Context, body CreateDockercomposeApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockercomposeApplicationResponse, error)
 
-	// N2b433ad6f5d259eb7f4f3b5af9913708WithBodyWithResponse request with any body
-	N2b433ad6f5d259eb7f4f3b5af9913708WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N2b433ad6f5d259eb7f4f3b5af9913708Response, error)
+	// CreateDockerfileApplicationWithBodyWithResponse request with any body
+	CreateDockerfileApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockerfileApplicationResponse, error)
 
-	N2b433ad6f5d259eb7f4f3b5af9913708WithResponse(ctx context.Context, body N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody, reqEditors ...RequestEditorFn) (*N2b433ad6f5d259eb7f4f3b5af9913708Response, error)
+	CreateDockerfileApplicationWithResponse(ctx context.Context, body CreateDockerfileApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockerfileApplicationResponse, error)
 
-	// E9a2d6dd9404acf880dc3053f09477fcWithBodyWithResponse request with any body
-	E9a2d6dd9404acf880dc3053f09477fcWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E9a2d6dd9404acf880dc3053f09477fcResponse, error)
+	// CreateDockerimageApplicationWithBodyWithResponse request with any body
+	CreateDockerimageApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockerimageApplicationResponse, error)
 
-	E9a2d6dd9404acf880dc3053f09477fcWithResponse(ctx context.Context, body E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody, reqEditors ...RequestEditorFn) (*E9a2d6dd9404acf880dc3053f09477fcResponse, error)
+	CreateDockerimageApplicationWithResponse(ctx context.Context, body CreateDockerimageApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockerimageApplicationResponse, error)
 
-	// E3eaa989ffb05366247a00cdfd551efaWithBodyWithResponse request with any body
-	E3eaa989ffb05366247a00cdfd551efaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E3eaa989ffb05366247a00cdfd551efaResponse, error)
+	// CreatePrivateDeployKeyApplicationWithBodyWithResponse request with any body
+	CreatePrivateDeployKeyApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateDeployKeyApplicationResponse, error)
 
-	E3eaa989ffb05366247a00cdfd551efaWithResponse(ctx context.Context, body E3eaa989ffb05366247a00cdfd551efaJSONRequestBody, reqEditors ...RequestEditorFn) (*E3eaa989ffb05366247a00cdfd551efaResponse, error)
+	CreatePrivateDeployKeyApplicationWithResponse(ctx context.Context, body CreatePrivateDeployKeyApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateDeployKeyApplicationResponse, error)
 
-	// N4d46c84bda4f1a411f6dda15fce4061fWithBodyWithResponse request with any body
-	N4d46c84bda4f1a411f6dda15fce4061fWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4d46c84bda4f1a411f6dda15fce4061fResponse, error)
+	// CreatePrivateGithubAppApplicationWithBodyWithResponse request with any body
+	CreatePrivateGithubAppApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateGithubAppApplicationResponse, error)
 
-	N4d46c84bda4f1a411f6dda15fce4061fWithResponse(ctx context.Context, body N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody, reqEditors ...RequestEditorFn) (*N4d46c84bda4f1a411f6dda15fce4061fResponse, error)
+	CreatePrivateGithubAppApplicationWithResponse(ctx context.Context, body CreatePrivateGithubAppApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateGithubAppApplicationResponse, error)
 
-	// Cb56324ad19693469b4461d3f6065a5bWithBodyWithResponse request with any body
-	Cb56324ad19693469b4461d3f6065a5bWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Cb56324ad19693469b4461d3f6065a5bResponse, error)
+	// CreatePublicApplicationWithBodyWithResponse request with any body
+	CreatePublicApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePublicApplicationResponse, error)
 
-	Cb56324ad19693469b4461d3f6065a5bWithResponse(ctx context.Context, body Cb56324ad19693469b4461d3f6065a5bJSONRequestBody, reqEditors ...RequestEditorFn) (*Cb56324ad19693469b4461d3f6065a5bResponse, error)
+	CreatePublicApplicationWithResponse(ctx context.Context, body CreatePublicApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePublicApplicationResponse, error)
 
-	// N1e110b190a1045d34f3e1c61608a8702WithResponse request
-	N1e110b190a1045d34f3e1c61608a8702WithResponse(ctx context.Context, uuid string, params *N1e110b190a1045d34f3e1c61608a8702Params, reqEditors ...RequestEditorFn) (*N1e110b190a1045d34f3e1c61608a8702Response, error)
+	// DeleteApplicationByUuidWithResponse request
+	DeleteApplicationByUuidWithResponse(ctx context.Context, uuid string, params *DeleteApplicationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteApplicationByUuidResponse, error)
 
-	// N3630b62c28e7358e7f0087c1d8fe1845WithResponse request
-	N3630b62c28e7358e7f0087c1d8fe1845WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N3630b62c28e7358e7f0087c1d8fe1845Response, error)
+	// GetApplicationByUuidWithResponse request
+	GetApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetApplicationByUuidResponse, error)
 
-	// N62a3b1775e8cba5d39a236ebb69830b7WithBodyWithResponse request with any body
-	N62a3b1775e8cba5d39a236ebb69830b7WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N62a3b1775e8cba5d39a236ebb69830b7Response, error)
+	// UpdateApplicationByUuidWithBodyWithResponse request with any body
+	UpdateApplicationByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateApplicationByUuidResponse, error)
 
-	N62a3b1775e8cba5d39a236ebb69830b7WithResponse(ctx context.Context, uuid string, body N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody, reqEditors ...RequestEditorFn) (*N62a3b1775e8cba5d39a236ebb69830b7Response, error)
+	UpdateApplicationByUuidWithResponse(ctx context.Context, uuid string, body UpdateApplicationByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateApplicationByUuidResponse, error)
 
-	// N7c8e0c286870e23294a075cc0584df2fWithResponse request
-	N7c8e0c286870e23294a075cc0584df2fWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N7c8e0c286870e23294a075cc0584df2fResponse, error)
+	// ListEnvsByApplicationUuidWithResponse request
+	ListEnvsByApplicationUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListEnvsByApplicationUuidResponse, error)
 
-	// N3d70a2d569f395be220b3f09ad36674bWithBodyWithResponse request with any body
-	N3d70a2d569f395be220b3f09ad36674bWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3d70a2d569f395be220b3f09ad36674bResponse, error)
+	// UpdateEnvByApplicationUuidWithBodyWithResponse request with any body
+	UpdateEnvByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvByApplicationUuidResponse, error)
 
-	N3d70a2d569f395be220b3f09ad36674bWithResponse(ctx context.Context, uuid string, body N3d70a2d569f395be220b3f09ad36674bJSONRequestBody, reqEditors ...RequestEditorFn) (*N3d70a2d569f395be220b3f09ad36674bResponse, error)
+	UpdateEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, body UpdateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvByApplicationUuidResponse, error)
 
-	// N4699ffbb7d6e58581fd0b0a14f36ffc2WithBodyWithResponse request with any body
-	N4699ffbb7d6e58581fd0b0a14f36ffc2WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4699ffbb7d6e58581fd0b0a14f36ffc2Response, error)
+	// CreateEnvByApplicationUuidWithBodyWithResponse request with any body
+	CreateEnvByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvByApplicationUuidResponse, error)
 
-	N4699ffbb7d6e58581fd0b0a14f36ffc2WithResponse(ctx context.Context, uuid string, body N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody, reqEditors ...RequestEditorFn) (*N4699ffbb7d6e58581fd0b0a14f36ffc2Response, error)
+	CreateEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, body CreateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvByApplicationUuidResponse, error)
 
-	// Ae96f0f585ed158b2abd2d9ba40f3cf9WithBodyWithResponse request with any body
-	Ae96f0f585ed158b2abd2d9ba40f3cf9WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Ae96f0f585ed158b2abd2d9ba40f3cf9Response, error)
+	// UpdateEnvsByApplicationUuidWithBodyWithResponse request with any body
+	UpdateEnvsByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvsByApplicationUuidResponse, error)
 
-	Ae96f0f585ed158b2abd2d9ba40f3cf9WithResponse(ctx context.Context, uuid string, body Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody, reqEditors ...RequestEditorFn) (*Ae96f0f585ed158b2abd2d9ba40f3cf9Response, error)
+	UpdateEnvsByApplicationUuidWithResponse(ctx context.Context, uuid string, body UpdateEnvsByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvsByApplicationUuidResponse, error)
 
-	// N96097c5cfc7dc0e7a3de229645f630c7WithResponse request
-	N96097c5cfc7dc0e7a3de229645f630c7WithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*N96097c5cfc7dc0e7a3de229645f630c7Response, error)
+	// DeleteEnvByApplicationUuidWithResponse request
+	DeleteEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvByApplicationUuidResponse, error)
 
-	// B231ae7baab9ef47f0627be820e735bcWithResponse request
-	B231ae7baab9ef47f0627be820e735bcWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*B231ae7baab9ef47f0627be820e735bcResponse, error)
+	// ExecuteCommandApplicationWithBodyWithResponse request with any body
+	ExecuteCommandApplicationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error)
 
-	// Dc87c2061ab303757a0e061f87900c4cWithResponse request
-	Dc87c2061ab303757a0e061f87900c4cWithResponse(ctx context.Context, uuid string, params *Dc87c2061ab303757a0e061f87900c4cParams, reqEditors ...RequestEditorFn) (*Dc87c2061ab303757a0e061f87900c4cResponse, error)
+	ExecuteCommandApplicationWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error)
 
-	// N133ef3c7bd5043901f24bb5002a536ebWithResponse request
-	N133ef3c7bd5043901f24bb5002a536ebWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N133ef3c7bd5043901f24bb5002a536ebResponse, error)
+	// RestartApplicationByUuidWithResponse request
+	RestartApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartApplicationByUuidResponse, error)
 
-	// Ecd0ee1e46e4c854c18e6c9daa3d37f3WithResponse request
-	Ecd0ee1e46e4c854c18e6c9daa3d37f3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*Ecd0ee1e46e4c854c18e6c9daa3d37f3Response, error)
+	// StartApplicationByUuidWithResponse request
+	StartApplicationByUuidWithResponse(ctx context.Context, uuid string, params *StartApplicationByUuidParams, reqEditors ...RequestEditorFn) (*StartApplicationByUuidResponse, error)
 
-	// A1189fa7f956f238f0e95c9150ff57f6WithBodyWithResponse request with any body
-	A1189fa7f956f238f0e95c9150ff57f6WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*A1189fa7f956f238f0e95c9150ff57f6Response, error)
+	// StopApplicationByUuidWithResponse request
+	StopApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopApplicationByUuidResponse, error)
 
-	A1189fa7f956f238f0e95c9150ff57f6WithResponse(ctx context.Context, body A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody, reqEditors ...RequestEditorFn) (*A1189fa7f956f238f0e95c9150ff57f6Response, error)
+	// ListDatabasesWithResponse request
+	ListDatabasesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDatabasesResponse, error)
 
-	// E73f7de1c8eee4219e5ec98c4b9b7efeWithBodyWithResponse request with any body
-	E73f7de1c8eee4219e5ec98c4b9b7efeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E73f7de1c8eee4219e5ec98c4b9b7efeResponse, error)
+	// CreateDatabaseClickhouseWithBodyWithResponse request with any body
+	CreateDatabaseClickhouseWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseClickhouseResponse, error)
 
-	E73f7de1c8eee4219e5ec98c4b9b7efeWithResponse(ctx context.Context, body E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody, reqEditors ...RequestEditorFn) (*E73f7de1c8eee4219e5ec98c4b9b7efeResponse, error)
+	CreateDatabaseClickhouseWithResponse(ctx context.Context, body CreateDatabaseClickhouseJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseClickhouseResponse, error)
 
-	// B908f3929c371c217d489638e0a21ff6WithBodyWithResponse request with any body
-	B908f3929c371c217d489638e0a21ff6WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*B908f3929c371c217d489638e0a21ff6Response, error)
+	// CreateDatabaseDragonflyWithBodyWithResponse request with any body
+	CreateDatabaseDragonflyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseDragonflyResponse, error)
 
-	B908f3929c371c217d489638e0a21ff6WithResponse(ctx context.Context, body B908f3929c371c217d489638e0a21ff6JSONRequestBody, reqEditors ...RequestEditorFn) (*B908f3929c371c217d489638e0a21ff6Response, error)
+	CreateDatabaseDragonflyWithResponse(ctx context.Context, body CreateDatabaseDragonflyJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseDragonflyResponse, error)
 
-	// N6bea521ddcd738dcbb5f3783a7308acfWithBodyWithResponse request with any body
-	N6bea521ddcd738dcbb5f3783a7308acfWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N6bea521ddcd738dcbb5f3783a7308acfResponse, error)
+	// CreateDatabaseKeydbWithBodyWithResponse request with any body
+	CreateDatabaseKeydbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseKeydbResponse, error)
 
-	N6bea521ddcd738dcbb5f3783a7308acfWithResponse(ctx context.Context, body N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody, reqEditors ...RequestEditorFn) (*N6bea521ddcd738dcbb5f3783a7308acfResponse, error)
+	CreateDatabaseKeydbWithResponse(ctx context.Context, body CreateDatabaseKeydbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseKeydbResponse, error)
 
-	// Fdba3de84d02519bb37599fea34b115dWithBodyWithResponse request with any body
-	Fdba3de84d02519bb37599fea34b115dWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Fdba3de84d02519bb37599fea34b115dResponse, error)
+	// CreateDatabaseMariadbWithBodyWithResponse request with any body
+	CreateDatabaseMariadbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMariadbResponse, error)
 
-	Fdba3de84d02519bb37599fea34b115dWithResponse(ctx context.Context, body Fdba3de84d02519bb37599fea34b115dJSONRequestBody, reqEditors ...RequestEditorFn) (*Fdba3de84d02519bb37599fea34b115dResponse, error)
+	CreateDatabaseMariadbWithResponse(ctx context.Context, body CreateDatabaseMariadbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMariadbResponse, error)
 
-	// N0a1158cf759c4493cbb1e30024c60623WithBodyWithResponse request with any body
-	N0a1158cf759c4493cbb1e30024c60623WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N0a1158cf759c4493cbb1e30024c60623Response, error)
+	// CreateDatabaseMongodbWithBodyWithResponse request with any body
+	CreateDatabaseMongodbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMongodbResponse, error)
 
-	N0a1158cf759c4493cbb1e30024c60623WithResponse(ctx context.Context, body N0a1158cf759c4493cbb1e30024c60623JSONRequestBody, reqEditors ...RequestEditorFn) (*N0a1158cf759c4493cbb1e30024c60623Response, error)
+	CreateDatabaseMongodbWithResponse(ctx context.Context, body CreateDatabaseMongodbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMongodbResponse, error)
 
-	// N8f7f491ddc46a9fa065b4424512231cdWithBodyWithResponse request with any body
-	N8f7f491ddc46a9fa065b4424512231cdWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N8f7f491ddc46a9fa065b4424512231cdResponse, error)
+	// CreateDatabaseMysqlWithBodyWithResponse request with any body
+	CreateDatabaseMysqlWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMysqlResponse, error)
 
-	N8f7f491ddc46a9fa065b4424512231cdWithResponse(ctx context.Context, body N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody, reqEditors ...RequestEditorFn) (*N8f7f491ddc46a9fa065b4424512231cdResponse, error)
+	CreateDatabaseMysqlWithResponse(ctx context.Context, body CreateDatabaseMysqlJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMysqlResponse, error)
 
-	// N4d352d13544ee2953fd48ad7b0651098WithBodyWithResponse request with any body
-	N4d352d13544ee2953fd48ad7b0651098WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4d352d13544ee2953fd48ad7b0651098Response, error)
+	// CreateDatabasePostgresqlWithBodyWithResponse request with any body
+	CreateDatabasePostgresqlWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabasePostgresqlResponse, error)
 
-	N4d352d13544ee2953fd48ad7b0651098WithResponse(ctx context.Context, body N4d352d13544ee2953fd48ad7b0651098JSONRequestBody, reqEditors ...RequestEditorFn) (*N4d352d13544ee2953fd48ad7b0651098Response, error)
+	CreateDatabasePostgresqlWithResponse(ctx context.Context, body CreateDatabasePostgresqlJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabasePostgresqlResponse, error)
 
-	// N20610931b2bae8aba34eee68624ab673WithResponse request
-	N20610931b2bae8aba34eee68624ab673WithResponse(ctx context.Context, uuid string, params *N20610931b2bae8aba34eee68624ab673Params, reqEditors ...RequestEditorFn) (*N20610931b2bae8aba34eee68624ab673Response, error)
+	// CreateDatabaseRedisWithBodyWithResponse request with any body
+	CreateDatabaseRedisWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseRedisResponse, error)
 
-	// B49cb2d3e8f34c4e80cdffd8a201031dWithResponse request
-	B49cb2d3e8f34c4e80cdffd8a201031dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*B49cb2d3e8f34c4e80cdffd8a201031dResponse, error)
+	CreateDatabaseRedisWithResponse(ctx context.Context, body CreateDatabaseRedisJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseRedisResponse, error)
 
-	// N5ba459ed390a721711a1708760e9de3bWithBodyWithResponse request with any body
-	N5ba459ed390a721711a1708760e9de3bWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N5ba459ed390a721711a1708760e9de3bResponse, error)
+	// DeleteDatabaseByUuidWithResponse request
+	DeleteDatabaseByUuidWithResponse(ctx context.Context, uuid string, params *DeleteDatabaseByUuidParams, reqEditors ...RequestEditorFn) (*DeleteDatabaseByUuidResponse, error)
 
-	N5ba459ed390a721711a1708760e9de3bWithResponse(ctx context.Context, uuid string, body N5ba459ed390a721711a1708760e9de3bJSONRequestBody, reqEditors ...RequestEditorFn) (*N5ba459ed390a721711a1708760e9de3bResponse, error)
+	// GetDatabaseByUuidWithResponse request
+	GetDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDatabaseByUuidResponse, error)
 
-	// N04c7a5e4752b4a00036addb433f3f218WithResponse request
-	N04c7a5e4752b4a00036addb433f3f218WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N04c7a5e4752b4a00036addb433f3f218Response, error)
+	// UpdateDatabaseByUuidWithBodyWithResponse request with any body
+	UpdateDatabaseByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseByUuidResponse, error)
 
-	// N4c6eb21e734d411e2b3388578761123dWithResponse request
-	N4c6eb21e734d411e2b3388578761123dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N4c6eb21e734d411e2b3388578761123dResponse, error)
+	UpdateDatabaseByUuidWithResponse(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseByUuidResponse, error)
 
-	// Cb6d983c2679aff841c7501ce612a372WithResponse request
-	Cb6d983c2679aff841c7501ce612a372WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Cb6d983c2679aff841c7501ce612a372Response, error)
+	// RestartDatabaseByUuidWithResponse request
+	RestartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartDatabaseByUuidResponse, error)
 
-	// N700eb6e51f4c9e86d722f600c65ed1d4WithResponse request
-	N700eb6e51f4c9e86d722f600c65ed1d4WithResponse(ctx context.Context, params *N700eb6e51f4c9e86d722f600c65ed1d4Params, reqEditors ...RequestEditorFn) (*N700eb6e51f4c9e86d722f600c65ed1d4Response, error)
+	// StartDatabaseByUuidWithResponse request
+	StartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StartDatabaseByUuidResponse, error)
 
-	// A2c05736269191ad0d99cadfd4708986WithResponse request
-	A2c05736269191ad0d99cadfd4708986WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*A2c05736269191ad0d99cadfd4708986Response, error)
+	// StopDatabaseByUuidWithResponse request
+	StopDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopDatabaseByUuidResponse, error)
 
-	// Ccf9856174c115a1430d952ccbd36aeaWithResponse request
-	Ccf9856174c115a1430d952ccbd36aeaWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Ccf9856174c115a1430d952ccbd36aeaResponse, error)
+	// DeployByTagOrUuidWithResponse request
+	DeployByTagOrUuidWithResponse(ctx context.Context, params *DeployByTagOrUuidParams, reqEditors ...RequestEditorFn) (*DeployByTagOrUuidResponse, error)
 
-	// N50e2486a2d196a996b24a284a283bcdbWithResponse request
-	N50e2486a2d196a996b24a284a283bcdbWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N50e2486a2d196a996b24a284a283bcdbResponse, error)
+	// ListDeploymentsWithResponse request
+	ListDeploymentsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDeploymentsResponse, error)
 
-	// N595019bae03d08277def667609779ff3WithResponse request
-	N595019bae03d08277def667609779ff3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N595019bae03d08277def667609779ff3Response, error)
+	// GetDeploymentByUuidWithResponse request
+	GetDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDeploymentByUuidResponse, error)
 
-	// N64db893135e686704bb88c3c238022c1WithResponse request
-	N64db893135e686704bb88c3c238022c1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N64db893135e686704bb88c3c238022c1Response, error)
+	// DisableApiWithResponse request
+	DisableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DisableApiResponse, error)
 
-	// N762788f00f2dabb981df9adbc948d3f6WithResponse request
-	N762788f00f2dabb981df9adbc948d3f6WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N762788f00f2dabb981df9adbc948d3f6Response, error)
+	// EnableApiWithResponse request
+	EnableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EnableApiResponse, error)
 
-	// Cf067eb7cf18216cda3239329a2eeadbWithBodyWithResponse request with any body
-	Cf067eb7cf18216cda3239329a2eeadbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Cf067eb7cf18216cda3239329a2eeadbResponse, error)
+	// HealthcheckWithResponse request
+	HealthcheckWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*HealthcheckResponse, error)
 
-	Cf067eb7cf18216cda3239329a2eeadbWithResponse(ctx context.Context, body Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody, reqEditors ...RequestEditorFn) (*Cf067eb7cf18216cda3239329a2eeadbResponse, error)
+	// ListProjectsWithResponse request
+	ListProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListProjectsResponse, error)
 
-	// F668a936f505b4401948c74b6a663029WithResponse request
-	F668a936f505b4401948c74b6a663029WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*F668a936f505b4401948c74b6a663029Response, error)
+	// CreateProjectWithBodyWithResponse request with any body
+	CreateProjectWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProjectResponse, error)
 
-	// N63bf8b6a68fbb757f09ab519331f6298WithResponse request
-	N63bf8b6a68fbb757f09ab519331f6298WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N63bf8b6a68fbb757f09ab519331f6298Response, error)
+	CreateProjectWithResponse(ctx context.Context, body CreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProjectResponse, error)
 
-	// N2db343bd6fc14c658cb51a2b73b2f842WithBodyWithResponse request with any body
-	N2db343bd6fc14c658cb51a2b73b2f842WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N2db343bd6fc14c658cb51a2b73b2f842Response, error)
+	// DeleteProjectByUuidWithResponse request
+	DeleteProjectByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteProjectByUuidResponse, error)
 
-	N2db343bd6fc14c658cb51a2b73b2f842WithResponse(ctx context.Context, uuid string, body N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody, reqEditors ...RequestEditorFn) (*N2db343bd6fc14c658cb51a2b73b2f842Response, error)
+	// GetProjectByUuidWithResponse request
+	GetProjectByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetProjectByUuidResponse, error)
 
-	// N7e44845dce5aa47ed7b0daf5595ad2e1WithResponse request
-	N7e44845dce5aa47ed7b0daf5595ad2e1WithResponse(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*N7e44845dce5aa47ed7b0daf5595ad2e1Response, error)
+	// UpdateProjectByUuidWithBodyWithResponse request with any body
+	UpdateProjectByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error)
 
-	// C399903694eb1314596832e49f7c66d7WithResponse request
-	C399903694eb1314596832e49f7c66d7WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*C399903694eb1314596832e49f7c66d7Response, error)
+	UpdateProjectByUuidWithResponse(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error)
 
-	// N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse request
-	N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N8a5d8d3ccbbcef54ed0e913a27faea9dResponse, error)
+	// GetEnvironmentByNameWithResponse request
+	GetEnvironmentByNameWithResponse(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*GetEnvironmentByNameResponse, error)
 
-	// Eb4780acaa990c594cdbe8ffa80b4fb0WithBodyWithResponse request with any body
-	Eb4780acaa990c594cdbe8ffa80b4fb0WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Eb4780acaa990c594cdbe8ffa80b4fb0Response, error)
+	// ListResourcesWithResponse request
+	ListResourcesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListResourcesResponse, error)
 
-	Eb4780acaa990c594cdbe8ffa80b4fb0WithResponse(ctx context.Context, body Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody, reqEditors ...RequestEditorFn) (*Eb4780acaa990c594cdbe8ffa80b4fb0Response, error)
+	// ListPrivateKeysWithResponse request
+	ListPrivateKeysWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListPrivateKeysResponse, error)
 
-	// N8faa0bb399142f0084dfc3e003c42cf6WithResponse request
-	N8faa0bb399142f0084dfc3e003c42cf6WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N8faa0bb399142f0084dfc3e003c42cf6Response, error)
+	// CreatePrivateKeyWithBodyWithResponse request with any body
+	CreatePrivateKeyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateKeyResponse, error)
 
-	// N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse request
-	N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N2f743a85eb65d5ddb8cd5b362bb3d26aResponse, error)
+	CreatePrivateKeyWithResponse(ctx context.Context, body CreatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateKeyResponse, error)
 
-	// N9feff464b78c24957ed3173324c9cd14WithBodyWithResponse request with any body
-	N9feff464b78c24957ed3173324c9cd14WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N9feff464b78c24957ed3173324c9cd14Response, error)
+	// DeletePrivateKeyByUuidWithResponse request
+	DeletePrivateKeyByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeletePrivateKeyByUuidResponse, error)
 
-	N9feff464b78c24957ed3173324c9cd14WithResponse(ctx context.Context, uuid string, body N9feff464b78c24957ed3173324c9cd14JSONRequestBody, reqEditors ...RequestEditorFn) (*N9feff464b78c24957ed3173324c9cd14Response, error)
+	// GetPrivateKeyByUuidWithResponse request
+	GetPrivateKeyByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetPrivateKeyByUuidResponse, error)
 
-	// N787448df856cefd2d9a313566be30d34WithResponse request
-	N787448df856cefd2d9a313566be30d34WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N787448df856cefd2d9a313566be30d34Response, error)
+	// UpdatePrivateKeyWithBodyWithResponse request with any body
+	UpdatePrivateKeyWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePrivateKeyResponse, error)
 
-	// Fa44b42490379e428ba5b8747716a8d9WithBodyWithResponse request with any body
-	Fa44b42490379e428ba5b8747716a8d9WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Fa44b42490379e428ba5b8747716a8d9Response, error)
+	UpdatePrivateKeyWithResponse(ctx context.Context, uuid string, body UpdatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePrivateKeyResponse, error)
 
-	Fa44b42490379e428ba5b8747716a8d9WithResponse(ctx context.Context, body Fa44b42490379e428ba5b8747716a8d9JSONRequestBody, reqEditors ...RequestEditorFn) (*Fa44b42490379e428ba5b8747716a8d9Response, error)
+	// ListServersWithResponse request
+	ListServersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListServersResponse, error)
 
-	// N0231fe0134f0306b21f006ce51b0a3dcWithResponse request
-	N0231fe0134f0306b21f006ce51b0a3dcWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N0231fe0134f0306b21f006ce51b0a3dcResponse, error)
+	// CreateServerWithBodyWithResponse request with any body
+	CreateServerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServerResponse, error)
 
-	// N5baf04bddb8302c7e07f5b4c41aad10cWithResponse request
-	N5baf04bddb8302c7e07f5b4c41aad10cWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N5baf04bddb8302c7e07f5b4c41aad10cResponse, error)
+	CreateServerWithResponse(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServerResponse, error)
 
-	// N41bbdaf79eb1938592494fc5494442a0WithBodyWithResponse request with any body
-	N41bbdaf79eb1938592494fc5494442a0WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N41bbdaf79eb1938592494fc5494442a0Response, error)
+	// DeleteServerByUuidWithResponse request
+	DeleteServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteServerByUuidResponse, error)
 
-	N41bbdaf79eb1938592494fc5494442a0WithResponse(ctx context.Context, uuid string, body N41bbdaf79eb1938592494fc5494442a0JSONRequestBody, reqEditors ...RequestEditorFn) (*N41bbdaf79eb1938592494fc5494442a0Response, error)
+	// GetServerByUuidWithResponse request
+	GetServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServerByUuidResponse, error)
 
-	// N1ee227755be848d572f412272f53dd93WithResponse request
-	N1ee227755be848d572f412272f53dd93WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N1ee227755be848d572f412272f53dd93Response, error)
+	// UpdateServerByUuidWithBodyWithResponse request with any body
+	UpdateServerByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServerByUuidResponse, error)
 
-	// Cef26c059941b44fbd8de3a7a58c10a5WithResponse request
-	Cef26c059941b44fbd8de3a7a58c10a5WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Cef26c059941b44fbd8de3a7a58c10a5Response, error)
+	UpdateServerByUuidWithResponse(ctx context.Context, uuid string, body UpdateServerByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServerByUuidResponse, error)
 
-	// A543a12ef2cbc7a3dd22c3dbe6cbee89WithResponse request
-	A543a12ef2cbc7a3dd22c3dbe6cbee89WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*A543a12ef2cbc7a3dd22c3dbe6cbee89Response, error)
+	// GetDomainsByServerUuidWithResponse request
+	GetDomainsByServerUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDomainsByServerUuidResponse, error)
 
-	// N5d014ac25d33391b8f4c2316060ba452WithResponse request
-	N5d014ac25d33391b8f4c2316060ba452WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N5d014ac25d33391b8f4c2316060ba452Response, error)
+	// GetResourcesByServerUuidWithResponse request
+	GetResourcesByServerUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetResourcesByServerUuidResponse, error)
 
-	// N3d6cbfb54d919b53ba3984a113e837d7WithBodyWithResponse request with any body
-	N3d6cbfb54d919b53ba3984a113e837d7WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3d6cbfb54d919b53ba3984a113e837d7Response, error)
+	// ValidateServerByUuidWithResponse request
+	ValidateServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ValidateServerByUuidResponse, error)
 
-	N3d6cbfb54d919b53ba3984a113e837d7WithResponse(ctx context.Context, body N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody, reqEditors ...RequestEditorFn) (*N3d6cbfb54d919b53ba3984a113e837d7Response, error)
+	// ListServicesWithResponse request
+	ListServicesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListServicesResponse, error)
 
-	// N6e1a61e4fddaa9d95bb9fc66dfaf0442WithResponse request
-	N6e1a61e4fddaa9d95bb9fc66dfaf0442WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N6e1a61e4fddaa9d95bb9fc66dfaf0442Response, error)
+	// CreateServiceWithBodyWithResponse request with any body
+	CreateServiceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error)
 
-	// N895d39ee2cb3994285de57256c2d428dWithResponse request
-	N895d39ee2cb3994285de57256c2d428dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N895d39ee2cb3994285de57256c2d428dResponse, error)
+	CreateServiceWithResponse(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error)
 
-	// N836645faa615b75052759dae78639469WithResponse request
-	N836645faa615b75052759dae78639469WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N836645faa615b75052759dae78639469Response, error)
+	// DeleteServiceByUuidWithResponse request
+	DeleteServiceByUuidWithResponse(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*DeleteServiceByUuidResponse, error)
 
-	// D2ddd9c028d123fbdec830dc4b25b4cbWithResponse request
-	D2ddd9c028d123fbdec830dc4b25b4cbWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*D2ddd9c028d123fbdec830dc4b25b4cbResponse, error)
+	// GetServiceByUuidWithResponse request
+	GetServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServiceByUuidResponse, error)
 
-	// N87399d34758ce16830740c68626614dbWithResponse request
-	N87399d34758ce16830740c68626614dbWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N87399d34758ce16830740c68626614dbResponse, error)
+	// ListEnvsByServiceUuidWithResponse request
+	ListEnvsByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListEnvsByServiceUuidResponse, error)
 
-	// F9c530b5b25df9601cb87d6a58646f0aWithResponse request
-	F9c530b5b25df9601cb87d6a58646f0aWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*F9c530b5b25df9601cb87d6a58646f0aResponse, error)
+	// UpdateEnvByServiceUuidWithBodyWithResponse request with any body
+	UpdateEnvByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvByServiceUuidResponse, error)
 
-	// N6a4ec9fed1aad7b0b38356c47d7ac509WithResponse request
-	N6a4ec9fed1aad7b0b38356c47d7ac509WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N6a4ec9fed1aad7b0b38356c47d7ac509Response, error)
+	UpdateEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvByServiceUuidResponse, error)
 
-	// N97e636a5796dbe71afb0bbcf1eec6e41WithResponse request
-	N97e636a5796dbe71afb0bbcf1eec6e41WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N97e636a5796dbe71afb0bbcf1eec6e41Response, error)
+	// CreateEnvByServiceUuidWithBodyWithResponse request with any body
+	CreateEnvByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvByServiceUuidResponse, error)
 
-	// Ac57ff546c002032cef44602c46a4e76WithResponse request
-	Ac57ff546c002032cef44602c46a4e76WithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*Ac57ff546c002032cef44602c46a4e76Response, error)
+	CreateEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body CreateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvByServiceUuidResponse, error)
 
-	// N7858f5a45d9ea55184c182852a7f0f6cWithResponse request
-	N7858f5a45d9ea55184c182852a7f0f6cWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*N7858f5a45d9ea55184c182852a7f0f6cResponse, error)
+	// UpdateEnvsByServiceUuidWithBodyWithResponse request with any body
+	UpdateEnvsByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvsByServiceUuidResponse, error)
 
-	// N187b37139844731110757711ee71c215WithResponse request
-	N187b37139844731110757711ee71c215WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N187b37139844731110757711ee71c215Response, error)
+	UpdateEnvsByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvsByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvsByServiceUuidResponse, error)
+
+	// DeleteEnvByServiceUuidWithResponse request
+	DeleteEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, envUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DeleteEnvByServiceUuidResponse, error)
+
+	// RestartServiceByUuidWithResponse request
+	RestartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error)
+
+	// StartServiceByUuidWithResponse request
+	StartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StartServiceByUuidResponse, error)
+
+	// StopServiceByUuidWithResponse request
+	StopServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopServiceByUuidResponse, error)
+
+	// ListTeamsWithResponse request
+	ListTeamsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListTeamsResponse, error)
+
+	// GetCurrentTeamWithResponse request
+	GetCurrentTeamWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentTeamResponse, error)
+
+	// GetCurrentTeamMembersWithResponse request
+	GetCurrentTeamMembersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentTeamMembersResponse, error)
+
+	// GetTeamByIdWithResponse request
+	GetTeamByIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetTeamByIdResponse, error)
+
+	// GetMembersByTeamIdWithResponse request
+	GetMembersByTeamIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetMembersByTeamIdResponse, error)
+
+	// VersionWithResponse request
+	VersionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*VersionResponse, error)
 }
 
-type N02978e79fc0b54d573b2359f2a1f7d86Response struct {
+type ListApplicationsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Application
@@ -7343,7 +8131,7 @@ type N02978e79fc0b54d573b2359f2a1f7d86Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N02978e79fc0b54d573b2359f2a1f7d86Response) Status() string {
+func (r ListApplicationsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7351,14 +8139,14 @@ func (r N02978e79fc0b54d573b2359f2a1f7d86Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N02978e79fc0b54d573b2359f2a1f7d86Response) StatusCode() int {
+func (r ListApplicationsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N3731add8226c2d664455978cac46c242Response struct {
+type CreateDockercomposeApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7366,7 +8154,7 @@ type N3731add8226c2d664455978cac46c242Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N3731add8226c2d664455978cac46c242Response) Status() string {
+func (r CreateDockercomposeApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7374,14 +8162,14 @@ func (r N3731add8226c2d664455978cac46c242Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N3731add8226c2d664455978cac46c242Response) StatusCode() int {
+func (r CreateDockercomposeApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N2b433ad6f5d259eb7f4f3b5af9913708Response struct {
+type CreateDockerfileApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7389,7 +8177,7 @@ type N2b433ad6f5d259eb7f4f3b5af9913708Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N2b433ad6f5d259eb7f4f3b5af9913708Response) Status() string {
+func (r CreateDockerfileApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7397,14 +8185,14 @@ func (r N2b433ad6f5d259eb7f4f3b5af9913708Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N2b433ad6f5d259eb7f4f3b5af9913708Response) StatusCode() int {
+func (r CreateDockerfileApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type E9a2d6dd9404acf880dc3053f09477fcResponse struct {
+type CreateDockerimageApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7412,7 +8200,7 @@ type E9a2d6dd9404acf880dc3053f09477fcResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r E9a2d6dd9404acf880dc3053f09477fcResponse) Status() string {
+func (r CreateDockerimageApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7420,14 +8208,14 @@ func (r E9a2d6dd9404acf880dc3053f09477fcResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r E9a2d6dd9404acf880dc3053f09477fcResponse) StatusCode() int {
+func (r CreateDockerimageApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type E3eaa989ffb05366247a00cdfd551efaResponse struct {
+type CreatePrivateDeployKeyApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7435,7 +8223,7 @@ type E3eaa989ffb05366247a00cdfd551efaResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r E3eaa989ffb05366247a00cdfd551efaResponse) Status() string {
+func (r CreatePrivateDeployKeyApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7443,14 +8231,14 @@ func (r E3eaa989ffb05366247a00cdfd551efaResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r E3eaa989ffb05366247a00cdfd551efaResponse) StatusCode() int {
+func (r CreatePrivateDeployKeyApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N4d46c84bda4f1a411f6dda15fce4061fResponse struct {
+type CreatePrivateGithubAppApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7458,7 +8246,7 @@ type N4d46c84bda4f1a411f6dda15fce4061fResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N4d46c84bda4f1a411f6dda15fce4061fResponse) Status() string {
+func (r CreatePrivateGithubAppApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7466,14 +8254,14 @@ func (r N4d46c84bda4f1a411f6dda15fce4061fResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N4d46c84bda4f1a411f6dda15fce4061fResponse) StatusCode() int {
+func (r CreatePrivateGithubAppApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Cb56324ad19693469b4461d3f6065a5bResponse struct {
+type CreatePublicApplicationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7481,7 +8269,7 @@ type Cb56324ad19693469b4461d3f6065a5bResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Cb56324ad19693469b4461d3f6065a5bResponse) Status() string {
+func (r CreatePublicApplicationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7489,14 +8277,14 @@ func (r Cb56324ad19693469b4461d3f6065a5bResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Cb56324ad19693469b4461d3f6065a5bResponse) StatusCode() int {
+func (r CreatePublicApplicationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N1e110b190a1045d34f3e1c61608a8702Response struct {
+type DeleteApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7508,7 +8296,7 @@ type N1e110b190a1045d34f3e1c61608a8702Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N1e110b190a1045d34f3e1c61608a8702Response) Status() string {
+func (r DeleteApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7516,14 +8304,14 @@ func (r N1e110b190a1045d34f3e1c61608a8702Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N1e110b190a1045d34f3e1c61608a8702Response) StatusCode() int {
+func (r DeleteApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N3630b62c28e7358e7f0087c1d8fe1845Response struct {
+type GetApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Application
@@ -7533,7 +8321,7 @@ type N3630b62c28e7358e7f0087c1d8fe1845Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N3630b62c28e7358e7f0087c1d8fe1845Response) Status() string {
+func (r GetApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7541,14 +8329,14 @@ func (r N3630b62c28e7358e7f0087c1d8fe1845Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N3630b62c28e7358e7f0087c1d8fe1845Response) StatusCode() int {
+func (r GetApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N62a3b1775e8cba5d39a236ebb69830b7Response struct {
+type UpdateApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7560,7 +8348,7 @@ type N62a3b1775e8cba5d39a236ebb69830b7Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N62a3b1775e8cba5d39a236ebb69830b7Response) Status() string {
+func (r UpdateApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7568,14 +8356,14 @@ func (r N62a3b1775e8cba5d39a236ebb69830b7Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N62a3b1775e8cba5d39a236ebb69830b7Response) StatusCode() int {
+func (r UpdateApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N7c8e0c286870e23294a075cc0584df2fResponse struct {
+type ListEnvsByApplicationUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]EnvironmentVariable
@@ -7585,7 +8373,7 @@ type N7c8e0c286870e23294a075cc0584df2fResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N7c8e0c286870e23294a075cc0584df2fResponse) Status() string {
+func (r ListEnvsByApplicationUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7593,14 +8381,14 @@ func (r N7c8e0c286870e23294a075cc0584df2fResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N7c8e0c286870e23294a075cc0584df2fResponse) StatusCode() int {
+func (r ListEnvsByApplicationUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N3d70a2d569f395be220b3f09ad36674bResponse struct {
+type UpdateEnvByApplicationUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -7612,7 +8400,7 @@ type N3d70a2d569f395be220b3f09ad36674bResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N3d70a2d569f395be220b3f09ad36674bResponse) Status() string {
+func (r UpdateEnvByApplicationUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7620,14 +8408,14 @@ func (r N3d70a2d569f395be220b3f09ad36674bResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N3d70a2d569f395be220b3f09ad36674bResponse) StatusCode() int {
+func (r UpdateEnvByApplicationUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N4699ffbb7d6e58581fd0b0a14f36ffc2Response struct {
+type CreateEnvByApplicationUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -7639,7 +8427,7 @@ type N4699ffbb7d6e58581fd0b0a14f36ffc2Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N4699ffbb7d6e58581fd0b0a14f36ffc2Response) Status() string {
+func (r CreateEnvByApplicationUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7647,14 +8435,14 @@ func (r N4699ffbb7d6e58581fd0b0a14f36ffc2Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N4699ffbb7d6e58581fd0b0a14f36ffc2Response) StatusCode() int {
+func (r CreateEnvByApplicationUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Ae96f0f585ed158b2abd2d9ba40f3cf9Response struct {
+type UpdateEnvsByApplicationUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -7666,7 +8454,7 @@ type Ae96f0f585ed158b2abd2d9ba40f3cf9Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Ae96f0f585ed158b2abd2d9ba40f3cf9Response) Status() string {
+func (r UpdateEnvsByApplicationUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7674,14 +8462,14 @@ func (r Ae96f0f585ed158b2abd2d9ba40f3cf9Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Ae96f0f585ed158b2abd2d9ba40f3cf9Response) StatusCode() int {
+func (r UpdateEnvsByApplicationUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N96097c5cfc7dc0e7a3de229645f630c7Response struct {
+type DeleteEnvByApplicationUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7693,7 +8481,7 @@ type N96097c5cfc7dc0e7a3de229645f630c7Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N96097c5cfc7dc0e7a3de229645f630c7Response) Status() string {
+func (r DeleteEnvByApplicationUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7701,14 +8489,42 @@ func (r N96097c5cfc7dc0e7a3de229645f630c7Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N96097c5cfc7dc0e7a3de229645f630c7Response) StatusCode() int {
+func (r DeleteEnvByApplicationUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type B231ae7baab9ef47f0627be820e735bcResponse struct {
+type ExecuteCommandApplicationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message  *string `json:"message,omitempty"`
+		Response *string `json:"response,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r ExecuteCommandApplicationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExecuteCommandApplicationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RestartApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7722,7 +8538,7 @@ type B231ae7baab9ef47f0627be820e735bcResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r B231ae7baab9ef47f0627be820e735bcResponse) Status() string {
+func (r RestartApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7730,14 +8546,14 @@ func (r B231ae7baab9ef47f0627be820e735bcResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r B231ae7baab9ef47f0627be820e735bcResponse) StatusCode() int {
+func (r RestartApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Dc87c2061ab303757a0e061f87900c4cResponse struct {
+type StartApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7753,7 +8569,7 @@ type Dc87c2061ab303757a0e061f87900c4cResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Dc87c2061ab303757a0e061f87900c4cResponse) Status() string {
+func (r StartApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7761,14 +8577,14 @@ func (r Dc87c2061ab303757a0e061f87900c4cResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Dc87c2061ab303757a0e061f87900c4cResponse) StatusCode() int {
+func (r StartApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N133ef3c7bd5043901f24bb5002a536ebResponse struct {
+type StopApplicationByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -7780,7 +8596,7 @@ type N133ef3c7bd5043901f24bb5002a536ebResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N133ef3c7bd5043901f24bb5002a536ebResponse) Status() string {
+func (r StopApplicationByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7788,14 +8604,14 @@ func (r N133ef3c7bd5043901f24bb5002a536ebResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N133ef3c7bd5043901f24bb5002a536ebResponse) StatusCode() int {
+func (r StopApplicationByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Ecd0ee1e46e4c854c18e6c9daa3d37f3Response struct {
+type ListDatabasesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *string
@@ -7804,7 +8620,7 @@ type Ecd0ee1e46e4c854c18e6c9daa3d37f3Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Ecd0ee1e46e4c854c18e6c9daa3d37f3Response) Status() string {
+func (r ListDatabasesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7812,14 +8628,14 @@ func (r Ecd0ee1e46e4c854c18e6c9daa3d37f3Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Ecd0ee1e46e4c854c18e6c9daa3d37f3Response) StatusCode() int {
+func (r ListDatabasesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type A1189fa7f956f238f0e95c9150ff57f6Response struct {
+type CreateDatabaseClickhouseResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7827,7 +8643,7 @@ type A1189fa7f956f238f0e95c9150ff57f6Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r A1189fa7f956f238f0e95c9150ff57f6Response) Status() string {
+func (r CreateDatabaseClickhouseResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7835,14 +8651,14 @@ func (r A1189fa7f956f238f0e95c9150ff57f6Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r A1189fa7f956f238f0e95c9150ff57f6Response) StatusCode() int {
+func (r CreateDatabaseClickhouseResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type E73f7de1c8eee4219e5ec98c4b9b7efeResponse struct {
+type CreateDatabaseDragonflyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7850,7 +8666,7 @@ type E73f7de1c8eee4219e5ec98c4b9b7efeResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r E73f7de1c8eee4219e5ec98c4b9b7efeResponse) Status() string {
+func (r CreateDatabaseDragonflyResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7858,14 +8674,14 @@ func (r E73f7de1c8eee4219e5ec98c4b9b7efeResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r E73f7de1c8eee4219e5ec98c4b9b7efeResponse) StatusCode() int {
+func (r CreateDatabaseDragonflyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type B908f3929c371c217d489638e0a21ff6Response struct {
+type CreateDatabaseKeydbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7873,7 +8689,7 @@ type B908f3929c371c217d489638e0a21ff6Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r B908f3929c371c217d489638e0a21ff6Response) Status() string {
+func (r CreateDatabaseKeydbResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7881,14 +8697,14 @@ func (r B908f3929c371c217d489638e0a21ff6Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r B908f3929c371c217d489638e0a21ff6Response) StatusCode() int {
+func (r CreateDatabaseKeydbResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N6bea521ddcd738dcbb5f3783a7308acfResponse struct {
+type CreateDatabaseMariadbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7896,7 +8712,7 @@ type N6bea521ddcd738dcbb5f3783a7308acfResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N6bea521ddcd738dcbb5f3783a7308acfResponse) Status() string {
+func (r CreateDatabaseMariadbResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7904,14 +8720,14 @@ func (r N6bea521ddcd738dcbb5f3783a7308acfResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N6bea521ddcd738dcbb5f3783a7308acfResponse) StatusCode() int {
+func (r CreateDatabaseMariadbResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Fdba3de84d02519bb37599fea34b115dResponse struct {
+type CreateDatabaseMongodbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7919,7 +8735,7 @@ type Fdba3de84d02519bb37599fea34b115dResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Fdba3de84d02519bb37599fea34b115dResponse) Status() string {
+func (r CreateDatabaseMongodbResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7927,14 +8743,14 @@ func (r Fdba3de84d02519bb37599fea34b115dResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Fdba3de84d02519bb37599fea34b115dResponse) StatusCode() int {
+func (r CreateDatabaseMongodbResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N0a1158cf759c4493cbb1e30024c60623Response struct {
+type CreateDatabaseMysqlResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7942,7 +8758,7 @@ type N0a1158cf759c4493cbb1e30024c60623Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N0a1158cf759c4493cbb1e30024c60623Response) Status() string {
+func (r CreateDatabaseMysqlResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7950,14 +8766,14 @@ func (r N0a1158cf759c4493cbb1e30024c60623Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N0a1158cf759c4493cbb1e30024c60623Response) StatusCode() int {
+func (r CreateDatabaseMysqlResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N8f7f491ddc46a9fa065b4424512231cdResponse struct {
+type CreateDatabasePostgresqlResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7965,7 +8781,7 @@ type N8f7f491ddc46a9fa065b4424512231cdResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N8f7f491ddc46a9fa065b4424512231cdResponse) Status() string {
+func (r CreateDatabasePostgresqlResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7973,14 +8789,14 @@ func (r N8f7f491ddc46a9fa065b4424512231cdResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N8f7f491ddc46a9fa065b4424512231cdResponse) StatusCode() int {
+func (r CreateDatabasePostgresqlResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N4d352d13544ee2953fd48ad7b0651098Response struct {
+type CreateDatabaseRedisResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -7988,7 +8804,7 @@ type N4d352d13544ee2953fd48ad7b0651098Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N4d352d13544ee2953fd48ad7b0651098Response) Status() string {
+func (r CreateDatabaseRedisResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7996,14 +8812,14 @@ func (r N4d352d13544ee2953fd48ad7b0651098Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N4d352d13544ee2953fd48ad7b0651098Response) StatusCode() int {
+func (r CreateDatabaseRedisResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N20610931b2bae8aba34eee68624ab673Response struct {
+type DeleteDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8015,7 +8831,7 @@ type N20610931b2bae8aba34eee68624ab673Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N20610931b2bae8aba34eee68624ab673Response) Status() string {
+func (r DeleteDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8023,14 +8839,14 @@ func (r N20610931b2bae8aba34eee68624ab673Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N20610931b2bae8aba34eee68624ab673Response) StatusCode() int {
+func (r DeleteDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type B49cb2d3e8f34c4e80cdffd8a201031dResponse struct {
+type GetDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *string
@@ -8040,7 +8856,7 @@ type B49cb2d3e8f34c4e80cdffd8a201031dResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r B49cb2d3e8f34c4e80cdffd8a201031dResponse) Status() string {
+func (r GetDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8048,14 +8864,14 @@ func (r B49cb2d3e8f34c4e80cdffd8a201031dResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r B49cb2d3e8f34c4e80cdffd8a201031dResponse) StatusCode() int {
+func (r GetDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N5ba459ed390a721711a1708760e9de3bResponse struct {
+type UpdateDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON400      *N400
@@ -8064,7 +8880,7 @@ type N5ba459ed390a721711a1708760e9de3bResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N5ba459ed390a721711a1708760e9de3bResponse) Status() string {
+func (r UpdateDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8072,14 +8888,14 @@ func (r N5ba459ed390a721711a1708760e9de3bResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N5ba459ed390a721711a1708760e9de3bResponse) StatusCode() int {
+func (r UpdateDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N04c7a5e4752b4a00036addb433f3f218Response struct {
+type RestartDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8091,7 +8907,7 @@ type N04c7a5e4752b4a00036addb433f3f218Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N04c7a5e4752b4a00036addb433f3f218Response) Status() string {
+func (r RestartDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8099,14 +8915,14 @@ func (r N04c7a5e4752b4a00036addb433f3f218Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N04c7a5e4752b4a00036addb433f3f218Response) StatusCode() int {
+func (r RestartDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N4c6eb21e734d411e2b3388578761123dResponse struct {
+type StartDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8118,7 +8934,7 @@ type N4c6eb21e734d411e2b3388578761123dResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N4c6eb21e734d411e2b3388578761123dResponse) Status() string {
+func (r StartDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8126,14 +8942,14 @@ func (r N4c6eb21e734d411e2b3388578761123dResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N4c6eb21e734d411e2b3388578761123dResponse) StatusCode() int {
+func (r StartDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Cb6d983c2679aff841c7501ce612a372Response struct {
+type StopDatabaseByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8145,7 +8961,7 @@ type Cb6d983c2679aff841c7501ce612a372Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Cb6d983c2679aff841c7501ce612a372Response) Status() string {
+func (r StopDatabaseByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8153,14 +8969,14 @@ func (r Cb6d983c2679aff841c7501ce612a372Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Cb6d983c2679aff841c7501ce612a372Response) StatusCode() int {
+func (r StopDatabaseByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N700eb6e51f4c9e86d722f600c65ed1d4Response struct {
+type DeployByTagOrUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8175,7 +8991,7 @@ type N700eb6e51f4c9e86d722f600c65ed1d4Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N700eb6e51f4c9e86d722f600c65ed1d4Response) Status() string {
+func (r DeployByTagOrUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8183,14 +8999,14 @@ func (r N700eb6e51f4c9e86d722f600c65ed1d4Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N700eb6e51f4c9e86d722f600c65ed1d4Response) StatusCode() int {
+func (r DeployByTagOrUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type A2c05736269191ad0d99cadfd4708986Response struct {
+type ListDeploymentsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]ApplicationDeploymentQueue
@@ -8199,7 +9015,7 @@ type A2c05736269191ad0d99cadfd4708986Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r A2c05736269191ad0d99cadfd4708986Response) Status() string {
+func (r ListDeploymentsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8207,14 +9023,14 @@ func (r A2c05736269191ad0d99cadfd4708986Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r A2c05736269191ad0d99cadfd4708986Response) StatusCode() int {
+func (r ListDeploymentsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Ccf9856174c115a1430d952ccbd36aeaResponse struct {
+type GetDeploymentByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ApplicationDeploymentQueue
@@ -8224,7 +9040,7 @@ type Ccf9856174c115a1430d952ccbd36aeaResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Ccf9856174c115a1430d952ccbd36aeaResponse) Status() string {
+func (r GetDeploymentByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8232,14 +9048,14 @@ func (r Ccf9856174c115a1430d952ccbd36aeaResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Ccf9856174c115a1430d952ccbd36aeaResponse) StatusCode() int {
+func (r GetDeploymentByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N50e2486a2d196a996b24a284a283bcdbResponse struct {
+type DisableApiResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8253,7 +9069,7 @@ type N50e2486a2d196a996b24a284a283bcdbResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N50e2486a2d196a996b24a284a283bcdbResponse) Status() string {
+func (r DisableApiResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8261,14 +9077,14 @@ func (r N50e2486a2d196a996b24a284a283bcdbResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N50e2486a2d196a996b24a284a283bcdbResponse) StatusCode() int {
+func (r DisableApiResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N595019bae03d08277def667609779ff3Response struct {
+type EnableApiResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8282,7 +9098,7 @@ type N595019bae03d08277def667609779ff3Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N595019bae03d08277def667609779ff3Response) Status() string {
+func (r EnableApiResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8290,14 +9106,14 @@ func (r N595019bae03d08277def667609779ff3Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N595019bae03d08277def667609779ff3Response) StatusCode() int {
+func (r EnableApiResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N64db893135e686704bb88c3c238022c1Response struct {
+type HealthcheckResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *string
@@ -8306,7 +9122,7 @@ type N64db893135e686704bb88c3c238022c1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N64db893135e686704bb88c3c238022c1Response) Status() string {
+func (r HealthcheckResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8314,14 +9130,14 @@ func (r N64db893135e686704bb88c3c238022c1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N64db893135e686704bb88c3c238022c1Response) StatusCode() int {
+func (r HealthcheckResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N762788f00f2dabb981df9adbc948d3f6Response struct {
+type ListProjectsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Project
@@ -8330,7 +9146,7 @@ type N762788f00f2dabb981df9adbc948d3f6Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N762788f00f2dabb981df9adbc948d3f6Response) Status() string {
+func (r ListProjectsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8338,14 +9154,14 @@ func (r N762788f00f2dabb981df9adbc948d3f6Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N762788f00f2dabb981df9adbc948d3f6Response) StatusCode() int {
+func (r ListProjectsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Cf067eb7cf18216cda3239329a2eeadbResponse struct {
+type CreateProjectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8358,7 +9174,7 @@ type Cf067eb7cf18216cda3239329a2eeadbResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Cf067eb7cf18216cda3239329a2eeadbResponse) Status() string {
+func (r CreateProjectResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8366,14 +9182,14 @@ func (r Cf067eb7cf18216cda3239329a2eeadbResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Cf067eb7cf18216cda3239329a2eeadbResponse) StatusCode() int {
+func (r CreateProjectResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type F668a936f505b4401948c74b6a663029Response struct {
+type DeleteProjectByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8385,7 +9201,7 @@ type F668a936f505b4401948c74b6a663029Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r F668a936f505b4401948c74b6a663029Response) Status() string {
+func (r DeleteProjectByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8393,14 +9209,14 @@ func (r F668a936f505b4401948c74b6a663029Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r F668a936f505b4401948c74b6a663029Response) StatusCode() int {
+func (r DeleteProjectByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N63bf8b6a68fbb757f09ab519331f6298Response struct {
+type GetProjectByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Project
@@ -8409,7 +9225,7 @@ type N63bf8b6a68fbb757f09ab519331f6298Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N63bf8b6a68fbb757f09ab519331f6298Response) Status() string {
+func (r GetProjectByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8417,14 +9233,14 @@ func (r N63bf8b6a68fbb757f09ab519331f6298Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N63bf8b6a68fbb757f09ab519331f6298Response) StatusCode() int {
+func (r GetProjectByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N2db343bd6fc14c658cb51a2b73b2f842Response struct {
+type UpdateProjectByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8438,7 +9254,7 @@ type N2db343bd6fc14c658cb51a2b73b2f842Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N2db343bd6fc14c658cb51a2b73b2f842Response) Status() string {
+func (r UpdateProjectByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8446,14 +9262,14 @@ func (r N2db343bd6fc14c658cb51a2b73b2f842Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N2db343bd6fc14c658cb51a2b73b2f842Response) StatusCode() int {
+func (r UpdateProjectByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N7e44845dce5aa47ed7b0daf5595ad2e1Response struct {
+type GetEnvironmentByNameResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Environment
@@ -8463,7 +9279,7 @@ type N7e44845dce5aa47ed7b0daf5595ad2e1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N7e44845dce5aa47ed7b0daf5595ad2e1Response) Status() string {
+func (r GetEnvironmentByNameResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8471,14 +9287,14 @@ func (r N7e44845dce5aa47ed7b0daf5595ad2e1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N7e44845dce5aa47ed7b0daf5595ad2e1Response) StatusCode() int {
+func (r GetEnvironmentByNameResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type C399903694eb1314596832e49f7c66d7Response struct {
+type ListResourcesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *string
@@ -8487,7 +9303,7 @@ type C399903694eb1314596832e49f7c66d7Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r C399903694eb1314596832e49f7c66d7Response) Status() string {
+func (r ListResourcesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8495,14 +9311,14 @@ func (r C399903694eb1314596832e49f7c66d7Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r C399903694eb1314596832e49f7c66d7Response) StatusCode() int {
+func (r ListResourcesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N8a5d8d3ccbbcef54ed0e913a27faea9dResponse struct {
+type ListPrivateKeysResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]PrivateKey
@@ -8511,7 +9327,7 @@ type N8a5d8d3ccbbcef54ed0e913a27faea9dResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N8a5d8d3ccbbcef54ed0e913a27faea9dResponse) Status() string {
+func (r ListPrivateKeysResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8519,14 +9335,14 @@ func (r N8a5d8d3ccbbcef54ed0e913a27faea9dResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N8a5d8d3ccbbcef54ed0e913a27faea9dResponse) StatusCode() int {
+func (r ListPrivateKeysResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Eb4780acaa990c594cdbe8ffa80b4fb0Response struct {
+type CreatePrivateKeyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8537,7 +9353,7 @@ type Eb4780acaa990c594cdbe8ffa80b4fb0Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Eb4780acaa990c594cdbe8ffa80b4fb0Response) Status() string {
+func (r CreatePrivateKeyResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8545,14 +9361,14 @@ func (r Eb4780acaa990c594cdbe8ffa80b4fb0Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Eb4780acaa990c594cdbe8ffa80b4fb0Response) StatusCode() int {
+func (r CreatePrivateKeyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N8faa0bb399142f0084dfc3e003c42cf6Response struct {
+type DeletePrivateKeyByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8563,7 +9379,7 @@ type N8faa0bb399142f0084dfc3e003c42cf6Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N8faa0bb399142f0084dfc3e003c42cf6Response) Status() string {
+func (r DeletePrivateKeyByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8571,14 +9387,14 @@ func (r N8faa0bb399142f0084dfc3e003c42cf6Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N8faa0bb399142f0084dfc3e003c42cf6Response) StatusCode() int {
+func (r DeletePrivateKeyByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N2f743a85eb65d5ddb8cd5b362bb3d26aResponse struct {
+type GetPrivateKeyByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *PrivateKey
@@ -8587,7 +9403,7 @@ type N2f743a85eb65d5ddb8cd5b362bb3d26aResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N2f743a85eb65d5ddb8cd5b362bb3d26aResponse) Status() string {
+func (r GetPrivateKeyByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8595,14 +9411,14 @@ func (r N2f743a85eb65d5ddb8cd5b362bb3d26aResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N2f743a85eb65d5ddb8cd5b362bb3d26aResponse) StatusCode() int {
+func (r GetPrivateKeyByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N9feff464b78c24957ed3173324c9cd14Response struct {
+type UpdatePrivateKeyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8613,7 +9429,7 @@ type N9feff464b78c24957ed3173324c9cd14Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N9feff464b78c24957ed3173324c9cd14Response) Status() string {
+func (r UpdatePrivateKeyResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8621,14 +9437,14 @@ func (r N9feff464b78c24957ed3173324c9cd14Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N9feff464b78c24957ed3173324c9cd14Response) StatusCode() int {
+func (r UpdatePrivateKeyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N787448df856cefd2d9a313566be30d34Response struct {
+type ListServersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Server
@@ -8637,7 +9453,7 @@ type N787448df856cefd2d9a313566be30d34Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N787448df856cefd2d9a313566be30d34Response) Status() string {
+func (r ListServersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8645,14 +9461,14 @@ func (r N787448df856cefd2d9a313566be30d34Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N787448df856cefd2d9a313566be30d34Response) StatusCode() int {
+func (r ListServersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Fa44b42490379e428ba5b8747716a8d9Response struct {
+type CreateServerResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8665,7 +9481,7 @@ type Fa44b42490379e428ba5b8747716a8d9Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Fa44b42490379e428ba5b8747716a8d9Response) Status() string {
+func (r CreateServerResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8673,14 +9489,14 @@ func (r Fa44b42490379e428ba5b8747716a8d9Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Fa44b42490379e428ba5b8747716a8d9Response) StatusCode() int {
+func (r CreateServerResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N0231fe0134f0306b21f006ce51b0a3dcResponse struct {
+type DeleteServerByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8692,7 +9508,7 @@ type N0231fe0134f0306b21f006ce51b0a3dcResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N0231fe0134f0306b21f006ce51b0a3dcResponse) Status() string {
+func (r DeleteServerByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8700,14 +9516,14 @@ func (r N0231fe0134f0306b21f006ce51b0a3dcResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N0231fe0134f0306b21f006ce51b0a3dcResponse) StatusCode() int {
+func (r DeleteServerByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N5baf04bddb8302c7e07f5b4c41aad10cResponse struct {
+type GetServerByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Server
@@ -8717,7 +9533,7 @@ type N5baf04bddb8302c7e07f5b4c41aad10cResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N5baf04bddb8302c7e07f5b4c41aad10cResponse) Status() string {
+func (r GetServerByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8725,14 +9541,14 @@ func (r N5baf04bddb8302c7e07f5b4c41aad10cResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N5baf04bddb8302c7e07f5b4c41aad10cResponse) StatusCode() int {
+func (r GetServerByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N41bbdaf79eb1938592494fc5494442a0Response struct {
+type UpdateServerByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *[]Server
@@ -8742,7 +9558,7 @@ type N41bbdaf79eb1938592494fc5494442a0Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N41bbdaf79eb1938592494fc5494442a0Response) Status() string {
+func (r UpdateServerByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8750,14 +9566,14 @@ func (r N41bbdaf79eb1938592494fc5494442a0Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N41bbdaf79eb1938592494fc5494442a0Response) StatusCode() int {
+func (r UpdateServerByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N1ee227755be848d572f412272f53dd93Response struct {
+type GetDomainsByServerUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]struct {
@@ -8769,7 +9585,7 @@ type N1ee227755be848d572f412272f53dd93Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N1ee227755be848d572f412272f53dd93Response) Status() string {
+func (r GetDomainsByServerUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8777,14 +9593,14 @@ func (r N1ee227755be848d572f412272f53dd93Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N1ee227755be848d572f412272f53dd93Response) StatusCode() int {
+func (r GetDomainsByServerUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Cef26c059941b44fbd8de3a7a58c10a5Response struct {
+type GetResourcesByServerUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]struct {
@@ -8801,7 +9617,7 @@ type Cef26c059941b44fbd8de3a7a58c10a5Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Cef26c059941b44fbd8de3a7a58c10a5Response) Status() string {
+func (r GetResourcesByServerUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8809,14 +9625,14 @@ func (r Cef26c059941b44fbd8de3a7a58c10a5Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Cef26c059941b44fbd8de3a7a58c10a5Response) StatusCode() int {
+func (r GetResourcesByServerUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type A543a12ef2cbc7a3dd22c3dbe6cbee89Response struct {
+type ValidateServerByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8828,7 +9644,7 @@ type A543a12ef2cbc7a3dd22c3dbe6cbee89Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r A543a12ef2cbc7a3dd22c3dbe6cbee89Response) Status() string {
+func (r ValidateServerByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8836,14 +9652,14 @@ func (r A543a12ef2cbc7a3dd22c3dbe6cbee89Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r A543a12ef2cbc7a3dd22c3dbe6cbee89Response) StatusCode() int {
+func (r ValidateServerByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N5d014ac25d33391b8f4c2316060ba452Response struct {
+type ListServicesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Service
@@ -8852,7 +9668,7 @@ type N5d014ac25d33391b8f4c2316060ba452Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N5d014ac25d33391b8f4c2316060ba452Response) Status() string {
+func (r ListServicesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8860,14 +9676,14 @@ func (r N5d014ac25d33391b8f4c2316060ba452Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N5d014ac25d33391b8f4c2316060ba452Response) StatusCode() int {
+func (r ListServicesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N3d6cbfb54d919b53ba3984a113e837d7Response struct {
+type CreateServiceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *struct {
@@ -8882,7 +9698,7 @@ type N3d6cbfb54d919b53ba3984a113e837d7Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N3d6cbfb54d919b53ba3984a113e837d7Response) Status() string {
+func (r CreateServiceResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8890,14 +9706,14 @@ func (r N3d6cbfb54d919b53ba3984a113e837d7Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N3d6cbfb54d919b53ba3984a113e837d7Response) StatusCode() int {
+func (r CreateServiceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N6e1a61e4fddaa9d95bb9fc66dfaf0442Response struct {
+type DeleteServiceByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8909,7 +9725,7 @@ type N6e1a61e4fddaa9d95bb9fc66dfaf0442Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N6e1a61e4fddaa9d95bb9fc66dfaf0442Response) Status() string {
+func (r DeleteServiceByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8917,14 +9733,14 @@ func (r N6e1a61e4fddaa9d95bb9fc66dfaf0442Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N6e1a61e4fddaa9d95bb9fc66dfaf0442Response) StatusCode() int {
+func (r DeleteServiceByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N895d39ee2cb3994285de57256c2d428dResponse struct {
+type GetServiceByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Service
@@ -8934,7 +9750,7 @@ type N895d39ee2cb3994285de57256c2d428dResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N895d39ee2cb3994285de57256c2d428dResponse) Status() string {
+func (r GetServiceByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8942,14 +9758,120 @@ func (r N895d39ee2cb3994285de57256c2d428dResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N895d39ee2cb3994285de57256c2d428dResponse) StatusCode() int {
+func (r GetServiceByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N836645faa615b75052759dae78639469Response struct {
+type ListEnvsByServiceUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EnvironmentVariable
+	JSON400      *N400
+	JSON401      *N401
+	JSON404      *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r ListEnvsByServiceUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListEnvsByServiceUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateEnvByServiceUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateEnvByServiceUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateEnvByServiceUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateEnvByServiceUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateEnvByServiceUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateEnvByServiceUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateEnvsByServiceUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateEnvsByServiceUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateEnvsByServiceUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteEnvByServiceUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8961,7 +9883,7 @@ type N836645faa615b75052759dae78639469Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N836645faa615b75052759dae78639469Response) Status() string {
+func (r DeleteEnvByServiceUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8969,14 +9891,14 @@ func (r N836645faa615b75052759dae78639469Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N836645faa615b75052759dae78639469Response) StatusCode() int {
+func (r DeleteEnvByServiceUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type D2ddd9c028d123fbdec830dc4b25b4cbResponse struct {
+type RestartServiceByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -8988,7 +9910,7 @@ type D2ddd9c028d123fbdec830dc4b25b4cbResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r D2ddd9c028d123fbdec830dc4b25b4cbResponse) Status() string {
+func (r RestartServiceByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8996,14 +9918,14 @@ func (r D2ddd9c028d123fbdec830dc4b25b4cbResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r D2ddd9c028d123fbdec830dc4b25b4cbResponse) StatusCode() int {
+func (r RestartServiceByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N87399d34758ce16830740c68626614dbResponse struct {
+type StartServiceByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
@@ -9015,7 +9937,7 @@ type N87399d34758ce16830740c68626614dbResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N87399d34758ce16830740c68626614dbResponse) Status() string {
+func (r StartServiceByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9023,14 +9945,41 @@ func (r N87399d34758ce16830740c68626614dbResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N87399d34758ce16830740c68626614dbResponse) StatusCode() int {
+func (r StartServiceByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type F9c530b5b25df9601cb87d6a58646f0aResponse struct {
+type StopServiceByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r StopServiceByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StopServiceByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListTeamsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Team
@@ -9039,7 +9988,7 @@ type F9c530b5b25df9601cb87d6a58646f0aResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r F9c530b5b25df9601cb87d6a58646f0aResponse) Status() string {
+func (r ListTeamsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9047,14 +9996,14 @@ func (r F9c530b5b25df9601cb87d6a58646f0aResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r F9c530b5b25df9601cb87d6a58646f0aResponse) StatusCode() int {
+func (r ListTeamsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N6a4ec9fed1aad7b0b38356c47d7ac509Response struct {
+type GetCurrentTeamResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Team
@@ -9063,7 +10012,7 @@ type N6a4ec9fed1aad7b0b38356c47d7ac509Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N6a4ec9fed1aad7b0b38356c47d7ac509Response) Status() string {
+func (r GetCurrentTeamResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9071,14 +10020,14 @@ func (r N6a4ec9fed1aad7b0b38356c47d7ac509Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N6a4ec9fed1aad7b0b38356c47d7ac509Response) StatusCode() int {
+func (r GetCurrentTeamResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N97e636a5796dbe71afb0bbcf1eec6e41Response struct {
+type GetCurrentTeamMembersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]User
@@ -9087,7 +10036,7 @@ type N97e636a5796dbe71afb0bbcf1eec6e41Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N97e636a5796dbe71afb0bbcf1eec6e41Response) Status() string {
+func (r GetCurrentTeamMembersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9095,14 +10044,14 @@ func (r N97e636a5796dbe71afb0bbcf1eec6e41Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N97e636a5796dbe71afb0bbcf1eec6e41Response) StatusCode() int {
+func (r GetCurrentTeamMembersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Ac57ff546c002032cef44602c46a4e76Response struct {
+type GetTeamByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Team
@@ -9112,7 +10061,7 @@ type Ac57ff546c002032cef44602c46a4e76Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r Ac57ff546c002032cef44602c46a4e76Response) Status() string {
+func (r GetTeamByIdResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9120,14 +10069,14 @@ func (r Ac57ff546c002032cef44602c46a4e76Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Ac57ff546c002032cef44602c46a4e76Response) StatusCode() int {
+func (r GetTeamByIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N7858f5a45d9ea55184c182852a7f0f6cResponse struct {
+type GetMembersByTeamIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]User
@@ -9137,7 +10086,7 @@ type N7858f5a45d9ea55184c182852a7f0f6cResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N7858f5a45d9ea55184c182852a7f0f6cResponse) Status() string {
+func (r GetMembersByTeamIdResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9145,14 +10094,14 @@ func (r N7858f5a45d9ea55184c182852a7f0f6cResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N7858f5a45d9ea55184c182852a7f0f6cResponse) StatusCode() int {
+func (r GetMembersByTeamIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type N187b37139844731110757711ee71c215Response struct {
+type VersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *string
@@ -9161,7 +10110,7 @@ type N187b37139844731110757711ee71c215Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r N187b37139844731110757711ee71c215Response) Status() string {
+func (r VersionResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -9169,878 +10118,964 @@ func (r N187b37139844731110757711ee71c215Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r N187b37139844731110757711ee71c215Response) StatusCode() int {
+func (r VersionResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-// N02978e79fc0b54d573b2359f2a1f7d86WithResponse request returning *N02978e79fc0b54d573b2359f2a1f7d86Response
-func (c *ClientWithResponses) N02978e79fc0b54d573b2359f2a1f7d86WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N02978e79fc0b54d573b2359f2a1f7d86Response, error) {
-	rsp, err := c.N02978e79fc0b54d573b2359f2a1f7d86(ctx, reqEditors...)
+// ListApplicationsWithResponse request returning *ListApplicationsResponse
+func (c *ClientWithResponses) ListApplicationsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error) {
+	rsp, err := c.ListApplications(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN02978e79fc0b54d573b2359f2a1f7d86Response(rsp)
+	return ParseListApplicationsResponse(rsp)
 }
 
-// N3731add8226c2d664455978cac46c242WithBodyWithResponse request with arbitrary body returning *N3731add8226c2d664455978cac46c242Response
-func (c *ClientWithResponses) N3731add8226c2d664455978cac46c242WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3731add8226c2d664455978cac46c242Response, error) {
-	rsp, err := c.N3731add8226c2d664455978cac46c242WithBody(ctx, contentType, body, reqEditors...)
+// CreateDockercomposeApplicationWithBodyWithResponse request with arbitrary body returning *CreateDockercomposeApplicationResponse
+func (c *ClientWithResponses) CreateDockercomposeApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockercomposeApplicationResponse, error) {
+	rsp, err := c.CreateDockercomposeApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3731add8226c2d664455978cac46c242Response(rsp)
+	return ParseCreateDockercomposeApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) N3731add8226c2d664455978cac46c242WithResponse(ctx context.Context, body N3731add8226c2d664455978cac46c242JSONRequestBody, reqEditors ...RequestEditorFn) (*N3731add8226c2d664455978cac46c242Response, error) {
-	rsp, err := c.N3731add8226c2d664455978cac46c242(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDockercomposeApplicationWithResponse(ctx context.Context, body CreateDockercomposeApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockercomposeApplicationResponse, error) {
+	rsp, err := c.CreateDockercomposeApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3731add8226c2d664455978cac46c242Response(rsp)
+	return ParseCreateDockercomposeApplicationResponse(rsp)
 }
 
-// N2b433ad6f5d259eb7f4f3b5af9913708WithBodyWithResponse request with arbitrary body returning *N2b433ad6f5d259eb7f4f3b5af9913708Response
-func (c *ClientWithResponses) N2b433ad6f5d259eb7f4f3b5af9913708WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N2b433ad6f5d259eb7f4f3b5af9913708Response, error) {
-	rsp, err := c.N2b433ad6f5d259eb7f4f3b5af9913708WithBody(ctx, contentType, body, reqEditors...)
+// CreateDockerfileApplicationWithBodyWithResponse request with arbitrary body returning *CreateDockerfileApplicationResponse
+func (c *ClientWithResponses) CreateDockerfileApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockerfileApplicationResponse, error) {
+	rsp, err := c.CreateDockerfileApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN2b433ad6f5d259eb7f4f3b5af9913708Response(rsp)
+	return ParseCreateDockerfileApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) N2b433ad6f5d259eb7f4f3b5af9913708WithResponse(ctx context.Context, body N2b433ad6f5d259eb7f4f3b5af9913708JSONRequestBody, reqEditors ...RequestEditorFn) (*N2b433ad6f5d259eb7f4f3b5af9913708Response, error) {
-	rsp, err := c.N2b433ad6f5d259eb7f4f3b5af9913708(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDockerfileApplicationWithResponse(ctx context.Context, body CreateDockerfileApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockerfileApplicationResponse, error) {
+	rsp, err := c.CreateDockerfileApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN2b433ad6f5d259eb7f4f3b5af9913708Response(rsp)
+	return ParseCreateDockerfileApplicationResponse(rsp)
 }
 
-// E9a2d6dd9404acf880dc3053f09477fcWithBodyWithResponse request with arbitrary body returning *E9a2d6dd9404acf880dc3053f09477fcResponse
-func (c *ClientWithResponses) E9a2d6dd9404acf880dc3053f09477fcWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E9a2d6dd9404acf880dc3053f09477fcResponse, error) {
-	rsp, err := c.E9a2d6dd9404acf880dc3053f09477fcWithBody(ctx, contentType, body, reqEditors...)
+// CreateDockerimageApplicationWithBodyWithResponse request with arbitrary body returning *CreateDockerimageApplicationResponse
+func (c *ClientWithResponses) CreateDockerimageApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockerimageApplicationResponse, error) {
+	rsp, err := c.CreateDockerimageApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE9a2d6dd9404acf880dc3053f09477fcResponse(rsp)
+	return ParseCreateDockerimageApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) E9a2d6dd9404acf880dc3053f09477fcWithResponse(ctx context.Context, body E9a2d6dd9404acf880dc3053f09477fcJSONRequestBody, reqEditors ...RequestEditorFn) (*E9a2d6dd9404acf880dc3053f09477fcResponse, error) {
-	rsp, err := c.E9a2d6dd9404acf880dc3053f09477fc(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDockerimageApplicationWithResponse(ctx context.Context, body CreateDockerimageApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDockerimageApplicationResponse, error) {
+	rsp, err := c.CreateDockerimageApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE9a2d6dd9404acf880dc3053f09477fcResponse(rsp)
+	return ParseCreateDockerimageApplicationResponse(rsp)
 }
 
-// E3eaa989ffb05366247a00cdfd551efaWithBodyWithResponse request with arbitrary body returning *E3eaa989ffb05366247a00cdfd551efaResponse
-func (c *ClientWithResponses) E3eaa989ffb05366247a00cdfd551efaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E3eaa989ffb05366247a00cdfd551efaResponse, error) {
-	rsp, err := c.E3eaa989ffb05366247a00cdfd551efaWithBody(ctx, contentType, body, reqEditors...)
+// CreatePrivateDeployKeyApplicationWithBodyWithResponse request with arbitrary body returning *CreatePrivateDeployKeyApplicationResponse
+func (c *ClientWithResponses) CreatePrivateDeployKeyApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateDeployKeyApplicationResponse, error) {
+	rsp, err := c.CreatePrivateDeployKeyApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE3eaa989ffb05366247a00cdfd551efaResponse(rsp)
+	return ParseCreatePrivateDeployKeyApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) E3eaa989ffb05366247a00cdfd551efaWithResponse(ctx context.Context, body E3eaa989ffb05366247a00cdfd551efaJSONRequestBody, reqEditors ...RequestEditorFn) (*E3eaa989ffb05366247a00cdfd551efaResponse, error) {
-	rsp, err := c.E3eaa989ffb05366247a00cdfd551efa(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreatePrivateDeployKeyApplicationWithResponse(ctx context.Context, body CreatePrivateDeployKeyApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateDeployKeyApplicationResponse, error) {
+	rsp, err := c.CreatePrivateDeployKeyApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE3eaa989ffb05366247a00cdfd551efaResponse(rsp)
+	return ParseCreatePrivateDeployKeyApplicationResponse(rsp)
 }
 
-// N4d46c84bda4f1a411f6dda15fce4061fWithBodyWithResponse request with arbitrary body returning *N4d46c84bda4f1a411f6dda15fce4061fResponse
-func (c *ClientWithResponses) N4d46c84bda4f1a411f6dda15fce4061fWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4d46c84bda4f1a411f6dda15fce4061fResponse, error) {
-	rsp, err := c.N4d46c84bda4f1a411f6dda15fce4061fWithBody(ctx, contentType, body, reqEditors...)
+// CreatePrivateGithubAppApplicationWithBodyWithResponse request with arbitrary body returning *CreatePrivateGithubAppApplicationResponse
+func (c *ClientWithResponses) CreatePrivateGithubAppApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateGithubAppApplicationResponse, error) {
+	rsp, err := c.CreatePrivateGithubAppApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4d46c84bda4f1a411f6dda15fce4061fResponse(rsp)
+	return ParseCreatePrivateGithubAppApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) N4d46c84bda4f1a411f6dda15fce4061fWithResponse(ctx context.Context, body N4d46c84bda4f1a411f6dda15fce4061fJSONRequestBody, reqEditors ...RequestEditorFn) (*N4d46c84bda4f1a411f6dda15fce4061fResponse, error) {
-	rsp, err := c.N4d46c84bda4f1a411f6dda15fce4061f(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreatePrivateGithubAppApplicationWithResponse(ctx context.Context, body CreatePrivateGithubAppApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateGithubAppApplicationResponse, error) {
+	rsp, err := c.CreatePrivateGithubAppApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4d46c84bda4f1a411f6dda15fce4061fResponse(rsp)
+	return ParseCreatePrivateGithubAppApplicationResponse(rsp)
 }
 
-// Cb56324ad19693469b4461d3f6065a5bWithBodyWithResponse request with arbitrary body returning *Cb56324ad19693469b4461d3f6065a5bResponse
-func (c *ClientWithResponses) Cb56324ad19693469b4461d3f6065a5bWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Cb56324ad19693469b4461d3f6065a5bResponse, error) {
-	rsp, err := c.Cb56324ad19693469b4461d3f6065a5bWithBody(ctx, contentType, body, reqEditors...)
+// CreatePublicApplicationWithBodyWithResponse request with arbitrary body returning *CreatePublicApplicationResponse
+func (c *ClientWithResponses) CreatePublicApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePublicApplicationResponse, error) {
+	rsp, err := c.CreatePublicApplicationWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCb56324ad19693469b4461d3f6065a5bResponse(rsp)
+	return ParseCreatePublicApplicationResponse(rsp)
 }
 
-func (c *ClientWithResponses) Cb56324ad19693469b4461d3f6065a5bWithResponse(ctx context.Context, body Cb56324ad19693469b4461d3f6065a5bJSONRequestBody, reqEditors ...RequestEditorFn) (*Cb56324ad19693469b4461d3f6065a5bResponse, error) {
-	rsp, err := c.Cb56324ad19693469b4461d3f6065a5b(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreatePublicApplicationWithResponse(ctx context.Context, body CreatePublicApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePublicApplicationResponse, error) {
+	rsp, err := c.CreatePublicApplication(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCb56324ad19693469b4461d3f6065a5bResponse(rsp)
+	return ParseCreatePublicApplicationResponse(rsp)
 }
 
-// N1e110b190a1045d34f3e1c61608a8702WithResponse request returning *N1e110b190a1045d34f3e1c61608a8702Response
-func (c *ClientWithResponses) N1e110b190a1045d34f3e1c61608a8702WithResponse(ctx context.Context, uuid string, params *N1e110b190a1045d34f3e1c61608a8702Params, reqEditors ...RequestEditorFn) (*N1e110b190a1045d34f3e1c61608a8702Response, error) {
-	rsp, err := c.N1e110b190a1045d34f3e1c61608a8702(ctx, uuid, params, reqEditors...)
+// DeleteApplicationByUuidWithResponse request returning *DeleteApplicationByUuidResponse
+func (c *ClientWithResponses) DeleteApplicationByUuidWithResponse(ctx context.Context, uuid string, params *DeleteApplicationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteApplicationByUuidResponse, error) {
+	rsp, err := c.DeleteApplicationByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN1e110b190a1045d34f3e1c61608a8702Response(rsp)
+	return ParseDeleteApplicationByUuidResponse(rsp)
 }
 
-// N3630b62c28e7358e7f0087c1d8fe1845WithResponse request returning *N3630b62c28e7358e7f0087c1d8fe1845Response
-func (c *ClientWithResponses) N3630b62c28e7358e7f0087c1d8fe1845WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N3630b62c28e7358e7f0087c1d8fe1845Response, error) {
-	rsp, err := c.N3630b62c28e7358e7f0087c1d8fe1845(ctx, uuid, reqEditors...)
+// GetApplicationByUuidWithResponse request returning *GetApplicationByUuidResponse
+func (c *ClientWithResponses) GetApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetApplicationByUuidResponse, error) {
+	rsp, err := c.GetApplicationByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3630b62c28e7358e7f0087c1d8fe1845Response(rsp)
+	return ParseGetApplicationByUuidResponse(rsp)
 }
 
-// N62a3b1775e8cba5d39a236ebb69830b7WithBodyWithResponse request with arbitrary body returning *N62a3b1775e8cba5d39a236ebb69830b7Response
-func (c *ClientWithResponses) N62a3b1775e8cba5d39a236ebb69830b7WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N62a3b1775e8cba5d39a236ebb69830b7Response, error) {
-	rsp, err := c.N62a3b1775e8cba5d39a236ebb69830b7WithBody(ctx, uuid, contentType, body, reqEditors...)
+// UpdateApplicationByUuidWithBodyWithResponse request with arbitrary body returning *UpdateApplicationByUuidResponse
+func (c *ClientWithResponses) UpdateApplicationByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateApplicationByUuidResponse, error) {
+	rsp, err := c.UpdateApplicationByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN62a3b1775e8cba5d39a236ebb69830b7Response(rsp)
+	return ParseUpdateApplicationByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N62a3b1775e8cba5d39a236ebb69830b7WithResponse(ctx context.Context, uuid string, body N62a3b1775e8cba5d39a236ebb69830b7JSONRequestBody, reqEditors ...RequestEditorFn) (*N62a3b1775e8cba5d39a236ebb69830b7Response, error) {
-	rsp, err := c.N62a3b1775e8cba5d39a236ebb69830b7(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UpdateApplicationByUuidWithResponse(ctx context.Context, uuid string, body UpdateApplicationByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateApplicationByUuidResponse, error) {
+	rsp, err := c.UpdateApplicationByUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN62a3b1775e8cba5d39a236ebb69830b7Response(rsp)
+	return ParseUpdateApplicationByUuidResponse(rsp)
 }
 
-// N7c8e0c286870e23294a075cc0584df2fWithResponse request returning *N7c8e0c286870e23294a075cc0584df2fResponse
-func (c *ClientWithResponses) N7c8e0c286870e23294a075cc0584df2fWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N7c8e0c286870e23294a075cc0584df2fResponse, error) {
-	rsp, err := c.N7c8e0c286870e23294a075cc0584df2f(ctx, uuid, reqEditors...)
+// ListEnvsByApplicationUuidWithResponse request returning *ListEnvsByApplicationUuidResponse
+func (c *ClientWithResponses) ListEnvsByApplicationUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListEnvsByApplicationUuidResponse, error) {
+	rsp, err := c.ListEnvsByApplicationUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN7c8e0c286870e23294a075cc0584df2fResponse(rsp)
+	return ParseListEnvsByApplicationUuidResponse(rsp)
 }
 
-// N3d70a2d569f395be220b3f09ad36674bWithBodyWithResponse request with arbitrary body returning *N3d70a2d569f395be220b3f09ad36674bResponse
-func (c *ClientWithResponses) N3d70a2d569f395be220b3f09ad36674bWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3d70a2d569f395be220b3f09ad36674bResponse, error) {
-	rsp, err := c.N3d70a2d569f395be220b3f09ad36674bWithBody(ctx, uuid, contentType, body, reqEditors...)
+// UpdateEnvByApplicationUuidWithBodyWithResponse request with arbitrary body returning *UpdateEnvByApplicationUuidResponse
+func (c *ClientWithResponses) UpdateEnvByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvByApplicationUuidResponse, error) {
+	rsp, err := c.UpdateEnvByApplicationUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3d70a2d569f395be220b3f09ad36674bResponse(rsp)
+	return ParseUpdateEnvByApplicationUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N3d70a2d569f395be220b3f09ad36674bWithResponse(ctx context.Context, uuid string, body N3d70a2d569f395be220b3f09ad36674bJSONRequestBody, reqEditors ...RequestEditorFn) (*N3d70a2d569f395be220b3f09ad36674bResponse, error) {
-	rsp, err := c.N3d70a2d569f395be220b3f09ad36674b(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UpdateEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, body UpdateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvByApplicationUuidResponse, error) {
+	rsp, err := c.UpdateEnvByApplicationUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3d70a2d569f395be220b3f09ad36674bResponse(rsp)
+	return ParseUpdateEnvByApplicationUuidResponse(rsp)
 }
 
-// N4699ffbb7d6e58581fd0b0a14f36ffc2WithBodyWithResponse request with arbitrary body returning *N4699ffbb7d6e58581fd0b0a14f36ffc2Response
-func (c *ClientWithResponses) N4699ffbb7d6e58581fd0b0a14f36ffc2WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4699ffbb7d6e58581fd0b0a14f36ffc2Response, error) {
-	rsp, err := c.N4699ffbb7d6e58581fd0b0a14f36ffc2WithBody(ctx, uuid, contentType, body, reqEditors...)
+// CreateEnvByApplicationUuidWithBodyWithResponse request with arbitrary body returning *CreateEnvByApplicationUuidResponse
+func (c *ClientWithResponses) CreateEnvByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvByApplicationUuidResponse, error) {
+	rsp, err := c.CreateEnvByApplicationUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4699ffbb7d6e58581fd0b0a14f36ffc2Response(rsp)
+	return ParseCreateEnvByApplicationUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N4699ffbb7d6e58581fd0b0a14f36ffc2WithResponse(ctx context.Context, uuid string, body N4699ffbb7d6e58581fd0b0a14f36ffc2JSONRequestBody, reqEditors ...RequestEditorFn) (*N4699ffbb7d6e58581fd0b0a14f36ffc2Response, error) {
-	rsp, err := c.N4699ffbb7d6e58581fd0b0a14f36ffc2(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) CreateEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, body CreateEnvByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvByApplicationUuidResponse, error) {
+	rsp, err := c.CreateEnvByApplicationUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4699ffbb7d6e58581fd0b0a14f36ffc2Response(rsp)
+	return ParseCreateEnvByApplicationUuidResponse(rsp)
 }
 
-// Ae96f0f585ed158b2abd2d9ba40f3cf9WithBodyWithResponse request with arbitrary body returning *Ae96f0f585ed158b2abd2d9ba40f3cf9Response
-func (c *ClientWithResponses) Ae96f0f585ed158b2abd2d9ba40f3cf9WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Ae96f0f585ed158b2abd2d9ba40f3cf9Response, error) {
-	rsp, err := c.Ae96f0f585ed158b2abd2d9ba40f3cf9WithBody(ctx, uuid, contentType, body, reqEditors...)
+// UpdateEnvsByApplicationUuidWithBodyWithResponse request with arbitrary body returning *UpdateEnvsByApplicationUuidResponse
+func (c *ClientWithResponses) UpdateEnvsByApplicationUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvsByApplicationUuidResponse, error) {
+	rsp, err := c.UpdateEnvsByApplicationUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAe96f0f585ed158b2abd2d9ba40f3cf9Response(rsp)
+	return ParseUpdateEnvsByApplicationUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) Ae96f0f585ed158b2abd2d9ba40f3cf9WithResponse(ctx context.Context, uuid string, body Ae96f0f585ed158b2abd2d9ba40f3cf9JSONRequestBody, reqEditors ...RequestEditorFn) (*Ae96f0f585ed158b2abd2d9ba40f3cf9Response, error) {
-	rsp, err := c.Ae96f0f585ed158b2abd2d9ba40f3cf9(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UpdateEnvsByApplicationUuidWithResponse(ctx context.Context, uuid string, body UpdateEnvsByApplicationUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvsByApplicationUuidResponse, error) {
+	rsp, err := c.UpdateEnvsByApplicationUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAe96f0f585ed158b2abd2d9ba40f3cf9Response(rsp)
+	return ParseUpdateEnvsByApplicationUuidResponse(rsp)
 }
 
-// N96097c5cfc7dc0e7a3de229645f630c7WithResponse request returning *N96097c5cfc7dc0e7a3de229645f630c7Response
-func (c *ClientWithResponses) N96097c5cfc7dc0e7a3de229645f630c7WithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*N96097c5cfc7dc0e7a3de229645f630c7Response, error) {
-	rsp, err := c.N96097c5cfc7dc0e7a3de229645f630c7(ctx, uuid, envUuid, reqEditors...)
+// DeleteEnvByApplicationUuidWithResponse request returning *DeleteEnvByApplicationUuidResponse
+func (c *ClientWithResponses) DeleteEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvByApplicationUuidResponse, error) {
+	rsp, err := c.DeleteEnvByApplicationUuid(ctx, uuid, envUuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN96097c5cfc7dc0e7a3de229645f630c7Response(rsp)
+	return ParseDeleteEnvByApplicationUuidResponse(rsp)
 }
 
-// B231ae7baab9ef47f0627be820e735bcWithResponse request returning *B231ae7baab9ef47f0627be820e735bcResponse
-func (c *ClientWithResponses) B231ae7baab9ef47f0627be820e735bcWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*B231ae7baab9ef47f0627be820e735bcResponse, error) {
-	rsp, err := c.B231ae7baab9ef47f0627be820e735bc(ctx, uuid, reqEditors...)
+// ExecuteCommandApplicationWithBodyWithResponse request with arbitrary body returning *ExecuteCommandApplicationResponse
+func (c *ClientWithResponses) ExecuteCommandApplicationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error) {
+	rsp, err := c.ExecuteCommandApplicationWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseB231ae7baab9ef47f0627be820e735bcResponse(rsp)
+	return ParseExecuteCommandApplicationResponse(rsp)
 }
 
-// Dc87c2061ab303757a0e061f87900c4cWithResponse request returning *Dc87c2061ab303757a0e061f87900c4cResponse
-func (c *ClientWithResponses) Dc87c2061ab303757a0e061f87900c4cWithResponse(ctx context.Context, uuid string, params *Dc87c2061ab303757a0e061f87900c4cParams, reqEditors ...RequestEditorFn) (*Dc87c2061ab303757a0e061f87900c4cResponse, error) {
-	rsp, err := c.Dc87c2061ab303757a0e061f87900c4c(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) ExecuteCommandApplicationWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error) {
+	rsp, err := c.ExecuteCommandApplication(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDc87c2061ab303757a0e061f87900c4cResponse(rsp)
+	return ParseExecuteCommandApplicationResponse(rsp)
 }
 
-// N133ef3c7bd5043901f24bb5002a536ebWithResponse request returning *N133ef3c7bd5043901f24bb5002a536ebResponse
-func (c *ClientWithResponses) N133ef3c7bd5043901f24bb5002a536ebWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N133ef3c7bd5043901f24bb5002a536ebResponse, error) {
-	rsp, err := c.N133ef3c7bd5043901f24bb5002a536eb(ctx, uuid, reqEditors...)
+// RestartApplicationByUuidWithResponse request returning *RestartApplicationByUuidResponse
+func (c *ClientWithResponses) RestartApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartApplicationByUuidResponse, error) {
+	rsp, err := c.RestartApplicationByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN133ef3c7bd5043901f24bb5002a536ebResponse(rsp)
+	return ParseRestartApplicationByUuidResponse(rsp)
 }
 
-// Ecd0ee1e46e4c854c18e6c9daa3d37f3WithResponse request returning *Ecd0ee1e46e4c854c18e6c9daa3d37f3Response
-func (c *ClientWithResponses) Ecd0ee1e46e4c854c18e6c9daa3d37f3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*Ecd0ee1e46e4c854c18e6c9daa3d37f3Response, error) {
-	rsp, err := c.Ecd0ee1e46e4c854c18e6c9daa3d37f3(ctx, reqEditors...)
+// StartApplicationByUuidWithResponse request returning *StartApplicationByUuidResponse
+func (c *ClientWithResponses) StartApplicationByUuidWithResponse(ctx context.Context, uuid string, params *StartApplicationByUuidParams, reqEditors ...RequestEditorFn) (*StartApplicationByUuidResponse, error) {
+	rsp, err := c.StartApplicationByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEcd0ee1e46e4c854c18e6c9daa3d37f3Response(rsp)
+	return ParseStartApplicationByUuidResponse(rsp)
 }
 
-// A1189fa7f956f238f0e95c9150ff57f6WithBodyWithResponse request with arbitrary body returning *A1189fa7f956f238f0e95c9150ff57f6Response
-func (c *ClientWithResponses) A1189fa7f956f238f0e95c9150ff57f6WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*A1189fa7f956f238f0e95c9150ff57f6Response, error) {
-	rsp, err := c.A1189fa7f956f238f0e95c9150ff57f6WithBody(ctx, contentType, body, reqEditors...)
+// StopApplicationByUuidWithResponse request returning *StopApplicationByUuidResponse
+func (c *ClientWithResponses) StopApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopApplicationByUuidResponse, error) {
+	rsp, err := c.StopApplicationByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseA1189fa7f956f238f0e95c9150ff57f6Response(rsp)
+	return ParseStopApplicationByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) A1189fa7f956f238f0e95c9150ff57f6WithResponse(ctx context.Context, body A1189fa7f956f238f0e95c9150ff57f6JSONRequestBody, reqEditors ...RequestEditorFn) (*A1189fa7f956f238f0e95c9150ff57f6Response, error) {
-	rsp, err := c.A1189fa7f956f238f0e95c9150ff57f6(ctx, body, reqEditors...)
+// ListDatabasesWithResponse request returning *ListDatabasesResponse
+func (c *ClientWithResponses) ListDatabasesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDatabasesResponse, error) {
+	rsp, err := c.ListDatabases(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseA1189fa7f956f238f0e95c9150ff57f6Response(rsp)
+	return ParseListDatabasesResponse(rsp)
 }
 
-// E73f7de1c8eee4219e5ec98c4b9b7efeWithBodyWithResponse request with arbitrary body returning *E73f7de1c8eee4219e5ec98c4b9b7efeResponse
-func (c *ClientWithResponses) E73f7de1c8eee4219e5ec98c4b9b7efeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*E73f7de1c8eee4219e5ec98c4b9b7efeResponse, error) {
-	rsp, err := c.E73f7de1c8eee4219e5ec98c4b9b7efeWithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseClickhouseWithBodyWithResponse request with arbitrary body returning *CreateDatabaseClickhouseResponse
+func (c *ClientWithResponses) CreateDatabaseClickhouseWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseClickhouseResponse, error) {
+	rsp, err := c.CreateDatabaseClickhouseWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE73f7de1c8eee4219e5ec98c4b9b7efeResponse(rsp)
+	return ParseCreateDatabaseClickhouseResponse(rsp)
 }
 
-func (c *ClientWithResponses) E73f7de1c8eee4219e5ec98c4b9b7efeWithResponse(ctx context.Context, body E73f7de1c8eee4219e5ec98c4b9b7efeJSONRequestBody, reqEditors ...RequestEditorFn) (*E73f7de1c8eee4219e5ec98c4b9b7efeResponse, error) {
-	rsp, err := c.E73f7de1c8eee4219e5ec98c4b9b7efe(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseClickhouseWithResponse(ctx context.Context, body CreateDatabaseClickhouseJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseClickhouseResponse, error) {
+	rsp, err := c.CreateDatabaseClickhouse(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseE73f7de1c8eee4219e5ec98c4b9b7efeResponse(rsp)
+	return ParseCreateDatabaseClickhouseResponse(rsp)
 }
 
-// B908f3929c371c217d489638e0a21ff6WithBodyWithResponse request with arbitrary body returning *B908f3929c371c217d489638e0a21ff6Response
-func (c *ClientWithResponses) B908f3929c371c217d489638e0a21ff6WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*B908f3929c371c217d489638e0a21ff6Response, error) {
-	rsp, err := c.B908f3929c371c217d489638e0a21ff6WithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseDragonflyWithBodyWithResponse request with arbitrary body returning *CreateDatabaseDragonflyResponse
+func (c *ClientWithResponses) CreateDatabaseDragonflyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseDragonflyResponse, error) {
+	rsp, err := c.CreateDatabaseDragonflyWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseB908f3929c371c217d489638e0a21ff6Response(rsp)
+	return ParseCreateDatabaseDragonflyResponse(rsp)
 }
 
-func (c *ClientWithResponses) B908f3929c371c217d489638e0a21ff6WithResponse(ctx context.Context, body B908f3929c371c217d489638e0a21ff6JSONRequestBody, reqEditors ...RequestEditorFn) (*B908f3929c371c217d489638e0a21ff6Response, error) {
-	rsp, err := c.B908f3929c371c217d489638e0a21ff6(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseDragonflyWithResponse(ctx context.Context, body CreateDatabaseDragonflyJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseDragonflyResponse, error) {
+	rsp, err := c.CreateDatabaseDragonfly(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseB908f3929c371c217d489638e0a21ff6Response(rsp)
+	return ParseCreateDatabaseDragonflyResponse(rsp)
 }
 
-// N6bea521ddcd738dcbb5f3783a7308acfWithBodyWithResponse request with arbitrary body returning *N6bea521ddcd738dcbb5f3783a7308acfResponse
-func (c *ClientWithResponses) N6bea521ddcd738dcbb5f3783a7308acfWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N6bea521ddcd738dcbb5f3783a7308acfResponse, error) {
-	rsp, err := c.N6bea521ddcd738dcbb5f3783a7308acfWithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseKeydbWithBodyWithResponse request with arbitrary body returning *CreateDatabaseKeydbResponse
+func (c *ClientWithResponses) CreateDatabaseKeydbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseKeydbResponse, error) {
+	rsp, err := c.CreateDatabaseKeydbWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN6bea521ddcd738dcbb5f3783a7308acfResponse(rsp)
+	return ParseCreateDatabaseKeydbResponse(rsp)
 }
 
-func (c *ClientWithResponses) N6bea521ddcd738dcbb5f3783a7308acfWithResponse(ctx context.Context, body N6bea521ddcd738dcbb5f3783a7308acfJSONRequestBody, reqEditors ...RequestEditorFn) (*N6bea521ddcd738dcbb5f3783a7308acfResponse, error) {
-	rsp, err := c.N6bea521ddcd738dcbb5f3783a7308acf(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseKeydbWithResponse(ctx context.Context, body CreateDatabaseKeydbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseKeydbResponse, error) {
+	rsp, err := c.CreateDatabaseKeydb(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN6bea521ddcd738dcbb5f3783a7308acfResponse(rsp)
+	return ParseCreateDatabaseKeydbResponse(rsp)
 }
 
-// Fdba3de84d02519bb37599fea34b115dWithBodyWithResponse request with arbitrary body returning *Fdba3de84d02519bb37599fea34b115dResponse
-func (c *ClientWithResponses) Fdba3de84d02519bb37599fea34b115dWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Fdba3de84d02519bb37599fea34b115dResponse, error) {
-	rsp, err := c.Fdba3de84d02519bb37599fea34b115dWithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseMariadbWithBodyWithResponse request with arbitrary body returning *CreateDatabaseMariadbResponse
+func (c *ClientWithResponses) CreateDatabaseMariadbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMariadbResponse, error) {
+	rsp, err := c.CreateDatabaseMariadbWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseFdba3de84d02519bb37599fea34b115dResponse(rsp)
+	return ParseCreateDatabaseMariadbResponse(rsp)
 }
 
-func (c *ClientWithResponses) Fdba3de84d02519bb37599fea34b115dWithResponse(ctx context.Context, body Fdba3de84d02519bb37599fea34b115dJSONRequestBody, reqEditors ...RequestEditorFn) (*Fdba3de84d02519bb37599fea34b115dResponse, error) {
-	rsp, err := c.Fdba3de84d02519bb37599fea34b115d(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseMariadbWithResponse(ctx context.Context, body CreateDatabaseMariadbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMariadbResponse, error) {
+	rsp, err := c.CreateDatabaseMariadb(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseFdba3de84d02519bb37599fea34b115dResponse(rsp)
+	return ParseCreateDatabaseMariadbResponse(rsp)
 }
 
-// N0a1158cf759c4493cbb1e30024c60623WithBodyWithResponse request with arbitrary body returning *N0a1158cf759c4493cbb1e30024c60623Response
-func (c *ClientWithResponses) N0a1158cf759c4493cbb1e30024c60623WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N0a1158cf759c4493cbb1e30024c60623Response, error) {
-	rsp, err := c.N0a1158cf759c4493cbb1e30024c60623WithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseMongodbWithBodyWithResponse request with arbitrary body returning *CreateDatabaseMongodbResponse
+func (c *ClientWithResponses) CreateDatabaseMongodbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMongodbResponse, error) {
+	rsp, err := c.CreateDatabaseMongodbWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN0a1158cf759c4493cbb1e30024c60623Response(rsp)
+	return ParseCreateDatabaseMongodbResponse(rsp)
 }
 
-func (c *ClientWithResponses) N0a1158cf759c4493cbb1e30024c60623WithResponse(ctx context.Context, body N0a1158cf759c4493cbb1e30024c60623JSONRequestBody, reqEditors ...RequestEditorFn) (*N0a1158cf759c4493cbb1e30024c60623Response, error) {
-	rsp, err := c.N0a1158cf759c4493cbb1e30024c60623(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseMongodbWithResponse(ctx context.Context, body CreateDatabaseMongodbJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMongodbResponse, error) {
+	rsp, err := c.CreateDatabaseMongodb(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN0a1158cf759c4493cbb1e30024c60623Response(rsp)
+	return ParseCreateDatabaseMongodbResponse(rsp)
 }
 
-// N8f7f491ddc46a9fa065b4424512231cdWithBodyWithResponse request with arbitrary body returning *N8f7f491ddc46a9fa065b4424512231cdResponse
-func (c *ClientWithResponses) N8f7f491ddc46a9fa065b4424512231cdWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N8f7f491ddc46a9fa065b4424512231cdResponse, error) {
-	rsp, err := c.N8f7f491ddc46a9fa065b4424512231cdWithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabaseMysqlWithBodyWithResponse request with arbitrary body returning *CreateDatabaseMysqlResponse
+func (c *ClientWithResponses) CreateDatabaseMysqlWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseMysqlResponse, error) {
+	rsp, err := c.CreateDatabaseMysqlWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN8f7f491ddc46a9fa065b4424512231cdResponse(rsp)
+	return ParseCreateDatabaseMysqlResponse(rsp)
 }
 
-func (c *ClientWithResponses) N8f7f491ddc46a9fa065b4424512231cdWithResponse(ctx context.Context, body N8f7f491ddc46a9fa065b4424512231cdJSONRequestBody, reqEditors ...RequestEditorFn) (*N8f7f491ddc46a9fa065b4424512231cdResponse, error) {
-	rsp, err := c.N8f7f491ddc46a9fa065b4424512231cd(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseMysqlWithResponse(ctx context.Context, body CreateDatabaseMysqlJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseMysqlResponse, error) {
+	rsp, err := c.CreateDatabaseMysql(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN8f7f491ddc46a9fa065b4424512231cdResponse(rsp)
+	return ParseCreateDatabaseMysqlResponse(rsp)
 }
 
-// N4d352d13544ee2953fd48ad7b0651098WithBodyWithResponse request with arbitrary body returning *N4d352d13544ee2953fd48ad7b0651098Response
-func (c *ClientWithResponses) N4d352d13544ee2953fd48ad7b0651098WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N4d352d13544ee2953fd48ad7b0651098Response, error) {
-	rsp, err := c.N4d352d13544ee2953fd48ad7b0651098WithBody(ctx, contentType, body, reqEditors...)
+// CreateDatabasePostgresqlWithBodyWithResponse request with arbitrary body returning *CreateDatabasePostgresqlResponse
+func (c *ClientWithResponses) CreateDatabasePostgresqlWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabasePostgresqlResponse, error) {
+	rsp, err := c.CreateDatabasePostgresqlWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4d352d13544ee2953fd48ad7b0651098Response(rsp)
+	return ParseCreateDatabasePostgresqlResponse(rsp)
 }
 
-func (c *ClientWithResponses) N4d352d13544ee2953fd48ad7b0651098WithResponse(ctx context.Context, body N4d352d13544ee2953fd48ad7b0651098JSONRequestBody, reqEditors ...RequestEditorFn) (*N4d352d13544ee2953fd48ad7b0651098Response, error) {
-	rsp, err := c.N4d352d13544ee2953fd48ad7b0651098(ctx, body, reqEditors...)
+func (c *ClientWithResponses) CreateDatabasePostgresqlWithResponse(ctx context.Context, body CreateDatabasePostgresqlJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabasePostgresqlResponse, error) {
+	rsp, err := c.CreateDatabasePostgresql(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4d352d13544ee2953fd48ad7b0651098Response(rsp)
+	return ParseCreateDatabasePostgresqlResponse(rsp)
 }
 
-// N20610931b2bae8aba34eee68624ab673WithResponse request returning *N20610931b2bae8aba34eee68624ab673Response
-func (c *ClientWithResponses) N20610931b2bae8aba34eee68624ab673WithResponse(ctx context.Context, uuid string, params *N20610931b2bae8aba34eee68624ab673Params, reqEditors ...RequestEditorFn) (*N20610931b2bae8aba34eee68624ab673Response, error) {
-	rsp, err := c.N20610931b2bae8aba34eee68624ab673(ctx, uuid, params, reqEditors...)
+// CreateDatabaseRedisWithBodyWithResponse request with arbitrary body returning *CreateDatabaseRedisResponse
+func (c *ClientWithResponses) CreateDatabaseRedisWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseRedisResponse, error) {
+	rsp, err := c.CreateDatabaseRedisWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN20610931b2bae8aba34eee68624ab673Response(rsp)
+	return ParseCreateDatabaseRedisResponse(rsp)
 }
 
-// B49cb2d3e8f34c4e80cdffd8a201031dWithResponse request returning *B49cb2d3e8f34c4e80cdffd8a201031dResponse
-func (c *ClientWithResponses) B49cb2d3e8f34c4e80cdffd8a201031dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*B49cb2d3e8f34c4e80cdffd8a201031dResponse, error) {
-	rsp, err := c.B49cb2d3e8f34c4e80cdffd8a201031d(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CreateDatabaseRedisWithResponse(ctx context.Context, body CreateDatabaseRedisJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseRedisResponse, error) {
+	rsp, err := c.CreateDatabaseRedis(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseB49cb2d3e8f34c4e80cdffd8a201031dResponse(rsp)
+	return ParseCreateDatabaseRedisResponse(rsp)
 }
 
-// N5ba459ed390a721711a1708760e9de3bWithBodyWithResponse request with arbitrary body returning *N5ba459ed390a721711a1708760e9de3bResponse
-func (c *ClientWithResponses) N5ba459ed390a721711a1708760e9de3bWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N5ba459ed390a721711a1708760e9de3bResponse, error) {
-	rsp, err := c.N5ba459ed390a721711a1708760e9de3bWithBody(ctx, uuid, contentType, body, reqEditors...)
+// DeleteDatabaseByUuidWithResponse request returning *DeleteDatabaseByUuidResponse
+func (c *ClientWithResponses) DeleteDatabaseByUuidWithResponse(ctx context.Context, uuid string, params *DeleteDatabaseByUuidParams, reqEditors ...RequestEditorFn) (*DeleteDatabaseByUuidResponse, error) {
+	rsp, err := c.DeleteDatabaseByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN5ba459ed390a721711a1708760e9de3bResponse(rsp)
+	return ParseDeleteDatabaseByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N5ba459ed390a721711a1708760e9de3bWithResponse(ctx context.Context, uuid string, body N5ba459ed390a721711a1708760e9de3bJSONRequestBody, reqEditors ...RequestEditorFn) (*N5ba459ed390a721711a1708760e9de3bResponse, error) {
-	rsp, err := c.N5ba459ed390a721711a1708760e9de3b(ctx, uuid, body, reqEditors...)
+// GetDatabaseByUuidWithResponse request returning *GetDatabaseByUuidResponse
+func (c *ClientWithResponses) GetDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDatabaseByUuidResponse, error) {
+	rsp, err := c.GetDatabaseByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN5ba459ed390a721711a1708760e9de3bResponse(rsp)
+	return ParseGetDatabaseByUuidResponse(rsp)
 }
 
-// N04c7a5e4752b4a00036addb433f3f218WithResponse request returning *N04c7a5e4752b4a00036addb433f3f218Response
-func (c *ClientWithResponses) N04c7a5e4752b4a00036addb433f3f218WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N04c7a5e4752b4a00036addb433f3f218Response, error) {
-	rsp, err := c.N04c7a5e4752b4a00036addb433f3f218(ctx, uuid, reqEditors...)
+// UpdateDatabaseByUuidWithBodyWithResponse request with arbitrary body returning *UpdateDatabaseByUuidResponse
+func (c *ClientWithResponses) UpdateDatabaseByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseByUuidResponse, error) {
+	rsp, err := c.UpdateDatabaseByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN04c7a5e4752b4a00036addb433f3f218Response(rsp)
+	return ParseUpdateDatabaseByUuidResponse(rsp)
 }
 
-// N4c6eb21e734d411e2b3388578761123dWithResponse request returning *N4c6eb21e734d411e2b3388578761123dResponse
-func (c *ClientWithResponses) N4c6eb21e734d411e2b3388578761123dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N4c6eb21e734d411e2b3388578761123dResponse, error) {
-	rsp, err := c.N4c6eb21e734d411e2b3388578761123d(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) UpdateDatabaseByUuidWithResponse(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseByUuidResponse, error) {
+	rsp, err := c.UpdateDatabaseByUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN4c6eb21e734d411e2b3388578761123dResponse(rsp)
+	return ParseUpdateDatabaseByUuidResponse(rsp)
 }
 
-// Cb6d983c2679aff841c7501ce612a372WithResponse request returning *Cb6d983c2679aff841c7501ce612a372Response
-func (c *ClientWithResponses) Cb6d983c2679aff841c7501ce612a372WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Cb6d983c2679aff841c7501ce612a372Response, error) {
-	rsp, err := c.Cb6d983c2679aff841c7501ce612a372(ctx, uuid, reqEditors...)
+// RestartDatabaseByUuidWithResponse request returning *RestartDatabaseByUuidResponse
+func (c *ClientWithResponses) RestartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartDatabaseByUuidResponse, error) {
+	rsp, err := c.RestartDatabaseByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCb6d983c2679aff841c7501ce612a372Response(rsp)
+	return ParseRestartDatabaseByUuidResponse(rsp)
 }
 
-// N700eb6e51f4c9e86d722f600c65ed1d4WithResponse request returning *N700eb6e51f4c9e86d722f600c65ed1d4Response
-func (c *ClientWithResponses) N700eb6e51f4c9e86d722f600c65ed1d4WithResponse(ctx context.Context, params *N700eb6e51f4c9e86d722f600c65ed1d4Params, reqEditors ...RequestEditorFn) (*N700eb6e51f4c9e86d722f600c65ed1d4Response, error) {
-	rsp, err := c.N700eb6e51f4c9e86d722f600c65ed1d4(ctx, params, reqEditors...)
+// StartDatabaseByUuidWithResponse request returning *StartDatabaseByUuidResponse
+func (c *ClientWithResponses) StartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StartDatabaseByUuidResponse, error) {
+	rsp, err := c.StartDatabaseByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN700eb6e51f4c9e86d722f600c65ed1d4Response(rsp)
+	return ParseStartDatabaseByUuidResponse(rsp)
 }
 
-// A2c05736269191ad0d99cadfd4708986WithResponse request returning *A2c05736269191ad0d99cadfd4708986Response
-func (c *ClientWithResponses) A2c05736269191ad0d99cadfd4708986WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*A2c05736269191ad0d99cadfd4708986Response, error) {
-	rsp, err := c.A2c05736269191ad0d99cadfd4708986(ctx, reqEditors...)
+// StopDatabaseByUuidWithResponse request returning *StopDatabaseByUuidResponse
+func (c *ClientWithResponses) StopDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopDatabaseByUuidResponse, error) {
+	rsp, err := c.StopDatabaseByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseA2c05736269191ad0d99cadfd4708986Response(rsp)
+	return ParseStopDatabaseByUuidResponse(rsp)
 }
 
-// Ccf9856174c115a1430d952ccbd36aeaWithResponse request returning *Ccf9856174c115a1430d952ccbd36aeaResponse
-func (c *ClientWithResponses) Ccf9856174c115a1430d952ccbd36aeaWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Ccf9856174c115a1430d952ccbd36aeaResponse, error) {
-	rsp, err := c.Ccf9856174c115a1430d952ccbd36aea(ctx, uuid, reqEditors...)
+// DeployByTagOrUuidWithResponse request returning *DeployByTagOrUuidResponse
+func (c *ClientWithResponses) DeployByTagOrUuidWithResponse(ctx context.Context, params *DeployByTagOrUuidParams, reqEditors ...RequestEditorFn) (*DeployByTagOrUuidResponse, error) {
+	rsp, err := c.DeployByTagOrUuid(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCcf9856174c115a1430d952ccbd36aeaResponse(rsp)
+	return ParseDeployByTagOrUuidResponse(rsp)
 }
 
-// N50e2486a2d196a996b24a284a283bcdbWithResponse request returning *N50e2486a2d196a996b24a284a283bcdbResponse
-func (c *ClientWithResponses) N50e2486a2d196a996b24a284a283bcdbWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N50e2486a2d196a996b24a284a283bcdbResponse, error) {
-	rsp, err := c.N50e2486a2d196a996b24a284a283bcdb(ctx, reqEditors...)
+// ListDeploymentsWithResponse request returning *ListDeploymentsResponse
+func (c *ClientWithResponses) ListDeploymentsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDeploymentsResponse, error) {
+	rsp, err := c.ListDeployments(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN50e2486a2d196a996b24a284a283bcdbResponse(rsp)
+	return ParseListDeploymentsResponse(rsp)
 }
 
-// N595019bae03d08277def667609779ff3WithResponse request returning *N595019bae03d08277def667609779ff3Response
-func (c *ClientWithResponses) N595019bae03d08277def667609779ff3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N595019bae03d08277def667609779ff3Response, error) {
-	rsp, err := c.N595019bae03d08277def667609779ff3(ctx, reqEditors...)
+// GetDeploymentByUuidWithResponse request returning *GetDeploymentByUuidResponse
+func (c *ClientWithResponses) GetDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDeploymentByUuidResponse, error) {
+	rsp, err := c.GetDeploymentByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN595019bae03d08277def667609779ff3Response(rsp)
+	return ParseGetDeploymentByUuidResponse(rsp)
 }
 
-// N64db893135e686704bb88c3c238022c1WithResponse request returning *N64db893135e686704bb88c3c238022c1Response
-func (c *ClientWithResponses) N64db893135e686704bb88c3c238022c1WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N64db893135e686704bb88c3c238022c1Response, error) {
-	rsp, err := c.N64db893135e686704bb88c3c238022c1(ctx, reqEditors...)
+// DisableApiWithResponse request returning *DisableApiResponse
+func (c *ClientWithResponses) DisableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DisableApiResponse, error) {
+	rsp, err := c.DisableApi(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN64db893135e686704bb88c3c238022c1Response(rsp)
+	return ParseDisableApiResponse(rsp)
 }
 
-// N762788f00f2dabb981df9adbc948d3f6WithResponse request returning *N762788f00f2dabb981df9adbc948d3f6Response
-func (c *ClientWithResponses) N762788f00f2dabb981df9adbc948d3f6WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N762788f00f2dabb981df9adbc948d3f6Response, error) {
-	rsp, err := c.N762788f00f2dabb981df9adbc948d3f6(ctx, reqEditors...)
+// EnableApiWithResponse request returning *EnableApiResponse
+func (c *ClientWithResponses) EnableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EnableApiResponse, error) {
+	rsp, err := c.EnableApi(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN762788f00f2dabb981df9adbc948d3f6Response(rsp)
+	return ParseEnableApiResponse(rsp)
 }
 
-// Cf067eb7cf18216cda3239329a2eeadbWithBodyWithResponse request with arbitrary body returning *Cf067eb7cf18216cda3239329a2eeadbResponse
-func (c *ClientWithResponses) Cf067eb7cf18216cda3239329a2eeadbWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Cf067eb7cf18216cda3239329a2eeadbResponse, error) {
-	rsp, err := c.Cf067eb7cf18216cda3239329a2eeadbWithBody(ctx, contentType, body, reqEditors...)
+// HealthcheckWithResponse request returning *HealthcheckResponse
+func (c *ClientWithResponses) HealthcheckWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*HealthcheckResponse, error) {
+	rsp, err := c.Healthcheck(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCf067eb7cf18216cda3239329a2eeadbResponse(rsp)
+	return ParseHealthcheckResponse(rsp)
 }
 
-func (c *ClientWithResponses) Cf067eb7cf18216cda3239329a2eeadbWithResponse(ctx context.Context, body Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody, reqEditors ...RequestEditorFn) (*Cf067eb7cf18216cda3239329a2eeadbResponse, error) {
-	rsp, err := c.Cf067eb7cf18216cda3239329a2eeadb(ctx, body, reqEditors...)
+// ListProjectsWithResponse request returning *ListProjectsResponse
+func (c *ClientWithResponses) ListProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListProjectsResponse, error) {
+	rsp, err := c.ListProjects(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCf067eb7cf18216cda3239329a2eeadbResponse(rsp)
+	return ParseListProjectsResponse(rsp)
 }
 
-// F668a936f505b4401948c74b6a663029WithResponse request returning *F668a936f505b4401948c74b6a663029Response
-func (c *ClientWithResponses) F668a936f505b4401948c74b6a663029WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*F668a936f505b4401948c74b6a663029Response, error) {
-	rsp, err := c.F668a936f505b4401948c74b6a663029(ctx, uuid, reqEditors...)
+// CreateProjectWithBodyWithResponse request with arbitrary body returning *CreateProjectResponse
+func (c *ClientWithResponses) CreateProjectWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProjectResponse, error) {
+	rsp, err := c.CreateProjectWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseF668a936f505b4401948c74b6a663029Response(rsp)
+	return ParseCreateProjectResponse(rsp)
 }
 
-// N63bf8b6a68fbb757f09ab519331f6298WithResponse request returning *N63bf8b6a68fbb757f09ab519331f6298Response
-func (c *ClientWithResponses) N63bf8b6a68fbb757f09ab519331f6298WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N63bf8b6a68fbb757f09ab519331f6298Response, error) {
-	rsp, err := c.N63bf8b6a68fbb757f09ab519331f6298(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CreateProjectWithResponse(ctx context.Context, body CreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProjectResponse, error) {
+	rsp, err := c.CreateProject(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN63bf8b6a68fbb757f09ab519331f6298Response(rsp)
+	return ParseCreateProjectResponse(rsp)
 }
 
-// N2db343bd6fc14c658cb51a2b73b2f842WithBodyWithResponse request with arbitrary body returning *N2db343bd6fc14c658cb51a2b73b2f842Response
-func (c *ClientWithResponses) N2db343bd6fc14c658cb51a2b73b2f842WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N2db343bd6fc14c658cb51a2b73b2f842Response, error) {
-	rsp, err := c.N2db343bd6fc14c658cb51a2b73b2f842WithBody(ctx, uuid, contentType, body, reqEditors...)
+// DeleteProjectByUuidWithResponse request returning *DeleteProjectByUuidResponse
+func (c *ClientWithResponses) DeleteProjectByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteProjectByUuidResponse, error) {
+	rsp, err := c.DeleteProjectByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN2db343bd6fc14c658cb51a2b73b2f842Response(rsp)
+	return ParseDeleteProjectByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N2db343bd6fc14c658cb51a2b73b2f842WithResponse(ctx context.Context, uuid string, body N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody, reqEditors ...RequestEditorFn) (*N2db343bd6fc14c658cb51a2b73b2f842Response, error) {
-	rsp, err := c.N2db343bd6fc14c658cb51a2b73b2f842(ctx, uuid, body, reqEditors...)
+// GetProjectByUuidWithResponse request returning *GetProjectByUuidResponse
+func (c *ClientWithResponses) GetProjectByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetProjectByUuidResponse, error) {
+	rsp, err := c.GetProjectByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN2db343bd6fc14c658cb51a2b73b2f842Response(rsp)
+	return ParseGetProjectByUuidResponse(rsp)
 }
 
-// N7e44845dce5aa47ed7b0daf5595ad2e1WithResponse request returning *N7e44845dce5aa47ed7b0daf5595ad2e1Response
-func (c *ClientWithResponses) N7e44845dce5aa47ed7b0daf5595ad2e1WithResponse(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*N7e44845dce5aa47ed7b0daf5595ad2e1Response, error) {
-	rsp, err := c.N7e44845dce5aa47ed7b0daf5595ad2e1(ctx, uuid, environmentName, reqEditors...)
+// UpdateProjectByUuidWithBodyWithResponse request with arbitrary body returning *UpdateProjectByUuidResponse
+func (c *ClientWithResponses) UpdateProjectByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error) {
+	rsp, err := c.UpdateProjectByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN7e44845dce5aa47ed7b0daf5595ad2e1Response(rsp)
+	return ParseUpdateProjectByUuidResponse(rsp)
 }
 
-// C399903694eb1314596832e49f7c66d7WithResponse request returning *C399903694eb1314596832e49f7c66d7Response
-func (c *ClientWithResponses) C399903694eb1314596832e49f7c66d7WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*C399903694eb1314596832e49f7c66d7Response, error) {
-	rsp, err := c.C399903694eb1314596832e49f7c66d7(ctx, reqEditors...)
+func (c *ClientWithResponses) UpdateProjectByUuidWithResponse(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error) {
+	rsp, err := c.UpdateProjectByUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseC399903694eb1314596832e49f7c66d7Response(rsp)
+	return ParseUpdateProjectByUuidResponse(rsp)
 }
 
-// N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse request returning *N8a5d8d3ccbbcef54ed0e913a27faea9dResponse
-func (c *ClientWithResponses) N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N8a5d8d3ccbbcef54ed0e913a27faea9dResponse, error) {
-	rsp, err := c.N8a5d8d3ccbbcef54ed0e913a27faea9d(ctx, reqEditors...)
+// GetEnvironmentByNameWithResponse request returning *GetEnvironmentByNameResponse
+func (c *ClientWithResponses) GetEnvironmentByNameWithResponse(ctx context.Context, uuid string, environmentName string, reqEditors ...RequestEditorFn) (*GetEnvironmentByNameResponse, error) {
+	rsp, err := c.GetEnvironmentByName(ctx, uuid, environmentName, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN8a5d8d3ccbbcef54ed0e913a27faea9dResponse(rsp)
+	return ParseGetEnvironmentByNameResponse(rsp)
 }
 
-// Eb4780acaa990c594cdbe8ffa80b4fb0WithBodyWithResponse request with arbitrary body returning *Eb4780acaa990c594cdbe8ffa80b4fb0Response
-func (c *ClientWithResponses) Eb4780acaa990c594cdbe8ffa80b4fb0WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Eb4780acaa990c594cdbe8ffa80b4fb0Response, error) {
-	rsp, err := c.Eb4780acaa990c594cdbe8ffa80b4fb0WithBody(ctx, contentType, body, reqEditors...)
+// ListResourcesWithResponse request returning *ListResourcesResponse
+func (c *ClientWithResponses) ListResourcesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListResourcesResponse, error) {
+	rsp, err := c.ListResources(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEb4780acaa990c594cdbe8ffa80b4fb0Response(rsp)
+	return ParseListResourcesResponse(rsp)
 }
 
-func (c *ClientWithResponses) Eb4780acaa990c594cdbe8ffa80b4fb0WithResponse(ctx context.Context, body Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody, reqEditors ...RequestEditorFn) (*Eb4780acaa990c594cdbe8ffa80b4fb0Response, error) {
-	rsp, err := c.Eb4780acaa990c594cdbe8ffa80b4fb0(ctx, body, reqEditors...)
+// ListPrivateKeysWithResponse request returning *ListPrivateKeysResponse
+func (c *ClientWithResponses) ListPrivateKeysWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListPrivateKeysResponse, error) {
+	rsp, err := c.ListPrivateKeys(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEb4780acaa990c594cdbe8ffa80b4fb0Response(rsp)
+	return ParseListPrivateKeysResponse(rsp)
 }
 
-// N8faa0bb399142f0084dfc3e003c42cf6WithResponse request returning *N8faa0bb399142f0084dfc3e003c42cf6Response
-func (c *ClientWithResponses) N8faa0bb399142f0084dfc3e003c42cf6WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N8faa0bb399142f0084dfc3e003c42cf6Response, error) {
-	rsp, err := c.N8faa0bb399142f0084dfc3e003c42cf6(ctx, uuid, reqEditors...)
+// CreatePrivateKeyWithBodyWithResponse request with arbitrary body returning *CreatePrivateKeyResponse
+func (c *ClientWithResponses) CreatePrivateKeyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePrivateKeyResponse, error) {
+	rsp, err := c.CreatePrivateKeyWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN8faa0bb399142f0084dfc3e003c42cf6Response(rsp)
+	return ParseCreatePrivateKeyResponse(rsp)
 }
 
-// N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse request returning *N2f743a85eb65d5ddb8cd5b362bb3d26aResponse
-func (c *ClientWithResponses) N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N2f743a85eb65d5ddb8cd5b362bb3d26aResponse, error) {
-	rsp, err := c.N2f743a85eb65d5ddb8cd5b362bb3d26a(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CreatePrivateKeyWithResponse(ctx context.Context, body CreatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePrivateKeyResponse, error) {
+	rsp, err := c.CreatePrivateKey(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN2f743a85eb65d5ddb8cd5b362bb3d26aResponse(rsp)
+	return ParseCreatePrivateKeyResponse(rsp)
 }
 
-// N9feff464b78c24957ed3173324c9cd14WithBodyWithResponse request with arbitrary body returning *N9feff464b78c24957ed3173324c9cd14Response
-func (c *ClientWithResponses) N9feff464b78c24957ed3173324c9cd14WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N9feff464b78c24957ed3173324c9cd14Response, error) {
-	rsp, err := c.N9feff464b78c24957ed3173324c9cd14WithBody(ctx, uuid, contentType, body, reqEditors...)
+// DeletePrivateKeyByUuidWithResponse request returning *DeletePrivateKeyByUuidResponse
+func (c *ClientWithResponses) DeletePrivateKeyByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeletePrivateKeyByUuidResponse, error) {
+	rsp, err := c.DeletePrivateKeyByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN9feff464b78c24957ed3173324c9cd14Response(rsp)
+	return ParseDeletePrivateKeyByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N9feff464b78c24957ed3173324c9cd14WithResponse(ctx context.Context, uuid string, body N9feff464b78c24957ed3173324c9cd14JSONRequestBody, reqEditors ...RequestEditorFn) (*N9feff464b78c24957ed3173324c9cd14Response, error) {
-	rsp, err := c.N9feff464b78c24957ed3173324c9cd14(ctx, uuid, body, reqEditors...)
+// GetPrivateKeyByUuidWithResponse request returning *GetPrivateKeyByUuidResponse
+func (c *ClientWithResponses) GetPrivateKeyByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetPrivateKeyByUuidResponse, error) {
+	rsp, err := c.GetPrivateKeyByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN9feff464b78c24957ed3173324c9cd14Response(rsp)
+	return ParseGetPrivateKeyByUuidResponse(rsp)
 }
 
-// N787448df856cefd2d9a313566be30d34WithResponse request returning *N787448df856cefd2d9a313566be30d34Response
-func (c *ClientWithResponses) N787448df856cefd2d9a313566be30d34WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N787448df856cefd2d9a313566be30d34Response, error) {
-	rsp, err := c.N787448df856cefd2d9a313566be30d34(ctx, reqEditors...)
+// UpdatePrivateKeyWithBodyWithResponse request with arbitrary body returning *UpdatePrivateKeyResponse
+func (c *ClientWithResponses) UpdatePrivateKeyWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatePrivateKeyResponse, error) {
+	rsp, err := c.UpdatePrivateKeyWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN787448df856cefd2d9a313566be30d34Response(rsp)
+	return ParseUpdatePrivateKeyResponse(rsp)
 }
 
-// Fa44b42490379e428ba5b8747716a8d9WithBodyWithResponse request with arbitrary body returning *Fa44b42490379e428ba5b8747716a8d9Response
-func (c *ClientWithResponses) Fa44b42490379e428ba5b8747716a8d9WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Fa44b42490379e428ba5b8747716a8d9Response, error) {
-	rsp, err := c.Fa44b42490379e428ba5b8747716a8d9WithBody(ctx, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdatePrivateKeyWithResponse(ctx context.Context, uuid string, body UpdatePrivateKeyJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatePrivateKeyResponse, error) {
+	rsp, err := c.UpdatePrivateKey(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseFa44b42490379e428ba5b8747716a8d9Response(rsp)
+	return ParseUpdatePrivateKeyResponse(rsp)
 }
 
-func (c *ClientWithResponses) Fa44b42490379e428ba5b8747716a8d9WithResponse(ctx context.Context, body Fa44b42490379e428ba5b8747716a8d9JSONRequestBody, reqEditors ...RequestEditorFn) (*Fa44b42490379e428ba5b8747716a8d9Response, error) {
-	rsp, err := c.Fa44b42490379e428ba5b8747716a8d9(ctx, body, reqEditors...)
+// ListServersWithResponse request returning *ListServersResponse
+func (c *ClientWithResponses) ListServersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListServersResponse, error) {
+	rsp, err := c.ListServers(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseFa44b42490379e428ba5b8747716a8d9Response(rsp)
+	return ParseListServersResponse(rsp)
 }
 
-// N0231fe0134f0306b21f006ce51b0a3dcWithResponse request returning *N0231fe0134f0306b21f006ce51b0a3dcResponse
-func (c *ClientWithResponses) N0231fe0134f0306b21f006ce51b0a3dcWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N0231fe0134f0306b21f006ce51b0a3dcResponse, error) {
-	rsp, err := c.N0231fe0134f0306b21f006ce51b0a3dc(ctx, uuid, reqEditors...)
+// CreateServerWithBodyWithResponse request with arbitrary body returning *CreateServerResponse
+func (c *ClientWithResponses) CreateServerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServerResponse, error) {
+	rsp, err := c.CreateServerWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN0231fe0134f0306b21f006ce51b0a3dcResponse(rsp)
+	return ParseCreateServerResponse(rsp)
 }
 
-// N5baf04bddb8302c7e07f5b4c41aad10cWithResponse request returning *N5baf04bddb8302c7e07f5b4c41aad10cResponse
-func (c *ClientWithResponses) N5baf04bddb8302c7e07f5b4c41aad10cWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N5baf04bddb8302c7e07f5b4c41aad10cResponse, error) {
-	rsp, err := c.N5baf04bddb8302c7e07f5b4c41aad10c(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CreateServerWithResponse(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServerResponse, error) {
+	rsp, err := c.CreateServer(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN5baf04bddb8302c7e07f5b4c41aad10cResponse(rsp)
+	return ParseCreateServerResponse(rsp)
 }
 
-// N41bbdaf79eb1938592494fc5494442a0WithBodyWithResponse request with arbitrary body returning *N41bbdaf79eb1938592494fc5494442a0Response
-func (c *ClientWithResponses) N41bbdaf79eb1938592494fc5494442a0WithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N41bbdaf79eb1938592494fc5494442a0Response, error) {
-	rsp, err := c.N41bbdaf79eb1938592494fc5494442a0WithBody(ctx, uuid, contentType, body, reqEditors...)
+// DeleteServerByUuidWithResponse request returning *DeleteServerByUuidResponse
+func (c *ClientWithResponses) DeleteServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteServerByUuidResponse, error) {
+	rsp, err := c.DeleteServerByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN41bbdaf79eb1938592494fc5494442a0Response(rsp)
+	return ParseDeleteServerByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N41bbdaf79eb1938592494fc5494442a0WithResponse(ctx context.Context, uuid string, body N41bbdaf79eb1938592494fc5494442a0JSONRequestBody, reqEditors ...RequestEditorFn) (*N41bbdaf79eb1938592494fc5494442a0Response, error) {
-	rsp, err := c.N41bbdaf79eb1938592494fc5494442a0(ctx, uuid, body, reqEditors...)
+// GetServerByUuidWithResponse request returning *GetServerByUuidResponse
+func (c *ClientWithResponses) GetServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServerByUuidResponse, error) {
+	rsp, err := c.GetServerByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN41bbdaf79eb1938592494fc5494442a0Response(rsp)
+	return ParseGetServerByUuidResponse(rsp)
 }
 
-// N1ee227755be848d572f412272f53dd93WithResponse request returning *N1ee227755be848d572f412272f53dd93Response
-func (c *ClientWithResponses) N1ee227755be848d572f412272f53dd93WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N1ee227755be848d572f412272f53dd93Response, error) {
-	rsp, err := c.N1ee227755be848d572f412272f53dd93(ctx, uuid, reqEditors...)
+// UpdateServerByUuidWithBodyWithResponse request with arbitrary body returning *UpdateServerByUuidResponse
+func (c *ClientWithResponses) UpdateServerByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServerByUuidResponse, error) {
+	rsp, err := c.UpdateServerByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN1ee227755be848d572f412272f53dd93Response(rsp)
+	return ParseUpdateServerByUuidResponse(rsp)
 }
 
-// Cef26c059941b44fbd8de3a7a58c10a5WithResponse request returning *Cef26c059941b44fbd8de3a7a58c10a5Response
-func (c *ClientWithResponses) Cef26c059941b44fbd8de3a7a58c10a5WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*Cef26c059941b44fbd8de3a7a58c10a5Response, error) {
-	rsp, err := c.Cef26c059941b44fbd8de3a7a58c10a5(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) UpdateServerByUuidWithResponse(ctx context.Context, uuid string, body UpdateServerByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServerByUuidResponse, error) {
+	rsp, err := c.UpdateServerByUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCef26c059941b44fbd8de3a7a58c10a5Response(rsp)
+	return ParseUpdateServerByUuidResponse(rsp)
 }
 
-// A543a12ef2cbc7a3dd22c3dbe6cbee89WithResponse request returning *A543a12ef2cbc7a3dd22c3dbe6cbee89Response
-func (c *ClientWithResponses) A543a12ef2cbc7a3dd22c3dbe6cbee89WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*A543a12ef2cbc7a3dd22c3dbe6cbee89Response, error) {
-	rsp, err := c.A543a12ef2cbc7a3dd22c3dbe6cbee89(ctx, uuid, reqEditors...)
+// GetDomainsByServerUuidWithResponse request returning *GetDomainsByServerUuidResponse
+func (c *ClientWithResponses) GetDomainsByServerUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDomainsByServerUuidResponse, error) {
+	rsp, err := c.GetDomainsByServerUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseA543a12ef2cbc7a3dd22c3dbe6cbee89Response(rsp)
+	return ParseGetDomainsByServerUuidResponse(rsp)
 }
 
-// N5d014ac25d33391b8f4c2316060ba452WithResponse request returning *N5d014ac25d33391b8f4c2316060ba452Response
-func (c *ClientWithResponses) N5d014ac25d33391b8f4c2316060ba452WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N5d014ac25d33391b8f4c2316060ba452Response, error) {
-	rsp, err := c.N5d014ac25d33391b8f4c2316060ba452(ctx, reqEditors...)
+// GetResourcesByServerUuidWithResponse request returning *GetResourcesByServerUuidResponse
+func (c *ClientWithResponses) GetResourcesByServerUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetResourcesByServerUuidResponse, error) {
+	rsp, err := c.GetResourcesByServerUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN5d014ac25d33391b8f4c2316060ba452Response(rsp)
+	return ParseGetResourcesByServerUuidResponse(rsp)
 }
 
-// N3d6cbfb54d919b53ba3984a113e837d7WithBodyWithResponse request with arbitrary body returning *N3d6cbfb54d919b53ba3984a113e837d7Response
-func (c *ClientWithResponses) N3d6cbfb54d919b53ba3984a113e837d7WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*N3d6cbfb54d919b53ba3984a113e837d7Response, error) {
-	rsp, err := c.N3d6cbfb54d919b53ba3984a113e837d7WithBody(ctx, contentType, body, reqEditors...)
+// ValidateServerByUuidWithResponse request returning *ValidateServerByUuidResponse
+func (c *ClientWithResponses) ValidateServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ValidateServerByUuidResponse, error) {
+	rsp, err := c.ValidateServerByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3d6cbfb54d919b53ba3984a113e837d7Response(rsp)
+	return ParseValidateServerByUuidResponse(rsp)
 }
 
-func (c *ClientWithResponses) N3d6cbfb54d919b53ba3984a113e837d7WithResponse(ctx context.Context, body N3d6cbfb54d919b53ba3984a113e837d7JSONRequestBody, reqEditors ...RequestEditorFn) (*N3d6cbfb54d919b53ba3984a113e837d7Response, error) {
-	rsp, err := c.N3d6cbfb54d919b53ba3984a113e837d7(ctx, body, reqEditors...)
+// ListServicesWithResponse request returning *ListServicesResponse
+func (c *ClientWithResponses) ListServicesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListServicesResponse, error) {
+	rsp, err := c.ListServices(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN3d6cbfb54d919b53ba3984a113e837d7Response(rsp)
+	return ParseListServicesResponse(rsp)
 }
 
-// N6e1a61e4fddaa9d95bb9fc66dfaf0442WithResponse request returning *N6e1a61e4fddaa9d95bb9fc66dfaf0442Response
-func (c *ClientWithResponses) N6e1a61e4fddaa9d95bb9fc66dfaf0442WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N6e1a61e4fddaa9d95bb9fc66dfaf0442Response, error) {
-	rsp, err := c.N6e1a61e4fddaa9d95bb9fc66dfaf0442(ctx, uuid, reqEditors...)
+// CreateServiceWithBodyWithResponse request with arbitrary body returning *CreateServiceResponse
+func (c *ClientWithResponses) CreateServiceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error) {
+	rsp, err := c.CreateServiceWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN6e1a61e4fddaa9d95bb9fc66dfaf0442Response(rsp)
+	return ParseCreateServiceResponse(rsp)
 }
 
-// N895d39ee2cb3994285de57256c2d428dWithResponse request returning *N895d39ee2cb3994285de57256c2d428dResponse
-func (c *ClientWithResponses) N895d39ee2cb3994285de57256c2d428dWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N895d39ee2cb3994285de57256c2d428dResponse, error) {
-	rsp, err := c.N895d39ee2cb3994285de57256c2d428d(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CreateServiceWithResponse(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error) {
+	rsp, err := c.CreateService(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN895d39ee2cb3994285de57256c2d428dResponse(rsp)
+	return ParseCreateServiceResponse(rsp)
 }
 
-// N836645faa615b75052759dae78639469WithResponse request returning *N836645faa615b75052759dae78639469Response
-func (c *ClientWithResponses) N836645faa615b75052759dae78639469WithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N836645faa615b75052759dae78639469Response, error) {
-	rsp, err := c.N836645faa615b75052759dae78639469(ctx, uuid, reqEditors...)
+// DeleteServiceByUuidWithResponse request returning *DeleteServiceByUuidResponse
+func (c *ClientWithResponses) DeleteServiceByUuidWithResponse(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*DeleteServiceByUuidResponse, error) {
+	rsp, err := c.DeleteServiceByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN836645faa615b75052759dae78639469Response(rsp)
+	return ParseDeleteServiceByUuidResponse(rsp)
 }
 
-// D2ddd9c028d123fbdec830dc4b25b4cbWithResponse request returning *D2ddd9c028d123fbdec830dc4b25b4cbResponse
-func (c *ClientWithResponses) D2ddd9c028d123fbdec830dc4b25b4cbWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*D2ddd9c028d123fbdec830dc4b25b4cbResponse, error) {
-	rsp, err := c.D2ddd9c028d123fbdec830dc4b25b4cb(ctx, uuid, reqEditors...)
+// GetServiceByUuidWithResponse request returning *GetServiceByUuidResponse
+func (c *ClientWithResponses) GetServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServiceByUuidResponse, error) {
+	rsp, err := c.GetServiceByUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseD2ddd9c028d123fbdec830dc4b25b4cbResponse(rsp)
+	return ParseGetServiceByUuidResponse(rsp)
 }
 
-// N87399d34758ce16830740c68626614dbWithResponse request returning *N87399d34758ce16830740c68626614dbResponse
-func (c *ClientWithResponses) N87399d34758ce16830740c68626614dbWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*N87399d34758ce16830740c68626614dbResponse, error) {
-	rsp, err := c.N87399d34758ce16830740c68626614db(ctx, uuid, reqEditors...)
+// ListEnvsByServiceUuidWithResponse request returning *ListEnvsByServiceUuidResponse
+func (c *ClientWithResponses) ListEnvsByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListEnvsByServiceUuidResponse, error) {
+	rsp, err := c.ListEnvsByServiceUuid(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN87399d34758ce16830740c68626614dbResponse(rsp)
+	return ParseListEnvsByServiceUuidResponse(rsp)
 }
 
-// F9c530b5b25df9601cb87d6a58646f0aWithResponse request returning *F9c530b5b25df9601cb87d6a58646f0aResponse
-func (c *ClientWithResponses) F9c530b5b25df9601cb87d6a58646f0aWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*F9c530b5b25df9601cb87d6a58646f0aResponse, error) {
-	rsp, err := c.F9c530b5b25df9601cb87d6a58646f0a(ctx, reqEditors...)
+// UpdateEnvByServiceUuidWithBodyWithResponse request with arbitrary body returning *UpdateEnvByServiceUuidResponse
+func (c *ClientWithResponses) UpdateEnvByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvByServiceUuidResponse, error) {
+	rsp, err := c.UpdateEnvByServiceUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseF9c530b5b25df9601cb87d6a58646f0aResponse(rsp)
+	return ParseUpdateEnvByServiceUuidResponse(rsp)
 }
 
-// N6a4ec9fed1aad7b0b38356c47d7ac509WithResponse request returning *N6a4ec9fed1aad7b0b38356c47d7ac509Response
-func (c *ClientWithResponses) N6a4ec9fed1aad7b0b38356c47d7ac509WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N6a4ec9fed1aad7b0b38356c47d7ac509Response, error) {
-	rsp, err := c.N6a4ec9fed1aad7b0b38356c47d7ac509(ctx, reqEditors...)
+func (c *ClientWithResponses) UpdateEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvByServiceUuidResponse, error) {
+	rsp, err := c.UpdateEnvByServiceUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN6a4ec9fed1aad7b0b38356c47d7ac509Response(rsp)
+	return ParseUpdateEnvByServiceUuidResponse(rsp)
 }
 
-// N97e636a5796dbe71afb0bbcf1eec6e41WithResponse request returning *N97e636a5796dbe71afb0bbcf1eec6e41Response
-func (c *ClientWithResponses) N97e636a5796dbe71afb0bbcf1eec6e41WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N97e636a5796dbe71afb0bbcf1eec6e41Response, error) {
-	rsp, err := c.N97e636a5796dbe71afb0bbcf1eec6e41(ctx, reqEditors...)
+// CreateEnvByServiceUuidWithBodyWithResponse request with arbitrary body returning *CreateEnvByServiceUuidResponse
+func (c *ClientWithResponses) CreateEnvByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvByServiceUuidResponse, error) {
+	rsp, err := c.CreateEnvByServiceUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN97e636a5796dbe71afb0bbcf1eec6e41Response(rsp)
+	return ParseCreateEnvByServiceUuidResponse(rsp)
 }
 
-// Ac57ff546c002032cef44602c46a4e76WithResponse request returning *Ac57ff546c002032cef44602c46a4e76Response
-func (c *ClientWithResponses) Ac57ff546c002032cef44602c46a4e76WithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*Ac57ff546c002032cef44602c46a4e76Response, error) {
-	rsp, err := c.Ac57ff546c002032cef44602c46a4e76(ctx, id, reqEditors...)
+func (c *ClientWithResponses) CreateEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body CreateEnvByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvByServiceUuidResponse, error) {
+	rsp, err := c.CreateEnvByServiceUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAc57ff546c002032cef44602c46a4e76Response(rsp)
+	return ParseCreateEnvByServiceUuidResponse(rsp)
 }
 
-// N7858f5a45d9ea55184c182852a7f0f6cWithResponse request returning *N7858f5a45d9ea55184c182852a7f0f6cResponse
-func (c *ClientWithResponses) N7858f5a45d9ea55184c182852a7f0f6cWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*N7858f5a45d9ea55184c182852a7f0f6cResponse, error) {
-	rsp, err := c.N7858f5a45d9ea55184c182852a7f0f6c(ctx, id, reqEditors...)
+// UpdateEnvsByServiceUuidWithBodyWithResponse request with arbitrary body returning *UpdateEnvsByServiceUuidResponse
+func (c *ClientWithResponses) UpdateEnvsByServiceUuidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEnvsByServiceUuidResponse, error) {
+	rsp, err := c.UpdateEnvsByServiceUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN7858f5a45d9ea55184c182852a7f0f6cResponse(rsp)
+	return ParseUpdateEnvsByServiceUuidResponse(rsp)
 }
 
-// N187b37139844731110757711ee71c215WithResponse request returning *N187b37139844731110757711ee71c215Response
-func (c *ClientWithResponses) N187b37139844731110757711ee71c215WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*N187b37139844731110757711ee71c215Response, error) {
-	rsp, err := c.N187b37139844731110757711ee71c215(ctx, reqEditors...)
+func (c *ClientWithResponses) UpdateEnvsByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, body UpdateEnvsByServiceUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEnvsByServiceUuidResponse, error) {
+	rsp, err := c.UpdateEnvsByServiceUuid(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseN187b37139844731110757711ee71c215Response(rsp)
+	return ParseUpdateEnvsByServiceUuidResponse(rsp)
 }
 
-// ParseN02978e79fc0b54d573b2359f2a1f7d86Response parses an HTTP response from a N02978e79fc0b54d573b2359f2a1f7d86WithResponse call
-func ParseN02978e79fc0b54d573b2359f2a1f7d86Response(rsp *http.Response) (*N02978e79fc0b54d573b2359f2a1f7d86Response, error) {
+// DeleteEnvByServiceUuidWithResponse request returning *DeleteEnvByServiceUuidResponse
+func (c *ClientWithResponses) DeleteEnvByServiceUuidWithResponse(ctx context.Context, uuid openapi_types.UUID, envUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DeleteEnvByServiceUuidResponse, error) {
+	rsp, err := c.DeleteEnvByServiceUuid(ctx, uuid, envUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteEnvByServiceUuidResponse(rsp)
+}
+
+// RestartServiceByUuidWithResponse request returning *RestartServiceByUuidResponse
+func (c *ClientWithResponses) RestartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error) {
+	rsp, err := c.RestartServiceByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRestartServiceByUuidResponse(rsp)
+}
+
+// StartServiceByUuidWithResponse request returning *StartServiceByUuidResponse
+func (c *ClientWithResponses) StartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StartServiceByUuidResponse, error) {
+	rsp, err := c.StartServiceByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStartServiceByUuidResponse(rsp)
+}
+
+// StopServiceByUuidWithResponse request returning *StopServiceByUuidResponse
+func (c *ClientWithResponses) StopServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopServiceByUuidResponse, error) {
+	rsp, err := c.StopServiceByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStopServiceByUuidResponse(rsp)
+}
+
+// ListTeamsWithResponse request returning *ListTeamsResponse
+func (c *ClientWithResponses) ListTeamsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListTeamsResponse, error) {
+	rsp, err := c.ListTeams(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListTeamsResponse(rsp)
+}
+
+// GetCurrentTeamWithResponse request returning *GetCurrentTeamResponse
+func (c *ClientWithResponses) GetCurrentTeamWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentTeamResponse, error) {
+	rsp, err := c.GetCurrentTeam(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetCurrentTeamResponse(rsp)
+}
+
+// GetCurrentTeamMembersWithResponse request returning *GetCurrentTeamMembersResponse
+func (c *ClientWithResponses) GetCurrentTeamMembersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentTeamMembersResponse, error) {
+	rsp, err := c.GetCurrentTeamMembers(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetCurrentTeamMembersResponse(rsp)
+}
+
+// GetTeamByIdWithResponse request returning *GetTeamByIdResponse
+func (c *ClientWithResponses) GetTeamByIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetTeamByIdResponse, error) {
+	rsp, err := c.GetTeamById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetTeamByIdResponse(rsp)
+}
+
+// GetMembersByTeamIdWithResponse request returning *GetMembersByTeamIdResponse
+func (c *ClientWithResponses) GetMembersByTeamIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetMembersByTeamIdResponse, error) {
+	rsp, err := c.GetMembersByTeamId(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetMembersByTeamIdResponse(rsp)
+}
+
+// VersionWithResponse request returning *VersionResponse
+func (c *ClientWithResponses) VersionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*VersionResponse, error) {
+	rsp, err := c.Version(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVersionResponse(rsp)
+}
+
+// ParseListApplicationsResponse parses an HTTP response from a ListApplicationsWithResponse call
+func ParseListApplicationsResponse(rsp *http.Response) (*ListApplicationsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N02978e79fc0b54d573b2359f2a1f7d86Response{
+	response := &ListApplicationsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10072,15 +11107,15 @@ func ParseN02978e79fc0b54d573b2359f2a1f7d86Response(rsp *http.Response) (*N02978
 	return response, nil
 }
 
-// ParseN3731add8226c2d664455978cac46c242Response parses an HTTP response from a N3731add8226c2d664455978cac46c242WithResponse call
-func ParseN3731add8226c2d664455978cac46c242Response(rsp *http.Response) (*N3731add8226c2d664455978cac46c242Response, error) {
+// ParseCreateDockercomposeApplicationResponse parses an HTTP response from a CreateDockercomposeApplicationWithResponse call
+func ParseCreateDockercomposeApplicationResponse(rsp *http.Response) (*CreateDockercomposeApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N3731add8226c2d664455978cac46c242Response{
+	response := &CreateDockercomposeApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10105,15 +11140,15 @@ func ParseN3731add8226c2d664455978cac46c242Response(rsp *http.Response) (*N3731a
 	return response, nil
 }
 
-// ParseN2b433ad6f5d259eb7f4f3b5af9913708Response parses an HTTP response from a N2b433ad6f5d259eb7f4f3b5af9913708WithResponse call
-func ParseN2b433ad6f5d259eb7f4f3b5af9913708Response(rsp *http.Response) (*N2b433ad6f5d259eb7f4f3b5af9913708Response, error) {
+// ParseCreateDockerfileApplicationResponse parses an HTTP response from a CreateDockerfileApplicationWithResponse call
+func ParseCreateDockerfileApplicationResponse(rsp *http.Response) (*CreateDockerfileApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N2b433ad6f5d259eb7f4f3b5af9913708Response{
+	response := &CreateDockerfileApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10138,15 +11173,15 @@ func ParseN2b433ad6f5d259eb7f4f3b5af9913708Response(rsp *http.Response) (*N2b433
 	return response, nil
 }
 
-// ParseE9a2d6dd9404acf880dc3053f09477fcResponse parses an HTTP response from a E9a2d6dd9404acf880dc3053f09477fcWithResponse call
-func ParseE9a2d6dd9404acf880dc3053f09477fcResponse(rsp *http.Response) (*E9a2d6dd9404acf880dc3053f09477fcResponse, error) {
+// ParseCreateDockerimageApplicationResponse parses an HTTP response from a CreateDockerimageApplicationWithResponse call
+func ParseCreateDockerimageApplicationResponse(rsp *http.Response) (*CreateDockerimageApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &E9a2d6dd9404acf880dc3053f09477fcResponse{
+	response := &CreateDockerimageApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10171,15 +11206,15 @@ func ParseE9a2d6dd9404acf880dc3053f09477fcResponse(rsp *http.Response) (*E9a2d6d
 	return response, nil
 }
 
-// ParseE3eaa989ffb05366247a00cdfd551efaResponse parses an HTTP response from a E3eaa989ffb05366247a00cdfd551efaWithResponse call
-func ParseE3eaa989ffb05366247a00cdfd551efaResponse(rsp *http.Response) (*E3eaa989ffb05366247a00cdfd551efaResponse, error) {
+// ParseCreatePrivateDeployKeyApplicationResponse parses an HTTP response from a CreatePrivateDeployKeyApplicationWithResponse call
+func ParseCreatePrivateDeployKeyApplicationResponse(rsp *http.Response) (*CreatePrivateDeployKeyApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &E3eaa989ffb05366247a00cdfd551efaResponse{
+	response := &CreatePrivateDeployKeyApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10204,15 +11239,15 @@ func ParseE3eaa989ffb05366247a00cdfd551efaResponse(rsp *http.Response) (*E3eaa98
 	return response, nil
 }
 
-// ParseN4d46c84bda4f1a411f6dda15fce4061fResponse parses an HTTP response from a N4d46c84bda4f1a411f6dda15fce4061fWithResponse call
-func ParseN4d46c84bda4f1a411f6dda15fce4061fResponse(rsp *http.Response) (*N4d46c84bda4f1a411f6dda15fce4061fResponse, error) {
+// ParseCreatePrivateGithubAppApplicationResponse parses an HTTP response from a CreatePrivateGithubAppApplicationWithResponse call
+func ParseCreatePrivateGithubAppApplicationResponse(rsp *http.Response) (*CreatePrivateGithubAppApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N4d46c84bda4f1a411f6dda15fce4061fResponse{
+	response := &CreatePrivateGithubAppApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10237,15 +11272,15 @@ func ParseN4d46c84bda4f1a411f6dda15fce4061fResponse(rsp *http.Response) (*N4d46c
 	return response, nil
 }
 
-// ParseCb56324ad19693469b4461d3f6065a5bResponse parses an HTTP response from a Cb56324ad19693469b4461d3f6065a5bWithResponse call
-func ParseCb56324ad19693469b4461d3f6065a5bResponse(rsp *http.Response) (*Cb56324ad19693469b4461d3f6065a5bResponse, error) {
+// ParseCreatePublicApplicationResponse parses an HTTP response from a CreatePublicApplicationWithResponse call
+func ParseCreatePublicApplicationResponse(rsp *http.Response) (*CreatePublicApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Cb56324ad19693469b4461d3f6065a5bResponse{
+	response := &CreatePublicApplicationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10270,15 +11305,15 @@ func ParseCb56324ad19693469b4461d3f6065a5bResponse(rsp *http.Response) (*Cb56324
 	return response, nil
 }
 
-// ParseN1e110b190a1045d34f3e1c61608a8702Response parses an HTTP response from a N1e110b190a1045d34f3e1c61608a8702WithResponse call
-func ParseN1e110b190a1045d34f3e1c61608a8702Response(rsp *http.Response) (*N1e110b190a1045d34f3e1c61608a8702Response, error) {
+// ParseDeleteApplicationByUuidResponse parses an HTTP response from a DeleteApplicationByUuidWithResponse call
+func ParseDeleteApplicationByUuidResponse(rsp *http.Response) (*DeleteApplicationByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N1e110b190a1045d34f3e1c61608a8702Response{
+	response := &DeleteApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10319,15 +11354,15 @@ func ParseN1e110b190a1045d34f3e1c61608a8702Response(rsp *http.Response) (*N1e110
 	return response, nil
 }
 
-// ParseN3630b62c28e7358e7f0087c1d8fe1845Response parses an HTTP response from a N3630b62c28e7358e7f0087c1d8fe1845WithResponse call
-func ParseN3630b62c28e7358e7f0087c1d8fe1845Response(rsp *http.Response) (*N3630b62c28e7358e7f0087c1d8fe1845Response, error) {
+// ParseGetApplicationByUuidResponse parses an HTTP response from a GetApplicationByUuidWithResponse call
+func ParseGetApplicationByUuidResponse(rsp *http.Response) (*GetApplicationByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N3630b62c28e7358e7f0087c1d8fe1845Response{
+	response := &GetApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10366,15 +11401,15 @@ func ParseN3630b62c28e7358e7f0087c1d8fe1845Response(rsp *http.Response) (*N3630b
 	return response, nil
 }
 
-// ParseN62a3b1775e8cba5d39a236ebb69830b7Response parses an HTTP response from a N62a3b1775e8cba5d39a236ebb69830b7WithResponse call
-func ParseN62a3b1775e8cba5d39a236ebb69830b7Response(rsp *http.Response) (*N62a3b1775e8cba5d39a236ebb69830b7Response, error) {
+// ParseUpdateApplicationByUuidResponse parses an HTTP response from a UpdateApplicationByUuidWithResponse call
+func ParseUpdateApplicationByUuidResponse(rsp *http.Response) (*UpdateApplicationByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N62a3b1775e8cba5d39a236ebb69830b7Response{
+	response := &UpdateApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10415,15 +11450,15 @@ func ParseN62a3b1775e8cba5d39a236ebb69830b7Response(rsp *http.Response) (*N62a3b
 	return response, nil
 }
 
-// ParseN7c8e0c286870e23294a075cc0584df2fResponse parses an HTTP response from a N7c8e0c286870e23294a075cc0584df2fWithResponse call
-func ParseN7c8e0c286870e23294a075cc0584df2fResponse(rsp *http.Response) (*N7c8e0c286870e23294a075cc0584df2fResponse, error) {
+// ParseListEnvsByApplicationUuidResponse parses an HTTP response from a ListEnvsByApplicationUuidWithResponse call
+func ParseListEnvsByApplicationUuidResponse(rsp *http.Response) (*ListEnvsByApplicationUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N7c8e0c286870e23294a075cc0584df2fResponse{
+	response := &ListEnvsByApplicationUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10462,15 +11497,15 @@ func ParseN7c8e0c286870e23294a075cc0584df2fResponse(rsp *http.Response) (*N7c8e0
 	return response, nil
 }
 
-// ParseN3d70a2d569f395be220b3f09ad36674bResponse parses an HTTP response from a N3d70a2d569f395be220b3f09ad36674bWithResponse call
-func ParseN3d70a2d569f395be220b3f09ad36674bResponse(rsp *http.Response) (*N3d70a2d569f395be220b3f09ad36674bResponse, error) {
+// ParseUpdateEnvByApplicationUuidResponse parses an HTTP response from a UpdateEnvByApplicationUuidWithResponse call
+func ParseUpdateEnvByApplicationUuidResponse(rsp *http.Response) (*UpdateEnvByApplicationUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N3d70a2d569f395be220b3f09ad36674bResponse{
+	response := &UpdateEnvByApplicationUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10511,15 +11546,15 @@ func ParseN3d70a2d569f395be220b3f09ad36674bResponse(rsp *http.Response) (*N3d70a
 	return response, nil
 }
 
-// ParseN4699ffbb7d6e58581fd0b0a14f36ffc2Response parses an HTTP response from a N4699ffbb7d6e58581fd0b0a14f36ffc2WithResponse call
-func ParseN4699ffbb7d6e58581fd0b0a14f36ffc2Response(rsp *http.Response) (*N4699ffbb7d6e58581fd0b0a14f36ffc2Response, error) {
+// ParseCreateEnvByApplicationUuidResponse parses an HTTP response from a CreateEnvByApplicationUuidWithResponse call
+func ParseCreateEnvByApplicationUuidResponse(rsp *http.Response) (*CreateEnvByApplicationUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N4699ffbb7d6e58581fd0b0a14f36ffc2Response{
+	response := &CreateEnvByApplicationUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10560,15 +11595,15 @@ func ParseN4699ffbb7d6e58581fd0b0a14f36ffc2Response(rsp *http.Response) (*N4699f
 	return response, nil
 }
 
-// ParseAe96f0f585ed158b2abd2d9ba40f3cf9Response parses an HTTP response from a Ae96f0f585ed158b2abd2d9ba40f3cf9WithResponse call
-func ParseAe96f0f585ed158b2abd2d9ba40f3cf9Response(rsp *http.Response) (*Ae96f0f585ed158b2abd2d9ba40f3cf9Response, error) {
+// ParseUpdateEnvsByApplicationUuidResponse parses an HTTP response from a UpdateEnvsByApplicationUuidWithResponse call
+func ParseUpdateEnvsByApplicationUuidResponse(rsp *http.Response) (*UpdateEnvsByApplicationUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Ae96f0f585ed158b2abd2d9ba40f3cf9Response{
+	response := &UpdateEnvsByApplicationUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10609,15 +11644,15 @@ func ParseAe96f0f585ed158b2abd2d9ba40f3cf9Response(rsp *http.Response) (*Ae96f0f
 	return response, nil
 }
 
-// ParseN96097c5cfc7dc0e7a3de229645f630c7Response parses an HTTP response from a N96097c5cfc7dc0e7a3de229645f630c7WithResponse call
-func ParseN96097c5cfc7dc0e7a3de229645f630c7Response(rsp *http.Response) (*N96097c5cfc7dc0e7a3de229645f630c7Response, error) {
+// ParseDeleteEnvByApplicationUuidResponse parses an HTTP response from a DeleteEnvByApplicationUuidWithResponse call
+func ParseDeleteEnvByApplicationUuidResponse(rsp *http.Response) (*DeleteEnvByApplicationUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N96097c5cfc7dc0e7a3de229645f630c7Response{
+	response := &DeleteEnvByApplicationUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10658,15 +11693,65 @@ func ParseN96097c5cfc7dc0e7a3de229645f630c7Response(rsp *http.Response) (*N96097
 	return response, nil
 }
 
-// ParseB231ae7baab9ef47f0627be820e735bcResponse parses an HTTP response from a B231ae7baab9ef47f0627be820e735bcWithResponse call
-func ParseB231ae7baab9ef47f0627be820e735bcResponse(rsp *http.Response) (*B231ae7baab9ef47f0627be820e735bcResponse, error) {
+// ParseExecuteCommandApplicationResponse parses an HTTP response from a ExecuteCommandApplicationWithResponse call
+func ParseExecuteCommandApplicationResponse(rsp *http.Response) (*ExecuteCommandApplicationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &B231ae7baab9ef47f0627be820e735bcResponse{
+	response := &ExecuteCommandApplicationResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message  *string `json:"message,omitempty"`
+			Response *string `json:"response,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRestartApplicationByUuidResponse parses an HTTP response from a RestartApplicationByUuidWithResponse call
+func ParseRestartApplicationByUuidResponse(rsp *http.Response) (*RestartApplicationByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RestartApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10709,15 +11794,15 @@ func ParseB231ae7baab9ef47f0627be820e735bcResponse(rsp *http.Response) (*B231ae7
 	return response, nil
 }
 
-// ParseDc87c2061ab303757a0e061f87900c4cResponse parses an HTTP response from a Dc87c2061ab303757a0e061f87900c4cWithResponse call
-func ParseDc87c2061ab303757a0e061f87900c4cResponse(rsp *http.Response) (*Dc87c2061ab303757a0e061f87900c4cResponse, error) {
+// ParseStartApplicationByUuidResponse parses an HTTP response from a StartApplicationByUuidWithResponse call
+func ParseStartApplicationByUuidResponse(rsp *http.Response) (*StartApplicationByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Dc87c2061ab303757a0e061f87900c4cResponse{
+	response := &StartApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10762,15 +11847,15 @@ func ParseDc87c2061ab303757a0e061f87900c4cResponse(rsp *http.Response) (*Dc87c20
 	return response, nil
 }
 
-// ParseN133ef3c7bd5043901f24bb5002a536ebResponse parses an HTTP response from a N133ef3c7bd5043901f24bb5002a536ebWithResponse call
-func ParseN133ef3c7bd5043901f24bb5002a536ebResponse(rsp *http.Response) (*N133ef3c7bd5043901f24bb5002a536ebResponse, error) {
+// ParseStopApplicationByUuidResponse parses an HTTP response from a StopApplicationByUuidWithResponse call
+func ParseStopApplicationByUuidResponse(rsp *http.Response) (*StopApplicationByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N133ef3c7bd5043901f24bb5002a536ebResponse{
+	response := &StopApplicationByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10811,15 +11896,15 @@ func ParseN133ef3c7bd5043901f24bb5002a536ebResponse(rsp *http.Response) (*N133ef
 	return response, nil
 }
 
-// ParseEcd0ee1e46e4c854c18e6c9daa3d37f3Response parses an HTTP response from a Ecd0ee1e46e4c854c18e6c9daa3d37f3WithResponse call
-func ParseEcd0ee1e46e4c854c18e6c9daa3d37f3Response(rsp *http.Response) (*Ecd0ee1e46e4c854c18e6c9daa3d37f3Response, error) {
+// ParseListDatabasesResponse parses an HTTP response from a ListDatabasesWithResponse call
+func ParseListDatabasesResponse(rsp *http.Response) (*ListDatabasesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Ecd0ee1e46e4c854c18e6c9daa3d37f3Response{
+	response := &ListDatabasesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10851,15 +11936,15 @@ func ParseEcd0ee1e46e4c854c18e6c9daa3d37f3Response(rsp *http.Response) (*Ecd0ee1
 	return response, nil
 }
 
-// ParseA1189fa7f956f238f0e95c9150ff57f6Response parses an HTTP response from a A1189fa7f956f238f0e95c9150ff57f6WithResponse call
-func ParseA1189fa7f956f238f0e95c9150ff57f6Response(rsp *http.Response) (*A1189fa7f956f238f0e95c9150ff57f6Response, error) {
+// ParseCreateDatabaseClickhouseResponse parses an HTTP response from a CreateDatabaseClickhouseWithResponse call
+func ParseCreateDatabaseClickhouseResponse(rsp *http.Response) (*CreateDatabaseClickhouseResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &A1189fa7f956f238f0e95c9150ff57f6Response{
+	response := &CreateDatabaseClickhouseResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10884,15 +11969,15 @@ func ParseA1189fa7f956f238f0e95c9150ff57f6Response(rsp *http.Response) (*A1189fa
 	return response, nil
 }
 
-// ParseE73f7de1c8eee4219e5ec98c4b9b7efeResponse parses an HTTP response from a E73f7de1c8eee4219e5ec98c4b9b7efeWithResponse call
-func ParseE73f7de1c8eee4219e5ec98c4b9b7efeResponse(rsp *http.Response) (*E73f7de1c8eee4219e5ec98c4b9b7efeResponse, error) {
+// ParseCreateDatabaseDragonflyResponse parses an HTTP response from a CreateDatabaseDragonflyWithResponse call
+func ParseCreateDatabaseDragonflyResponse(rsp *http.Response) (*CreateDatabaseDragonflyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &E73f7de1c8eee4219e5ec98c4b9b7efeResponse{
+	response := &CreateDatabaseDragonflyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10917,15 +12002,15 @@ func ParseE73f7de1c8eee4219e5ec98c4b9b7efeResponse(rsp *http.Response) (*E73f7de
 	return response, nil
 }
 
-// ParseB908f3929c371c217d489638e0a21ff6Response parses an HTTP response from a B908f3929c371c217d489638e0a21ff6WithResponse call
-func ParseB908f3929c371c217d489638e0a21ff6Response(rsp *http.Response) (*B908f3929c371c217d489638e0a21ff6Response, error) {
+// ParseCreateDatabaseKeydbResponse parses an HTTP response from a CreateDatabaseKeydbWithResponse call
+func ParseCreateDatabaseKeydbResponse(rsp *http.Response) (*CreateDatabaseKeydbResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &B908f3929c371c217d489638e0a21ff6Response{
+	response := &CreateDatabaseKeydbResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10950,15 +12035,15 @@ func ParseB908f3929c371c217d489638e0a21ff6Response(rsp *http.Response) (*B908f39
 	return response, nil
 }
 
-// ParseN6bea521ddcd738dcbb5f3783a7308acfResponse parses an HTTP response from a N6bea521ddcd738dcbb5f3783a7308acfWithResponse call
-func ParseN6bea521ddcd738dcbb5f3783a7308acfResponse(rsp *http.Response) (*N6bea521ddcd738dcbb5f3783a7308acfResponse, error) {
+// ParseCreateDatabaseMariadbResponse parses an HTTP response from a CreateDatabaseMariadbWithResponse call
+func ParseCreateDatabaseMariadbResponse(rsp *http.Response) (*CreateDatabaseMariadbResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N6bea521ddcd738dcbb5f3783a7308acfResponse{
+	response := &CreateDatabaseMariadbResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -10983,15 +12068,15 @@ func ParseN6bea521ddcd738dcbb5f3783a7308acfResponse(rsp *http.Response) (*N6bea5
 	return response, nil
 }
 
-// ParseFdba3de84d02519bb37599fea34b115dResponse parses an HTTP response from a Fdba3de84d02519bb37599fea34b115dWithResponse call
-func ParseFdba3de84d02519bb37599fea34b115dResponse(rsp *http.Response) (*Fdba3de84d02519bb37599fea34b115dResponse, error) {
+// ParseCreateDatabaseMongodbResponse parses an HTTP response from a CreateDatabaseMongodbWithResponse call
+func ParseCreateDatabaseMongodbResponse(rsp *http.Response) (*CreateDatabaseMongodbResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Fdba3de84d02519bb37599fea34b115dResponse{
+	response := &CreateDatabaseMongodbResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11016,15 +12101,15 @@ func ParseFdba3de84d02519bb37599fea34b115dResponse(rsp *http.Response) (*Fdba3de
 	return response, nil
 }
 
-// ParseN0a1158cf759c4493cbb1e30024c60623Response parses an HTTP response from a N0a1158cf759c4493cbb1e30024c60623WithResponse call
-func ParseN0a1158cf759c4493cbb1e30024c60623Response(rsp *http.Response) (*N0a1158cf759c4493cbb1e30024c60623Response, error) {
+// ParseCreateDatabaseMysqlResponse parses an HTTP response from a CreateDatabaseMysqlWithResponse call
+func ParseCreateDatabaseMysqlResponse(rsp *http.Response) (*CreateDatabaseMysqlResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N0a1158cf759c4493cbb1e30024c60623Response{
+	response := &CreateDatabaseMysqlResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11049,15 +12134,15 @@ func ParseN0a1158cf759c4493cbb1e30024c60623Response(rsp *http.Response) (*N0a115
 	return response, nil
 }
 
-// ParseN8f7f491ddc46a9fa065b4424512231cdResponse parses an HTTP response from a N8f7f491ddc46a9fa065b4424512231cdWithResponse call
-func ParseN8f7f491ddc46a9fa065b4424512231cdResponse(rsp *http.Response) (*N8f7f491ddc46a9fa065b4424512231cdResponse, error) {
+// ParseCreateDatabasePostgresqlResponse parses an HTTP response from a CreateDatabasePostgresqlWithResponse call
+func ParseCreateDatabasePostgresqlResponse(rsp *http.Response) (*CreateDatabasePostgresqlResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N8f7f491ddc46a9fa065b4424512231cdResponse{
+	response := &CreateDatabasePostgresqlResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11082,15 +12167,15 @@ func ParseN8f7f491ddc46a9fa065b4424512231cdResponse(rsp *http.Response) (*N8f7f4
 	return response, nil
 }
 
-// ParseN4d352d13544ee2953fd48ad7b0651098Response parses an HTTP response from a N4d352d13544ee2953fd48ad7b0651098WithResponse call
-func ParseN4d352d13544ee2953fd48ad7b0651098Response(rsp *http.Response) (*N4d352d13544ee2953fd48ad7b0651098Response, error) {
+// ParseCreateDatabaseRedisResponse parses an HTTP response from a CreateDatabaseRedisWithResponse call
+func ParseCreateDatabaseRedisResponse(rsp *http.Response) (*CreateDatabaseRedisResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N4d352d13544ee2953fd48ad7b0651098Response{
+	response := &CreateDatabaseRedisResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11115,15 +12200,15 @@ func ParseN4d352d13544ee2953fd48ad7b0651098Response(rsp *http.Response) (*N4d352
 	return response, nil
 }
 
-// ParseN20610931b2bae8aba34eee68624ab673Response parses an HTTP response from a N20610931b2bae8aba34eee68624ab673WithResponse call
-func ParseN20610931b2bae8aba34eee68624ab673Response(rsp *http.Response) (*N20610931b2bae8aba34eee68624ab673Response, error) {
+// ParseDeleteDatabaseByUuidResponse parses an HTTP response from a DeleteDatabaseByUuidWithResponse call
+func ParseDeleteDatabaseByUuidResponse(rsp *http.Response) (*DeleteDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N20610931b2bae8aba34eee68624ab673Response{
+	response := &DeleteDatabaseByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11164,15 +12249,15 @@ func ParseN20610931b2bae8aba34eee68624ab673Response(rsp *http.Response) (*N20610
 	return response, nil
 }
 
-// ParseB49cb2d3e8f34c4e80cdffd8a201031dResponse parses an HTTP response from a B49cb2d3e8f34c4e80cdffd8a201031dWithResponse call
-func ParseB49cb2d3e8f34c4e80cdffd8a201031dResponse(rsp *http.Response) (*B49cb2d3e8f34c4e80cdffd8a201031dResponse, error) {
+// ParseGetDatabaseByUuidResponse parses an HTTP response from a GetDatabaseByUuidWithResponse call
+func ParseGetDatabaseByUuidResponse(rsp *http.Response) (*GetDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &B49cb2d3e8f34c4e80cdffd8a201031dResponse{
+	response := &GetDatabaseByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11211,15 +12296,15 @@ func ParseB49cb2d3e8f34c4e80cdffd8a201031dResponse(rsp *http.Response) (*B49cb2d
 	return response, nil
 }
 
-// ParseN5ba459ed390a721711a1708760e9de3bResponse parses an HTTP response from a N5ba459ed390a721711a1708760e9de3bWithResponse call
-func ParseN5ba459ed390a721711a1708760e9de3bResponse(rsp *http.Response) (*N5ba459ed390a721711a1708760e9de3bResponse, error) {
+// ParseUpdateDatabaseByUuidResponse parses an HTTP response from a UpdateDatabaseByUuidWithResponse call
+func ParseUpdateDatabaseByUuidResponse(rsp *http.Response) (*UpdateDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N5ba459ed390a721711a1708760e9de3bResponse{
+	response := &UpdateDatabaseByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11251,64 +12336,15 @@ func ParseN5ba459ed390a721711a1708760e9de3bResponse(rsp *http.Response) (*N5ba45
 	return response, nil
 }
 
-// ParseN04c7a5e4752b4a00036addb433f3f218Response parses an HTTP response from a N04c7a5e4752b4a00036addb433f3f218WithResponse call
-func ParseN04c7a5e4752b4a00036addb433f3f218Response(rsp *http.Response) (*N04c7a5e4752b4a00036addb433f3f218Response, error) {
+// ParseRestartDatabaseByUuidResponse parses an HTTP response from a RestartDatabaseByUuidWithResponse call
+func ParseRestartDatabaseByUuidResponse(rsp *http.Response) (*RestartDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N04c7a5e4752b4a00036addb433f3f218Response{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest struct {
-			Message *string `json:"message,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest N400
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest N401
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON401 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest N404
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseN4c6eb21e734d411e2b3388578761123dResponse parses an HTTP response from a N4c6eb21e734d411e2b3388578761123dWithResponse call
-func ParseN4c6eb21e734d411e2b3388578761123dResponse(rsp *http.Response) (*N4c6eb21e734d411e2b3388578761123dResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &N4c6eb21e734d411e2b3388578761123dResponse{
+	response := &RestartDatabaseByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11349,15 +12385,15 @@ func ParseN4c6eb21e734d411e2b3388578761123dResponse(rsp *http.Response) (*N4c6eb
 	return response, nil
 }
 
-// ParseCb6d983c2679aff841c7501ce612a372Response parses an HTTP response from a Cb6d983c2679aff841c7501ce612a372WithResponse call
-func ParseCb6d983c2679aff841c7501ce612a372Response(rsp *http.Response) (*Cb6d983c2679aff841c7501ce612a372Response, error) {
+// ParseStartDatabaseByUuidResponse parses an HTTP response from a StartDatabaseByUuidWithResponse call
+func ParseStartDatabaseByUuidResponse(rsp *http.Response) (*StartDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Cb6d983c2679aff841c7501ce612a372Response{
+	response := &StartDatabaseByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11398,15 +12434,64 @@ func ParseCb6d983c2679aff841c7501ce612a372Response(rsp *http.Response) (*Cb6d983
 	return response, nil
 }
 
-// ParseN700eb6e51f4c9e86d722f600c65ed1d4Response parses an HTTP response from a N700eb6e51f4c9e86d722f600c65ed1d4WithResponse call
-func ParseN700eb6e51f4c9e86d722f600c65ed1d4Response(rsp *http.Response) (*N700eb6e51f4c9e86d722f600c65ed1d4Response, error) {
+// ParseStopDatabaseByUuidResponse parses an HTTP response from a StopDatabaseByUuidWithResponse call
+func ParseStopDatabaseByUuidResponse(rsp *http.Response) (*StopDatabaseByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N700eb6e51f4c9e86d722f600c65ed1d4Response{
+	response := &StopDatabaseByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeployByTagOrUuidResponse parses an HTTP response from a DeployByTagOrUuidWithResponse call
+func ParseDeployByTagOrUuidResponse(rsp *http.Response) (*DeployByTagOrUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeployByTagOrUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11444,15 +12529,15 @@ func ParseN700eb6e51f4c9e86d722f600c65ed1d4Response(rsp *http.Response) (*N700eb
 	return response, nil
 }
 
-// ParseA2c05736269191ad0d99cadfd4708986Response parses an HTTP response from a A2c05736269191ad0d99cadfd4708986WithResponse call
-func ParseA2c05736269191ad0d99cadfd4708986Response(rsp *http.Response) (*A2c05736269191ad0d99cadfd4708986Response, error) {
+// ParseListDeploymentsResponse parses an HTTP response from a ListDeploymentsWithResponse call
+func ParseListDeploymentsResponse(rsp *http.Response) (*ListDeploymentsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &A2c05736269191ad0d99cadfd4708986Response{
+	response := &ListDeploymentsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11484,15 +12569,15 @@ func ParseA2c05736269191ad0d99cadfd4708986Response(rsp *http.Response) (*A2c0573
 	return response, nil
 }
 
-// ParseCcf9856174c115a1430d952ccbd36aeaResponse parses an HTTP response from a Ccf9856174c115a1430d952ccbd36aeaWithResponse call
-func ParseCcf9856174c115a1430d952ccbd36aeaResponse(rsp *http.Response) (*Ccf9856174c115a1430d952ccbd36aeaResponse, error) {
+// ParseGetDeploymentByUuidResponse parses an HTTP response from a GetDeploymentByUuidWithResponse call
+func ParseGetDeploymentByUuidResponse(rsp *http.Response) (*GetDeploymentByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Ccf9856174c115a1430d952ccbd36aeaResponse{
+	response := &GetDeploymentByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11531,15 +12616,15 @@ func ParseCcf9856174c115a1430d952ccbd36aeaResponse(rsp *http.Response) (*Ccf9856
 	return response, nil
 }
 
-// ParseN50e2486a2d196a996b24a284a283bcdbResponse parses an HTTP response from a N50e2486a2d196a996b24a284a283bcdbWithResponse call
-func ParseN50e2486a2d196a996b24a284a283bcdbResponse(rsp *http.Response) (*N50e2486a2d196a996b24a284a283bcdbResponse, error) {
+// ParseDisableApiResponse parses an HTTP response from a DisableApiWithResponse call
+func ParseDisableApiResponse(rsp *http.Response) (*DisableApiResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N50e2486a2d196a996b24a284a283bcdbResponse{
+	response := &DisableApiResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11582,15 +12667,15 @@ func ParseN50e2486a2d196a996b24a284a283bcdbResponse(rsp *http.Response) (*N50e24
 	return response, nil
 }
 
-// ParseN595019bae03d08277def667609779ff3Response parses an HTTP response from a N595019bae03d08277def667609779ff3WithResponse call
-func ParseN595019bae03d08277def667609779ff3Response(rsp *http.Response) (*N595019bae03d08277def667609779ff3Response, error) {
+// ParseEnableApiResponse parses an HTTP response from a EnableApiWithResponse call
+func ParseEnableApiResponse(rsp *http.Response) (*EnableApiResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N595019bae03d08277def667609779ff3Response{
+	response := &EnableApiResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11633,15 +12718,15 @@ func ParseN595019bae03d08277def667609779ff3Response(rsp *http.Response) (*N59501
 	return response, nil
 }
 
-// ParseN64db893135e686704bb88c3c238022c1Response parses an HTTP response from a N64db893135e686704bb88c3c238022c1WithResponse call
-func ParseN64db893135e686704bb88c3c238022c1Response(rsp *http.Response) (*N64db893135e686704bb88c3c238022c1Response, error) {
+// ParseHealthcheckResponse parses an HTTP response from a HealthcheckWithResponse call
+func ParseHealthcheckResponse(rsp *http.Response) (*HealthcheckResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N64db893135e686704bb88c3c238022c1Response{
+	response := &HealthcheckResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11673,15 +12758,15 @@ func ParseN64db893135e686704bb88c3c238022c1Response(rsp *http.Response) (*N64db8
 	return response, nil
 }
 
-// ParseN762788f00f2dabb981df9adbc948d3f6Response parses an HTTP response from a N762788f00f2dabb981df9adbc948d3f6WithResponse call
-func ParseN762788f00f2dabb981df9adbc948d3f6Response(rsp *http.Response) (*N762788f00f2dabb981df9adbc948d3f6Response, error) {
+// ParseListProjectsResponse parses an HTTP response from a ListProjectsWithResponse call
+func ParseListProjectsResponse(rsp *http.Response) (*ListProjectsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N762788f00f2dabb981df9adbc948d3f6Response{
+	response := &ListProjectsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11713,15 +12798,15 @@ func ParseN762788f00f2dabb981df9adbc948d3f6Response(rsp *http.Response) (*N76278
 	return response, nil
 }
 
-// ParseCf067eb7cf18216cda3239329a2eeadbResponse parses an HTTP response from a Cf067eb7cf18216cda3239329a2eeadbWithResponse call
-func ParseCf067eb7cf18216cda3239329a2eeadbResponse(rsp *http.Response) (*Cf067eb7cf18216cda3239329a2eeadbResponse, error) {
+// ParseCreateProjectResponse parses an HTTP response from a CreateProjectWithResponse call
+func ParseCreateProjectResponse(rsp *http.Response) (*CreateProjectResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Cf067eb7cf18216cda3239329a2eeadbResponse{
+	response := &CreateProjectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11763,15 +12848,15 @@ func ParseCf067eb7cf18216cda3239329a2eeadbResponse(rsp *http.Response) (*Cf067eb
 	return response, nil
 }
 
-// ParseF668a936f505b4401948c74b6a663029Response parses an HTTP response from a F668a936f505b4401948c74b6a663029WithResponse call
-func ParseF668a936f505b4401948c74b6a663029Response(rsp *http.Response) (*F668a936f505b4401948c74b6a663029Response, error) {
+// ParseDeleteProjectByUuidResponse parses an HTTP response from a DeleteProjectByUuidWithResponse call
+func ParseDeleteProjectByUuidResponse(rsp *http.Response) (*DeleteProjectByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &F668a936f505b4401948c74b6a663029Response{
+	response := &DeleteProjectByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11812,15 +12897,15 @@ func ParseF668a936f505b4401948c74b6a663029Response(rsp *http.Response) (*F668a93
 	return response, nil
 }
 
-// ParseN63bf8b6a68fbb757f09ab519331f6298Response parses an HTTP response from a N63bf8b6a68fbb757f09ab519331f6298WithResponse call
-func ParseN63bf8b6a68fbb757f09ab519331f6298Response(rsp *http.Response) (*N63bf8b6a68fbb757f09ab519331f6298Response, error) {
+// ParseGetProjectByUuidResponse parses an HTTP response from a GetProjectByUuidWithResponse call
+func ParseGetProjectByUuidResponse(rsp *http.Response) (*GetProjectByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N63bf8b6a68fbb757f09ab519331f6298Response{
+	response := &GetProjectByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11852,15 +12937,15 @@ func ParseN63bf8b6a68fbb757f09ab519331f6298Response(rsp *http.Response) (*N63bf8
 	return response, nil
 }
 
-// ParseN2db343bd6fc14c658cb51a2b73b2f842Response parses an HTTP response from a N2db343bd6fc14c658cb51a2b73b2f842WithResponse call
-func ParseN2db343bd6fc14c658cb51a2b73b2f842Response(rsp *http.Response) (*N2db343bd6fc14c658cb51a2b73b2f842Response, error) {
+// ParseUpdateProjectByUuidResponse parses an HTTP response from a UpdateProjectByUuidWithResponse call
+func ParseUpdateProjectByUuidResponse(rsp *http.Response) (*UpdateProjectByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N2db343bd6fc14c658cb51a2b73b2f842Response{
+	response := &UpdateProjectByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11903,15 +12988,15 @@ func ParseN2db343bd6fc14c658cb51a2b73b2f842Response(rsp *http.Response) (*N2db34
 	return response, nil
 }
 
-// ParseN7e44845dce5aa47ed7b0daf5595ad2e1Response parses an HTTP response from a N7e44845dce5aa47ed7b0daf5595ad2e1WithResponse call
-func ParseN7e44845dce5aa47ed7b0daf5595ad2e1Response(rsp *http.Response) (*N7e44845dce5aa47ed7b0daf5595ad2e1Response, error) {
+// ParseGetEnvironmentByNameResponse parses an HTTP response from a GetEnvironmentByNameWithResponse call
+func ParseGetEnvironmentByNameResponse(rsp *http.Response) (*GetEnvironmentByNameResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N7e44845dce5aa47ed7b0daf5595ad2e1Response{
+	response := &GetEnvironmentByNameResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11950,15 +13035,15 @@ func ParseN7e44845dce5aa47ed7b0daf5595ad2e1Response(rsp *http.Response) (*N7e448
 	return response, nil
 }
 
-// ParseC399903694eb1314596832e49f7c66d7Response parses an HTTP response from a C399903694eb1314596832e49f7c66d7WithResponse call
-func ParseC399903694eb1314596832e49f7c66d7Response(rsp *http.Response) (*C399903694eb1314596832e49f7c66d7Response, error) {
+// ParseListResourcesResponse parses an HTTP response from a ListResourcesWithResponse call
+func ParseListResourcesResponse(rsp *http.Response) (*ListResourcesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &C399903694eb1314596832e49f7c66d7Response{
+	response := &ListResourcesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11990,15 +13075,15 @@ func ParseC399903694eb1314596832e49f7c66d7Response(rsp *http.Response) (*C399903
 	return response, nil
 }
 
-// ParseN8a5d8d3ccbbcef54ed0e913a27faea9dResponse parses an HTTP response from a N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse call
-func ParseN8a5d8d3ccbbcef54ed0e913a27faea9dResponse(rsp *http.Response) (*N8a5d8d3ccbbcef54ed0e913a27faea9dResponse, error) {
+// ParseListPrivateKeysResponse parses an HTTP response from a ListPrivateKeysWithResponse call
+func ParseListPrivateKeysResponse(rsp *http.Response) (*ListPrivateKeysResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N8a5d8d3ccbbcef54ed0e913a27faea9dResponse{
+	response := &ListPrivateKeysResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12030,15 +13115,15 @@ func ParseN8a5d8d3ccbbcef54ed0e913a27faea9dResponse(rsp *http.Response) (*N8a5d8
 	return response, nil
 }
 
-// ParseEb4780acaa990c594cdbe8ffa80b4fb0Response parses an HTTP response from a Eb4780acaa990c594cdbe8ffa80b4fb0WithResponse call
-func ParseEb4780acaa990c594cdbe8ffa80b4fb0Response(rsp *http.Response) (*Eb4780acaa990c594cdbe8ffa80b4fb0Response, error) {
+// ParseCreatePrivateKeyResponse parses an HTTP response from a CreatePrivateKeyWithResponse call
+func ParseCreatePrivateKeyResponse(rsp *http.Response) (*CreatePrivateKeyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Eb4780acaa990c594cdbe8ffa80b4fb0Response{
+	response := &CreatePrivateKeyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12072,15 +13157,15 @@ func ParseEb4780acaa990c594cdbe8ffa80b4fb0Response(rsp *http.Response) (*Eb4780a
 	return response, nil
 }
 
-// ParseN8faa0bb399142f0084dfc3e003c42cf6Response parses an HTTP response from a N8faa0bb399142f0084dfc3e003c42cf6WithResponse call
-func ParseN8faa0bb399142f0084dfc3e003c42cf6Response(rsp *http.Response) (*N8faa0bb399142f0084dfc3e003c42cf6Response, error) {
+// ParseDeletePrivateKeyByUuidResponse parses an HTTP response from a DeletePrivateKeyByUuidWithResponse call
+func ParseDeletePrivateKeyByUuidResponse(rsp *http.Response) (*DeletePrivateKeyByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N8faa0bb399142f0084dfc3e003c42cf6Response{
+	response := &DeletePrivateKeyByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12114,15 +13199,15 @@ func ParseN8faa0bb399142f0084dfc3e003c42cf6Response(rsp *http.Response) (*N8faa0
 	return response, nil
 }
 
-// ParseN2f743a85eb65d5ddb8cd5b362bb3d26aResponse parses an HTTP response from a N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse call
-func ParseN2f743a85eb65d5ddb8cd5b362bb3d26aResponse(rsp *http.Response) (*N2f743a85eb65d5ddb8cd5b362bb3d26aResponse, error) {
+// ParseGetPrivateKeyByUuidResponse parses an HTTP response from a GetPrivateKeyByUuidWithResponse call
+func ParseGetPrivateKeyByUuidResponse(rsp *http.Response) (*GetPrivateKeyByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N2f743a85eb65d5ddb8cd5b362bb3d26aResponse{
+	response := &GetPrivateKeyByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12154,15 +13239,15 @@ func ParseN2f743a85eb65d5ddb8cd5b362bb3d26aResponse(rsp *http.Response) (*N2f743
 	return response, nil
 }
 
-// ParseN9feff464b78c24957ed3173324c9cd14Response parses an HTTP response from a N9feff464b78c24957ed3173324c9cd14WithResponse call
-func ParseN9feff464b78c24957ed3173324c9cd14Response(rsp *http.Response) (*N9feff464b78c24957ed3173324c9cd14Response, error) {
+// ParseUpdatePrivateKeyResponse parses an HTTP response from a UpdatePrivateKeyWithResponse call
+func ParseUpdatePrivateKeyResponse(rsp *http.Response) (*UpdatePrivateKeyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N9feff464b78c24957ed3173324c9cd14Response{
+	response := &UpdatePrivateKeyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12196,15 +13281,15 @@ func ParseN9feff464b78c24957ed3173324c9cd14Response(rsp *http.Response) (*N9feff
 	return response, nil
 }
 
-// ParseN787448df856cefd2d9a313566be30d34Response parses an HTTP response from a N787448df856cefd2d9a313566be30d34WithResponse call
-func ParseN787448df856cefd2d9a313566be30d34Response(rsp *http.Response) (*N787448df856cefd2d9a313566be30d34Response, error) {
+// ParseListServersResponse parses an HTTP response from a ListServersWithResponse call
+func ParseListServersResponse(rsp *http.Response) (*ListServersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N787448df856cefd2d9a313566be30d34Response{
+	response := &ListServersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12236,15 +13321,15 @@ func ParseN787448df856cefd2d9a313566be30d34Response(rsp *http.Response) (*N78744
 	return response, nil
 }
 
-// ParseFa44b42490379e428ba5b8747716a8d9Response parses an HTTP response from a Fa44b42490379e428ba5b8747716a8d9WithResponse call
-func ParseFa44b42490379e428ba5b8747716a8d9Response(rsp *http.Response) (*Fa44b42490379e428ba5b8747716a8d9Response, error) {
+// ParseCreateServerResponse parses an HTTP response from a CreateServerWithResponse call
+func ParseCreateServerResponse(rsp *http.Response) (*CreateServerResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Fa44b42490379e428ba5b8747716a8d9Response{
+	response := &CreateServerResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12286,15 +13371,15 @@ func ParseFa44b42490379e428ba5b8747716a8d9Response(rsp *http.Response) (*Fa44b42
 	return response, nil
 }
 
-// ParseN0231fe0134f0306b21f006ce51b0a3dcResponse parses an HTTP response from a N0231fe0134f0306b21f006ce51b0a3dcWithResponse call
-func ParseN0231fe0134f0306b21f006ce51b0a3dcResponse(rsp *http.Response) (*N0231fe0134f0306b21f006ce51b0a3dcResponse, error) {
+// ParseDeleteServerByUuidResponse parses an HTTP response from a DeleteServerByUuidWithResponse call
+func ParseDeleteServerByUuidResponse(rsp *http.Response) (*DeleteServerByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N0231fe0134f0306b21f006ce51b0a3dcResponse{
+	response := &DeleteServerByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12335,15 +13420,15 @@ func ParseN0231fe0134f0306b21f006ce51b0a3dcResponse(rsp *http.Response) (*N0231f
 	return response, nil
 }
 
-// ParseN5baf04bddb8302c7e07f5b4c41aad10cResponse parses an HTTP response from a N5baf04bddb8302c7e07f5b4c41aad10cWithResponse call
-func ParseN5baf04bddb8302c7e07f5b4c41aad10cResponse(rsp *http.Response) (*N5baf04bddb8302c7e07f5b4c41aad10cResponse, error) {
+// ParseGetServerByUuidResponse parses an HTTP response from a GetServerByUuidWithResponse call
+func ParseGetServerByUuidResponse(rsp *http.Response) (*GetServerByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N5baf04bddb8302c7e07f5b4c41aad10cResponse{
+	response := &GetServerByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12382,15 +13467,15 @@ func ParseN5baf04bddb8302c7e07f5b4c41aad10cResponse(rsp *http.Response) (*N5baf0
 	return response, nil
 }
 
-// ParseN41bbdaf79eb1938592494fc5494442a0Response parses an HTTP response from a N41bbdaf79eb1938592494fc5494442a0WithResponse call
-func ParseN41bbdaf79eb1938592494fc5494442a0Response(rsp *http.Response) (*N41bbdaf79eb1938592494fc5494442a0Response, error) {
+// ParseUpdateServerByUuidResponse parses an HTTP response from a UpdateServerByUuidWithResponse call
+func ParseUpdateServerByUuidResponse(rsp *http.Response) (*UpdateServerByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N41bbdaf79eb1938592494fc5494442a0Response{
+	response := &UpdateServerByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12429,15 +13514,15 @@ func ParseN41bbdaf79eb1938592494fc5494442a0Response(rsp *http.Response) (*N41bbd
 	return response, nil
 }
 
-// ParseN1ee227755be848d572f412272f53dd93Response parses an HTTP response from a N1ee227755be848d572f412272f53dd93WithResponse call
-func ParseN1ee227755be848d572f412272f53dd93Response(rsp *http.Response) (*N1ee227755be848d572f412272f53dd93Response, error) {
+// ParseGetDomainsByServerUuidResponse parses an HTTP response from a GetDomainsByServerUuidWithResponse call
+func ParseGetDomainsByServerUuidResponse(rsp *http.Response) (*GetDomainsByServerUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N1ee227755be848d572f412272f53dd93Response{
+	response := &GetDomainsByServerUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12472,15 +13557,15 @@ func ParseN1ee227755be848d572f412272f53dd93Response(rsp *http.Response) (*N1ee22
 	return response, nil
 }
 
-// ParseCef26c059941b44fbd8de3a7a58c10a5Response parses an HTTP response from a Cef26c059941b44fbd8de3a7a58c10a5WithResponse call
-func ParseCef26c059941b44fbd8de3a7a58c10a5Response(rsp *http.Response) (*Cef26c059941b44fbd8de3a7a58c10a5Response, error) {
+// ParseGetResourcesByServerUuidResponse parses an HTTP response from a GetResourcesByServerUuidWithResponse call
+func ParseGetResourcesByServerUuidResponse(rsp *http.Response) (*GetResourcesByServerUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Cef26c059941b44fbd8de3a7a58c10a5Response{
+	response := &GetResourcesByServerUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12520,15 +13605,15 @@ func ParseCef26c059941b44fbd8de3a7a58c10a5Response(rsp *http.Response) (*Cef26c0
 	return response, nil
 }
 
-// ParseA543a12ef2cbc7a3dd22c3dbe6cbee89Response parses an HTTP response from a A543a12ef2cbc7a3dd22c3dbe6cbee89WithResponse call
-func ParseA543a12ef2cbc7a3dd22c3dbe6cbee89Response(rsp *http.Response) (*A543a12ef2cbc7a3dd22c3dbe6cbee89Response, error) {
+// ParseValidateServerByUuidResponse parses an HTTP response from a ValidateServerByUuidWithResponse call
+func ParseValidateServerByUuidResponse(rsp *http.Response) (*ValidateServerByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &A543a12ef2cbc7a3dd22c3dbe6cbee89Response{
+	response := &ValidateServerByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12569,15 +13654,15 @@ func ParseA543a12ef2cbc7a3dd22c3dbe6cbee89Response(rsp *http.Response) (*A543a12
 	return response, nil
 }
 
-// ParseN5d014ac25d33391b8f4c2316060ba452Response parses an HTTP response from a N5d014ac25d33391b8f4c2316060ba452WithResponse call
-func ParseN5d014ac25d33391b8f4c2316060ba452Response(rsp *http.Response) (*N5d014ac25d33391b8f4c2316060ba452Response, error) {
+// ParseListServicesResponse parses an HTTP response from a ListServicesWithResponse call
+func ParseListServicesResponse(rsp *http.Response) (*ListServicesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N5d014ac25d33391b8f4c2316060ba452Response{
+	response := &ListServicesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12609,15 +13694,15 @@ func ParseN5d014ac25d33391b8f4c2316060ba452Response(rsp *http.Response) (*N5d014
 	return response, nil
 }
 
-// ParseN3d6cbfb54d919b53ba3984a113e837d7Response parses an HTTP response from a N3d6cbfb54d919b53ba3984a113e837d7WithResponse call
-func ParseN3d6cbfb54d919b53ba3984a113e837d7Response(rsp *http.Response) (*N3d6cbfb54d919b53ba3984a113e837d7Response, error) {
+// ParseCreateServiceResponse parses an HTTP response from a CreateServiceWithResponse call
+func ParseCreateServiceResponse(rsp *http.Response) (*CreateServiceResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N3d6cbfb54d919b53ba3984a113e837d7Response{
+	response := &CreateServiceResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12655,15 +13740,15 @@ func ParseN3d6cbfb54d919b53ba3984a113e837d7Response(rsp *http.Response) (*N3d6cb
 	return response, nil
 }
 
-// ParseN6e1a61e4fddaa9d95bb9fc66dfaf0442Response parses an HTTP response from a N6e1a61e4fddaa9d95bb9fc66dfaf0442WithResponse call
-func ParseN6e1a61e4fddaa9d95bb9fc66dfaf0442Response(rsp *http.Response) (*N6e1a61e4fddaa9d95bb9fc66dfaf0442Response, error) {
+// ParseDeleteServiceByUuidResponse parses an HTTP response from a DeleteServiceByUuidWithResponse call
+func ParseDeleteServiceByUuidResponse(rsp *http.Response) (*DeleteServiceByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N6e1a61e4fddaa9d95bb9fc66dfaf0442Response{
+	response := &DeleteServiceByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12704,15 +13789,15 @@ func ParseN6e1a61e4fddaa9d95bb9fc66dfaf0442Response(rsp *http.Response) (*N6e1a6
 	return response, nil
 }
 
-// ParseN895d39ee2cb3994285de57256c2d428dResponse parses an HTTP response from a N895d39ee2cb3994285de57256c2d428dWithResponse call
-func ParseN895d39ee2cb3994285de57256c2d428dResponse(rsp *http.Response) (*N895d39ee2cb3994285de57256c2d428dResponse, error) {
+// ParseGetServiceByUuidResponse parses an HTTP response from a GetServiceByUuidWithResponse call
+func ParseGetServiceByUuidResponse(rsp *http.Response) (*GetServiceByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N895d39ee2cb3994285de57256c2d428dResponse{
+	response := &GetServiceByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12751,15 +13836,209 @@ func ParseN895d39ee2cb3994285de57256c2d428dResponse(rsp *http.Response) (*N895d3
 	return response, nil
 }
 
-// ParseN836645faa615b75052759dae78639469Response parses an HTTP response from a N836645faa615b75052759dae78639469WithResponse call
-func ParseN836645faa615b75052759dae78639469Response(rsp *http.Response) (*N836645faa615b75052759dae78639469Response, error) {
+// ParseListEnvsByServiceUuidResponse parses an HTTP response from a ListEnvsByServiceUuidWithResponse call
+func ParseListEnvsByServiceUuidResponse(rsp *http.Response) (*ListEnvsByServiceUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N836645faa615b75052759dae78639469Response{
+	response := &ListEnvsByServiceUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EnvironmentVariable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateEnvByServiceUuidResponse parses an HTTP response from a UpdateEnvByServiceUuidWithResponse call
+func ParseUpdateEnvByServiceUuidResponse(rsp *http.Response) (*UpdateEnvByServiceUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateEnvByServiceUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateEnvByServiceUuidResponse parses an HTTP response from a CreateEnvByServiceUuidWithResponse call
+func ParseCreateEnvByServiceUuidResponse(rsp *http.Response) (*CreateEnvByServiceUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateEnvByServiceUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateEnvsByServiceUuidResponse parses an HTTP response from a UpdateEnvsByServiceUuidWithResponse call
+func ParseUpdateEnvsByServiceUuidResponse(rsp *http.Response) (*UpdateEnvsByServiceUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateEnvsByServiceUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteEnvByServiceUuidResponse parses an HTTP response from a DeleteEnvByServiceUuidWithResponse call
+func ParseDeleteEnvByServiceUuidResponse(rsp *http.Response) (*DeleteEnvByServiceUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteEnvByServiceUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12800,15 +14079,15 @@ func ParseN836645faa615b75052759dae78639469Response(rsp *http.Response) (*N83664
 	return response, nil
 }
 
-// ParseD2ddd9c028d123fbdec830dc4b25b4cbResponse parses an HTTP response from a D2ddd9c028d123fbdec830dc4b25b4cbWithResponse call
-func ParseD2ddd9c028d123fbdec830dc4b25b4cbResponse(rsp *http.Response) (*D2ddd9c028d123fbdec830dc4b25b4cbResponse, error) {
+// ParseRestartServiceByUuidResponse parses an HTTP response from a RestartServiceByUuidWithResponse call
+func ParseRestartServiceByUuidResponse(rsp *http.Response) (*RestartServiceByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &D2ddd9c028d123fbdec830dc4b25b4cbResponse{
+	response := &RestartServiceByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12849,15 +14128,15 @@ func ParseD2ddd9c028d123fbdec830dc4b25b4cbResponse(rsp *http.Response) (*D2ddd9c
 	return response, nil
 }
 
-// ParseN87399d34758ce16830740c68626614dbResponse parses an HTTP response from a N87399d34758ce16830740c68626614dbWithResponse call
-func ParseN87399d34758ce16830740c68626614dbResponse(rsp *http.Response) (*N87399d34758ce16830740c68626614dbResponse, error) {
+// ParseStartServiceByUuidResponse parses an HTTP response from a StartServiceByUuidWithResponse call
+func ParseStartServiceByUuidResponse(rsp *http.Response) (*StartServiceByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N87399d34758ce16830740c68626614dbResponse{
+	response := &StartServiceByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12898,15 +14177,64 @@ func ParseN87399d34758ce16830740c68626614dbResponse(rsp *http.Response) (*N87399
 	return response, nil
 }
 
-// ParseF9c530b5b25df9601cb87d6a58646f0aResponse parses an HTTP response from a F9c530b5b25df9601cb87d6a58646f0aWithResponse call
-func ParseF9c530b5b25df9601cb87d6a58646f0aResponse(rsp *http.Response) (*F9c530b5b25df9601cb87d6a58646f0aResponse, error) {
+// ParseStopServiceByUuidResponse parses an HTTP response from a StopServiceByUuidWithResponse call
+func ParseStopServiceByUuidResponse(rsp *http.Response) (*StopServiceByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &F9c530b5b25df9601cb87d6a58646f0aResponse{
+	response := &StopServiceByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListTeamsResponse parses an HTTP response from a ListTeamsWithResponse call
+func ParseListTeamsResponse(rsp *http.Response) (*ListTeamsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListTeamsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12938,15 +14266,15 @@ func ParseF9c530b5b25df9601cb87d6a58646f0aResponse(rsp *http.Response) (*F9c530b
 	return response, nil
 }
 
-// ParseN6a4ec9fed1aad7b0b38356c47d7ac509Response parses an HTTP response from a N6a4ec9fed1aad7b0b38356c47d7ac509WithResponse call
-func ParseN6a4ec9fed1aad7b0b38356c47d7ac509Response(rsp *http.Response) (*N6a4ec9fed1aad7b0b38356c47d7ac509Response, error) {
+// ParseGetCurrentTeamResponse parses an HTTP response from a GetCurrentTeamWithResponse call
+func ParseGetCurrentTeamResponse(rsp *http.Response) (*GetCurrentTeamResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N6a4ec9fed1aad7b0b38356c47d7ac509Response{
+	response := &GetCurrentTeamResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -12978,15 +14306,15 @@ func ParseN6a4ec9fed1aad7b0b38356c47d7ac509Response(rsp *http.Response) (*N6a4ec
 	return response, nil
 }
 
-// ParseN97e636a5796dbe71afb0bbcf1eec6e41Response parses an HTTP response from a N97e636a5796dbe71afb0bbcf1eec6e41WithResponse call
-func ParseN97e636a5796dbe71afb0bbcf1eec6e41Response(rsp *http.Response) (*N97e636a5796dbe71afb0bbcf1eec6e41Response, error) {
+// ParseGetCurrentTeamMembersResponse parses an HTTP response from a GetCurrentTeamMembersWithResponse call
+func ParseGetCurrentTeamMembersResponse(rsp *http.Response) (*GetCurrentTeamMembersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N97e636a5796dbe71afb0bbcf1eec6e41Response{
+	response := &GetCurrentTeamMembersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13018,15 +14346,15 @@ func ParseN97e636a5796dbe71afb0bbcf1eec6e41Response(rsp *http.Response) (*N97e63
 	return response, nil
 }
 
-// ParseAc57ff546c002032cef44602c46a4e76Response parses an HTTP response from a Ac57ff546c002032cef44602c46a4e76WithResponse call
-func ParseAc57ff546c002032cef44602c46a4e76Response(rsp *http.Response) (*Ac57ff546c002032cef44602c46a4e76Response, error) {
+// ParseGetTeamByIdResponse parses an HTTP response from a GetTeamByIdWithResponse call
+func ParseGetTeamByIdResponse(rsp *http.Response) (*GetTeamByIdResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Ac57ff546c002032cef44602c46a4e76Response{
+	response := &GetTeamByIdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13065,15 +14393,15 @@ func ParseAc57ff546c002032cef44602c46a4e76Response(rsp *http.Response) (*Ac57ff5
 	return response, nil
 }
 
-// ParseN7858f5a45d9ea55184c182852a7f0f6cResponse parses an HTTP response from a N7858f5a45d9ea55184c182852a7f0f6cWithResponse call
-func ParseN7858f5a45d9ea55184c182852a7f0f6cResponse(rsp *http.Response) (*N7858f5a45d9ea55184c182852a7f0f6cResponse, error) {
+// ParseGetMembersByTeamIdResponse parses an HTTP response from a GetMembersByTeamIdWithResponse call
+func ParseGetMembersByTeamIdResponse(rsp *http.Response) (*GetMembersByTeamIdResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N7858f5a45d9ea55184c182852a7f0f6cResponse{
+	response := &GetMembersByTeamIdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -13112,15 +14440,15 @@ func ParseN7858f5a45d9ea55184c182852a7f0f6cResponse(rsp *http.Response) (*N7858f
 	return response, nil
 }
 
-// ParseN187b37139844731110757711ee71c215Response parses an HTTP response from a N187b37139844731110757711ee71c215WithResponse call
-func ParseN187b37139844731110757711ee71c215Response(rsp *http.Response) (*N187b37139844731110757711ee71c215Response, error) {
+// ParseVersionResponse parses an HTTP response from a VersionWithResponse call
+func ParseVersionResponse(rsp *http.Response) (*VersionResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &N187b37139844731110757711ee71c215Response{
+	response := &VersionResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}

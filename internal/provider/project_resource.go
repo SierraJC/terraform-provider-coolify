@@ -55,13 +55,13 @@ func (r *projectResource) Create(ctx context.Context, req resource.CreateRequest
 		return
 	}
 
-	body := api.Cf067eb7cf18216cda3239329a2eeadbJSONRequestBody{
+	body := api.CreateProjectJSONRequestBody{
 		Name:        state.Name.ValueStringPointer(),
 		Description: state.Description.ValueStringPointer(),
 	}
 
 	tflog.Debug(ctx, "Creating project")
-	createResp, err := r.providerData.client.Cf067eb7cf18216cda3239329a2eeadbWithResponse(ctx, body)
+	createResp, err := r.providerData.client.CreateProjectWithResponse(ctx, body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error creating project",
@@ -81,7 +81,7 @@ func (r *projectResource) Create(ctx context.Context, req resource.CreateRequest
 	assignStr(createResp.JSON201.Uuid, &state.Uuid)
 
 	// GET /projects/{uuid}
-	readResp, err := r.providerData.client.N63bf8b6a68fbb757f09ab519331f6298WithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetProjectByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading project: uuid=%s", state.Uuid.ValueString()),
@@ -149,7 +149,7 @@ func (r *projectResource) Read(ctx context.Context, req resource.ReadRequest, re
 	}
 
 	// GET /projects/{uuid}
-	readResp, err := r.providerData.client.N63bf8b6a68fbb757f09ab519331f6298WithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetProjectByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading project: uuid=%s", state.Uuid.ValueString()),
@@ -241,13 +241,13 @@ func (r *projectResource) Update(ctx context.Context, req resource.UpdateRequest
 		return
 	}
 
-	body := api.N2db343bd6fc14c658cb51a2b73b2f842JSONRequestBody{
+	body := api.UpdateProjectByUuidJSONRequestBody{
 		Name:        plan.Name.ValueStringPointer(),
 		Description: plan.Description.ValueStringPointer(),
 	}
 
 	tflog.Debug(ctx, fmt.Sprintf("Updating project: uuid=%s", state.Uuid.ValueString()))
-	updateResp, err := r.providerData.client.N2db343bd6fc14c658cb51a2b73b2f842WithResponse(ctx, state.Uuid.ValueString(), body)
+	updateResp, err := r.providerData.client.UpdateProjectByUuidWithResponse(ctx, state.Uuid.ValueString(), body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error updating project: uuid=%s", state.Uuid.ValueString()),
@@ -266,7 +266,7 @@ func (r *projectResource) Update(ctx context.Context, req resource.UpdateRequest
 	assignStr(updateResp.JSON201.Uuid, &state.Uuid)
 
 	// GET /projects/{uuid}
-	readResp, err := r.providerData.client.N63bf8b6a68fbb757f09ab519331f6298WithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetProjectByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading project: uuid=%s", state.Uuid.ValueString()),
@@ -327,7 +327,7 @@ func (r *projectResource) Delete(ctx context.Context, req resource.DeleteRequest
 		return
 	}
 
-	deleteResp, err := r.providerData.client.F668a936f505b4401948c74b6a663029WithResponse(ctx, state.Uuid.ValueString())
+	deleteResp, err := r.providerData.client.DeleteProjectByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete project, got error: %s", err))
 		return

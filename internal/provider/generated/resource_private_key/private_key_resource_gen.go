@@ -40,8 +40,8 @@ func PrivateKeyResourceSchema(ctx context.Context) schema.Schema {
 			},
 			"uuid": schema.StringAttribute{
 				Computed:            true,
-				Description:         "Private Key Uuid",
-				MarkdownDescription: "Private Key Uuid",
+				Description:         "Private Key UUID",
+				MarkdownDescription: "Private Key UUID",
 			},
 		},
 	}

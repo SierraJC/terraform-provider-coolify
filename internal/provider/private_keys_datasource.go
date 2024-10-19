@@ -60,7 +60,7 @@ func (d *privateKeysDataSource) Read(ctx context.Context, req datasource.ReadReq
 	}
 
 	// Read Coolify API - GET /security/keys
-	res, err := d.client.N8a5d8d3ccbbcef54ed0e913a27faea9dWithResponse(ctx)
+	res, err := d.client.ListPrivateKeysWithResponse(ctx)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error getting Private Keys",

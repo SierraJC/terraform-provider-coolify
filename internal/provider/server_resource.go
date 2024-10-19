@@ -57,7 +57,7 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	body := api.Fa44b42490379e428ba5b8747716a8d9JSONRequestBody{
+	body := api.CreateServerJSONRequestBody{
 		Description:     state.Description.ValueStringPointer(),
 		InstantValidate: state.InstantValidate.ValueBoolPointer(),
 		Ip:              state.Ip.ValueString(),
@@ -69,7 +69,7 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 	}
 
 	tflog.Debug(ctx, "Creating server")
-	createResp, err := r.providerData.client.Fa44b42490379e428ba5b8747716a8d9WithResponse(ctx, body)
+	createResp, err := r.providerData.client.CreateServerWithResponse(ctx, body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error creating server",
@@ -89,7 +89,7 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 	assignStr(createResp.JSON201.Uuid, &state.Uuid)
 
 	// GET /servers/{uuid}
-	readResp, err := r.providerData.client.N5baf04bddb8302c7e07f5b4c41aad10cWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetServerByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading server: uuid=%s", state.Uuid.ValueString()),
@@ -130,7 +130,7 @@ func (r *serverResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 
 	// GET /servers/{uuid}
-	readResp, err := r.providerData.client.N5baf04bddb8302c7e07f5b4c41aad10cWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetServerByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading server: uuid=%s", state.Uuid.ValueString()),
@@ -174,10 +174,10 @@ func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	body := api.N41bbdaf79eb1938592494fc5494442a0JSONRequestBody{}
+	body := api.UpdateServerByUuidJSONRequestBody{}
 
 	tflog.Debug(ctx, fmt.Sprintf("Updating server: uuid=%s", state.Uuid.ValueString()))
-	updateResp, err := r.providerData.client.N41bbdaf79eb1938592494fc5494442a0WithResponse(ctx, state.Uuid.ValueString(), body)
+	updateResp, err := r.providerData.client.UpdateServerByUuidWithResponse(ctx, state.Uuid.ValueString(), body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error updating server: uuid=%s", state.Uuid.ValueString()),
@@ -196,7 +196,7 @@ func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest,
 	// assignStr(updateResp.JSON201.Uuid, &state.Uuid)
 
 	// GET /servers/{uuid}
-	readResp, err := r.providerData.client.N5baf04bddb8302c7e07f5b4c41aad10cWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetServerByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading server: uuid=%s", state.Uuid.ValueString()),
@@ -230,7 +230,7 @@ func (r *serverResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	deleteResp, err := r.providerData.client.N0231fe0134f0306b21f006ce51b0a3dcWithResponse(ctx, state.Uuid.ValueString())
+	deleteResp, err := r.providerData.client.DeleteServerByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete server, got error: %s", err))
 		return
@@ -289,9 +289,10 @@ func getServerProxyState(ctx context.Context, proxies *map[string]interface{}) (
 }
 
 func getServerSettingsState(ctx context.Context, settings *api.ServerSetting) (resource_server.SettingsValue, diag.Diagnostics) {
+	// todo: make a function that will compare the result of this function with SettingsValue, to ensure no fields are missing
 	return resource_server.NewSettingsValue(resource_server.SettingsValue{}.AttributeTypes(ctx), map[string]attr.Value{
-		"cleanup_after_percentage":      types.Int64PointerValue(intPointerToInt64Pointer(settings.CleanupAfterPercentage)),
-		"concurrent_builds":             types.Int64PointerValue(intPointerToInt64Pointer(settings.ConcurrentBuilds)),
+		// "cleanup_after_percentage":      types.Int64PointerValue(intPointerToInt64Pointer(settings.CleanupAfterPercentage)),
+		// "concurrent_builds":             types.Int64PointerValue(intPointerToInt64Pointer(settings.ConcurrentBuilds)),
 		"created_at":                    types.StringPointerValue(settings.CreatedAt),
 		"dynamic_timeout":               types.Int64PointerValue(intPointerToInt64Pointer(settings.DynamicTimeout)),
 		"force_disabled":                types.BoolPointerValue(settings.ForceDisabled),
@@ -305,7 +306,7 @@ func getServerSettingsState(ctx context.Context, settings *api.ServerSetting) (r
 		"is_logdrain_newrelic_enabled":  types.BoolPointerValue(settings.IsLogdrainNewrelicEnabled),
 		"is_metrics_enabled":            types.BoolPointerValue(settings.IsMetricsEnabled),
 		"is_reachable":                  types.BoolPointerValue(settings.IsReachable),
-		"is_server_api_enabled":         types.BoolPointerValue(settings.IsServerApiEnabled),
+		// "is_server_api_enabled":         types.BoolPointerValue(settings.IsServerApiEnabled),
 		"is_swarm_manager":              types.BoolPointerValue(settings.IsSwarmManager),
 		"is_swarm_worker":               types.BoolPointerValue(settings.IsSwarmWorker),
 		"is_usable":                     types.BoolPointerValue(settings.IsUsable),
@@ -316,9 +317,9 @@ func getServerSettingsState(ctx context.Context, settings *api.ServerSetting) (r
 		"logdrain_highlight_project_id": types.StringPointerValue(settings.LogdrainHighlightProjectId),
 		"logdrain_newrelic_base_uri":    types.StringPointerValue(settings.LogdrainNewrelicBaseUri),
 		"logdrain_newrelic_license_key": types.StringPointerValue(settings.LogdrainNewrelicLicenseKey),
-		"metrics_history_days":          types.Int64PointerValue(intPointerToInt64Pointer(settings.MetricsHistoryDays)),
-		"metrics_refresh_rate_seconds":  types.Int64PointerValue(intPointerToInt64Pointer(settings.MetricsRefreshRateSeconds)),
-		"metrics_token":                 types.StringPointerValue(settings.MetricsToken),
+		// "metrics_history_days":          types.Int64PointerValue(intPointerToInt64Pointer(settings.MetricsHistoryDays)),
+		// "metrics_refresh_rate_seconds":  types.Int64PointerValue(intPointerToInt64Pointer(settings.MetricsRefreshRateSeconds)),
+		// "metrics_token":                 types.StringPointerValue(settings.MetricsToken),
 		"server_id":                     types.Int64PointerValue(intPointerToInt64Pointer(settings.ServerId)),
 		"updated_at":                    types.StringPointerValue(settings.UpdatedAt),
 		"wildcard_domain":               types.StringPointerValue(settings.WildcardDomain),

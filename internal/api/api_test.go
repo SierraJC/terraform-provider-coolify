@@ -21,7 +21,7 @@ func TestClient_canCall(t *testing.T) {
 			log.Fatal(err)
 		}
 
-		resp, err := c.N8a5d8d3ccbbcef54ed0e913a27faea9d(context.TODO())
+		resp, err := c.Version(context.TODO())
 
 		// resp, err := c.GetClient(context.TODO())
 		if err != nil {

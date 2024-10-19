@@ -59,7 +59,7 @@ func (r *privateKeyResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	body := api.Eb4780acaa990c594cdbe8ffa80b4fb0JSONRequestBody{
+	body := api.CreatePrivateKeyJSONRequestBody{
 		PrivateKey: state.PrivateKey.ValueString(),
 	}
 	if state.Description.ValueString() != "" {
@@ -70,7 +70,7 @@ func (r *privateKeyResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 
 	tflog.Debug(ctx, "Creating private key")
-	createResp, err := r.providerData.client.Eb4780acaa990c594cdbe8ffa80b4fb0WithResponse(ctx, body)
+	createResp, err := r.providerData.client.CreatePrivateKeyWithResponse(ctx, body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error creating private key",
@@ -89,7 +89,7 @@ func (r *privateKeyResource) Create(ctx context.Context, req resource.CreateRequ
 
 	assignStr(createResp.JSON201.Uuid, &state.Uuid)
 
-	readResp, err := r.providerData.client.N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetPrivateKeyByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading private key: uuid=%s", state.Uuid.ValueString()),
@@ -132,7 +132,7 @@ func (r *privateKeyResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	readResp, err := r.providerData.client.N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetPrivateKeyByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading private key: uuid=%s", state.Uuid.ValueString()),
@@ -182,7 +182,7 @@ func (r *privateKeyResource) Update(ctx context.Context, req resource.UpdateRequ
 	}
 
 	// Update API call logic
-	body := api.N9feff464b78c24957ed3173324c9cd14JSONRequestBody{
+	body := api.UpdatePrivateKeyJSONRequestBody{
 		PrivateKey: plan.PrivateKey.ValueString(),
 	}
 	if state.Description.ValueString() != "" {
@@ -193,7 +193,7 @@ func (r *privateKeyResource) Update(ctx context.Context, req resource.UpdateRequ
 	}
 
 	tflog.Debug(ctx, fmt.Sprintf("Updating private key: uuid=%s", state.Uuid.ValueString()))
-	updateResp, err := r.providerData.client.N9feff464b78c24957ed3173324c9cd14WithResponse(ctx, state.Uuid.ValueString(), body)
+	updateResp, err := r.providerData.client.UpdatePrivateKeyWithResponse(ctx, state.Uuid.ValueString(), body)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error updating private key: uuid=%s", state.Uuid.ValueString()),
@@ -211,7 +211,7 @@ func (r *privateKeyResource) Update(ctx context.Context, req resource.UpdateRequ
 
 	assignStr(updateResp.JSON201.Uuid, &state.Uuid)
 
-	readResp, err := r.providerData.client.N2f743a85eb65d5ddb8cd5b362bb3d26aWithResponse(ctx, state.Uuid.ValueString())
+	readResp, err := r.providerData.client.GetPrivateKeyByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError(
 			fmt.Sprintf("Error reading private key: uuid=%s", state.Uuid.ValueString()),
@@ -251,7 +251,7 @@ func (r *privateKeyResource) Delete(ctx context.Context, req resource.DeleteRequ
 		return
 	}
 
-	deleteResp, err := r.providerData.client.N8faa0bb399142f0084dfc3e003c42cf6WithResponse(ctx, state.Uuid.ValueString())
+	deleteResp, err := r.providerData.client.DeletePrivateKeyByUuidWithResponse(ctx, state.Uuid.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Client Error", fmt.Sprintf("Unable to delete private key, got error: %s", err))
 		return

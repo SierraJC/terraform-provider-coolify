@@ -100,7 +100,7 @@ func (p *CoolifyProvider) Configure(ctx context.Context, req provider.ConfigureR
 	client := api.NewAPIClient(apiEndpoint, apiToken)
 
 	// GET /version
-	versionResp, err := client.N187b37139844731110757711ee71c215WithResponse(ctx)
+	versionResp, err := client.VersionWithResponse(ctx)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Failed to connect to Coolify API",

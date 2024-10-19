@@ -18,6 +18,12 @@ import (
 func ServerResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Attributes: map[string]schema.Attribute{
+			"delete_unused_networks": schema.BoolAttribute{
+				Computed: true,
+			},
+			"delete_unused_volumes": schema.BoolAttribute{
+				Computed: true,
+			},
 			"description": schema.StringAttribute{
 				Optional:            true,
 				Computed:            true,
@@ -78,19 +84,25 @@ func ServerResourceSchema(ctx context.Context) schema.Schema {
 			},
 			"settings": schema.SingleNestedAttribute{
 				Attributes: map[string]schema.Attribute{
-					"cleanup_after_percentage": schema.Int64Attribute{
-						Computed: true,
-					},
 					"concurrent_builds": schema.Int64Attribute{
 						Computed: true,
 					},
 					"created_at": schema.StringAttribute{
 						Computed: true,
 					},
+					"docker_cleanup_frequency": schema.StringAttribute{
+						Computed: true,
+					},
+					"docker_cleanup_threshold": schema.Int64Attribute{
+						Computed: true,
+					},
 					"dynamic_timeout": schema.Int64Attribute{
 						Computed: true,
 					},
 					"force_disabled": schema.BoolAttribute{
+						Computed: true,
+					},
+					"force_server_cleanup": schema.BoolAttribute{
 						Computed: true,
 					},
 					"id": schema.Int64Attribute{
@@ -123,7 +135,7 @@ func ServerResourceSchema(ctx context.Context) schema.Schema {
 					"is_reachable": schema.BoolAttribute{
 						Computed: true,
 					},
-					"is_server_api_enabled": schema.BoolAttribute{
+					"is_sentinel_enabled": schema.BoolAttribute{
 						Computed: true,
 					},
 					"is_swarm_manager": schema.BoolAttribute{
@@ -156,13 +168,13 @@ func ServerResourceSchema(ctx context.Context) schema.Schema {
 					"logdrain_newrelic_license_key": schema.StringAttribute{
 						Computed: true,
 					},
-					"metrics_history_days": schema.Int64Attribute{
+					"sentinel_metrics_history_days": schema.Int64Attribute{
 						Computed: true,
 					},
-					"metrics_refresh_rate_seconds": schema.Int64Attribute{
+					"sentinel_metrics_refresh_rate_seconds": schema.Int64Attribute{
 						Computed: true,
 					},
-					"metrics_token": schema.StringAttribute{
+					"sentinel_token": schema.StringAttribute{
 						Computed: true,
 					},
 					"server_id": schema.Int64Attribute{
@@ -212,6 +224,8 @@ func ServerResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type ServerModel struct {
+	DeleteUnusedNetworks          types.Bool    `tfsdk:"delete_unused_networks"`
+	DeleteUnusedVolumes           types.Bool    `tfsdk:"delete_unused_volumes"`
 	Description                   types.String  `tfsdk:"description"`
 	HighDiskUsageNotificationSent types.Bool    `tfsdk:"high_disk_usage_notification_sent"`
 	Id                            types.Int64   `tfsdk:"id"`
@@ -517,24 +531,6 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 
 	attributes := in.Attributes()
 
-	cleanupAfterPercentageAttribute, ok := attributes["cleanup_after_percentage"]
-
-	if !ok {
-		diags.AddError(
-			"Attribute Missing",
-			`cleanup_after_percentage is missing from object`)
-
-		return nil, diags
-	}
-
-	cleanupAfterPercentageVal, ok := cleanupAfterPercentageAttribute.(basetypes.Int64Value)
-
-	if !ok {
-		diags.AddError(
-			"Attribute Wrong Type",
-			fmt.Sprintf(`cleanup_after_percentage expected to be basetypes.Int64Value, was: %T`, cleanupAfterPercentageAttribute))
-	}
-
 	concurrentBuildsAttribute, ok := attributes["concurrent_builds"]
 
 	if !ok {
@@ -571,6 +567,42 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 			fmt.Sprintf(`created_at expected to be basetypes.StringValue, was: %T`, createdAtAttribute))
 	}
 
+	dockerCleanupFrequencyAttribute, ok := attributes["docker_cleanup_frequency"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`docker_cleanup_frequency is missing from object`)
+
+		return nil, diags
+	}
+
+	dockerCleanupFrequencyVal, ok := dockerCleanupFrequencyAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`docker_cleanup_frequency expected to be basetypes.StringValue, was: %T`, dockerCleanupFrequencyAttribute))
+	}
+
+	dockerCleanupThresholdAttribute, ok := attributes["docker_cleanup_threshold"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`docker_cleanup_threshold is missing from object`)
+
+		return nil, diags
+	}
+
+	dockerCleanupThresholdVal, ok := dockerCleanupThresholdAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`docker_cleanup_threshold expected to be basetypes.Int64Value, was: %T`, dockerCleanupThresholdAttribute))
+	}
+
 	dynamicTimeoutAttribute, ok := attributes["dynamic_timeout"]
 
 	if !ok {
@@ -605,6 +637,24 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 		diags.AddError(
 			"Attribute Wrong Type",
 			fmt.Sprintf(`force_disabled expected to be basetypes.BoolValue, was: %T`, forceDisabledAttribute))
+	}
+
+	forceServerCleanupAttribute, ok := attributes["force_server_cleanup"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`force_server_cleanup is missing from object`)
+
+		return nil, diags
+	}
+
+	forceServerCleanupVal, ok := forceServerCleanupAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`force_server_cleanup expected to be basetypes.BoolValue, was: %T`, forceServerCleanupAttribute))
 	}
 
 	idAttribute, ok := attributes["id"]
@@ -787,22 +837,22 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 			fmt.Sprintf(`is_reachable expected to be basetypes.BoolValue, was: %T`, isReachableAttribute))
 	}
 
-	isServerApiEnabledAttribute, ok := attributes["is_server_api_enabled"]
+	isSentinelEnabledAttribute, ok := attributes["is_sentinel_enabled"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`is_server_api_enabled is missing from object`)
+			`is_sentinel_enabled is missing from object`)
 
 		return nil, diags
 	}
 
-	isServerApiEnabledVal, ok := isServerApiEnabledAttribute.(basetypes.BoolValue)
+	isSentinelEnabledVal, ok := isSentinelEnabledAttribute.(basetypes.BoolValue)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`is_server_api_enabled expected to be basetypes.BoolValue, was: %T`, isServerApiEnabledAttribute))
+			fmt.Sprintf(`is_sentinel_enabled expected to be basetypes.BoolValue, was: %T`, isSentinelEnabledAttribute))
 	}
 
 	isSwarmManagerAttribute, ok := attributes["is_swarm_manager"]
@@ -985,58 +1035,58 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 			fmt.Sprintf(`logdrain_newrelic_license_key expected to be basetypes.StringValue, was: %T`, logdrainNewrelicLicenseKeyAttribute))
 	}
 
-	metricsHistoryDaysAttribute, ok := attributes["metrics_history_days"]
+	sentinelMetricsHistoryDaysAttribute, ok := attributes["sentinel_metrics_history_days"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_history_days is missing from object`)
+			`sentinel_metrics_history_days is missing from object`)
 
 		return nil, diags
 	}
 
-	metricsHistoryDaysVal, ok := metricsHistoryDaysAttribute.(basetypes.Int64Value)
+	sentinelMetricsHistoryDaysVal, ok := sentinelMetricsHistoryDaysAttribute.(basetypes.Int64Value)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_history_days expected to be basetypes.Int64Value, was: %T`, metricsHistoryDaysAttribute))
+			fmt.Sprintf(`sentinel_metrics_history_days expected to be basetypes.Int64Value, was: %T`, sentinelMetricsHistoryDaysAttribute))
 	}
 
-	metricsRefreshRateSecondsAttribute, ok := attributes["metrics_refresh_rate_seconds"]
+	sentinelMetricsRefreshRateSecondsAttribute, ok := attributes["sentinel_metrics_refresh_rate_seconds"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_refresh_rate_seconds is missing from object`)
+			`sentinel_metrics_refresh_rate_seconds is missing from object`)
 
 		return nil, diags
 	}
 
-	metricsRefreshRateSecondsVal, ok := metricsRefreshRateSecondsAttribute.(basetypes.Int64Value)
+	sentinelMetricsRefreshRateSecondsVal, ok := sentinelMetricsRefreshRateSecondsAttribute.(basetypes.Int64Value)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_refresh_rate_seconds expected to be basetypes.Int64Value, was: %T`, metricsRefreshRateSecondsAttribute))
+			fmt.Sprintf(`sentinel_metrics_refresh_rate_seconds expected to be basetypes.Int64Value, was: %T`, sentinelMetricsRefreshRateSecondsAttribute))
 	}
 
-	metricsTokenAttribute, ok := attributes["metrics_token"]
+	sentinelTokenAttribute, ok := attributes["sentinel_token"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_token is missing from object`)
+			`sentinel_token is missing from object`)
 
 		return nil, diags
 	}
 
-	metricsTokenVal, ok := metricsTokenAttribute.(basetypes.StringValue)
+	sentinelTokenVal, ok := sentinelTokenAttribute.(basetypes.StringValue)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_token expected to be basetypes.StringValue, was: %T`, metricsTokenAttribute))
+			fmt.Sprintf(`sentinel_token expected to be basetypes.StringValue, was: %T`, sentinelTokenAttribute))
 	}
 
 	serverIdAttribute, ok := attributes["server_id"]
@@ -1098,39 +1148,41 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 	}
 
 	return SettingsValue{
-		CleanupAfterPercentage:     cleanupAfterPercentageVal,
-		ConcurrentBuilds:           concurrentBuildsVal,
-		CreatedAt:                  createdAtVal,
-		DynamicTimeout:             dynamicTimeoutVal,
-		ForceDisabled:              forceDisabledVal,
-		Id:                         idVal,
-		IsBuildServer:              isBuildServerVal,
-		IsCloudflareTunnel:         isCloudflareTunnelVal,
-		IsJumpServer:               isJumpServerVal,
-		IsLogdrainAxiomEnabled:     isLogdrainAxiomEnabledVal,
-		IsLogdrainCustomEnabled:    isLogdrainCustomEnabledVal,
-		IsLogdrainHighlightEnabled: isLogdrainHighlightEnabledVal,
-		IsLogdrainNewrelicEnabled:  isLogdrainNewrelicEnabledVal,
-		IsMetricsEnabled:           isMetricsEnabledVal,
-		IsReachable:                isReachableVal,
-		IsServerApiEnabled:         isServerApiEnabledVal,
-		IsSwarmManager:             isSwarmManagerVal,
-		IsSwarmWorker:              isSwarmWorkerVal,
-		IsUsable:                   isUsableVal,
-		LogdrainAxiomApiKey:        logdrainAxiomApiKeyVal,
-		LogdrainAxiomDatasetName:   logdrainAxiomDatasetNameVal,
-		LogdrainCustomConfig:       logdrainCustomConfigVal,
-		LogdrainCustomConfigParser: logdrainCustomConfigParserVal,
-		LogdrainHighlightProjectId: logdrainHighlightProjectIdVal,
-		LogdrainNewrelicBaseUri:    logdrainNewrelicBaseUriVal,
-		LogdrainNewrelicLicenseKey: logdrainNewrelicLicenseKeyVal,
-		MetricsHistoryDays:         metricsHistoryDaysVal,
-		MetricsRefreshRateSeconds:  metricsRefreshRateSecondsVal,
-		MetricsToken:               metricsTokenVal,
-		ServerId:                   serverIdVal,
-		UpdatedAt:                  updatedAtVal,
-		WildcardDomain:             wildcardDomainVal,
-		state:                      attr.ValueStateKnown,
+		ConcurrentBuilds:                  concurrentBuildsVal,
+		CreatedAt:                         createdAtVal,
+		DockerCleanupFrequency:            dockerCleanupFrequencyVal,
+		DockerCleanupThreshold:            dockerCleanupThresholdVal,
+		DynamicTimeout:                    dynamicTimeoutVal,
+		ForceDisabled:                     forceDisabledVal,
+		ForceServerCleanup:                forceServerCleanupVal,
+		Id:                                idVal,
+		IsBuildServer:                     isBuildServerVal,
+		IsCloudflareTunnel:                isCloudflareTunnelVal,
+		IsJumpServer:                      isJumpServerVal,
+		IsLogdrainAxiomEnabled:            isLogdrainAxiomEnabledVal,
+		IsLogdrainCustomEnabled:           isLogdrainCustomEnabledVal,
+		IsLogdrainHighlightEnabled:        isLogdrainHighlightEnabledVal,
+		IsLogdrainNewrelicEnabled:         isLogdrainNewrelicEnabledVal,
+		IsMetricsEnabled:                  isMetricsEnabledVal,
+		IsReachable:                       isReachableVal,
+		IsSentinelEnabled:                 isSentinelEnabledVal,
+		IsSwarmManager:                    isSwarmManagerVal,
+		IsSwarmWorker:                     isSwarmWorkerVal,
+		IsUsable:                          isUsableVal,
+		LogdrainAxiomApiKey:               logdrainAxiomApiKeyVal,
+		LogdrainAxiomDatasetName:          logdrainAxiomDatasetNameVal,
+		LogdrainCustomConfig:              logdrainCustomConfigVal,
+		LogdrainCustomConfigParser:        logdrainCustomConfigParserVal,
+		LogdrainHighlightProjectId:        logdrainHighlightProjectIdVal,
+		LogdrainNewrelicBaseUri:           logdrainNewrelicBaseUriVal,
+		LogdrainNewrelicLicenseKey:        logdrainNewrelicLicenseKeyVal,
+		SentinelMetricsHistoryDays:        sentinelMetricsHistoryDaysVal,
+		SentinelMetricsRefreshRateSeconds: sentinelMetricsRefreshRateSecondsVal,
+		SentinelToken:                     sentinelTokenVal,
+		ServerId:                          serverIdVal,
+		UpdatedAt:                         updatedAtVal,
+		WildcardDomain:                    wildcardDomainVal,
+		state:                             attr.ValueStateKnown,
 	}, diags
 }
 
@@ -1197,24 +1249,6 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 		return NewSettingsValueUnknown(), diags
 	}
 
-	cleanupAfterPercentageAttribute, ok := attributes["cleanup_after_percentage"]
-
-	if !ok {
-		diags.AddError(
-			"Attribute Missing",
-			`cleanup_after_percentage is missing from object`)
-
-		return NewSettingsValueUnknown(), diags
-	}
-
-	cleanupAfterPercentageVal, ok := cleanupAfterPercentageAttribute.(basetypes.Int64Value)
-
-	if !ok {
-		diags.AddError(
-			"Attribute Wrong Type",
-			fmt.Sprintf(`cleanup_after_percentage expected to be basetypes.Int64Value, was: %T`, cleanupAfterPercentageAttribute))
-	}
-
 	concurrentBuildsAttribute, ok := attributes["concurrent_builds"]
 
 	if !ok {
@@ -1251,6 +1285,42 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 			fmt.Sprintf(`created_at expected to be basetypes.StringValue, was: %T`, createdAtAttribute))
 	}
 
+	dockerCleanupFrequencyAttribute, ok := attributes["docker_cleanup_frequency"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`docker_cleanup_frequency is missing from object`)
+
+		return NewSettingsValueUnknown(), diags
+	}
+
+	dockerCleanupFrequencyVal, ok := dockerCleanupFrequencyAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`docker_cleanup_frequency expected to be basetypes.StringValue, was: %T`, dockerCleanupFrequencyAttribute))
+	}
+
+	dockerCleanupThresholdAttribute, ok := attributes["docker_cleanup_threshold"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`docker_cleanup_threshold is missing from object`)
+
+		return NewSettingsValueUnknown(), diags
+	}
+
+	dockerCleanupThresholdVal, ok := dockerCleanupThresholdAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`docker_cleanup_threshold expected to be basetypes.Int64Value, was: %T`, dockerCleanupThresholdAttribute))
+	}
+
 	dynamicTimeoutAttribute, ok := attributes["dynamic_timeout"]
 
 	if !ok {
@@ -1285,6 +1355,24 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 		diags.AddError(
 			"Attribute Wrong Type",
 			fmt.Sprintf(`force_disabled expected to be basetypes.BoolValue, was: %T`, forceDisabledAttribute))
+	}
+
+	forceServerCleanupAttribute, ok := attributes["force_server_cleanup"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`force_server_cleanup is missing from object`)
+
+		return NewSettingsValueUnknown(), diags
+	}
+
+	forceServerCleanupVal, ok := forceServerCleanupAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`force_server_cleanup expected to be basetypes.BoolValue, was: %T`, forceServerCleanupAttribute))
 	}
 
 	idAttribute, ok := attributes["id"]
@@ -1467,22 +1555,22 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 			fmt.Sprintf(`is_reachable expected to be basetypes.BoolValue, was: %T`, isReachableAttribute))
 	}
 
-	isServerApiEnabledAttribute, ok := attributes["is_server_api_enabled"]
+	isSentinelEnabledAttribute, ok := attributes["is_sentinel_enabled"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`is_server_api_enabled is missing from object`)
+			`is_sentinel_enabled is missing from object`)
 
 		return NewSettingsValueUnknown(), diags
 	}
 
-	isServerApiEnabledVal, ok := isServerApiEnabledAttribute.(basetypes.BoolValue)
+	isSentinelEnabledVal, ok := isSentinelEnabledAttribute.(basetypes.BoolValue)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`is_server_api_enabled expected to be basetypes.BoolValue, was: %T`, isServerApiEnabledAttribute))
+			fmt.Sprintf(`is_sentinel_enabled expected to be basetypes.BoolValue, was: %T`, isSentinelEnabledAttribute))
 	}
 
 	isSwarmManagerAttribute, ok := attributes["is_swarm_manager"]
@@ -1665,58 +1753,58 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 			fmt.Sprintf(`logdrain_newrelic_license_key expected to be basetypes.StringValue, was: %T`, logdrainNewrelicLicenseKeyAttribute))
 	}
 
-	metricsHistoryDaysAttribute, ok := attributes["metrics_history_days"]
+	sentinelMetricsHistoryDaysAttribute, ok := attributes["sentinel_metrics_history_days"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_history_days is missing from object`)
+			`sentinel_metrics_history_days is missing from object`)
 
 		return NewSettingsValueUnknown(), diags
 	}
 
-	metricsHistoryDaysVal, ok := metricsHistoryDaysAttribute.(basetypes.Int64Value)
+	sentinelMetricsHistoryDaysVal, ok := sentinelMetricsHistoryDaysAttribute.(basetypes.Int64Value)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_history_days expected to be basetypes.Int64Value, was: %T`, metricsHistoryDaysAttribute))
+			fmt.Sprintf(`sentinel_metrics_history_days expected to be basetypes.Int64Value, was: %T`, sentinelMetricsHistoryDaysAttribute))
 	}
 
-	metricsRefreshRateSecondsAttribute, ok := attributes["metrics_refresh_rate_seconds"]
+	sentinelMetricsRefreshRateSecondsAttribute, ok := attributes["sentinel_metrics_refresh_rate_seconds"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_refresh_rate_seconds is missing from object`)
+			`sentinel_metrics_refresh_rate_seconds is missing from object`)
 
 		return NewSettingsValueUnknown(), diags
 	}
 
-	metricsRefreshRateSecondsVal, ok := metricsRefreshRateSecondsAttribute.(basetypes.Int64Value)
+	sentinelMetricsRefreshRateSecondsVal, ok := sentinelMetricsRefreshRateSecondsAttribute.(basetypes.Int64Value)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_refresh_rate_seconds expected to be basetypes.Int64Value, was: %T`, metricsRefreshRateSecondsAttribute))
+			fmt.Sprintf(`sentinel_metrics_refresh_rate_seconds expected to be basetypes.Int64Value, was: %T`, sentinelMetricsRefreshRateSecondsAttribute))
 	}
 
-	metricsTokenAttribute, ok := attributes["metrics_token"]
+	sentinelTokenAttribute, ok := attributes["sentinel_token"]
 
 	if !ok {
 		diags.AddError(
 			"Attribute Missing",
-			`metrics_token is missing from object`)
+			`sentinel_token is missing from object`)
 
 		return NewSettingsValueUnknown(), diags
 	}
 
-	metricsTokenVal, ok := metricsTokenAttribute.(basetypes.StringValue)
+	sentinelTokenVal, ok := sentinelTokenAttribute.(basetypes.StringValue)
 
 	if !ok {
 		diags.AddError(
 			"Attribute Wrong Type",
-			fmt.Sprintf(`metrics_token expected to be basetypes.StringValue, was: %T`, metricsTokenAttribute))
+			fmt.Sprintf(`sentinel_token expected to be basetypes.StringValue, was: %T`, sentinelTokenAttribute))
 	}
 
 	serverIdAttribute, ok := attributes["server_id"]
@@ -1778,39 +1866,41 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 	}
 
 	return SettingsValue{
-		CleanupAfterPercentage:     cleanupAfterPercentageVal,
-		ConcurrentBuilds:           concurrentBuildsVal,
-		CreatedAt:                  createdAtVal,
-		DynamicTimeout:             dynamicTimeoutVal,
-		ForceDisabled:              forceDisabledVal,
-		Id:                         idVal,
-		IsBuildServer:              isBuildServerVal,
-		IsCloudflareTunnel:         isCloudflareTunnelVal,
-		IsJumpServer:               isJumpServerVal,
-		IsLogdrainAxiomEnabled:     isLogdrainAxiomEnabledVal,
-		IsLogdrainCustomEnabled:    isLogdrainCustomEnabledVal,
-		IsLogdrainHighlightEnabled: isLogdrainHighlightEnabledVal,
-		IsLogdrainNewrelicEnabled:  isLogdrainNewrelicEnabledVal,
-		IsMetricsEnabled:           isMetricsEnabledVal,
-		IsReachable:                isReachableVal,
-		IsServerApiEnabled:         isServerApiEnabledVal,
-		IsSwarmManager:             isSwarmManagerVal,
-		IsSwarmWorker:              isSwarmWorkerVal,
-		IsUsable:                   isUsableVal,
-		LogdrainAxiomApiKey:        logdrainAxiomApiKeyVal,
-		LogdrainAxiomDatasetName:   logdrainAxiomDatasetNameVal,
-		LogdrainCustomConfig:       logdrainCustomConfigVal,
-		LogdrainCustomConfigParser: logdrainCustomConfigParserVal,
-		LogdrainHighlightProjectId: logdrainHighlightProjectIdVal,
-		LogdrainNewrelicBaseUri:    logdrainNewrelicBaseUriVal,
-		LogdrainNewrelicLicenseKey: logdrainNewrelicLicenseKeyVal,
-		MetricsHistoryDays:         metricsHistoryDaysVal,
-		MetricsRefreshRateSeconds:  metricsRefreshRateSecondsVal,
-		MetricsToken:               metricsTokenVal,
-		ServerId:                   serverIdVal,
-		UpdatedAt:                  updatedAtVal,
-		WildcardDomain:             wildcardDomainVal,
-		state:                      attr.ValueStateKnown,
+		ConcurrentBuilds:                  concurrentBuildsVal,
+		CreatedAt:                         createdAtVal,
+		DockerCleanupFrequency:            dockerCleanupFrequencyVal,
+		DockerCleanupThreshold:            dockerCleanupThresholdVal,
+		DynamicTimeout:                    dynamicTimeoutVal,
+		ForceDisabled:                     forceDisabledVal,
+		ForceServerCleanup:                forceServerCleanupVal,
+		Id:                                idVal,
+		IsBuildServer:                     isBuildServerVal,
+		IsCloudflareTunnel:                isCloudflareTunnelVal,
+		IsJumpServer:                      isJumpServerVal,
+		IsLogdrainAxiomEnabled:            isLogdrainAxiomEnabledVal,
+		IsLogdrainCustomEnabled:           isLogdrainCustomEnabledVal,
+		IsLogdrainHighlightEnabled:        isLogdrainHighlightEnabledVal,
+		IsLogdrainNewrelicEnabled:         isLogdrainNewrelicEnabledVal,
+		IsMetricsEnabled:                  isMetricsEnabledVal,
+		IsReachable:                       isReachableVal,
+		IsSentinelEnabled:                 isSentinelEnabledVal,
+		IsSwarmManager:                    isSwarmManagerVal,
+		IsSwarmWorker:                     isSwarmWorkerVal,
+		IsUsable:                          isUsableVal,
+		LogdrainAxiomApiKey:               logdrainAxiomApiKeyVal,
+		LogdrainAxiomDatasetName:          logdrainAxiomDatasetNameVal,
+		LogdrainCustomConfig:              logdrainCustomConfigVal,
+		LogdrainCustomConfigParser:        logdrainCustomConfigParserVal,
+		LogdrainHighlightProjectId:        logdrainHighlightProjectIdVal,
+		LogdrainNewrelicBaseUri:           logdrainNewrelicBaseUriVal,
+		LogdrainNewrelicLicenseKey:        logdrainNewrelicLicenseKeyVal,
+		SentinelMetricsHistoryDays:        sentinelMetricsHistoryDaysVal,
+		SentinelMetricsRefreshRateSeconds: sentinelMetricsRefreshRateSecondsVal,
+		SentinelToken:                     sentinelTokenVal,
+		ServerId:                          serverIdVal,
+		UpdatedAt:                         updatedAtVal,
+		WildcardDomain:                    wildcardDomainVal,
+		state:                             attr.ValueStateKnown,
 	}, diags
 }
 
@@ -1882,52 +1972,56 @@ func (t SettingsType) ValueType(ctx context.Context) attr.Value {
 var _ basetypes.ObjectValuable = SettingsValue{}
 
 type SettingsValue struct {
-	CleanupAfterPercentage     basetypes.Int64Value  `tfsdk:"cleanup_after_percentage"`
-	ConcurrentBuilds           basetypes.Int64Value  `tfsdk:"concurrent_builds"`
-	CreatedAt                  basetypes.StringValue `tfsdk:"created_at"`
-	DynamicTimeout             basetypes.Int64Value  `tfsdk:"dynamic_timeout"`
-	ForceDisabled              basetypes.BoolValue   `tfsdk:"force_disabled"`
-	Id                         basetypes.Int64Value  `tfsdk:"id"`
-	IsBuildServer              basetypes.BoolValue   `tfsdk:"is_build_server"`
-	IsCloudflareTunnel         basetypes.BoolValue   `tfsdk:"is_cloudflare_tunnel"`
-	IsJumpServer               basetypes.BoolValue   `tfsdk:"is_jump_server"`
-	IsLogdrainAxiomEnabled     basetypes.BoolValue   `tfsdk:"is_logdrain_axiom_enabled"`
-	IsLogdrainCustomEnabled    basetypes.BoolValue   `tfsdk:"is_logdrain_custom_enabled"`
-	IsLogdrainHighlightEnabled basetypes.BoolValue   `tfsdk:"is_logdrain_highlight_enabled"`
-	IsLogdrainNewrelicEnabled  basetypes.BoolValue   `tfsdk:"is_logdrain_newrelic_enabled"`
-	IsMetricsEnabled           basetypes.BoolValue   `tfsdk:"is_metrics_enabled"`
-	IsReachable                basetypes.BoolValue   `tfsdk:"is_reachable"`
-	IsServerApiEnabled         basetypes.BoolValue   `tfsdk:"is_server_api_enabled"`
-	IsSwarmManager             basetypes.BoolValue   `tfsdk:"is_swarm_manager"`
-	IsSwarmWorker              basetypes.BoolValue   `tfsdk:"is_swarm_worker"`
-	IsUsable                   basetypes.BoolValue   `tfsdk:"is_usable"`
-	LogdrainAxiomApiKey        basetypes.StringValue `tfsdk:"logdrain_axiom_api_key"`
-	LogdrainAxiomDatasetName   basetypes.StringValue `tfsdk:"logdrain_axiom_dataset_name"`
-	LogdrainCustomConfig       basetypes.StringValue `tfsdk:"logdrain_custom_config"`
-	LogdrainCustomConfigParser basetypes.StringValue `tfsdk:"logdrain_custom_config_parser"`
-	LogdrainHighlightProjectId basetypes.StringValue `tfsdk:"logdrain_highlight_project_id"`
-	LogdrainNewrelicBaseUri    basetypes.StringValue `tfsdk:"logdrain_newrelic_base_uri"`
-	LogdrainNewrelicLicenseKey basetypes.StringValue `tfsdk:"logdrain_newrelic_license_key"`
-	MetricsHistoryDays         basetypes.Int64Value  `tfsdk:"metrics_history_days"`
-	MetricsRefreshRateSeconds  basetypes.Int64Value  `tfsdk:"metrics_refresh_rate_seconds"`
-	MetricsToken               basetypes.StringValue `tfsdk:"metrics_token"`
-	ServerId                   basetypes.Int64Value  `tfsdk:"server_id"`
-	UpdatedAt                  basetypes.StringValue `tfsdk:"updated_at"`
-	WildcardDomain             basetypes.StringValue `tfsdk:"wildcard_domain"`
-	state                      attr.ValueState
+	ConcurrentBuilds                  basetypes.Int64Value  `tfsdk:"concurrent_builds"`
+	CreatedAt                         basetypes.StringValue `tfsdk:"created_at"`
+	DockerCleanupFrequency            basetypes.StringValue `tfsdk:"docker_cleanup_frequency"`
+	DockerCleanupThreshold            basetypes.Int64Value  `tfsdk:"docker_cleanup_threshold"`
+	DynamicTimeout                    basetypes.Int64Value  `tfsdk:"dynamic_timeout"`
+	ForceDisabled                     basetypes.BoolValue   `tfsdk:"force_disabled"`
+	ForceServerCleanup                basetypes.BoolValue   `tfsdk:"force_server_cleanup"`
+	Id                                basetypes.Int64Value  `tfsdk:"id"`
+	IsBuildServer                     basetypes.BoolValue   `tfsdk:"is_build_server"`
+	IsCloudflareTunnel                basetypes.BoolValue   `tfsdk:"is_cloudflare_tunnel"`
+	IsJumpServer                      basetypes.BoolValue   `tfsdk:"is_jump_server"`
+	IsLogdrainAxiomEnabled            basetypes.BoolValue   `tfsdk:"is_logdrain_axiom_enabled"`
+	IsLogdrainCustomEnabled           basetypes.BoolValue   `tfsdk:"is_logdrain_custom_enabled"`
+	IsLogdrainHighlightEnabled        basetypes.BoolValue   `tfsdk:"is_logdrain_highlight_enabled"`
+	IsLogdrainNewrelicEnabled         basetypes.BoolValue   `tfsdk:"is_logdrain_newrelic_enabled"`
+	IsMetricsEnabled                  basetypes.BoolValue   `tfsdk:"is_metrics_enabled"`
+	IsReachable                       basetypes.BoolValue   `tfsdk:"is_reachable"`
+	IsSentinelEnabled                 basetypes.BoolValue   `tfsdk:"is_sentinel_enabled"`
+	IsSwarmManager                    basetypes.BoolValue   `tfsdk:"is_swarm_manager"`
+	IsSwarmWorker                     basetypes.BoolValue   `tfsdk:"is_swarm_worker"`
+	IsUsable                          basetypes.BoolValue   `tfsdk:"is_usable"`
+	LogdrainAxiomApiKey               basetypes.StringValue `tfsdk:"logdrain_axiom_api_key"`
+	LogdrainAxiomDatasetName          basetypes.StringValue `tfsdk:"logdrain_axiom_dataset_name"`
+	LogdrainCustomConfig              basetypes.StringValue `tfsdk:"logdrain_custom_config"`
+	LogdrainCustomConfigParser        basetypes.StringValue `tfsdk:"logdrain_custom_config_parser"`
+	LogdrainHighlightProjectId        basetypes.StringValue `tfsdk:"logdrain_highlight_project_id"`
+	LogdrainNewrelicBaseUri           basetypes.StringValue `tfsdk:"logdrain_newrelic_base_uri"`
+	LogdrainNewrelicLicenseKey        basetypes.StringValue `tfsdk:"logdrain_newrelic_license_key"`
+	SentinelMetricsHistoryDays        basetypes.Int64Value  `tfsdk:"sentinel_metrics_history_days"`
+	SentinelMetricsRefreshRateSeconds basetypes.Int64Value  `tfsdk:"sentinel_metrics_refresh_rate_seconds"`
+	SentinelToken                     basetypes.StringValue `tfsdk:"sentinel_token"`
+	ServerId                          basetypes.Int64Value  `tfsdk:"server_id"`
+	UpdatedAt                         basetypes.StringValue `tfsdk:"updated_at"`
+	WildcardDomain                    basetypes.StringValue `tfsdk:"wildcard_domain"`
+	state                             attr.ValueState
 }
 
 func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 32)
+	attrTypes := make(map[string]tftypes.Type, 34)
 
 	var val tftypes.Value
 	var err error
 
-	attrTypes["cleanup_after_percentage"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["concurrent_builds"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["created_at"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["docker_cleanup_frequency"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["docker_cleanup_threshold"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["dynamic_timeout"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["force_disabled"] = basetypes.BoolType{}.TerraformType(ctx)
+	attrTypes["force_server_cleanup"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["id"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["is_build_server"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_cloudflare_tunnel"] = basetypes.BoolType{}.TerraformType(ctx)
@@ -1938,7 +2032,7 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 	attrTypes["is_logdrain_newrelic_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_metrics_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_reachable"] = basetypes.BoolType{}.TerraformType(ctx)
-	attrTypes["is_server_api_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
+	attrTypes["is_sentinel_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_swarm_manager"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_swarm_worker"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_usable"] = basetypes.BoolType{}.TerraformType(ctx)
@@ -1949,9 +2043,9 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 	attrTypes["logdrain_highlight_project_id"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["logdrain_newrelic_base_uri"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["logdrain_newrelic_license_key"] = basetypes.StringType{}.TerraformType(ctx)
-	attrTypes["metrics_history_days"] = basetypes.Int64Type{}.TerraformType(ctx)
-	attrTypes["metrics_refresh_rate_seconds"] = basetypes.Int64Type{}.TerraformType(ctx)
-	attrTypes["metrics_token"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["sentinel_metrics_history_days"] = basetypes.Int64Type{}.TerraformType(ctx)
+	attrTypes["sentinel_metrics_refresh_rate_seconds"] = basetypes.Int64Type{}.TerraformType(ctx)
+	attrTypes["sentinel_token"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["server_id"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["updated_at"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["wildcard_domain"] = basetypes.StringType{}.TerraformType(ctx)
@@ -1960,15 +2054,7 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 32)
-
-		val, err = v.CleanupAfterPercentage.ToTerraformValue(ctx)
-
-		if err != nil {
-			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
-		}
-
-		vals["cleanup_after_percentage"] = val
+		vals := make(map[string]tftypes.Value, 34)
 
 		val, err = v.ConcurrentBuilds.ToTerraformValue(ctx)
 
@@ -1986,6 +2072,22 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 
 		vals["created_at"] = val
 
+		val, err = v.DockerCleanupFrequency.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["docker_cleanup_frequency"] = val
+
+		val, err = v.DockerCleanupThreshold.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["docker_cleanup_threshold"] = val
+
 		val, err = v.DynamicTimeout.ToTerraformValue(ctx)
 
 		if err != nil {
@@ -2001,6 +2103,14 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 		}
 
 		vals["force_disabled"] = val
+
+		val, err = v.ForceServerCleanup.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["force_server_cleanup"] = val
 
 		val, err = v.Id.ToTerraformValue(ctx)
 
@@ -2082,13 +2192,13 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 
 		vals["is_reachable"] = val
 
-		val, err = v.IsServerApiEnabled.ToTerraformValue(ctx)
+		val, err = v.IsSentinelEnabled.ToTerraformValue(ctx)
 
 		if err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
 		}
 
-		vals["is_server_api_enabled"] = val
+		vals["is_sentinel_enabled"] = val
 
 		val, err = v.IsSwarmManager.ToTerraformValue(ctx)
 
@@ -2170,29 +2280,29 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 
 		vals["logdrain_newrelic_license_key"] = val
 
-		val, err = v.MetricsHistoryDays.ToTerraformValue(ctx)
+		val, err = v.SentinelMetricsHistoryDays.ToTerraformValue(ctx)
 
 		if err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
 		}
 
-		vals["metrics_history_days"] = val
+		vals["sentinel_metrics_history_days"] = val
 
-		val, err = v.MetricsRefreshRateSeconds.ToTerraformValue(ctx)
-
-		if err != nil {
-			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
-		}
-
-		vals["metrics_refresh_rate_seconds"] = val
-
-		val, err = v.MetricsToken.ToTerraformValue(ctx)
+		val, err = v.SentinelMetricsRefreshRateSeconds.ToTerraformValue(ctx)
 
 		if err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
 		}
 
-		vals["metrics_token"] = val
+		vals["sentinel_metrics_refresh_rate_seconds"] = val
+
+		val, err = v.SentinelToken.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["sentinel_token"] = val
 
 		val, err = v.ServerId.ToTerraformValue(ctx)
 
@@ -2248,38 +2358,40 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 	var diags diag.Diagnostics
 
 	attributeTypes := map[string]attr.Type{
-		"cleanup_after_percentage":      basetypes.Int64Type{},
-		"concurrent_builds":             basetypes.Int64Type{},
-		"created_at":                    basetypes.StringType{},
-		"dynamic_timeout":               basetypes.Int64Type{},
-		"force_disabled":                basetypes.BoolType{},
-		"id":                            basetypes.Int64Type{},
-		"is_build_server":               basetypes.BoolType{},
-		"is_cloudflare_tunnel":          basetypes.BoolType{},
-		"is_jump_server":                basetypes.BoolType{},
-		"is_logdrain_axiom_enabled":     basetypes.BoolType{},
-		"is_logdrain_custom_enabled":    basetypes.BoolType{},
-		"is_logdrain_highlight_enabled": basetypes.BoolType{},
-		"is_logdrain_newrelic_enabled":  basetypes.BoolType{},
-		"is_metrics_enabled":            basetypes.BoolType{},
-		"is_reachable":                  basetypes.BoolType{},
-		"is_server_api_enabled":         basetypes.BoolType{},
-		"is_swarm_manager":              basetypes.BoolType{},
-		"is_swarm_worker":               basetypes.BoolType{},
-		"is_usable":                     basetypes.BoolType{},
-		"logdrain_axiom_api_key":        basetypes.StringType{},
-		"logdrain_axiom_dataset_name":   basetypes.StringType{},
-		"logdrain_custom_config":        basetypes.StringType{},
-		"logdrain_custom_config_parser": basetypes.StringType{},
-		"logdrain_highlight_project_id": basetypes.StringType{},
-		"logdrain_newrelic_base_uri":    basetypes.StringType{},
-		"logdrain_newrelic_license_key": basetypes.StringType{},
-		"metrics_history_days":          basetypes.Int64Type{},
-		"metrics_refresh_rate_seconds":  basetypes.Int64Type{},
-		"metrics_token":                 basetypes.StringType{},
-		"server_id":                     basetypes.Int64Type{},
-		"updated_at":                    basetypes.StringType{},
-		"wildcard_domain":               basetypes.StringType{},
+		"concurrent_builds":                     basetypes.Int64Type{},
+		"created_at":                            basetypes.StringType{},
+		"docker_cleanup_frequency":              basetypes.StringType{},
+		"docker_cleanup_threshold":              basetypes.Int64Type{},
+		"dynamic_timeout":                       basetypes.Int64Type{},
+		"force_disabled":                        basetypes.BoolType{},
+		"force_server_cleanup":                  basetypes.BoolType{},
+		"id":                                    basetypes.Int64Type{},
+		"is_build_server":                       basetypes.BoolType{},
+		"is_cloudflare_tunnel":                  basetypes.BoolType{},
+		"is_jump_server":                        basetypes.BoolType{},
+		"is_logdrain_axiom_enabled":             basetypes.BoolType{},
+		"is_logdrain_custom_enabled":            basetypes.BoolType{},
+		"is_logdrain_highlight_enabled":         basetypes.BoolType{},
+		"is_logdrain_newrelic_enabled":          basetypes.BoolType{},
+		"is_metrics_enabled":                    basetypes.BoolType{},
+		"is_reachable":                          basetypes.BoolType{},
+		"is_sentinel_enabled":                   basetypes.BoolType{},
+		"is_swarm_manager":                      basetypes.BoolType{},
+		"is_swarm_worker":                       basetypes.BoolType{},
+		"is_usable":                             basetypes.BoolType{},
+		"logdrain_axiom_api_key":                basetypes.StringType{},
+		"logdrain_axiom_dataset_name":           basetypes.StringType{},
+		"logdrain_custom_config":                basetypes.StringType{},
+		"logdrain_custom_config_parser":         basetypes.StringType{},
+		"logdrain_highlight_project_id":         basetypes.StringType{},
+		"logdrain_newrelic_base_uri":            basetypes.StringType{},
+		"logdrain_newrelic_license_key":         basetypes.StringType{},
+		"sentinel_metrics_history_days":         basetypes.Int64Type{},
+		"sentinel_metrics_refresh_rate_seconds": basetypes.Int64Type{},
+		"sentinel_token":                        basetypes.StringType{},
+		"server_id":                             basetypes.Int64Type{},
+		"updated_at":                            basetypes.StringType{},
+		"wildcard_domain":                       basetypes.StringType{},
 	}
 
 	if v.IsNull() {
@@ -2293,38 +2405,40 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 	objVal, diags := types.ObjectValue(
 		attributeTypes,
 		map[string]attr.Value{
-			"cleanup_after_percentage":      v.CleanupAfterPercentage,
-			"concurrent_builds":             v.ConcurrentBuilds,
-			"created_at":                    v.CreatedAt,
-			"dynamic_timeout":               v.DynamicTimeout,
-			"force_disabled":                v.ForceDisabled,
-			"id":                            v.Id,
-			"is_build_server":               v.IsBuildServer,
-			"is_cloudflare_tunnel":          v.IsCloudflareTunnel,
-			"is_jump_server":                v.IsJumpServer,
-			"is_logdrain_axiom_enabled":     v.IsLogdrainAxiomEnabled,
-			"is_logdrain_custom_enabled":    v.IsLogdrainCustomEnabled,
-			"is_logdrain_highlight_enabled": v.IsLogdrainHighlightEnabled,
-			"is_logdrain_newrelic_enabled":  v.IsLogdrainNewrelicEnabled,
-			"is_metrics_enabled":            v.IsMetricsEnabled,
-			"is_reachable":                  v.IsReachable,
-			"is_server_api_enabled":         v.IsServerApiEnabled,
-			"is_swarm_manager":              v.IsSwarmManager,
-			"is_swarm_worker":               v.IsSwarmWorker,
-			"is_usable":                     v.IsUsable,
-			"logdrain_axiom_api_key":        v.LogdrainAxiomApiKey,
-			"logdrain_axiom_dataset_name":   v.LogdrainAxiomDatasetName,
-			"logdrain_custom_config":        v.LogdrainCustomConfig,
-			"logdrain_custom_config_parser": v.LogdrainCustomConfigParser,
-			"logdrain_highlight_project_id": v.LogdrainHighlightProjectId,
-			"logdrain_newrelic_base_uri":    v.LogdrainNewrelicBaseUri,
-			"logdrain_newrelic_license_key": v.LogdrainNewrelicLicenseKey,
-			"metrics_history_days":          v.MetricsHistoryDays,
-			"metrics_refresh_rate_seconds":  v.MetricsRefreshRateSeconds,
-			"metrics_token":                 v.MetricsToken,
-			"server_id":                     v.ServerId,
-			"updated_at":                    v.UpdatedAt,
-			"wildcard_domain":               v.WildcardDomain,
+			"concurrent_builds":                     v.ConcurrentBuilds,
+			"created_at":                            v.CreatedAt,
+			"docker_cleanup_frequency":              v.DockerCleanupFrequency,
+			"docker_cleanup_threshold":              v.DockerCleanupThreshold,
+			"dynamic_timeout":                       v.DynamicTimeout,
+			"force_disabled":                        v.ForceDisabled,
+			"force_server_cleanup":                  v.ForceServerCleanup,
+			"id":                                    v.Id,
+			"is_build_server":                       v.IsBuildServer,
+			"is_cloudflare_tunnel":                  v.IsCloudflareTunnel,
+			"is_jump_server":                        v.IsJumpServer,
+			"is_logdrain_axiom_enabled":             v.IsLogdrainAxiomEnabled,
+			"is_logdrain_custom_enabled":            v.IsLogdrainCustomEnabled,
+			"is_logdrain_highlight_enabled":         v.IsLogdrainHighlightEnabled,
+			"is_logdrain_newrelic_enabled":          v.IsLogdrainNewrelicEnabled,
+			"is_metrics_enabled":                    v.IsMetricsEnabled,
+			"is_reachable":                          v.IsReachable,
+			"is_sentinel_enabled":                   v.IsSentinelEnabled,
+			"is_swarm_manager":                      v.IsSwarmManager,
+			"is_swarm_worker":                       v.IsSwarmWorker,
+			"is_usable":                             v.IsUsable,
+			"logdrain_axiom_api_key":                v.LogdrainAxiomApiKey,
+			"logdrain_axiom_dataset_name":           v.LogdrainAxiomDatasetName,
+			"logdrain_custom_config":                v.LogdrainCustomConfig,
+			"logdrain_custom_config_parser":         v.LogdrainCustomConfigParser,
+			"logdrain_highlight_project_id":         v.LogdrainHighlightProjectId,
+			"logdrain_newrelic_base_uri":            v.LogdrainNewrelicBaseUri,
+			"logdrain_newrelic_license_key":         v.LogdrainNewrelicLicenseKey,
+			"sentinel_metrics_history_days":         v.SentinelMetricsHistoryDays,
+			"sentinel_metrics_refresh_rate_seconds": v.SentinelMetricsRefreshRateSeconds,
+			"sentinel_token":                        v.SentinelToken,
+			"server_id":                             v.ServerId,
+			"updated_at":                            v.UpdatedAt,
+			"wildcard_domain":                       v.WildcardDomain,
 		})
 
 	return objVal, diags
@@ -2345,10 +2459,6 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 		return true
 	}
 
-	if !v.CleanupAfterPercentage.Equal(other.CleanupAfterPercentage) {
-		return false
-	}
-
 	if !v.ConcurrentBuilds.Equal(other.ConcurrentBuilds) {
 		return false
 	}
@@ -2357,11 +2467,23 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.DockerCleanupFrequency.Equal(other.DockerCleanupFrequency) {
+		return false
+	}
+
+	if !v.DockerCleanupThreshold.Equal(other.DockerCleanupThreshold) {
+		return false
+	}
+
 	if !v.DynamicTimeout.Equal(other.DynamicTimeout) {
 		return false
 	}
 
 	if !v.ForceDisabled.Equal(other.ForceDisabled) {
+		return false
+	}
+
+	if !v.ForceServerCleanup.Equal(other.ForceServerCleanup) {
 		return false
 	}
 
@@ -2405,7 +2527,7 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 		return false
 	}
 
-	if !v.IsServerApiEnabled.Equal(other.IsServerApiEnabled) {
+	if !v.IsSentinelEnabled.Equal(other.IsSentinelEnabled) {
 		return false
 	}
 
@@ -2449,15 +2571,15 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 		return false
 	}
 
-	if !v.MetricsHistoryDays.Equal(other.MetricsHistoryDays) {
+	if !v.SentinelMetricsHistoryDays.Equal(other.SentinelMetricsHistoryDays) {
 		return false
 	}
 
-	if !v.MetricsRefreshRateSeconds.Equal(other.MetricsRefreshRateSeconds) {
+	if !v.SentinelMetricsRefreshRateSeconds.Equal(other.SentinelMetricsRefreshRateSeconds) {
 		return false
 	}
 
-	if !v.MetricsToken.Equal(other.MetricsToken) {
+	if !v.SentinelToken.Equal(other.SentinelToken) {
 		return false
 	}
 
@@ -2486,37 +2608,39 @@ func (v SettingsValue) Type(ctx context.Context) attr.Type {
 
 func (v SettingsValue) AttributeTypes(ctx context.Context) map[string]attr.Type {
 	return map[string]attr.Type{
-		"cleanup_after_percentage":      basetypes.Int64Type{},
-		"concurrent_builds":             basetypes.Int64Type{},
-		"created_at":                    basetypes.StringType{},
-		"dynamic_timeout":               basetypes.Int64Type{},
-		"force_disabled":                basetypes.BoolType{},
-		"id":                            basetypes.Int64Type{},
-		"is_build_server":               basetypes.BoolType{},
-		"is_cloudflare_tunnel":          basetypes.BoolType{},
-		"is_jump_server":                basetypes.BoolType{},
-		"is_logdrain_axiom_enabled":     basetypes.BoolType{},
-		"is_logdrain_custom_enabled":    basetypes.BoolType{},
-		"is_logdrain_highlight_enabled": basetypes.BoolType{},
-		"is_logdrain_newrelic_enabled":  basetypes.BoolType{},
-		"is_metrics_enabled":            basetypes.BoolType{},
-		"is_reachable":                  basetypes.BoolType{},
-		"is_server_api_enabled":         basetypes.BoolType{},
-		"is_swarm_manager":              basetypes.BoolType{},
-		"is_swarm_worker":               basetypes.BoolType{},
-		"is_usable":                     basetypes.BoolType{},
-		"logdrain_axiom_api_key":        basetypes.StringType{},
-		"logdrain_axiom_dataset_name":   basetypes.StringType{},
-		"logdrain_custom_config":        basetypes.StringType{},
-		"logdrain_custom_config_parser": basetypes.StringType{},
-		"logdrain_highlight_project_id": basetypes.StringType{},
-		"logdrain_newrelic_base_uri":    basetypes.StringType{},
-		"logdrain_newrelic_license_key": basetypes.StringType{},
-		"metrics_history_days":          basetypes.Int64Type{},
-		"metrics_refresh_rate_seconds":  basetypes.Int64Type{},
-		"metrics_token":                 basetypes.StringType{},
-		"server_id":                     basetypes.Int64Type{},
-		"updated_at":                    basetypes.StringType{},
-		"wildcard_domain":               basetypes.StringType{},
+		"concurrent_builds":                     basetypes.Int64Type{},
+		"created_at":                            basetypes.StringType{},
+		"docker_cleanup_frequency":              basetypes.StringType{},
+		"docker_cleanup_threshold":              basetypes.Int64Type{},
+		"dynamic_timeout":                       basetypes.Int64Type{},
+		"force_disabled":                        basetypes.BoolType{},
+		"force_server_cleanup":                  basetypes.BoolType{},
+		"id":                                    basetypes.Int64Type{},
+		"is_build_server":                       basetypes.BoolType{},
+		"is_cloudflare_tunnel":                  basetypes.BoolType{},
+		"is_jump_server":                        basetypes.BoolType{},
+		"is_logdrain_axiom_enabled":             basetypes.BoolType{},
+		"is_logdrain_custom_enabled":            basetypes.BoolType{},
+		"is_logdrain_highlight_enabled":         basetypes.BoolType{},
+		"is_logdrain_newrelic_enabled":          basetypes.BoolType{},
+		"is_metrics_enabled":                    basetypes.BoolType{},
+		"is_reachable":                          basetypes.BoolType{},
+		"is_sentinel_enabled":                   basetypes.BoolType{},
+		"is_swarm_manager":                      basetypes.BoolType{},
+		"is_swarm_worker":                       basetypes.BoolType{},
+		"is_usable":                             basetypes.BoolType{},
+		"logdrain_axiom_api_key":                basetypes.StringType{},
+		"logdrain_axiom_dataset_name":           basetypes.StringType{},
+		"logdrain_custom_config":                basetypes.StringType{},
+		"logdrain_custom_config_parser":         basetypes.StringType{},
+		"logdrain_highlight_project_id":         basetypes.StringType{},
+		"logdrain_newrelic_base_uri":            basetypes.StringType{},
+		"logdrain_newrelic_license_key":         basetypes.StringType{},
+		"sentinel_metrics_history_days":         basetypes.Int64Type{},
+		"sentinel_metrics_refresh_rate_seconds": basetypes.Int64Type{},
+		"sentinel_token":                        basetypes.StringType{},
+		"server_id":                             basetypes.Int64Type{},
+		"updated_at":                            basetypes.StringType{},
+		"wildcard_domain":                       basetypes.StringType{},
 	}
 }

@@ -31,6 +31,6 @@ description: |-
 - `is_git_related` (Boolean)
 - `team_id` (Number)
 - `updated_at` (String)
-- `uuid` (String) Private Key Uuid
+- `uuid` (String) Private Key UUID
 
 
