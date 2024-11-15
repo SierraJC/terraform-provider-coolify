@@ -73,7 +73,7 @@ jobs:
           -cover -coverprofile=coverage.txt -covermode=atomic \
           ./... 2>&1 | go-junit-report -set-exit-code > junit.xml
 
-      - uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
+      - uses: codecov/codecov-action@5c47607acb93fed5485fdbf7232e8a31425f672a # v5.0.2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - if: ${{ !cancelled() }}
@@ -129,7 +129,7 @@ jobs:
           COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
         timeout-minutes: 10
 
-      - uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
+      - uses: codecov/codecov-action@5c47607acb93fed5485fdbf7232e8a31425f672a # v5.0.2
         if: matrix.terraform == '1.9.*'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
