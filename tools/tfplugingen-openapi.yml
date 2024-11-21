@@ -15,7 +15,6 @@ x-delete-database: &x-delete-database
   path: /databases/{uuid}
   method: DELETE
 
-
 provider:
   name: coolify
 
@@ -184,7 +183,6 @@ resources:
       attributes:
         aliases:
           <<: *x-alias-uuid-to-id
-          <<: *x-alias-env-uuid-to-uuid
   service:
     create:
       path: /services
@@ -212,11 +210,6 @@ resources:
     delete:
       path: /services/{uuid}/envs/{env_uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
-          <<: *x-alias-env-uuid-to-uuid
 data_sources:
   private_keys:
     read:
