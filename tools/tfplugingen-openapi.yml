@@ -2,15 +2,6 @@ x-read-database: &x-read-database
   path: /databases/{uuid}
   method: GET
 
-x-alias-uuid-to-id: &x-alias-uuid-to-id
-  uuid: id
-
-x-alias-env-name-to-name: &x-alias-env-name-to-name
-  environment_name: name
-
-x-alias-env-uuid-to-uuid: &x-alias-env-uuid-to-uuid
-  env_uuid: uuid
-
 x-delete-database: &x-delete-database
   path: /databases/{uuid}
   method: DELETE
@@ -27,10 +18,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   redis_database:
     create:
       path: /databases/redis
@@ -39,10 +26,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   mysql_database:
     create:
       path: /databases/mysql
@@ -51,10 +34,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   mongodb_database:
     create:
       path: /databases/mongodb
@@ -63,10 +42,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   keydb_database:
     create:
       path: /databases/keydb
@@ -75,10 +50,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   clickhouse_database:
     create:
       path: /databases/clickhouse
@@ -87,10 +58,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   dragonfly_database:
     create:
       path: /databases/dragonfly
@@ -99,10 +66,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   mariadb_database:
     create:
       path: /databases/mariadb
@@ -111,10 +74,6 @@ resources:
       <<: *x-read-database
     delete:
       <<: *x-delete-database
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   private_key:
     create:
       path: /security/keys
@@ -128,10 +87,6 @@ resources:
     delete:
       path: /security/keys/{uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   server:
     create:
       path: /servers
@@ -145,10 +100,6 @@ resources:
     delete:
       path: /servers/{uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   project:
     create:
       path: /projects
@@ -162,10 +113,6 @@ resources:
     delete:
       path: /projects/{uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   application_env:
     create:
       path: /applications/{uuid}/envs
@@ -179,10 +126,6 @@ resources:
     delete:
       path: /applications/{uuid}/envs/{env_uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   service:
     create:
       path: /services
@@ -193,10 +136,6 @@ resources:
     delete:
       path: /services/{uuid}
       method: DELETE
-    schema:
-      attributes:
-        aliases:
-          <<: *x-alias-uuid-to-id
   service_env:
     create:
       path: /services/{uuid}/envs
