@@ -1,7 +1,79 @@
+x-read-database: &x-read-database
+  path: /databases/{uuid}
+  method: GET
+
+x-delete-database: &x-delete-database
+  path: /databases/{uuid}
+  method: DELETE
+
 provider:
   name: coolify
 
 resources:
+  postgresql_database:
+    create:
+      path: /databases/postgresql
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  redis_database:
+    create:
+      path: /databases/redis
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  mysql_database:
+    create:
+      path: /databases/mysql
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  mongodb_database:
+    create:
+      path: /databases/mongodb
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  keydb_database:
+    create:
+      path: /databases/keydb
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  clickhouse_database:
+    create:
+      path: /databases/clickhouse
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  dragonfly_database:
+    create:
+      path: /databases/dragonfly
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
+  mariadb_database:
+    create:
+      path: /databases/mariadb
+      method: POST
+    read:
+      <<: *x-read-database
+    delete:
+      <<: *x-delete-database
   private_key:
     create:
       path: /security/keys
@@ -41,7 +113,7 @@ resources:
     delete:
       path: /projects/{uuid}
       method: DELETE
-  application_envs:
+  application_env:
     create:
       path: /applications/{uuid}/envs
       method: POST
@@ -54,12 +126,22 @@ resources:
     delete:
       path: /applications/{uuid}/envs/{env_uuid}
       method: DELETE
-  service_envs:
+  service:
+    create:
+      path: /services
+      method: POST
+    read:
+      path: /services/{uuid}
+      method: GET
+    delete:
+      path: /services/{uuid}
+      method: DELETE
+  service_env:
     create:
       path: /services/{uuid}/envs
       method: POST
     read:
-      path: /services/{uuid}/envs
+      path: /services/{uuid}/envs/{env_uuid}
       method: GET
     update:
       path: /services/{uuid}/envs/bulk
@@ -67,7 +149,6 @@ resources:
     delete:
       path: /services/{uuid}/envs/{env_uuid}
       method: DELETE
-
 data_sources:
   private_keys:
     read:
