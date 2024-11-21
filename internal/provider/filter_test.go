@@ -6,7 +6,6 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -17,13 +16,13 @@ func TestAttributeValueToString(t *testing.T) {
 		expected string
 		err      error
 	}{
-		{"StringValue", basetypes.NewStringValue("test"), "test", nil},
-		{"BoolValue", basetypes.NewBoolValue(true), "true", nil},
-		{"Int64Value", basetypes.NewInt64Value(42), "42", nil},
-		{"Int32Value", basetypes.NewInt32Value(32), "32", nil},
-		{"Float64Value", basetypes.NewFloat64Value(3.14), "3.140000", nil},
-		{"Float32Value", basetypes.NewFloat32Value(1.23), "1.230000", nil},
-		{"UnsupportedType", basetypes.ListValue{}, "", fmt.Errorf("unsupported attribute type: %T", basetypes.ListValue{})},
+		{"StringValue", types.StringValue("test"), "test", nil},
+		{"BoolValue", types.BoolValue(true), "true", nil},
+		{"Int64Value", types.Int64Value(42), "42", nil},
+		{"Int32Value", types.Int32Value(32), "32", nil},
+		{"Float64Value", types.Float64Value(3.14), "3.140000", nil},
+		{"Float32Value", types.Float32Value(1.23), "1.230000", nil},
+		{"UnsupportedType", types.List{}, "", fmt.Errorf("unsupported attribute type: %T", types.List{})},
 	}
 
 	for _, tt := range tests {
@@ -49,7 +48,7 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "NoFilters",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters:  []filterBlockModel{},
 			expected: true,
@@ -57,12 +56,12 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MatchingFilter",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value1")}),
+					Name:   types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value1")}),
 				},
 			},
 			expected: true,
@@ -70,12 +69,12 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "NonMatchingFilter",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value2")}),
+					Name:   types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value2")}),
 				},
 			},
 			expected: false,
@@ -83,12 +82,12 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MissingAttribute",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field2"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value1")}),
+					Name:   types.StringValue("field2"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value1")}),
 				},
 			},
 			expected: false,
@@ -96,17 +95,17 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MultipleFilters",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
-				"field2": basetypes.NewStringValue("value2"),
+				"field1": types.StringValue("value1"),
+				"field2": types.StringValue("value2"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value1")}),
+					Name:   types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value1")}),
 				},
 				{
-					Name:   basetypes.NewStringValue("field2"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value2")}),
+					Name:   types.StringValue("field2"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value2")}),
 				},
 			},
 			expected: true,
@@ -114,17 +113,17 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MultipleFiltersNonMatching",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
-				"field2": basetypes.NewStringValue("value2"),
+				"field1": types.StringValue("value1"),
+				"field2": types.StringValue("value2"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value1")}),
+					Name:   types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value1")}),
 				},
 				{
-					Name:   basetypes.NewStringValue("field2"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value3")}),
+					Name:   types.StringValue("field2"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value3")}),
 				},
 			},
 			expected: false,
@@ -132,12 +131,12 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "UnsupportedAttributeType",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewListValueMust(types.StringType, nil),
+				"field1": types.ListValueMust(types.StringType, nil),
 			},
 			filters: []filterBlockModel{
 				{
-					Name:   basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{basetypes.NewStringValue("value1")}),
+					Name:   types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{types.StringValue("value1")}),
 				},
 			},
 			expected: false,
@@ -145,15 +144,15 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MultipleValuesInFilter_OR_Logic",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name: basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{
-						basetypes.NewStringValue("value2"),
-						basetypes.NewStringValue("value1"),
-						basetypes.NewStringValue("value3"),
+					Name: types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{
+						types.StringValue("value2"),
+						types.StringValue("value1"),
+						types.StringValue("value3"),
 					}),
 				},
 			},
@@ -162,14 +161,14 @@ func TestFilterOnAttributes(t *testing.T) {
 		{
 			name: "MultipleValuesInFilter_NoMatch",
 			attributes: map[string]attr.Value{
-				"field1": basetypes.NewStringValue("value1"),
+				"field1": types.StringValue("value1"),
 			},
 			filters: []filterBlockModel{
 				{
-					Name: basetypes.NewStringValue("field1"),
-					Values: basetypes.NewListValueMust(types.StringType, []attr.Value{
-						basetypes.NewStringValue("value2"),
-						basetypes.NewStringValue("value3"),
+					Name: types.StringValue("field1"),
+					Values: types.ListValueMust(types.StringType, []attr.Value{
+						types.StringValue("value2"),
+						types.StringValue("value3"),
 					}),
 				},
 			},

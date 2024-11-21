@@ -150,7 +150,7 @@ func (d *applicationDataSource) ApiToModel(
 		SourceId:                        optionalInt64(response.SourceId),
 		StartCommand:                    optionalString(response.StartCommand),
 		StaticImage:                     optionalString(response.StaticImage),
-		Status:                          optionalString((*string)(response.Status)), // enum value
+		Status:                          optionalString(response.Status),
 		SwarmPlacementConstraints:       optionalString(response.SwarmPlacementConstraints),
 		SwarmReplicas:                   optionalInt64(response.SwarmReplicas),
 		UpdatedAt:                       optionalTime(response.UpdatedAt),

@@ -4,7 +4,7 @@
   <a href="https://GitHub.com/SierraJC/terraform-provider-coolify/releases/" alt="Release">
     <img src="https://img.shields.io/github/v/release/SierraJC/terraform-provider-coolify?include_prereleases" /></a>
   <a href="https://github.com/coollabsio/coolify" alt="Coolify">
-    <img src="https://img.shields.io/badge/Coolify-v4.0.0--beta.364-orange" /></a>
+    <img src="https://img.shields.io/badge/Coolify-v4.0.0--beta.367-orange" /></a>
   <br/>
   <a href="http://golang.org" alt="Made With Go">
     <img src="https://img.shields.io/github/go-mod/go-version/SierraJC/terraform-provider-coolify" /></a>
@@ -47,10 +47,10 @@ Before you begin using the Coolify Terraform Provider, ensure you have completed
 | - Project Environments     | ⛔       | ⛔          |
 | Resources                  | ⛔       | ➖          |
 | Databases                  | ➖       | ➖          |
-| Services                   | ➖       | ➖          |
-| - Service Environments     | ➖       | ➖          |
+| Services                   | ➖       | ⚒️          |
+| - Service Environments     | ✔️       | ➖          |
 | Applications               | ➖       | ⚒️          |
-| - Application Environments | ➖       | ➖          |
+| - Application Environments | ✔️       | ➖          |
 
 ✔️ Supported ⚒️ Partial Support ➖ Planned ⛔ Blocked by Coolify API
 

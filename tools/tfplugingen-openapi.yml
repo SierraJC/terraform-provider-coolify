@@ -129,6 +129,10 @@ resources:
     delete:
       path: /security/keys/{uuid}
       method: DELETE
+    schema:
+      attributes:
+        aliases:
+          <<: *x-alias-uuid-to-id
   server:
     create:
       path: /servers
@@ -163,7 +167,7 @@ resources:
       attributes:
         aliases:
           <<: *x-alias-uuid-to-id
-  application_envs:
+  application_env:
     create:
       path: /applications/{uuid}/envs
       method: POST
@@ -176,6 +180,11 @@ resources:
     delete:
       path: /applications/{uuid}/envs/{env_uuid}
       method: DELETE
+    schema:
+      attributes:
+        aliases:
+          <<: *x-alias-uuid-to-id
+          <<: *x-alias-env-uuid-to-uuid
   service:
     create:
       path: /services
@@ -197,11 +206,17 @@ resources:
     read:
       path: /services/{uuid}/envs/{env_uuid}
       method: GET
+    update:
+      path: /services/{uuid}/envs/bulk
+      method: PATCH
+    delete:
+      path: /services/{uuid}/envs/{env_uuid}
+      method: DELETE
     schema:
       attributes:
         aliases:
           <<: *x-alias-uuid-to-id
-
+          <<: *x-alias-env-uuid-to-uuid
 data_sources:
   private_keys:
     read:
@@ -246,4 +261,8 @@ data_sources:
   application:
     read:
       path: /applications/{uuid}
+      method: GET
+  service:
+    read:
+      path: /services/{uuid}
       method: GET

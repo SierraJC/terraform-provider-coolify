@@ -9,37 +9,38 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
 	"terraform-provider-coolify/internal/api"
-	"terraform-provider-coolify/internal/provider/generated/resource_application_envs"
+	"terraform-provider-coolify/internal/provider/generated/resource_service_envs"
 	"terraform-provider-coolify/internal/provider/util"
 )
 
 var (
-	_ resource.Resource                = &applicationEnvsResource{}
-	_ resource.ResourceWithConfigure   = &applicationEnvsResource{}
-	_ resource.ResourceWithImportState = &applicationEnvsResource{}
+	_ resource.Resource                = &serviceEnvsResource{}
+	_ resource.ResourceWithConfigure   = &serviceEnvsResource{}
+	_ resource.ResourceWithImportState = &serviceEnvsResource{}
 )
 
-func NewApplicationEnvsResource() resource.Resource {
-	return &applicationEnvsResource{}
+func NewServiceEnvsResource() resource.Resource {
+	return &serviceEnvsResource{}
 }
 
-type applicationEnvsResource struct {
+type serviceEnvsResource struct {
 	providerData CoolifyProviderData
 }
 
-type applicationEnvsResourceModel struct {
-	Uuid types.String                                     `tfsdk:"uuid"`
-	Env  []resource_application_envs.ApplicationEnvsModel `tfsdk:"env"`
+type serviceEnvsResourceModel struct {
+	Uuid types.String                             `tfsdk:"uuid"`
+	Env  []resource_service_envs.ServiceEnvsModel `tfsdk:"env"`
 }
 
 // Type alias for the anonymous struct used in the generated API code
-type updateEnvsByApplicationUuidJSONRequestBodyItem = struct {
+type updateEnvsByServiceUuidJSONRequestBodyItem = struct {
 	IsBuildTime *bool   `json:"is_build_time,omitempty"`
 	IsLiteral   *bool   `json:"is_literal,omitempty"`
 	IsMultiline *bool   `json:"is_multiline,omitempty"`
@@ -49,20 +50,29 @@ type updateEnvsByApplicationUuidJSONRequestBodyItem = struct {
 	Value       *string `json:"value,omitempty"`
 }
 
-func (r *applicationEnvsResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_application_envs"
+func (r *serviceEnvsResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_service_envs"
 }
 
-func (r *applicationEnvsResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
-	codegenSchema := resource_application_envs.ApplicationEnvsResourceSchema(ctx)
+func (r *serviceEnvsResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	codegenSchema := resource_service_envs.ServiceEnvsResourceSchema(ctx)
+	// todo: upstream API bug, field 'is_preview' is not supported on services and shouldn't be used
+
+	codegenSchema.Attributes["is_preview"] = schema.BoolAttribute{
+		Optional:            true,
+		Computed:            true,
+		Default:             booldefault.StaticBool(false),
+		DeprecationMessage:  "This field is not supported on services and should not be used.",
+		MarkdownDescription: "Not supported on services and should not be used.",
+	}
 
 	resp.Schema = schema.Schema{
-		Description: "Create, read, update, and delete Application environment variables.",
+		Description: "Create, read, update, and delete Service environment variables.",
 
 		Attributes: map[string]schema.Attribute{
 			"uuid": schema.StringAttribute{
 				Required:    true,
-				Description: "UUID of the application.",
+				Description: "UUID of the service.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
@@ -82,25 +92,25 @@ func (r *applicationEnvsResource) Schema(ctx context.Context, req resource.Schem
 	makeResourceAttributeRequired(codegenSchema.Attributes, "value")
 }
 
-func (r *applicationEnvsResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *serviceEnvsResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	util.ProviderDataFromResourceConfigureRequest(req, &r.providerData, resp)
 }
 
-func (r *applicationEnvsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var plan applicationEnvsResourceModel
+func (r *serviceEnvsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var plan serviceEnvsResourceModel
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	tflog.Debug(ctx, "Creating application envs", map[string]interface{}{
+	tflog.Debug(ctx, "Creating service envs", map[string]interface{}{
 		"uuid": plan.Uuid.ValueString(),
 	})
 
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
-		createResp, err := r.providerData.client.CreateEnvByApplicationUuidWithResponse(ctx, uuid, api.CreateEnvByApplicationUuidJSONRequestBody{
+		createResp, err := r.providerData.client.CreateEnvByServiceUuidWithResponse(ctx, uuid, api.CreateEnvByServiceUuidJSONRequestBody{
 			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
 			IsPreview:   env.IsPreview.ValueBoolPointer(),
@@ -110,7 +120,7 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 
 		if err != nil {
 			resp.Diagnostics.AddError(
-				"Error creating application envs",
+				"Error creating service envs",
 				err.Error(),
 			)
 			return
@@ -118,8 +128,8 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 
 		if createResp.StatusCode() != http.StatusCreated {
 			resp.Diagnostics.AddError(
-				"Unexpected HTTP status code creating application envs",
-				fmt.Sprintf("Received %s creating application envs. Details: %s", createResp.Status(), createResp.Body),
+				"Unexpected HTTP status code creating service envs",
+				fmt.Sprintf("Received %s creating service envs. Details: %s", createResp.Status(), createResp.Body),
 			)
 			return
 		}
@@ -134,15 +144,15 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *applicationEnvsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state applicationEnvsResourceModel
+func (r *serviceEnvsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var state serviceEnvsResourceModel
 
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	tflog.Debug(ctx, "Reading application envs", map[string]interface{}{
+	tflog.Debug(ctx, "Reading service envs", map[string]interface{}{
 		"uuid": state.Uuid.ValueString(),
 	})
 	if state.Uuid.ValueString() == "" {
@@ -157,9 +167,9 @@ func (r *applicationEnvsResource) Read(ctx context.Context, req resource.ReadReq
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *applicationEnvsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan applicationEnvsResourceModel
-	var state applicationEnvsResourceModel
+func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var plan serviceEnvsResourceModel
+	var state serviceEnvsResourceModel
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
@@ -174,19 +184,19 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 	uuid := plan.Uuid.ValueString()
 
 	// Update API call logic
-	tflog.Debug(ctx, "Updating application envs", map[string]interface{}{
+	tflog.Debug(ctx, "Updating service envs", map[string]interface{}{
 		"uuid": uuid,
 	})
 
 	// Create a map of current state envs for fast lookup
-	stateEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
+	stateEnvs := make(map[string]resource_service_envs.ServiceEnvsModel)
 	for _, env := range state.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		stateEnvs[key] = env
 	}
 
 	// Create a map of plan envs for fast lookup
-	planEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
+	planEnvs := make(map[string]resource_service_envs.ServiceEnvsModel)
 	for _, env := range plan.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		planEnvs[key] = env
@@ -195,10 +205,10 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 	// Delete envs that are in state but not in plan
 	for key, env := range stateEnvs {
 		if _, exists := planEnvs[key]; !exists {
-			_, err := r.providerData.client.DeleteEnvByApplicationUuidWithResponse(ctx, uuid, env.Uuid.ValueString())
+			_, err := r.providerData.client.DeleteEnvByServiceUuidWithResponse(ctx, uuid, env.Uuid.ValueString())
 			if err != nil {
 				resp.Diagnostics.AddError(
-					fmt.Sprintf("Error deleting application env: key=%s, uuid=%s", key, uuid),
+					fmt.Sprintf("Error deleting service env: key=%s, uuid=%s", key, uuid),
 					err.Error(),
 				)
 				return
@@ -206,9 +216,9 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 		}
 	}
 
-	var bulkUpdateEnvs = []updateEnvsByApplicationUuidJSONRequestBodyItem{}
+	var bulkUpdateEnvs = []updateEnvsByServiceUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
-		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByApplicationUuidJSONRequestBodyItem{
+		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByServiceUuidJSONRequestBodyItem{
 			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
 			IsPreview:   env.IsPreview.ValueBoolPointer(),
@@ -220,13 +230,13 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 	}
 
 	if len(bulkUpdateEnvs) > 0 {
-		updateResp, err := r.providerData.client.UpdateEnvsByApplicationUuidWithResponse(ctx, uuid, api.UpdateEnvsByApplicationUuidJSONRequestBody{
+		updateResp, err := r.providerData.client.UpdateEnvsByServiceUuidWithResponse(ctx, uuid, api.UpdateEnvsByServiceUuidJSONRequestBody{
 			Data: bulkUpdateEnvs,
 		})
 
 		if err != nil {
 			resp.Diagnostics.AddError(
-				fmt.Sprintf("Error updating application envs: uuid=%s", uuid),
+				fmt.Sprintf("Error updating service envs: uuid=%s", uuid),
 				err.Error(),
 			)
 			return
@@ -234,8 +244,8 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 
 		if updateResp.StatusCode() != http.StatusCreated {
 			resp.Diagnostics.AddError(
-				"Unexpected HTTP status code updating application envs",
-				fmt.Sprintf("Received %s updating application envs: uuid=%s. Details: %s", updateResp.Status(), uuid, updateResp.Body))
+				"Unexpected HTTP status code updating service envs",
+				fmt.Sprintf("Received %s updating service envs: uuid=%s. Details: %s", updateResp.Status(), uuid, updateResp.Body))
 			return
 		}
 	}
@@ -245,8 +255,8 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var state applicationEnvsResourceModel
+func (r *serviceEnvsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var state serviceEnvsResourceModel
 
 	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -254,7 +264,7 @@ func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.Delet
 		return
 	}
 
-	tflog.Debug(ctx, "Deleting application envs", map[string]interface{}{
+	tflog.Debug(ctx, "Deleting service envs", map[string]interface{}{
 		"uuid": state.Uuid.ValueString(),
 	})
 
@@ -263,23 +273,23 @@ func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.Delet
 	}
 }
 
-func (r *applicationEnvsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *serviceEnvsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("uuid"), req, resp)
 }
 
 // MARK: Helper Functions
 
-func (r *applicationEnvsResource) filterRelevantEnvs(
-	stateEnvs []resource_application_envs.ApplicationEnvsModel,
-	apiEnvs []resource_application_envs.ApplicationEnvsModel,
-) []resource_application_envs.ApplicationEnvsModel {
-	apiEnvMap := make(map[string]resource_application_envs.ApplicationEnvsModel)
+func (r *serviceEnvsResource) filterRelevantEnvs(
+	stateEnvs []resource_service_envs.ServiceEnvsModel,
+	apiEnvs []resource_service_envs.ServiceEnvsModel,
+) []resource_service_envs.ServiceEnvsModel {
+	apiEnvMap := make(map[string]resource_service_envs.ServiceEnvsModel)
 	for _, env := range apiEnvs {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		apiEnvMap[key] = env
 	}
 
-	var filteredEnvs []resource_application_envs.ApplicationEnvsModel
+	var filteredEnvs []resource_service_envs.ServiceEnvsModel
 	for _, env := range stateEnvs {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		if apiEnv, exists := apiEnvMap[key]; exists {
@@ -290,37 +300,37 @@ func (r *applicationEnvsResource) filterRelevantEnvs(
 	return filteredEnvs
 }
 
-func (r *applicationEnvsResource) deleteFromAPI(
+func (r *serviceEnvsResource) deleteFromAPI(
 	ctx context.Context,
 	uuid string,
 	envUuid string,
 ) (diags diag.Diagnostics) {
-	_, err := r.providerData.client.DeleteEnvByApplicationUuidWithResponse(ctx, uuid, envUuid)
+	_, err := r.providerData.client.DeleteEnvByServiceUuidWithResponse(ctx, uuid, envUuid)
 	if err != nil {
-		diags.AddError("Client Error", fmt.Sprintf("Unable to delete application envs, got error: %s", err))
+		diags.AddError("Client Error", fmt.Sprintf("Unable to delete service envs, got error: %s", err))
 	}
 	return diags
 }
 
-func (r *applicationEnvsResource) readFromAPI(
+func (r *serviceEnvsResource) readFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) applicationEnvsResourceModel {
-	readResp, err := r.providerData.client.ListEnvsByApplicationUuidWithResponse(ctx, uuid)
+) serviceEnvsResourceModel {
+	readResp, err := r.providerData.client.ListEnvsByServiceUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
-			fmt.Sprintf("Error reading application envs: uuid=%s", uuid),
+			fmt.Sprintf("Error reading service envs: uuid=%s", uuid),
 			err.Error(),
 		)
-		return applicationEnvsResourceModel{}
+		return serviceEnvsResourceModel{}
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
-			"Unexpected HTTP status code reading application envs",
-			fmt.Sprintf("Received %s for application envs: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return applicationEnvsResourceModel{}
+			"Unexpected HTTP status code reading service envs",
+			fmt.Sprintf("Received %s for service envs: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
+		return serviceEnvsResourceModel{}
 	}
 
 	model := r.apiToModel(ctx, diags, readResp.JSON200)
@@ -328,14 +338,14 @@ func (r *applicationEnvsResource) readFromAPI(
 	return model
 }
 
-func (r *applicationEnvsResource) apiToModel(
+func (r *serviceEnvsResource) apiToModel(
 	_ context.Context,
 	_ *diag.Diagnostics,
 	response *[]api.EnvironmentVariable,
-) applicationEnvsResourceModel {
-	envs := make([]resource_application_envs.ApplicationEnvsModel, len(*response))
+) serviceEnvsResourceModel {
+	envs := make([]resource_service_envs.ServiceEnvsModel, len(*response))
 	for i, env := range *response {
-		envs[i] = resource_application_envs.ApplicationEnvsModel{
+		envs[i] = resource_service_envs.ServiceEnvsModel{
 			IsBuildTime: optionalBool(env.IsBuildTime),
 			IsLiteral:   optionalBool(env.IsLiteral),
 			IsMultiline: optionalBool(env.IsMultiline),
@@ -347,7 +357,7 @@ func (r *applicationEnvsResource) apiToModel(
 		}
 	}
 
-	return applicationEnvsResourceModel{
+	return serviceEnvsResourceModel{
 		Uuid: types.StringUnknown(),
 		Env:  envs,
 	}

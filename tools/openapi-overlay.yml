@@ -4110,7 +4110,9 @@ paths:
                             schema:
                                 properties:
                                     message: {type: string, example: 'Environment variables updated.'}
-                                type: object
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/EnvironmentVariable"
                 '401':
                     $ref: '#/components/responses/401'
                 '400':

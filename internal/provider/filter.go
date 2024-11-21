@@ -11,7 +11,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 type filterBlockModel struct {
@@ -71,17 +70,17 @@ func filterOnAttributes(attributes map[string]attr.Value, filters []filterBlockM
 // attributeValueToString converts any supported attribute value to its string representation.
 func attributeValueToString(value attr.Value) (string, error) {
 	switch v := value.(type) {
-	case basetypes.StringValue:
+	case types.String:
 		return v.ValueString(), nil
-	case basetypes.BoolValue:
+	case types.Bool:
 		return fmt.Sprintf("%t", v.ValueBool()), nil
-	case basetypes.Int64Value:
+	case types.Int64:
 		return fmt.Sprintf("%d", v.ValueInt64()), nil
-	case basetypes.Int32Value:
+	case types.Int32:
 		return fmt.Sprintf("%d", v.ValueInt32()), nil
-	case basetypes.Float64Value:
+	case types.Float64:
 		return fmt.Sprintf("%f", v.ValueFloat64()), nil
-	case basetypes.Float32Value:
+	case types.Float32:
 		return fmt.Sprintf("%f", v.ValueFloat32()), nil
 	default:
 		return "", fmt.Errorf("unsupported attribute type: %T", value)

@@ -9846,12 +9846,10 @@ func (r CreateEnvByServiceUuidResponse) StatusCode() int {
 type UpdateEnvsByServiceUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *struct {
-		Message *string `json:"message,omitempty"`
-	}
-	JSON400 *N400
-	JSON401 *N401
-	JSON404 *N404
+	JSON201      *[]EnvironmentVariable
+	JSON400      *N400
+	JSON401      *N401
+	JSON404      *N404
 }
 
 // Status returns HTTPResponse.Status
@@ -13995,9 +13993,7 @@ func ParseUpdateEnvsByServiceUuidResponse(rsp *http.Response) (*UpdateEnvsByServ
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest struct {
-			Message *string `json:"message,omitempty"`
-		}
+		var dest []EnvironmentVariable
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
