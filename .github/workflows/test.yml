@@ -107,7 +107,7 @@ jobs:
           terraform_wrapper: false
       - run: go mod download
 
-      - uses: tailscale/github-action@16d7e0b7812f55e668628a71630a09956522baa9 # Avoiding "v2" tag due to outdated action
+      - uses: tailscale/github-action@67573e622a7b555a2f4e2078c6ad161201e3e91e # Avoiding "v2" tag due to outdated action
         with:
           # oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           # oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
