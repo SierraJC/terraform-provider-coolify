@@ -153,6 +153,26 @@ actions:
                 type: string
 
   - target: $.components.schemas
+    description: Add a new schema for a MysqlDatabase
+    update:
+      MysqlDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              mysql_conf:
+                type: string
+                nullable: true
+              mysql_database:
+                type: string
+              mysql_user:
+                type: string
+              mysql_password:
+                type: string
+              mysql_root_password:
+                type: string
+
+  - target: $.components.schemas
     description: Add a new schema for a Database
     update:
       Database:
@@ -160,9 +180,11 @@ actions:
           propertyName: database_type
           mapping:
             standalone-postgresql: "#/components/schemas/PostgresqlDatabase"
+            standalone-mysql: "#/components/schemas/MysqlDatabase"
         oneOf:
           - $ref: "#/components/schemas/DatabaseCommon" # Added so codegen creates a struct for usage
           - $ref: "#/components/schemas/PostgresqlDatabase"
+          - $ref: "#/components/schemas/MysqlDatabase"
 
   - target: $.paths['/databases/{uuid}'].get.responses.200.content.application/json.schema
     description: Set response schema to new Database schema
@@ -175,7 +197,7 @@ actions:
       items:
         $ref: "#/components/schemas/Database"
 
-  - target: $.paths['/databases/postgresql'].post.responses
+  - target: $.paths['/databases/postgresql', '/databases/mysql'].post.responses
     description: Add missing response to database creation
     update:
       "201":

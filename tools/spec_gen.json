@@ -2683,6 +2683,174 @@
 			}
 		},
 		{
+			"name": "mysql_database",
+			"schema": {
+				"attributes": [
+					{
+						"name": "description",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Description of the database"
+						}
+					},
+					{
+						"name": "destination_uuid",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "UUID of the destination if the server has multiple destinations"
+						}
+					},
+					{
+						"name": "environment_name",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "Name of the environment"
+						}
+					},
+					{
+						"name": "image",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Docker Image of the database"
+						}
+					},
+					{
+						"name": "instant_deploy",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "Instant deploy the database"
+						}
+					},
+					{
+						"name": "is_public",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "Is the database public?"
+						}
+					},
+					{
+						"name": "limits_cpu_shares",
+						"int64": {
+							"computed_optional_required": "computed_optional",
+							"description": "CPU shares of the database"
+						}
+					},
+					{
+						"name": "limits_cpus",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "CPU limit of the database"
+						}
+					},
+					{
+						"name": "limits_cpuset",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "CPU set of the database"
+						}
+					},
+					{
+						"name": "limits_memory",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Memory limit of the database"
+						}
+					},
+					{
+						"name": "limits_memory_reservation",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Memory reservation of the database"
+						}
+					},
+					{
+						"name": "limits_memory_swap",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Memory swap limit of the database"
+						}
+					},
+					{
+						"name": "limits_memory_swappiness",
+						"int64": {
+							"computed_optional_required": "computed_optional",
+							"description": "Memory swappiness of the database"
+						}
+					},
+					{
+						"name": "mysql_conf",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "MySQL conf"
+						}
+					},
+					{
+						"name": "mysql_database",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "MySQL database"
+						}
+					},
+					{
+						"name": "mysql_password",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "MySQL password"
+						}
+					},
+					{
+						"name": "mysql_root_password",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "MySQL root password"
+						}
+					},
+					{
+						"name": "mysql_user",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "MySQL user"
+						}
+					},
+					{
+						"name": "name",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Name of the database"
+						}
+					},
+					{
+						"name": "project_uuid",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "UUID of the project"
+						}
+					},
+					{
+						"name": "public_port",
+						"int64": {
+							"computed_optional_required": "computed_optional",
+							"description": "Public port of the database"
+						}
+					},
+					{
+						"name": "server_uuid",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "UUID of the server"
+						}
+					},
+					{
+						"name": "uuid",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "UUID of the database."
+						}
+					}
+				]
+			}
+		},
+		{
 			"name": "postgresql_database",
 			"schema": {
 				"attributes": [

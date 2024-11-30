@@ -2095,6 +2095,9 @@ paths:
                 mysql_root_password:
                   type: string
                   description: 'MySQL root password'
+                mysql_password:
+                  type: string
+                  description: 'MySQL password'
                 mysql_user:
                   type: string
                   description: 'MySQL user'
@@ -2684,6 +2687,9 @@ paths:
                 mysql_root_password:
                   type: string
                   description: 'MySQL root password'
+                mysql_password:
+                  type: string
+                  description: 'MySQL password'
                 mysql_user:
                   type: string
                   description: 'MySQL user'

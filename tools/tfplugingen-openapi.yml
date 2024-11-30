@@ -80,6 +80,19 @@ resources:
     delete:
       path: /databases/{uuid}
       method: DELETE
+  mysql_database:
+    create:
+      path: /databases/mysql
+      method: POST
+    read:
+      path: /databases/{uuid}
+      method: GET
+    update:
+      path: /databases/{uuid}
+      method: PATCH
+    delete:
+      path: /databases/{uuid}
+      method: DELETE
 
 data_sources:
   private_keys:

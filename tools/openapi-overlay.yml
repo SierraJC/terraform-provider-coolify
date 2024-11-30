@@ -2056,6 +2056,9 @@ paths:
                                 mysql_root_password:
                                     type: string
                                     description: 'MySQL root password'
+                                mysql_password:
+                                    type: string
+                                    description: 'MySQL password'
                                 mysql_user:
                                     type: string
                                     description: 'MySQL user'
@@ -2651,6 +2654,9 @@ paths:
                                 mysql_root_password:
                                     type: string
                                     description: 'MySQL root password'
+                                mysql_password:
+                                    type: string
+                                    description: 'MySQL password'
                                 mysql_user:
                                     type: string
                                     description: 'MySQL user'
@@ -2707,6 +2713,19 @@ paths:
                     $ref: '#/components/responses/401'
                 '400':
                     $ref: '#/components/responses/400'
+                "201":
+                    content:
+                        application/json:
+                            schema:
+                                required:
+                                    - uuid
+                                    - internal_db_url
+                                properties:
+                                    uuid:
+                                        type: string
+                                    internal_db_url:
+                                        type: string
+                                type: object
             security:
                 - bearerAuth: []
     /databases/mongodb:
@@ -5272,14 +5291,32 @@ components:
                         type: string
                     postgres_initdb_args:
                         type: string
+        MysqlDatabase:
+            allOf:
+                - $ref: "#/components/schemas/DatabaseCommon"
+                - type: object
+                  properties:
+                    mysql_conf:
+                        type: string
+                        nullable: true
+                    mysql_database:
+                        type: string
+                    mysql_user:
+                        type: string
+                    mysql_password:
+                        type: string
+                    mysql_root_password:
+                        type: string
         Database:
             discriminator:
                 propertyName: database_type
                 mapping:
                     standalone-postgresql: "#/components/schemas/PostgresqlDatabase"
+                    standalone-mysql: "#/components/schemas/MysqlDatabase"
             oneOf:
                 - $ref: "#/components/schemas/DatabaseCommon" # Added so codegen creates a struct for usage
                 - $ref: "#/components/schemas/PostgresqlDatabase"
+                - $ref: "#/components/schemas/MysqlDatabase"
     responses:
         '400':
             description: 'Invalid token.'
