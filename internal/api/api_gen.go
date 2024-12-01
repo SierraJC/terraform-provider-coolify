@@ -570,6 +570,33 @@ type EnvironmentVariable struct {
 	Version       *string `json:"version,omitempty"`
 }
 
+// MysqlDatabase defines model for MysqlDatabase.
+type MysqlDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	MysqlConf               *string    `json:"mysql_conf"`
+	MysqlDatabase           *string    `json:"mysql_database,omitempty"`
+	MysqlPassword           *string    `json:"mysql_password,omitempty"`
+	MysqlRootPassword       *string    `json:"mysql_root_password,omitempty"`
+	MysqlUser               *string    `json:"mysql_user,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
 // PostgresqlDatabase defines model for PostgresqlDatabase.
 type PostgresqlDatabase struct {
 	CreatedAt               *time.Time `json:"created_at,omitempty"`
@@ -2522,6 +2549,9 @@ type CreateDatabaseMysqlJSONBody struct {
 	// MysqlDatabase MySQL database
 	MysqlDatabase *string `json:"mysql_database,omitempty"`
 
+	// MysqlPassword MySQL password
+	MysqlPassword *string `json:"mysql_password,omitempty"`
+
 	// MysqlRootPassword MySQL root password
 	MysqlRootPassword *string `json:"mysql_root_password,omitempty"`
 
@@ -2767,6 +2797,9 @@ type UpdateDatabaseByUuidJSONBody struct {
 
 	// MysqlDatabase MySQL database
 	MysqlDatabase *string `json:"mysql_database,omitempty"`
+
+	// MysqlPassword MySQL password
+	MysqlPassword *string `json:"mysql_password,omitempty"`
 
 	// MysqlRootPassword MySQL root password
 	MysqlRootPassword *string `json:"mysql_root_password,omitempty"`
@@ -3180,6 +3213,34 @@ func (t *Database) MergePostgresqlDatabase(v PostgresqlDatabase) error {
 	return err
 }
 
+// AsMysqlDatabase returns the union data inside the Database as a MysqlDatabase
+func (t Database) AsMysqlDatabase() (MysqlDatabase, error) {
+	var body MysqlDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMysqlDatabase overwrites any union data inside the Database as the provided MysqlDatabase
+func (t *Database) FromMysqlDatabase(v MysqlDatabase) error {
+	v.DatabaseType = "standalone-mysql"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMysqlDatabase performs a merge with any union data inside the Database, using the provided MysqlDatabase
+func (t *Database) MergeMysqlDatabase(v MysqlDatabase) error {
+	v.DatabaseType = "standalone-mysql"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 func (t Database) Discriminator() (string, error) {
 	var discriminator struct {
 		Discriminator string `json:"database_type"`
@@ -3196,6 +3257,8 @@ func (t Database) ValueByDiscriminator() (interface{}, error) {
 	switch discriminator {
 	case "DatabaseCommon":
 		return t.AsDatabaseCommon()
+	case "standalone-mysql":
+		return t.AsMysqlDatabase()
 	case "standalone-postgresql":
 		return t.AsPostgresqlDatabase()
 	default:
@@ -8973,8 +9036,12 @@ func (r CreateDatabaseMongodbResponse) StatusCode() int {
 type CreateDatabaseMysqlResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
 }
 
 // Status returns HTTPResponse.Status
@@ -12337,6 +12404,16 @@ func ParseCreateDatabaseMysqlResponse(rsp *http.Response) (*CreateDatabaseMysqlR
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
