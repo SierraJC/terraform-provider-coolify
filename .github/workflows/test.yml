@@ -75,7 +75,7 @@ jobs:
           go install github.com/jstemmer/go-junit-report/v2@latest
           $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
 
-      - uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a # v5.0.7
+      - uses: codecov/codecov-action@7f8b4b4bde536c465e797be725718b88c5d95e0e # v5.1.1
         if: ${{ !startsWith(github.head_ref, 'renovate/') }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -158,7 +158,7 @@ jobs:
           COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
         timeout-minutes: 10
 
-      - uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a # v5.0.7
+      - uses: codecov/codecov-action@7f8b4b4bde536c465e797be725718b88c5d95e0e # v5.1.1
         if: ${{ !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.9.x' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
