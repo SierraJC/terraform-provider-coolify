@@ -216,6 +216,7 @@ func (p *CoolifyProvider) Resources(ctx context.Context) []func() resource.Resou
 		service.NewApplicationEnvsResource,
 		service.NewServiceEnvsResource,
 		service.NewPostgresqlDatabaseResource,
+		service.NewMySQLDatabaseResource,
 	}
 }
 
