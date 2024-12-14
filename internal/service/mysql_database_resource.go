@@ -132,6 +132,7 @@ func (r *mysqlDatabaseResource) Create(ctx context.Context, req resource.CreateR
 	data := r.ReadFromAPI(ctx, &resp.Diagnostics, createResp.JSON201.Uuid, plan)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
+
 func (r *mysqlDatabaseResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state mysqlDatabaseResourceModel
 

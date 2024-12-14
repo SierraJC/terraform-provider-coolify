@@ -14,8 +14,8 @@ import (
 )
 
 func TestAccMysqlDatabaseResource(t *testing.T) {
-	resName := "coolify_mysql_database.test"
 	randomName := acctest.GetRandomResourceName("mysql-db")
+	resName := "coolify_mysql_database." + randomName
 	resource.Test(t, resource.TestCase{
 		PreCheck:                 func() { acctest.TestAccPreCheck(t) },
 		ProtoV6ProviderFactories: acctest.TestAccProtoV6ProviderFactories,
@@ -23,7 +23,7 @@ func TestAccMysqlDatabaseResource(t *testing.T) {
 			{ // Create and Read testing
 				Config: testAccMysqlDatabaseResourceConfig(randomName, "test_db", "user", "password", "root_password"),
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckResourceAttr(resName, "name", "TerraformAccTest"),
+					resource.TestCheckResourceAttr(resName, "name", randomName),
 					resource.TestCheckResourceAttr(resName, "description", "Terraform acceptance testing"),
 					resource.TestCheckResourceAttr(resName, "server_uuid", acctest.ServerUUID),
 					resource.TestCheckResourceAttr(resName, "project_uuid", acctest.ProjectUUID),

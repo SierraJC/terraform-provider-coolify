@@ -15,8 +15,8 @@ import (
 )
 
 func TestAccPrivateKeyResource(t *testing.T) {
-	resName := "coolify_private_key.test"
 	randomName := acctest.GetRandomResourceName("pk")
+	resName := "coolify_private_key." + randomName
 
 	_, privateKey1, err := tf_acctest.RandSSHKeyPair(t.Name())
 	if err != nil {
@@ -71,10 +71,10 @@ func TestAccPrivateKeyResource(t *testing.T) {
 
 func testAccPrivateKeyResourceConfig(name, privateKey string) string {
 	return fmt.Sprintf(`
-		resource "coolify_private_key" "test" {
-			name        = "%s"
+		resource "coolify_private_key" "%[1]s" {
+			name        = "%[1]s"
 			description = "Terraform acceptance testing"
-			private_key = "%s"
+			private_key = "%[2]s"
 		}
 	`,
 		name,
