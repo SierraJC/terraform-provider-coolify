@@ -148,17 +148,13 @@ func (m teamModel) FromAPI(apiModel *api.Team) teamModel {
 	}
 }
 
-var teamsFilterNames = []string{"name", "description", "id", "discord_enabled", "resend_enabled", "smtp_enabled", "telegram_enabled"}
+var teamsFilterNames = []string{"name", "description", "id", "personal_team"}
 
 func (m teamModel) FilterAttributes() map[string]attr.Value {
 	return map[string]attr.Value{
-		"description":      m.Description,
-		"discord_enabled":  m.DiscordEnabled,
-		"id":               m.Id,
-		"name":             m.Name,
-		"personal_team":    m.PersonalTeam,
-		"resend_enabled":   m.ResendEnabled,
-		"smtp_enabled":     m.SmtpEnabled,
-		"telegram_enabled": m.TelegramEnabled,
+		"description":   m.Description,
+		"id":            m.Id,
+		"name":          m.Name,
+		"personal_team": m.PersonalTeam,
 	}
 }

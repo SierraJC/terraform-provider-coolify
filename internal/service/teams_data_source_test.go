@@ -56,14 +56,14 @@ func TestAccTeamsDataSource(t *testing.T) {
 							values = ["0"]
 						}
 						filter {
-							name = "discord_enabled"
+							name = "personal_team"
 							values = ["true"]
 						}
 					}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr(resName, "teams.#", "1"),
 					resource.TestCheckResourceAttr(resName, "teams.0.name", "Root Team"),
-					resource.TestCheckResourceAttrSet(resName, "teams.0.discord_webhook_url"),
+					resource.TestCheckResourceAttrSet(resName, "teams.0.personal_team"),
 				),
 			},
 			// Filter by non-string fields
@@ -75,7 +75,7 @@ func TestAccTeamsDataSource(t *testing.T) {
 							values = ["0"]
 						}
 						filter {
-							name = "discord_enabled"
+							name = "personal_team"
 							values = ["true"]
 						}
 						filter {
@@ -87,7 +87,7 @@ func TestAccTeamsDataSource(t *testing.T) {
 					resource.TestCheckResourceAttr(resName, "teams.#", "1"),
 					resource.TestCheckResourceAttr(resName, "teams.0.name", "Root Team"),
 					resource.TestCheckResourceAttr(resName, "teams.0.id", "0"),
-					resource.TestCheckResourceAttr(resName, "teams.0.discord_enabled", "true"),
+					resource.TestCheckResourceAttr(resName, "teams.0.personal_team", "true"),
 				),
 			},
 			// Test with_members=true

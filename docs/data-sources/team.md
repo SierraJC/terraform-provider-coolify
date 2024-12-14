@@ -42,51 +42,51 @@ output "current_team_id" {
 - `created_at` (String) The date and time the team was created.
 - `custom_server_limit` (String) The custom server limit.
 - `description` (String) The description of the team.
-- `discord_enabled` (Boolean) Whether Discord is enabled or not.
-- `discord_notifications_database_backups` (Boolean) Whether to send database backup notifications via Discord.
-- `discord_notifications_deployments` (Boolean) Whether to send deployment notifications via Discord.
-- `discord_notifications_scheduled_tasks` (Boolean) Whether to send scheduled task notifications via Discord.
-- `discord_notifications_server_disk_usage` (Boolean) Whether to send server disk usage notifications via Discord.
-- `discord_notifications_status_changes` (Boolean) Whether to send status change notifications via Discord.
-- `discord_notifications_test` (Boolean) Whether to send test notifications via Discord.
-- `discord_webhook_url` (String, Sensitive) The Discord webhook URL.
+- `discord_enabled` (Boolean, Deprecated) Whether Discord is enabled or not.
+- `discord_notifications_database_backups` (Boolean, Deprecated) Whether to send database backup notifications via Discord.
+- `discord_notifications_deployments` (Boolean, Deprecated) Whether to send deployment notifications via Discord.
+- `discord_notifications_scheduled_tasks` (Boolean, Deprecated) Whether to send scheduled task notifications via Discord.
+- `discord_notifications_server_disk_usage` (Boolean, Deprecated) Whether to send server disk usage notifications via Discord.
+- `discord_notifications_status_changes` (Boolean, Deprecated) Whether to send status change notifications via Discord.
+- `discord_notifications_test` (Boolean, Deprecated) Whether to send test notifications via Discord.
+- `discord_webhook_url` (String, Sensitive, Deprecated) The Discord webhook URL.
 - `members` (Attributes List) The members of the team. (see [below for nested schema](#nestedatt--members))
 - `name` (String) The name of the team.
 - `personal_team` (Boolean) Whether the team is personal or not.
-- `resend_api_key` (String, Sensitive) The resending API key.
-- `resend_enabled` (Boolean) Whether to enable resending or not.
+- `resend_api_key` (String, Sensitive, Deprecated) The resending API key.
+- `resend_enabled` (Boolean, Deprecated) Whether to enable resending or not.
 - `show_boarding` (Boolean) Whether to show the boarding screen or not.
-- `smtp_enabled` (Boolean) Whether SMTP is enabled or not.
-- `smtp_encryption` (String) The SMTP encryption.
-- `smtp_from_address` (String) The email address to send emails from.
-- `smtp_from_name` (String) The name to send emails from.
-- `smtp_host` (String) The SMTP host.
-- `smtp_notifications_database_backups` (Boolean) Whether to send database backup notifications via SMTP.
-- `smtp_notifications_deployments` (Boolean) Whether to send deployment notifications via SMTP.
-- `smtp_notifications_scheduled_tasks` (Boolean) Whether to send scheduled task notifications via SMTP.
-- `smtp_notifications_server_disk_usage` (Boolean) Whether to send server disk usage notifications via SMTP.
-- `smtp_notifications_status_changes` (Boolean) Whether to send status change notifications via SMTP.
-- `smtp_notifications_test` (Boolean) Whether to send test notifications via SMTP.
-- `smtp_password` (String, Sensitive) The SMTP password.
-- `smtp_port` (String) The SMTP port.
-- `smtp_recipients` (String) The email addresses to send emails to.
-- `smtp_timeout` (String) The SMTP timeout.
-- `smtp_username` (String) The SMTP username.
-- `telegram_chat_id` (String) The Telegram chat ID.
-- `telegram_enabled` (Boolean) Whether Telegram is enabled or not.
-- `telegram_notifications_database_backups` (Boolean) Whether to send database backup notifications via Telegram.
-- `telegram_notifications_database_backups_message_thread_id` (String) The Telegram database backup message thread ID.
-- `telegram_notifications_deployments` (Boolean) Whether to send deployment notifications via Telegram.
-- `telegram_notifications_deployments_message_thread_id` (String) The Telegram deployment message thread ID.
-- `telegram_notifications_scheduled_tasks` (Boolean) Whether to send scheduled task notifications via Telegram.
-- `telegram_notifications_scheduled_tasks_thread_id` (String) The Telegram scheduled task message thread ID.
-- `telegram_notifications_status_changes` (Boolean) Whether to send status change notifications via Telegram.
-- `telegram_notifications_status_changes_message_thread_id` (String) The Telegram status change message thread ID.
-- `telegram_notifications_test` (Boolean) Whether to send test notifications via Telegram.
-- `telegram_notifications_test_message_thread_id` (String) The Telegram test message thread ID.
-- `telegram_token` (String, Sensitive) The Telegram token.
+- `smtp_enabled` (Boolean, Deprecated) Whether SMTP is enabled or not.
+- `smtp_encryption` (String, Deprecated) The SMTP encryption.
+- `smtp_from_address` (String, Deprecated) The email address to send emails from.
+- `smtp_from_name` (String, Deprecated) The name to send emails from.
+- `smtp_host` (String, Deprecated) The SMTP host.
+- `smtp_notifications_database_backups` (Boolean, Deprecated) Whether to send database backup notifications via SMTP.
+- `smtp_notifications_deployments` (Boolean, Deprecated) Whether to send deployment notifications via SMTP.
+- `smtp_notifications_scheduled_tasks` (Boolean, Deprecated) Whether to send scheduled task notifications via SMTP.
+- `smtp_notifications_server_disk_usage` (Boolean, Deprecated) Whether to send server disk usage notifications via SMTP.
+- `smtp_notifications_status_changes` (Boolean, Deprecated) Whether to send status change notifications via SMTP.
+- `smtp_notifications_test` (Boolean, Deprecated) Whether to send test notifications via SMTP.
+- `smtp_password` (String, Sensitive, Deprecated) The SMTP password.
+- `smtp_port` (String, Deprecated) The SMTP port.
+- `smtp_recipients` (String, Deprecated) The email addresses to send emails to.
+- `smtp_timeout` (String, Deprecated) The SMTP timeout.
+- `smtp_username` (String, Deprecated) The SMTP username.
+- `telegram_chat_id` (String, Deprecated) The Telegram chat ID.
+- `telegram_enabled` (Boolean, Deprecated) Whether Telegram is enabled or not.
+- `telegram_notifications_database_backups` (Boolean, Deprecated) Whether to send database backup notifications via Telegram.
+- `telegram_notifications_database_backups_message_thread_id` (String, Deprecated) The Telegram database backup message thread ID.
+- `telegram_notifications_deployments` (Boolean, Deprecated) Whether to send deployment notifications via Telegram.
+- `telegram_notifications_deployments_message_thread_id` (String, Deprecated) The Telegram deployment message thread ID.
+- `telegram_notifications_scheduled_tasks` (Boolean, Deprecated) Whether to send scheduled task notifications via Telegram.
+- `telegram_notifications_scheduled_tasks_thread_id` (String, Deprecated) The Telegram scheduled task message thread ID.
+- `telegram_notifications_status_changes` (Boolean, Deprecated) Whether to send status change notifications via Telegram.
+- `telegram_notifications_status_changes_message_thread_id` (String, Deprecated) The Telegram status change message thread ID.
+- `telegram_notifications_test` (Boolean, Deprecated) Whether to send test notifications via Telegram.
+- `telegram_notifications_test_message_thread_id` (String, Deprecated) The Telegram test message thread ID.
+- `telegram_token` (String, Sensitive, Deprecated) The Telegram token.
 - `updated_at` (String) The date and time the team was last updated.
-- `use_instance_email_settings` (Boolean) Whether to use instance email settings or not.
+- `use_instance_email_settings` (Boolean, Deprecated) Whether to use instance email settings or not.
 
 <a id="nestedatt--members"></a>
 ### Nested Schema for `members`
