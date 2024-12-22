@@ -139,6 +139,10 @@ data_sources:
     read:
       path: /applications/{uuid}
       method: GET
+  applications:
+    read:
+      path: /applications
+      method: GET
   service:
     read:
       path: /services/{uuid}
