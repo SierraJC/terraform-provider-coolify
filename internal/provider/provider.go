@@ -234,6 +234,7 @@ func (p *CoolifyProvider) DataSources(ctx context.Context) []func() datasource.D
 		service.NewProjectDataSource,
 		service.NewProjectsDataSource,
 		service.NewApplicationDataSource,
+		service.NewApplicationsDataSource,
 		service.NewServiceDataSource,
 	}
 }
