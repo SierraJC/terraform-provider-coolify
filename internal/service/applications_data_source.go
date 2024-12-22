@@ -34,7 +34,7 @@ type applicationsDataSourceWithFilterModel struct {
 	Filter []filter.BlockModel `tfsdk:"filter"`
 }
 
-var applicationsFilterNames = []string{"id"}
+var applicationsFilterNames = []string{"id", "uuid", "name", "description", "fqdn"}
 
 func (d *applicationsDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_applications"
