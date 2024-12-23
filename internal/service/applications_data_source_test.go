@@ -23,28 +23,28 @@ func TestAccApplicationsDataSource(t *testing.T) {
 				Config: `data "coolify_applications" "test" {}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttrSet(resName, "applications.#"),
-					// Check the last server in the list (expecting the first created server, order seems to be id descending)
-					resource.TestCheckResourceAttrSet(resName, "applications.0.id"),
-					resource.TestCheckResourceAttrSet(resName, "applications.0.uuid"),
+					// Check the last application in the list (expecting the first created application, order seems to be id descending)
+					resource.TestCheckResourceAttrSet(resName, "applications.0.build_pack"),
+					resource.TestCheckResourceAttrSet(resName, "applications.0.created_at"),
 					resource.TestCheckResourceAttrSet(resName, "applications.0.name"),
-					resource.TestCheckNoResourceAttr(resName, "applications.0.environments"),
+					resource.TestCheckResourceAttrSet(resName, "applications.0.uuid"),
 				),
 			},
-			// Single filter by name
+			// Single filter by uuid
 			{
 				Config: `
 				data "coolify_applications" "test" {
 					filter {
-						name = "name"
-						values = ["AccTestProj"]
+						name = "uuid"
+						values = ["` + acctest.ApplicationUUID + `"]
 					}
 				}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr(resName, "applications.#", "1"),
-					resource.TestCheckResourceAttr(resName, "applications.0.id", "38"),
+					resource.TestCheckResourceAttr(resName, "applications.0.build_pack", "dockerfile"),
+					resource.TestCheckResourceAttr(resName, "applications.0.created_at", "2024-11-10T08:59:09Z"),
+					resource.TestCheckResourceAttr(resName, "applications.0.name", "dockerfile-"+acctest.ApplicationUUID),
 					resource.TestCheckResourceAttr(resName, "applications.0.uuid", acctest.ApplicationUUID),
-					resource.TestCheckResourceAttr(resName, "applications.0.name", "AccTestProj"),
-					resource.TestCheckNoResourceAttr(resName, "applications.0.environments"),
 				),
 			},
 		},
