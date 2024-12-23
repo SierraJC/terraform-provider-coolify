@@ -40,7 +40,7 @@ func (d *applicationsDataSource) Metadata(ctx context.Context, req datasource.Me
 	resp.TypeName = req.ProviderTypeName + "_applications"
 }
 
-func (d *applicationsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {	
+func (d *applicationsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = datasource_applications.ApplicationsDataSourceSchema(ctx)
 	resp.Schema.Description = "Get a list of Coolify applications."
 
