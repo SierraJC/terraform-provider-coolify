@@ -10,9 +10,9 @@ data "coolify_applications" "filtered" {
 }
 
 output "all" {
-  value = data.coolify_applications.all.servers
+  value = data.coolify_applications.all.applications
 }
 
 output "filtered" {
-  value = data.coolify_applications.filtered.servers
+  value = data.coolify_applications.filtered.applications
 }
