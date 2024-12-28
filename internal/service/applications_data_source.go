@@ -43,10 +43,17 @@ func (d *applicationsDataSource) Metadata(ctx context.Context, req datasource.Me
 func (d *applicationsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = datasource_applications.ApplicationsDataSourceSchema(ctx)
 	resp.Schema.Description = "Get a list of Coolify applications."
-
-	// todo: Mark sensitive attributes
 	resp.Schema.Blocks = map[string]schema.Block{
 		"filter": filter.CreateDatasourceFilter(applicationsFilterNames),
+	}
+
+	// Mark sensitive attributes
+	sensitiveAttrs := []string{"manual_webhook_secret_bitbucket", "manual_webhook_secret_gitea", "manual_webhook_secret_github", "manual_webhook_secret_gitlab"}
+	for _, attr := range sensitiveAttrs {
+		makeDataSourceAttributeSensitive(
+			resp.Schema.Attributes["applications"].(schema.SetNestedAttribute).NestedObject.Attributes,
+			attr,
+		)
 	}
 }
 
