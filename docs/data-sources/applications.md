@@ -110,10 +110,10 @@ Read-Only:
 - `limits_memory_reservation` (String) Memory reservation.
 - `limits_memory_swap` (String) Memory swap limit.
 - `limits_memory_swappiness` (Number) Memory swappiness.
-- `manual_webhook_secret_bitbucket` (String) Manual webhook secret for Bitbucket.
-- `manual_webhook_secret_gitea` (String) Manual webhook secret for Gitea.
-- `manual_webhook_secret_github` (String) Manual webhook secret for GitHub.
-- `manual_webhook_secret_gitlab` (String) Manual webhook secret for GitLab.
+- `manual_webhook_secret_bitbucket` (String, Sensitive) Manual webhook secret for Bitbucket.
+- `manual_webhook_secret_gitea` (String, Sensitive) Manual webhook secret for Gitea.
+- `manual_webhook_secret_github` (String, Sensitive) Manual webhook secret for GitHub.
+- `manual_webhook_secret_gitlab` (String, Sensitive) Manual webhook secret for GitLab.
 - `name` (String) The application name.
 - `ports_exposes` (String) Ports exposes.
 - `ports_mappings` (String) Ports mappings.
