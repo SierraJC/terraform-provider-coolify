@@ -11,7 +11,7 @@ require (
 )
 
 // todo: Remove replacement when PR is merged: https://github.com/speakeasy-api/openapi-overlay/pull/11
-replace github.com/speakeasy-api/openapi-overlay => github.com/clambin/openapi-overlay v0.0.0-20241101171957-e99fefb40976
+replace github.com/speakeasy-api/openapi-overlay => github.com/clambin/openapi-overlay v0.0.0-20241216190517-382c92473754
 
 require (
 	github.com/BurntSushi/toml v1.2.1 // indirect
