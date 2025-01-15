@@ -7,11 +7,8 @@ require (
 	github.com/hashicorp/terraform-plugin-codegen-openapi v0.3.0
 	github.com/hashicorp/terraform-plugin-docs v0.20.1
 	github.com/oapi-codegen/oapi-codegen/v2 v2.4.1
-	github.com/speakeasy-api/openapi-overlay v0.9.0
+	github.com/speakeasy-api/openapi-overlay v0.9.1-0.20241216190517-382c92473754
 )
-
-// todo: Remove replacement when PR is merged: https://github.com/speakeasy-api/openapi-overlay/pull/11
-replace github.com/speakeasy-api/openapi-overlay => github.com/clambin/openapi-overlay v0.0.0-20241216190517-382c92473754
 
 require (
 	github.com/BurntSushi/toml v1.2.1 // indirect
