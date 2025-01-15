@@ -144,9 +144,7 @@ jobs:
           tags: tag:ci
           version: 1.78.1
       - name: Check Coolify API health
-        run: |
-          response=$(curl -sf "${COOLIFY_ENDPOINT}/../health" || echo "Failed to connect")
-          echo "$response" | grep -q "^OK$" || { echo "Health check failed. Got: $response"; exit 1; }
+        run: curl --silent --fail --max-time 15 "${COOLIFY_ENDPOINT}/../health" | grep --quiet "^OK$"
         env:
           COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
 
