@@ -143,10 +143,10 @@ jobs:
           statedir: /tmp/tailscale-state/
           tags: tag:ci
           version: 1.76.6
-      - name: Run Acceptance Tests
+      - name: Run go test
         run: |
           go clean -testcache
-          go test -v -timeout=5m \
+          go test -v -timeout=1m \
             -cover -coverprofile=coverage.txt -covermode=atomic \
             -run '^(TestProtocol6ProviderServerConfigure)' \
             ./...
@@ -155,7 +155,7 @@ jobs:
           TF_LOG: DEBUG
           COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
           COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
-        timeout-minutes: 6
+        timeout-minutes: 10
 
       # - uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
       #   if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.9.x' }}

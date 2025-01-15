@@ -158,6 +158,8 @@ func TestProtocol6ProviderServerConfigure(t *testing.T) {
 				t.Setenv(key, value)
 			}
 
+			t.Logf("config: %+v", test.config)
+
 			providerServer, err := acctest.TestAccProtoV6ProviderFactories["coolify"]()
 			require.NotNil(t, providerServer)
 			require.NoError(t, err)
@@ -174,6 +176,14 @@ func TestProtocol6ProviderServerConfigure(t *testing.T) {
 
 			if test.expectedSuccess {
 				assert.Empty(t, resp.Diagnostics, "Expected no configuration errors but got: %+v", resp.Diagnostics)
+				if len(resp.Diagnostics) > 0 {
+					// log each error
+					for _, diag := range resp.Diagnostics {
+						t.Logf("error: %s", diag.Summary)
+						t.Logf("error det: %s", diag.Detail)
+
+					}
+				}
 			} else {
 				assert.NotEmpty(t, resp.Diagnostics)
 			}
