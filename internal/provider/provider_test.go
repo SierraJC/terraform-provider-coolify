@@ -173,7 +173,7 @@ func TestProtocol6ProviderServerConfigure(t *testing.T) {
 			require.NoError(t, err)
 
 			if test.expectedSuccess {
-				assert.Empty(t, resp.Diagnostics)
+				assert.Empty(t, resp.Diagnostics, "Expected no configuration errors but got: %+v", resp.Diagnostics)
 			} else {
 				assert.NotEmpty(t, resp.Diagnostics)
 			}
