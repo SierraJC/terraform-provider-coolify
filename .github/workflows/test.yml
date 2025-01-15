@@ -142,28 +142,35 @@ jobs:
           authkey: ${{ secrets.TS_AUTHKEY }}
           statedir: /tmp/tailscale-state/
           tags: tag:ci
-          version: 1.76.6
+          version: 1.78.1
+      - name: Check Coolify API health
+        run: curl -sf "${COOLIFY_ENDPOINT}/api/health" | grep -q "^OK$"
+        env:
+          COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
+
       - name: Run go test
         run: |
           go clean -testcache
-          go test -v -timeout=5m \
+          go test -v -timeout=10m \
             -cover -coverprofile=coverage.txt -covermode=atomic \
-            -run '^(TestProtocol6ProviderServerConfigure)' \
-            ./...
+            -run '^(TestAcc|TestProtocol6ProviderServerConfigure)' \
+            ./... 2>&1 | tee test-output
+          go install github.com/jstemmer/go-junit-report/v2@latest
+          $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
         env:
           TF_ACC: "1"
-          TF_LOG: DEBUG
+          TF_LOG: WARN
           COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
           COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
-        timeout-minutes: 10
+        timeout-minutes: 11
 
-      # - uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
-      #   if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.9.x' }}
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     flags: acceptance
-      # - uses: codecov/test-results-action@4e79e65778be1cecd5df25e14af1eafb6df80ea9 # v1.0.2
-      #   if: ${{ !cancelled() }}
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     flags: acceptance
+      - uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
+        if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.9.x' }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: acceptance
+      - uses: codecov/test-results-action@4e79e65778be1cecd5df25e14af1eafb6df80ea9 # v1.0.2
+        if: ${{ !cancelled() }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: acceptance
