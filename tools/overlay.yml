@@ -70,7 +70,7 @@ actions:
     description: Remove `proxy` property, it's not being returned reliably
     remove: true
 
-  - target: "$.paths['/services/{uuid}/envs/bulk'].patch.responses.201.content.application/json.schema"
+  - target: "$.paths['/services/{uuid}/envs/bulk'].patch.responses['201'].content['application/json'].schema"
     description: Fix array response, should be singular object
     update:
       type: array
@@ -187,11 +187,11 @@ actions:
           - $ref: "#/components/schemas/PostgresqlDatabase"
           - $ref: "#/components/schemas/MysqlDatabase"
 
-  - target: $.paths['/databases/{uuid}'].get.responses.200.content.application/json.schema
+  - target: $.paths['/databases/{uuid}'].get.responses['200'].content['application/json'].schema
     description: Set response schema to new Database schema
     update:
       $ref: "#/components/schemas/Database"
-  - target: $.paths['/databases'].get.responses.200.content.application/json.schema
+  - target: $.paths['/databases'].get.responses['200'].content['application/json'].schema
     description: Set response schema to new Database schema
     update:
       type: array
