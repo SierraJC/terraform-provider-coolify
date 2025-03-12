@@ -906,7 +906,7 @@ type CreateDockercomposeApplicationJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 
 	// UseBuildServer Use build server.
-	UseBuildServer *bool `json:"use_build_server"`
+	UseBuildServer *bool `json:"use_build_server,omitempty"`
 }
 
 // CreateDockerfileApplicationJSONBody defines parameters for CreateDockerfileApplication.
