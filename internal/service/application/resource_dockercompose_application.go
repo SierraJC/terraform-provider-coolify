@@ -80,7 +80,7 @@ func (r *dockerComposeApplicationResource) Create(ctx context.Context, req resou
 		InstantDeploy:    plan.InstantDeploy.ValueBoolPointer(),
 		ProjectUuid:      plan.ProjectUuid.ValueString(),
 		ServerUuid:       plan.ServerUuid.ValueString(),
-		DockerComposeRaw: *plan.DockerComposeRaw.ValueStringPointer(),
+		DockerComposeRaw: *sutil.Base64EncodeAttr(plan.DockerComposeRaw),
 	})
 
 	if err != nil {
@@ -151,7 +151,7 @@ func (r *dockerComposeApplicationResource) Update(ctx context.Context, req resou
 		InstantDeploy:    plan.InstantDeploy.ValueBoolPointer(),
 		ProjectUuid:      plan.ProjectUuid.ValueStringPointer(),
 		ServerUuid:       plan.ServerUuid.ValueStringPointer(),
-		DockerComposeRaw: plan.DockerComposeRaw.ValueStringPointer(),
+		DockerComposeRaw: sutil.Base64EncodeAttr(plan.DockerComposeRaw),
 	})
 
 	if err != nil {
