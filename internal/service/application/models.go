@@ -96,7 +96,7 @@ func (m commonApplicationModel) FromAPI(app *api.Application, state commonApplic
 
 type dockerComposeApplicationModel struct {
 	commonApplicationModel
-	DockerComposeRaw types.String `tfsdk:"dockercompose_raw"`
+	DockerComposeRaw types.String `tfsdk:"docker_compose_raw"`
 }
 
 func (m dockerComposeApplicationModel) FromAPI(app *api.Application, state dockerComposeApplicationModel) dockerComposeApplicationModel {

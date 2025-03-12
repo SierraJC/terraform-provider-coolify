@@ -43,9 +43,10 @@ func (r *dockerComposeApplicationResource) Schema(ctx context.Context, req resou
 	dockerComposeSchema := schema.Schema{
 		Description: "Create, read, update, and delete a Coolify Dockercompose application resource.",
 		Attributes: map[string]schema.Attribute{
-			"dockercompose_raw": schema.StringAttribute{
-				Optional:    true,
-				Description: "Raw Dockercompose",
+			"docker_compose_raw": schema.StringAttribute{
+				Required:            true,
+				Description:         "The Docker Compose raw content.",
+				MarkdownDescription: "The Docker Compose raw content.",
 			},
 		},
 	}
