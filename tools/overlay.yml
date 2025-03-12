@@ -221,3 +221,11 @@ actions:
     update:
       fingerprint:
         type: string
+
+  # add x-omitempty to dockercompose applications
+  - target: $.paths['/applications/dockercompose'].post.requestBody.content['application/json'].schema
+    description: add x-omitempty to `use_build_server` parameters in applications
+    update:
+      properties:
+        use_build_server:
+          x-omitempty: true

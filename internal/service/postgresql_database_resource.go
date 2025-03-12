@@ -15,6 +15,7 @@ import (
 
 	"terraform-provider-coolify/internal/api"
 	"terraform-provider-coolify/internal/provider/util"
+	sutil "terraform-provider-coolify/internal/service/util"
 )
 
 var (
@@ -71,7 +72,7 @@ func (r *postgresqlDatabaseResource) Schema(ctx context.Context, req resource.Sc
 		},
 	}
 
-	resp.Schema = mergeResourceSchemas(commonSchema, postgresqlSchema)
+	resp.Schema = sutil.MergeResourceSchemas(commonSchema, postgresqlSchema)
 }
 
 func (r *postgresqlDatabaseResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
@@ -118,7 +119,7 @@ func (r *postgresqlDatabaseResource) Create(ctx context.Context, req resource.Cr
 			value := int(*plan.LimitsMemorySwappiness.ValueInt64Pointer())
 			return &value
 		}(),
-		PostgresConf:           base64EncodeAttr(plan.PostgresConf),
+		PostgresConf:           sutil.Base64EncodeAttr(plan.PostgresConf),
 		PostgresDb:             plan.PostgresDb.ValueStringPointer(),
 		PostgresHostAuthMethod: plan.PostgresHostAuthMethod.ValueStringPointer(),
 		PostgresInitdbArgs:     plan.PostgresInitdbArgs.ValueStringPointer(),
@@ -224,7 +225,7 @@ func (r *postgresqlDatabaseResource) Update(ctx context.Context, req resource.Up
 			return &value
 		}(),
 		Name:                   plan.Name.ValueStringPointer(),
-		PostgresConf:           base64EncodeAttr(plan.PostgresConf),
+		PostgresConf:           sutil.Base64EncodeAttr(plan.PostgresConf),
 		PostgresDb:             plan.PostgresDb.ValueStringPointer(),
 		PostgresHostAuthMethod: plan.PostgresHostAuthMethod.ValueStringPointer(),
 		PostgresInitdbArgs:     plan.PostgresInitdbArgs.ValueStringPointer(),

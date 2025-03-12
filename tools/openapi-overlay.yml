@@ -1150,6 +1150,7 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                    x-omitempty: true
                             type: object
             responses:
                 '201':
