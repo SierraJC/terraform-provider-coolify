@@ -2679,6 +2679,601 @@
 			}
 		},
 		{
+			"name": "dockercompose_application",
+			"schema": {
+				"attributes": [
+					{
+						"name": "description",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The application description."
+						}
+					},
+					{
+						"name": "destination_uuid",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The destination UUID if the server has more than one destinations."
+						}
+					},
+					{
+						"name": "docker_compose_raw",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The Docker Compose raw content."
+						}
+					},
+					{
+						"name": "environment_name",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The environment name. You need to provide at least one of environment_name or environment_uuid."
+						}
+					},
+					{
+						"name": "environment_uuid",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The environment UUID. You need to provide at least one of environment_name or environment_uuid."
+						}
+					},
+					{
+						"name": "instant_deploy",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the application should be deployed instantly."
+						}
+					},
+					{
+						"name": "name",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The application name."
+						}
+					},
+					{
+						"name": "project_uuid",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The project UUID."
+						}
+					},
+					{
+						"name": "server_uuid",
+						"string": {
+							"computed_optional_required": "required",
+							"description": "The server UUID."
+						}
+					},
+					{
+						"name": "use_build_server",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "Use build server."
+						}
+					},
+					{
+						"name": "uuid",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The application UUID."
+						}
+					},
+					{
+						"name": "base_directory",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Base directory for all commands."
+						}
+					},
+					{
+						"name": "build_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Build command."
+						}
+					},
+					{
+						"name": "build_pack",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Build pack."
+						}
+					},
+					{
+						"name": "compose_parsing_version",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "How Coolify parse the compose file."
+						}
+					},
+					{
+						"name": "config_hash",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Configuration hash."
+						}
+					},
+					{
+						"name": "created_at",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The date and time when the application was created."
+						}
+					},
+					{
+						"name": "custom_docker_run_options",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Custom docker run options."
+						}
+					},
+					{
+						"name": "custom_healthcheck_found",
+						"bool": {
+							"computed_optional_required": "computed",
+							"description": "Custom healthcheck found."
+						}
+					},
+					{
+						"name": "custom_labels",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Custom labels."
+						}
+					},
+					{
+						"name": "custom_nginx_configuration",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Custom Nginx configuration base64 encoded."
+						}
+					},
+					{
+						"name": "deleted_at",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The date and time when the application was deleted."
+						}
+					},
+					{
+						"name": "destination_id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Destination identifier."
+						}
+					},
+					{
+						"name": "destination_type",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Destination type."
+						}
+					},
+					{
+						"name": "docker_compose",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker compose content. Used for docker compose build pack."
+						}
+					},
+					{
+						"name": "docker_compose_custom_build_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker compose custom build command."
+						}
+					},
+					{
+						"name": "docker_compose_custom_start_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker compose custom start command."
+						}
+					},
+					{
+						"name": "docker_compose_domains",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker compose domains."
+						}
+					},
+					{
+						"name": "docker_compose_location",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker compose location."
+						}
+					},
+					{
+						"name": "docker_registry_image_name",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker registry image name."
+						}
+					},
+					{
+						"name": "docker_registry_image_tag",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Docker registry image tag."
+						}
+					},
+					{
+						"name": "dockerfile",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Dockerfile content. Used for dockerfile build pack."
+						}
+					},
+					{
+						"name": "dockerfile_location",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Dockerfile location."
+						}
+					},
+					{
+						"name": "dockerfile_target_build",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Dockerfile target build."
+						}
+					},
+					{
+						"name": "environment_id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Environment identifier."
+						}
+					},
+					{
+						"name": "fqdn",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The application domains."
+						}
+					},
+					{
+						"name": "git_branch",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Git branch."
+						}
+					},
+					{
+						"name": "git_commit_sha",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Git commit SHA."
+						}
+					},
+					{
+						"name": "git_full_url",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Git full URL."
+						}
+					},
+					{
+						"name": "git_repository",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Git repository URL."
+						}
+					},
+					{
+						"name": "health_check_enabled",
+						"bool": {
+							"computed_optional_required": "computed",
+							"description": "Health check enabled."
+						}
+					},
+					{
+						"name": "health_check_host",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check host."
+						}
+					},
+					{
+						"name": "health_check_interval",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Health check interval in seconds."
+						}
+					},
+					{
+						"name": "health_check_method",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check method."
+						}
+					},
+					{
+						"name": "health_check_path",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check path."
+						}
+					},
+					{
+						"name": "health_check_port",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check port."
+						}
+					},
+					{
+						"name": "health_check_response_text",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check response text."
+						}
+					},
+					{
+						"name": "health_check_retries",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Health check retries count."
+						}
+					},
+					{
+						"name": "health_check_return_code",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Health check return code."
+						}
+					},
+					{
+						"name": "health_check_scheme",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Health check scheme."
+						}
+					},
+					{
+						"name": "health_check_start_period",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Health check start period in seconds."
+						}
+					},
+					{
+						"name": "health_check_timeout",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Health check timeout in seconds."
+						}
+					},
+					{
+						"name": "id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "The application identifier in the database."
+						}
+					},
+					{
+						"name": "install_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Install command."
+						}
+					},
+					{
+						"name": "limits_cpu_shares",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "CPU shares."
+						}
+					},
+					{
+						"name": "limits_cpus",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "CPU limit."
+						}
+					},
+					{
+						"name": "limits_cpuset",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "CPU set."
+						}
+					},
+					{
+						"name": "limits_memory",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Memory limit."
+						}
+					},
+					{
+						"name": "limits_memory_reservation",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Memory reservation."
+						}
+					},
+					{
+						"name": "limits_memory_swap",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Memory swap limit."
+						}
+					},
+					{
+						"name": "limits_memory_swappiness",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Memory swappiness."
+						}
+					},
+					{
+						"name": "manual_webhook_secret_bitbucket",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Manual webhook secret for Bitbucket."
+						}
+					},
+					{
+						"name": "manual_webhook_secret_gitea",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Manual webhook secret for Gitea."
+						}
+					},
+					{
+						"name": "manual_webhook_secret_github",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Manual webhook secret for GitHub."
+						}
+					},
+					{
+						"name": "manual_webhook_secret_gitlab",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Manual webhook secret for GitLab."
+						}
+					},
+					{
+						"name": "ports_exposes",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Ports exposes."
+						}
+					},
+					{
+						"name": "ports_mappings",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Ports mappings."
+						}
+					},
+					{
+						"name": "post_deployment_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Post deployment command."
+						}
+					},
+					{
+						"name": "post_deployment_command_container",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Post deployment command container."
+						}
+					},
+					{
+						"name": "pre_deployment_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Pre deployment command."
+						}
+					},
+					{
+						"name": "pre_deployment_command_container",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Pre deployment command container."
+						}
+					},
+					{
+						"name": "preview_url_template",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Preview URL template."
+						}
+					},
+					{
+						"name": "private_key_id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Private key identifier."
+						}
+					},
+					{
+						"name": "publish_directory",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Publish directory."
+						}
+					},
+					{
+						"name": "redirect",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "How to set redirect with Traefik / Caddy. www\u003c-\u003enon-www."
+						}
+					},
+					{
+						"name": "repository_project_id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "The repository project identifier."
+						}
+					},
+					{
+						"name": "source_id",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Source identifier."
+						}
+					},
+					{
+						"name": "start_command",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Start command."
+						}
+					},
+					{
+						"name": "static_image",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Static image used when static site is deployed."
+						}
+					},
+					{
+						"name": "status",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Application status."
+						}
+					},
+					{
+						"name": "swarm_placement_constraints",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Swarm placement constraints. Only used for swarm deployments."
+						}
+					},
+					{
+						"name": "swarm_replicas",
+						"int64": {
+							"computed_optional_required": "computed",
+							"description": "Swarm replicas. Only used for swarm deployments."
+						}
+					},
+					{
+						"name": "updated_at",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The date and time when the application was last updated."
+						}
+					},
+					{
+						"name": "watch_paths",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Watch paths."
+						}
+					}
+				]
+			}
+		},
+		{
 			"name": "mysql_database",
 			"schema": {
 				"attributes": [
