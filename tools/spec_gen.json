@@ -2616,70 +2616,7 @@
 	},
 	"resources": [
 		{
-			"name": "application_envs",
-			"schema": {
-				"attributes": [
-					{
-						"name": "is_build_time",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is used in build time."
-						}
-					},
-					{
-						"name": "is_literal",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is a literal, nothing espaced."
-						}
-					},
-					{
-						"name": "is_multiline",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is multiline."
-						}
-					},
-					{
-						"name": "is_preview",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is used in preview deployments."
-						}
-					},
-					{
-						"name": "is_shown_once",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable's value is shown on the UI."
-						}
-					},
-					{
-						"name": "key",
-						"string": {
-							"computed_optional_required": "computed_optional",
-							"description": "The key of the environment variable."
-						}
-					},
-					{
-						"name": "value",
-						"string": {
-							"computed_optional_required": "computed_optional",
-							"description": "The value of the environment variable."
-						}
-					},
-					{
-						"name": "uuid",
-						"string": {
-							"computed_optional_required": "computed",
-							"description": "UUID of the application."
-						}
-					}
-				]
-			}
-		},
-		{
-			"name": "dockercompose_application",
+			"name": "application",
 			"schema": {
 				"attributes": [
 					{
@@ -3268,6 +3205,69 @@
 						"string": {
 							"computed_optional_required": "computed",
 							"description": "Watch paths."
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "application_envs",
+			"schema": {
+				"attributes": [
+					{
+						"name": "is_build_time",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the environment variable is used in build time."
+						}
+					},
+					{
+						"name": "is_literal",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the environment variable is a literal, nothing espaced."
+						}
+					},
+					{
+						"name": "is_multiline",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the environment variable is multiline."
+						}
+					},
+					{
+						"name": "is_preview",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the environment variable is used in preview deployments."
+						}
+					},
+					{
+						"name": "is_shown_once",
+						"bool": {
+							"computed_optional_required": "computed_optional",
+							"description": "The flag to indicate if the environment variable's value is shown on the UI."
+						}
+					},
+					{
+						"name": "key",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The key of the environment variable."
+						}
+					},
+					{
+						"name": "value",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "The value of the environment variable."
+						}
+					},
+					{
+						"name": "uuid",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "UUID of the application."
 						}
 					}
 				]

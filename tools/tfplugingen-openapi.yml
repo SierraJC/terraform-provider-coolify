@@ -93,7 +93,7 @@ resources:
     delete:
       path: /databases/{uuid}
       method: DELETE
-  dockercompose_application:
+  application:
     create:
       path: /applications/dockercompose
       method: POST
