@@ -80,7 +80,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit
-      - uses: codecov/test-results-action@5c441a7bcc06f8706cde90192857d337c5dab8a6 # v1.0.4
+      - uses: codecov/test-results-action@f2dba722c67b86c6caa034178c6e4d35335f6706 # v1.1.0
         if: ${{ !cancelled() }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -134,7 +134,7 @@ jobs:
           echo TF_ACC_PROVIDER_NAMESPACE="hashicorp" >> $GITHUB_ENV
           echo TF_ACC_PROVIDER_HOST="registry.opentofu.org" >> $GITHUB_ENV
 
-      - uses: tailscale/github-action@8688eb839e58e6b25c1ae96cd99d1c173299b842 # v3
+      - uses: tailscale/github-action@93605f7b8f223bf5f44e83275e64fb28f3e49d9e # v3
         with:
           # oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           # oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
@@ -169,7 +169,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: acceptance
-      - uses: codecov/test-results-action@5c441a7bcc06f8706cde90192857d337c5dab8a6 # v1.0.4
+      - uses: codecov/test-results-action@f2dba722c67b86c6caa034178c6e4d35335f6706 # v1.1.0
         if: ${{ !cancelled() }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
