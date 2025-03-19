@@ -21,8 +21,8 @@ import (
 	"terraform-provider-coolify/internal/api"
 	"terraform-provider-coolify/internal/consts"
 	"terraform-provider-coolify/internal/service"
-	"terraform-provider-coolify/internal/service/application"
 	"terraform-provider-coolify/internal/service/private_key"
+	service_ds "terraform-provider-coolify/internal/service/service"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -219,7 +219,7 @@ func (p *CoolifyProvider) Resources(ctx context.Context) []func() resource.Resou
 		service.NewServiceEnvsResource,
 		service.NewPostgresqlDatabaseResource,
 		service.NewMySQLDatabaseResource,
-		application.NewDockerComposeApplicationResource,
+		service_ds.NewServiceResource,
 	}
 }
 
