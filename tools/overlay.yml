@@ -56,7 +56,7 @@ actions:
         security:
           - bearerAuth: []
 
-  - target: $.paths['/projects/{uuid}', '/applications/{uuid}', '/security/keys/{uuid}'].patch
+  - target: $.paths['/projects/{uuid}', '/applications/{uuid}', '/services/{uuid}', '/security/keys/{uuid}'].patch
     description: add missing `uuid` parameters to patch operations
     update:
       parameters:
