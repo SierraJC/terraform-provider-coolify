@@ -117,10 +117,30 @@ func (r *ServiceResource) Update(ctx context.Context, req resource.UpdateRequest
 	tflog.Debug(ctx, "Updating service", map[string]interface{}{
 		"uuid": uuid,
 	})
-	resp.Diagnostics.AddError(
-		fmt.Sprintf("Error updating service: uuid=%s", uuid),
-		"In place update not supported",
-	)
+
+	updateResp, err := r.client.UpdateServiceByUuidWithResponse(ctx, uuid, plan.ToAPIUpdate())
+
+	if err != nil {
+		resp.Diagnostics.AddError(
+			fmt.Sprintf("Error updating service: uuid=%s", uuid),
+			err.Error(),
+		)
+		return
+	}
+
+	if updateResp.StatusCode() != http.StatusOK {
+		resp.Diagnostics.AddError(
+			"Unexpected HTTP status code updating service",
+			fmt.Sprintf("Received %s updating service: uuid=%s. Details: %s", updateResp.Status(), uuid, updateResp.Body))
+		return
+	}
+
+	if plan.InstantDeploy.ValueBool() {
+		r.client.RestartServiceByUuid(ctx, uuid)
+	}
+
+	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
 func (r *ServiceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {

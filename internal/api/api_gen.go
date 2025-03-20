@@ -2956,6 +2956,39 @@ type DeleteServiceByUuidParams struct {
 	DeleteConnectedNetworks *bool `form:"delete_connected_networks,omitempty" json:"delete_connected_networks,omitempty"`
 }
 
+// UpdateServiceByUuidJSONBody defines parameters for UpdateServiceByUuid.
+type UpdateServiceByUuidJSONBody struct {
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
+
+	// Description The service description.
+	Description *string `json:"description,omitempty"`
+
+	// DestinationUuid The destination UUID.
+	DestinationUuid *string `json:"destination_uuid,omitempty"`
+
+	// DockerComposeRaw The Docker Compose raw content.
+	DockerComposeRaw string `json:"docker_compose_raw"`
+
+	// EnvironmentName The environment name.
+	EnvironmentName string `json:"environment_name"`
+
+	// EnvironmentUuid The environment UUID.
+	EnvironmentUuid string `json:"environment_uuid"`
+
+	// InstantDeploy The flag to indicate if the service should be deployed instantly.
+	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// Name The service name.
+	Name *string `json:"name,omitempty"`
+
+	// ProjectUuid The project UUID.
+	ProjectUuid string `json:"project_uuid"`
+
+	// ServerUuid The server UUID.
+	ServerUuid string `json:"server_uuid"`
+}
+
 // UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
 type UpdateEnvByServiceUuidJSONBody struct {
 	// IsBuildTime The flag to indicate if the environment variable is used in build time.
@@ -3113,6 +3146,9 @@ type CreateServiceJSONRequestBody CreateServiceJSONBody
 
 // CreateOneClickServiceJSONRequestBody defines body for CreateOneClickService for application/json ContentType.
 type CreateOneClickServiceJSONRequestBody CreateOneClickServiceJSONBody
+
+// UpdateServiceByUuidJSONRequestBody defines body for UpdateServiceByUuid for application/json ContentType.
+type UpdateServiceByUuidJSONRequestBody UpdateServiceByUuidJSONBody
 
 // UpdateEnvByServiceUuidJSONRequestBody defines body for UpdateEnvByServiceUuid for application/json ContentType.
 type UpdateEnvByServiceUuidJSONRequestBody UpdateEnvByServiceUuidJSONBody
@@ -3568,6 +3604,11 @@ type ClientInterface interface {
 
 	// GetServiceByUuid request
 	GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateServiceByUuidWithBody request with any body
+	UpdateServiceByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateServiceByUuid(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListEnvsByServiceUuid request
 	ListEnvsByServiceUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4736,6 +4777,30 @@ func (c *Client) DeleteServiceByUuid(ctx context.Context, uuid string, params *D
 
 func (c *Client) GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetServiceByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateServiceByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServiceByUuidRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateServiceByUuid(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServiceByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7679,6 +7744,53 @@ func NewGetServiceByUuidRequest(server string, uuid string) (*http.Request, erro
 	return req, nil
 }
 
+// NewUpdateServiceByUuidRequest calls the generic UpdateServiceByUuid builder with application/json body
+func NewUpdateServiceByUuidRequest(server string, uuid string, body UpdateServiceByUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateServiceByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUpdateServiceByUuidRequestWithBody generates requests for UpdateServiceByUuid with any type of body
+func NewUpdateServiceByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewListEnvsByServiceUuidRequest generates requests for ListEnvsByServiceUuid
 func NewListEnvsByServiceUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -8469,6 +8581,11 @@ type ClientWithResponsesInterface interface {
 
 	// GetServiceByUuidWithResponse request
 	GetServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServiceByUuidResponse, error)
+
+	// UpdateServiceByUuidWithBodyWithResponse request with any body
+	UpdateServiceByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error)
+
+	UpdateServiceByUuidWithResponse(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error)
 
 	// ListEnvsByServiceUuidWithResponse request
 	ListEnvsByServiceUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListEnvsByServiceUuidResponse, error)
@@ -10243,6 +10360,37 @@ func (r GetServiceByUuidResponse) StatusCode() int {
 	return 0
 }
 
+type UpdateServiceByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Domains Service domains.
+		Domains *[]string `json:"domains,omitempty"`
+
+		// Uuid Service UUID.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateServiceByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateServiceByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ListEnvsByServiceUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -11417,6 +11565,23 @@ func (c *ClientWithResponses) GetServiceByUuidWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseGetServiceByUuidResponse(rsp)
+}
+
+// UpdateServiceByUuidWithBodyWithResponse request with arbitrary body returning *UpdateServiceByUuidResponse
+func (c *ClientWithResponses) UpdateServiceByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error) {
+	rsp, err := c.UpdateServiceByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateServiceByUuidResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateServiceByUuidWithResponse(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error) {
+	rsp, err := c.UpdateServiceByUuid(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateServiceByUuidResponse(rsp)
 }
 
 // ListEnvsByServiceUuidWithResponse request returning *ListEnvsByServiceUuidResponse
@@ -14474,6 +14639,59 @@ func ParseGetServiceByUuidResponse(rsp *http.Response) (*GetServiceByUuidRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Service
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateServiceByUuidResponse parses an HTTP response from a UpdateServiceByUuidWithResponse call
+func ParseUpdateServiceByUuidResponse(rsp *http.Response) (*UpdateServiceByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateServiceByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Domains Service domains.
+			Domains *[]string `json:"domains,omitempty"`
+
+			// Uuid Service UUID.
+			Uuid *string `json:"uuid,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
