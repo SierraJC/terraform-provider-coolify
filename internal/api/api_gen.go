@@ -155,94 +155,94 @@ const (
 	Traefik UpdateServerByUuidJSONBodyProxyType = "traefik"
 )
 
-// Defines values for CreateOneClickServiceJSONBodyType.
+// Defines values for CreateServiceJSONBodyType.
 const (
-	Activepieces                CreateOneClickServiceJSONBodyType = "activepieces"
-	Appsmith                    CreateOneClickServiceJSONBodyType = "appsmith"
-	Appwrite                    CreateOneClickServiceJSONBodyType = "appwrite"
-	Authentik                   CreateOneClickServiceJSONBodyType = "authentik"
-	Babybuddy                   CreateOneClickServiceJSONBodyType = "babybuddy"
-	Budge                       CreateOneClickServiceJSONBodyType = "budge"
-	Changedetection             CreateOneClickServiceJSONBodyType = "changedetection"
-	Chatwoot                    CreateOneClickServiceJSONBodyType = "chatwoot"
-	ClassicpressWithMariadb     CreateOneClickServiceJSONBodyType = "classicpress-with-mariadb"
-	ClassicpressWithMysql       CreateOneClickServiceJSONBodyType = "classicpress-with-mysql"
-	ClassicpressWithoutDatabase CreateOneClickServiceJSONBodyType = "classicpress-without-database"
-	Cloudflared                 CreateOneClickServiceJSONBodyType = "cloudflared"
-	CodeServer                  CreateOneClickServiceJSONBodyType = "code-server"
-	Dashboard                   CreateOneClickServiceJSONBodyType = "dashboard"
-	Directus                    CreateOneClickServiceJSONBodyType = "directus"
-	DirectusWithPostgresql      CreateOneClickServiceJSONBodyType = "directus-with-postgresql"
-	DockerRegistry              CreateOneClickServiceJSONBodyType = "docker-registry"
-	Docuseal                    CreateOneClickServiceJSONBodyType = "docuseal"
-	DocusealWithPostgres        CreateOneClickServiceJSONBodyType = "docuseal-with-postgres"
-	Dokuwiki                    CreateOneClickServiceJSONBodyType = "dokuwiki"
-	Duplicati                   CreateOneClickServiceJSONBodyType = "duplicati"
-	Emby                        CreateOneClickServiceJSONBodyType = "emby"
-	Embystat                    CreateOneClickServiceJSONBodyType = "embystat"
-	Fider                       CreateOneClickServiceJSONBodyType = "fider"
-	Filebrowser                 CreateOneClickServiceJSONBodyType = "filebrowser"
-	Firefly                     CreateOneClickServiceJSONBodyType = "firefly"
-	Formbricks                  CreateOneClickServiceJSONBodyType = "formbricks"
-	Ghost                       CreateOneClickServiceJSONBodyType = "ghost"
-	Gitea                       CreateOneClickServiceJSONBodyType = "gitea"
-	GiteaWithMariadb            CreateOneClickServiceJSONBodyType = "gitea-with-mariadb"
-	GiteaWithMysql              CreateOneClickServiceJSONBodyType = "gitea-with-mysql"
-	GiteaWithPostgresql         CreateOneClickServiceJSONBodyType = "gitea-with-postgresql"
-	Glance                      CreateOneClickServiceJSONBodyType = "glance"
-	Glances                     CreateOneClickServiceJSONBodyType = "glances"
-	Glitchtip                   CreateOneClickServiceJSONBodyType = "glitchtip"
-	Grafana                     CreateOneClickServiceJSONBodyType = "grafana"
-	GrafanaWithPostgresql       CreateOneClickServiceJSONBodyType = "grafana-with-postgresql"
-	Grocy                       CreateOneClickServiceJSONBodyType = "grocy"
-	Heimdall                    CreateOneClickServiceJSONBodyType = "heimdall"
-	Homepage                    CreateOneClickServiceJSONBodyType = "homepage"
-	Jellyfin                    CreateOneClickServiceJSONBodyType = "jellyfin"
-	Kuzzle                      CreateOneClickServiceJSONBodyType = "kuzzle"
-	Listmonk                    CreateOneClickServiceJSONBodyType = "listmonk"
-	Logto                       CreateOneClickServiceJSONBodyType = "logto"
-	Mediawiki                   CreateOneClickServiceJSONBodyType = "mediawiki"
-	Meilisearch                 CreateOneClickServiceJSONBodyType = "meilisearch"
-	Metabase                    CreateOneClickServiceJSONBodyType = "metabase"
-	Metube                      CreateOneClickServiceJSONBodyType = "metube"
-	Minio                       CreateOneClickServiceJSONBodyType = "minio"
-	Moodle                      CreateOneClickServiceJSONBodyType = "moodle"
-	N8n                         CreateOneClickServiceJSONBodyType = "n8n"
-	N8nWithPostgresql           CreateOneClickServiceJSONBodyType = "n8n-with-postgresql"
-	NextImageTransformation     CreateOneClickServiceJSONBodyType = "next-image-transformation"
-	Nextcloud                   CreateOneClickServiceJSONBodyType = "nextcloud"
-	Nocodb                      CreateOneClickServiceJSONBodyType = "nocodb"
-	Odoo                        CreateOneClickServiceJSONBodyType = "odoo"
-	Openblocks                  CreateOneClickServiceJSONBodyType = "openblocks"
-	Pairdrop                    CreateOneClickServiceJSONBodyType = "pairdrop"
-	Penpot                      CreateOneClickServiceJSONBodyType = "penpot"
-	Phpmyadmin                  CreateOneClickServiceJSONBodyType = "phpmyadmin"
-	Pocketbase                  CreateOneClickServiceJSONBodyType = "pocketbase"
-	Posthog                     CreateOneClickServiceJSONBodyType = "posthog"
-	ReactiveResume              CreateOneClickServiceJSONBodyType = "reactive-resume"
-	Rocketchat                  CreateOneClickServiceJSONBodyType = "rocketchat"
-	Shlink                      CreateOneClickServiceJSONBodyType = "shlink"
-	Slash                       CreateOneClickServiceJSONBodyType = "slash"
-	Snapdrop                    CreateOneClickServiceJSONBodyType = "snapdrop"
-	Statusnook                  CreateOneClickServiceJSONBodyType = "statusnook"
-	StirlingPdf                 CreateOneClickServiceJSONBodyType = "stirling-pdf"
-	Supabase                    CreateOneClickServiceJSONBodyType = "supabase"
-	Syncthing                   CreateOneClickServiceJSONBodyType = "syncthing"
-	Tolgee                      CreateOneClickServiceJSONBodyType = "tolgee"
-	Trigger                     CreateOneClickServiceJSONBodyType = "trigger"
-	TriggerWithExternalDatabase CreateOneClickServiceJSONBodyType = "trigger-with-external-database"
-	Twenty                      CreateOneClickServiceJSONBodyType = "twenty"
-	Umami                       CreateOneClickServiceJSONBodyType = "umami"
-	UnleashWithPostgresql       CreateOneClickServiceJSONBodyType = "unleash-with-postgresql"
-	UnleashWithoutDatabase      CreateOneClickServiceJSONBodyType = "unleash-without-database"
-	UptimeKuma                  CreateOneClickServiceJSONBodyType = "uptime-kuma"
-	Vaultwarden                 CreateOneClickServiceJSONBodyType = "vaultwarden"
-	Vikunja                     CreateOneClickServiceJSONBodyType = "vikunja"
-	Weblate                     CreateOneClickServiceJSONBodyType = "weblate"
-	Whoogle                     CreateOneClickServiceJSONBodyType = "whoogle"
-	WordpressWithMariadb        CreateOneClickServiceJSONBodyType = "wordpress-with-mariadb"
-	WordpressWithMysql          CreateOneClickServiceJSONBodyType = "wordpress-with-mysql"
-	WordpressWithoutDatabase    CreateOneClickServiceJSONBodyType = "wordpress-without-database"
+	Activepieces                CreateServiceJSONBodyType = "activepieces"
+	Appsmith                    CreateServiceJSONBodyType = "appsmith"
+	Appwrite                    CreateServiceJSONBodyType = "appwrite"
+	Authentik                   CreateServiceJSONBodyType = "authentik"
+	Babybuddy                   CreateServiceJSONBodyType = "babybuddy"
+	Budge                       CreateServiceJSONBodyType = "budge"
+	Changedetection             CreateServiceJSONBodyType = "changedetection"
+	Chatwoot                    CreateServiceJSONBodyType = "chatwoot"
+	ClassicpressWithMariadb     CreateServiceJSONBodyType = "classicpress-with-mariadb"
+	ClassicpressWithMysql       CreateServiceJSONBodyType = "classicpress-with-mysql"
+	ClassicpressWithoutDatabase CreateServiceJSONBodyType = "classicpress-without-database"
+	Cloudflared                 CreateServiceJSONBodyType = "cloudflared"
+	CodeServer                  CreateServiceJSONBodyType = "code-server"
+	Dashboard                   CreateServiceJSONBodyType = "dashboard"
+	Directus                    CreateServiceJSONBodyType = "directus"
+	DirectusWithPostgresql      CreateServiceJSONBodyType = "directus-with-postgresql"
+	DockerRegistry              CreateServiceJSONBodyType = "docker-registry"
+	Docuseal                    CreateServiceJSONBodyType = "docuseal"
+	DocusealWithPostgres        CreateServiceJSONBodyType = "docuseal-with-postgres"
+	Dokuwiki                    CreateServiceJSONBodyType = "dokuwiki"
+	Duplicati                   CreateServiceJSONBodyType = "duplicati"
+	Emby                        CreateServiceJSONBodyType = "emby"
+	Embystat                    CreateServiceJSONBodyType = "embystat"
+	Fider                       CreateServiceJSONBodyType = "fider"
+	Filebrowser                 CreateServiceJSONBodyType = "filebrowser"
+	Firefly                     CreateServiceJSONBodyType = "firefly"
+	Formbricks                  CreateServiceJSONBodyType = "formbricks"
+	Ghost                       CreateServiceJSONBodyType = "ghost"
+	Gitea                       CreateServiceJSONBodyType = "gitea"
+	GiteaWithMariadb            CreateServiceJSONBodyType = "gitea-with-mariadb"
+	GiteaWithMysql              CreateServiceJSONBodyType = "gitea-with-mysql"
+	GiteaWithPostgresql         CreateServiceJSONBodyType = "gitea-with-postgresql"
+	Glance                      CreateServiceJSONBodyType = "glance"
+	Glances                     CreateServiceJSONBodyType = "glances"
+	Glitchtip                   CreateServiceJSONBodyType = "glitchtip"
+	Grafana                     CreateServiceJSONBodyType = "grafana"
+	GrafanaWithPostgresql       CreateServiceJSONBodyType = "grafana-with-postgresql"
+	Grocy                       CreateServiceJSONBodyType = "grocy"
+	Heimdall                    CreateServiceJSONBodyType = "heimdall"
+	Homepage                    CreateServiceJSONBodyType = "homepage"
+	Jellyfin                    CreateServiceJSONBodyType = "jellyfin"
+	Kuzzle                      CreateServiceJSONBodyType = "kuzzle"
+	Listmonk                    CreateServiceJSONBodyType = "listmonk"
+	Logto                       CreateServiceJSONBodyType = "logto"
+	Mediawiki                   CreateServiceJSONBodyType = "mediawiki"
+	Meilisearch                 CreateServiceJSONBodyType = "meilisearch"
+	Metabase                    CreateServiceJSONBodyType = "metabase"
+	Metube                      CreateServiceJSONBodyType = "metube"
+	Minio                       CreateServiceJSONBodyType = "minio"
+	Moodle                      CreateServiceJSONBodyType = "moodle"
+	N8n                         CreateServiceJSONBodyType = "n8n"
+	N8nWithPostgresql           CreateServiceJSONBodyType = "n8n-with-postgresql"
+	NextImageTransformation     CreateServiceJSONBodyType = "next-image-transformation"
+	Nextcloud                   CreateServiceJSONBodyType = "nextcloud"
+	Nocodb                      CreateServiceJSONBodyType = "nocodb"
+	Odoo                        CreateServiceJSONBodyType = "odoo"
+	Openblocks                  CreateServiceJSONBodyType = "openblocks"
+	Pairdrop                    CreateServiceJSONBodyType = "pairdrop"
+	Penpot                      CreateServiceJSONBodyType = "penpot"
+	Phpmyadmin                  CreateServiceJSONBodyType = "phpmyadmin"
+	Pocketbase                  CreateServiceJSONBodyType = "pocketbase"
+	Posthog                     CreateServiceJSONBodyType = "posthog"
+	ReactiveResume              CreateServiceJSONBodyType = "reactive-resume"
+	Rocketchat                  CreateServiceJSONBodyType = "rocketchat"
+	Shlink                      CreateServiceJSONBodyType = "shlink"
+	Slash                       CreateServiceJSONBodyType = "slash"
+	Snapdrop                    CreateServiceJSONBodyType = "snapdrop"
+	Statusnook                  CreateServiceJSONBodyType = "statusnook"
+	StirlingPdf                 CreateServiceJSONBodyType = "stirling-pdf"
+	Supabase                    CreateServiceJSONBodyType = "supabase"
+	Syncthing                   CreateServiceJSONBodyType = "syncthing"
+	Tolgee                      CreateServiceJSONBodyType = "tolgee"
+	Trigger                     CreateServiceJSONBodyType = "trigger"
+	TriggerWithExternalDatabase CreateServiceJSONBodyType = "trigger-with-external-database"
+	Twenty                      CreateServiceJSONBodyType = "twenty"
+	Umami                       CreateServiceJSONBodyType = "umami"
+	UnleashWithPostgresql       CreateServiceJSONBodyType = "unleash-with-postgresql"
+	UnleashWithoutDatabase      CreateServiceJSONBodyType = "unleash-without-database"
+	UptimeKuma                  CreateServiceJSONBodyType = "uptime-kuma"
+	Vaultwarden                 CreateServiceJSONBodyType = "vaultwarden"
+	Vikunja                     CreateServiceJSONBodyType = "vikunja"
+	Weblate                     CreateServiceJSONBodyType = "weblate"
+	Whoogle                     CreateServiceJSONBodyType = "whoogle"
+	WordpressWithMariadb        CreateServiceJSONBodyType = "wordpress-with-mariadb"
+	WordpressWithMysql          CreateServiceJSONBodyType = "wordpress-with-mysql"
+	WordpressWithoutDatabase    CreateServiceJSONBodyType = "wordpress-without-database"
 )
 
 // Application Application model
@@ -906,7 +906,7 @@ type CreateDockercomposeApplicationJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 
 	// UseBuildServer Use build server.
-	UseBuildServer *bool `json:"use_build_server,omitempty"`
+	UseBuildServer *bool `json:"use_build_server"`
 }
 
 // CreateDockerfileApplicationJSONBody defines parameters for CreateDockerfileApplication.
@@ -2877,9 +2877,6 @@ type UpdateServerByUuidJSONBodyProxyType string
 
 // CreateServiceJSONBody defines parameters for CreateService.
 type CreateServiceJSONBody struct {
-	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
-	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
-
 	// Description Description of the service.
 	Description *string `json:"description"`
 
@@ -2887,34 +2884,7 @@ type CreateServiceJSONBody struct {
 	DestinationUuid *string `json:"destination_uuid,omitempty"`
 
 	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw string `json:"docker_compose_raw"`
-
-	// EnvironmentName Environment name. You need to provide at least one of environment_name or environment_uuid.
-	EnvironmentName string `json:"environment_name"`
-
-	// EnvironmentUuid Environment UUID. You need to provide at least one of environment_name or environment_uuid.
-	EnvironmentUuid string `json:"environment_uuid"`
-
-	// InstantDeploy Start the service immediately after creation.
-	InstantDeploy *bool `json:"instant_deploy,omitempty"`
-
-	// Name Name of the service.
-	Name *string `json:"name,omitempty"`
-
-	// ProjectUuid Project UUID.
-	ProjectUuid string `json:"project_uuid"`
-
-	// ServerUuid Server UUID.
-	ServerUuid string `json:"server_uuid"`
-}
-
-// CreateOneClickServiceJSONBody defines parameters for CreateOneClickService.
-type CreateOneClickServiceJSONBody struct {
-	// Description Description of the service.
-	Description *string `json:"description"`
-
-	// DestinationUuid Destination UUID. Required if server has multiple destinations.
-	DestinationUuid *string `json:"destination_uuid,omitempty"`
+	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// EnvironmentName Environment name. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentName string `json:"environment_name"`
@@ -2935,11 +2905,11 @@ type CreateOneClickServiceJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 
 	// Type The one-click service type
-	Type CreateOneClickServiceJSONBodyType `json:"type"`
+	Type *CreateServiceJSONBodyType `json:"type,omitempty"`
 }
 
-// CreateOneClickServiceJSONBodyType defines parameters for CreateOneClickService.
-type CreateOneClickServiceJSONBodyType string
+// CreateServiceJSONBodyType defines parameters for CreateService.
+type CreateServiceJSONBodyType string
 
 // DeleteServiceByUuidParams defines parameters for DeleteServiceByUuid.
 type DeleteServiceByUuidParams struct {
@@ -2958,7 +2928,7 @@ type DeleteServiceByUuidParams struct {
 
 // UpdateServiceByUuidJSONBody defines parameters for UpdateServiceByUuid.
 type UpdateServiceByUuidJSONBody struct {
-	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	// ConnectToDockerNetwork Connect the service to the predefined docker network.
 	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
 
 	// Description The service description.
@@ -3143,9 +3113,6 @@ type UpdateServerByUuidJSONRequestBody UpdateServerByUuidJSONBody
 
 // CreateServiceJSONRequestBody defines body for CreateService for application/json ContentType.
 type CreateServiceJSONRequestBody CreateServiceJSONBody
-
-// CreateOneClickServiceJSONRequestBody defines body for CreateOneClickService for application/json ContentType.
-type CreateOneClickServiceJSONRequestBody CreateOneClickServiceJSONBody
 
 // UpdateServiceByUuidJSONRequestBody defines body for UpdateServiceByUuid for application/json ContentType.
 type UpdateServiceByUuidJSONRequestBody UpdateServiceByUuidJSONBody
@@ -3593,11 +3560,6 @@ type ClientInterface interface {
 	CreateServiceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CreateService(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// CreateOneClickServiceWithBody request with any body
-	CreateOneClickServiceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	CreateOneClickService(ctx context.Context, body CreateOneClickServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteServiceByUuid request
 	DeleteServiceByUuid(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4729,30 +4691,6 @@ func (c *Client) CreateServiceWithBody(ctx context.Context, contentType string, 
 
 func (c *Client) CreateService(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateServiceRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreateOneClickServiceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateOneClickServiceRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreateOneClickService(ctx context.Context, body CreateOneClickServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateOneClickServiceRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7566,46 +7504,6 @@ func NewCreateServiceRequestWithBody(server string, contentType string, body io.
 	return req, nil
 }
 
-// NewCreateOneClickServiceRequest calls the generic CreateOneClickService builder with application/json body
-func NewCreateOneClickServiceRequest(server string, body CreateOneClickServiceJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCreateOneClickServiceRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewCreateOneClickServiceRequestWithBody generates requests for CreateOneClickService with any type of body
-func NewCreateOneClickServiceRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/services/one-click")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewDeleteServiceByUuidRequest generates requests for DeleteServiceByUuid
 func NewDeleteServiceByUuidRequest(server string, uuid string, params *DeleteServiceByUuidParams) (*http.Request, error) {
 	var err error
@@ -8570,11 +8468,6 @@ type ClientWithResponsesInterface interface {
 	CreateServiceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error)
 
 	CreateServiceWithResponse(ctx context.Context, body CreateServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServiceResponse, error)
-
-	// CreateOneClickServiceWithBodyWithResponse request with any body
-	CreateOneClickServiceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOneClickServiceResponse, error)
-
-	CreateOneClickServiceWithResponse(ctx context.Context, body CreateOneClickServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOneClickServiceResponse, error)
 
 	// DeleteServiceByUuidWithResponse request
 	DeleteServiceByUuidWithResponse(ctx context.Context, uuid string, params *DeleteServiceByUuidParams, reqEditors ...RequestEditorFn) (*DeleteServiceByUuidResponse, error)
@@ -10278,36 +10171,6 @@ func (r CreateServiceResponse) StatusCode() int {
 	return 0
 }
 
-type CreateOneClickServiceResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *struct {
-		// Domains Service domains.
-		Domains *[]string `json:"domains,omitempty"`
-
-		// Uuid Service UUID.
-		Uuid *string `json:"uuid,omitempty"`
-	}
-	JSON400 *N400
-	JSON401 *N401
-}
-
-// Status returns HTTPResponse.Status
-func (r CreateOneClickServiceResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreateOneClickServiceResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type DeleteServiceByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -11530,23 +11393,6 @@ func (c *ClientWithResponses) CreateServiceWithResponse(ctx context.Context, bod
 		return nil, err
 	}
 	return ParseCreateServiceResponse(rsp)
-}
-
-// CreateOneClickServiceWithBodyWithResponse request with arbitrary body returning *CreateOneClickServiceResponse
-func (c *ClientWithResponses) CreateOneClickServiceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOneClickServiceResponse, error) {
-	rsp, err := c.CreateOneClickServiceWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreateOneClickServiceResponse(rsp)
-}
-
-func (c *ClientWithResponses) CreateOneClickServiceWithResponse(ctx context.Context, body CreateOneClickServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOneClickServiceResponse, error) {
-	rsp, err := c.CreateOneClickService(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreateOneClickServiceResponse(rsp)
 }
 
 // DeleteServiceByUuidWithResponse request returning *DeleteServiceByUuidResponse
@@ -14491,52 +14337,6 @@ func ParseCreateServiceResponse(rsp *http.Response) (*CreateServiceResponse, err
 	}
 
 	response := &CreateServiceResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest struct {
-			// Domains Service domains.
-			Domains *[]string `json:"domains,omitempty"`
-
-			// Uuid Service UUID.
-			Uuid *string `json:"uuid,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest N400
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest N401
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON401 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseCreateOneClickServiceResponse parses an HTTP response from a CreateOneClickServiceWithResponse call
-func ParseCreateOneClickServiceResponse(rsp *http.Response) (*CreateOneClickServiceResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &CreateOneClickServiceResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}

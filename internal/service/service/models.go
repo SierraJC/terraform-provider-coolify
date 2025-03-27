@@ -25,7 +25,6 @@ type ServiceModel struct {
 	ProjectUuid            types.String `tfsdk:"project_uuid"`
 	ServerUuid             types.String `tfsdk:"server_uuid"`
 	InstantDeploy          types.Bool   `tfsdk:"instant_deploy"`
-	ConnectToDockerNetwork types.Bool   `tfsdk:"connect_to_docker_network"`
 	Compose                types.String `tfsdk:"compose"`
 }
 
@@ -76,12 +75,6 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 				Required:    true,
 				Description: "UUID of the server.",
 			},
-			"connect_to_docker_network": schema.BoolAttribute{
-				Optional:    true,
-				Computed:    true,
-				Description: "Connect the service to the predefined docker network.",
-				Default:     booldefault.StaticBool(false),
-			},
 			"compose": schema.StringAttribute{
 				Required:            true,
 				Description:         "The Docker Compose raw content.",
@@ -93,45 +86,42 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 
 func (m ServiceModel) FromAPI(service *api.Service, state ServiceModel) ServiceModel {
 	return ServiceModel{
-		Uuid:                   flatten.String(service.Uuid),
-		Name:                   flatten.String(service.Name),
-		Description:            flatten.String(service.Description),
-		ServerUuid:             state.ServerUuid, // Values not returned by API, so use the plan value
-		ProjectUuid:            state.ProjectUuid,
-		EnvironmentName:        state.EnvironmentName,
-		EnvironmentUuid:        state.EnvironmentUuid,
-		DestinationUuid:        state.DestinationUuid,
-		InstantDeploy:          state.InstantDeploy,
-		Compose:                state.Compose,
-		ConnectToDockerNetwork: flatten.Bool(service.ConnectToDockerNetwork),
+		Uuid:            flatten.String(service.Uuid),
+		Name:            flatten.String(service.Name),
+		Description:     flatten.String(service.Description),
+		ServerUuid:      state.ServerUuid, // Values not returned by API, so use the plan value
+		ProjectUuid:     state.ProjectUuid,
+		EnvironmentName: state.EnvironmentName,
+		EnvironmentUuid: state.EnvironmentUuid,
+		DestinationUuid: state.DestinationUuid,
+		InstantDeploy:   state.InstantDeploy,
+		Compose:         state.Compose,
 	}
 }
 
 func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
 	return api.CreateServiceJSONRequestBody{
-		Name:                   m.Name.ValueStringPointer(),
-		Description:            m.Description.ValueStringPointer(),
-		DestinationUuid:        m.DestinationUuid.ValueStringPointer(),
-		EnvironmentName:        m.EnvironmentName.ValueString(),
-		EnvironmentUuid:        m.EnvironmentUuid.ValueString(),
-		ProjectUuid:            m.ProjectUuid.ValueString(),
-		ServerUuid:             m.ServerUuid.ValueString(),
-		InstantDeploy:          m.InstantDeploy.ValueBoolPointer(),
-		ConnectToDockerNetwork: m.ConnectToDockerNetwork.ValueBoolPointer(),
-		DockerComposeRaw:       *sutil.Base64EncodeAttr(m.Compose),
+		Name:             m.Name.ValueStringPointer(),
+		Description:      m.Description.ValueStringPointer(),
+		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
+		EnvironmentName:  m.EnvironmentName.ValueString(),
+		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
+		ProjectUuid:      m.ProjectUuid.ValueString(),
+		ServerUuid:       m.ServerUuid.ValueString(),
+		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
+		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
 }
 func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
 	return api.UpdateServiceByUuidJSONRequestBody{
-		Name:                   m.Name.ValueStringPointer(),
-		Description:            m.Description.ValueStringPointer(),
-		DestinationUuid:        m.DestinationUuid.ValueStringPointer(),
-		EnvironmentName:        m.EnvironmentName.ValueString(),
-		EnvironmentUuid:        m.EnvironmentUuid.ValueString(),
-		ProjectUuid:            m.ProjectUuid.ValueString(),
-		ServerUuid:             m.ServerUuid.ValueString(),
-		InstantDeploy:          m.InstantDeploy.ValueBoolPointer(),
-		ConnectToDockerNetwork: m.ConnectToDockerNetwork.ValueBoolPointer(),
-		DockerComposeRaw:       *sutil.Base64EncodeAttr(m.Compose),
+		Name:             m.Name.ValueStringPointer(),
+		Description:      m.Description.ValueStringPointer(),
+		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
+		EnvironmentName:  m.EnvironmentName.ValueString(),
+		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
+		ProjectUuid:      m.ProjectUuid.ValueString(),
+		ServerUuid:       m.ServerUuid.ValueString(),
+		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
+		DockerComposeRaw: *sutil.Base64EncodeAttr(m.Compose),
 	}
 }
