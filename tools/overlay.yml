@@ -221,3 +221,14 @@ actions:
     update:
       fingerprint:
         type: string
+
+  - target: $.paths['/deployments/applications/{uuid}'].get
+    description: add missing `uuid` parameters to get operations
+    update:
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+

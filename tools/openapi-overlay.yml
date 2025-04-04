@@ -1874,50 +1874,6 @@ paths:
                     $ref: '#/components/responses/404'
             security:
                 - bearerAuth: []
-    '/applications/{uuid}/execute':
-        post:
-            tags:
-                - Applications
-            summary: 'Execute Command'
-            description: "Execute a command on the application's current container."
-            operationId: execute-command-application
-            parameters:
-                - name: uuid
-                  in: path
-                  description: 'UUID of the application.'
-                  required: true
-                  schema:
-                    type: string
-                    format: ""
-            requestBody:
-                description: 'Command to execute.'
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            properties:
-                                command:
-                                    type: string
-                                    description: 'Command to execute.'
-                            type: object
-            responses:
-                '200':
-                    description: "Execute a command on the application's current container."
-                    content:
-                        application/json:
-                            schema:
-                                properties:
-                                    message: {type: string, example: 'Command executed.'}
-                                    response: {type: string}
-                                type: object
-                '401':
-                    $ref: '#/components/responses/401'
-                '400':
-                    $ref: '#/components/responses/400'
-                '404':
-                    $ref: '#/components/responses/404'
-            security:
-                - bearerAuth: []
     /databases:
         get:
             tags:
@@ -3118,6 +3074,11 @@ paths:
                   description: 'Force rebuild (without cache)'
                   schema:
                     type: boolean
+                - name: pr
+                  in: query
+                  description: 'Pull Request Id for deploying specific PR builds. Cannot be used with tag parameter.'
+                  schema:
+                    type: integer
             responses:
                 '200':
                     description: "Get deployment(s) UUID's"
@@ -3133,6 +3094,34 @@ paths:
                     $ref: '#/components/responses/400'
             security:
                 - bearerAuth: []
+    '/deployments/applications/{uuid}':
+        get:
+            tags:
+                - Deployments
+            summary: 'List application deployments'
+            description: 'List application deployments by using the app uuid'
+            operationId: list-deployments-by-app-uuid
+            responses:
+                '200':
+                    description: 'List application deployments by using the app uuid.'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Application'
+                '401':
+                    $ref: '#/components/responses/401'
+                '400':
+                    $ref: '#/components/responses/400'
+            security:
+                - bearerAuth: []
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  schema:
+                    type: string
     /version:
         get:
             summary: Version
