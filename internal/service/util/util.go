@@ -1,4 +1,4 @@
-package service
+package util
 
 import (
 	"encoding/base64"
@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-func base64Encode(value *string) *string {
+func Base64Encode(value *string) *string {
 	if value == nil {
 		return nil
 	}
@@ -16,14 +16,14 @@ func base64Encode(value *string) *string {
 	return &encoded
 }
 
-func base64EncodeAttr(value types.String) *string {
+func Base64EncodeAttr(value types.String) *string {
 	if value.IsUnknown() {
 		return nil
 	}
-	return base64Encode(value.ValueStringPointer())
+	return Base64Encode(value.ValueStringPointer())
 }
 
-func base64Decode(value *string) *string {
+func Base64Decode(value *string) *string {
 	if value == nil {
 		return nil
 	}
@@ -39,12 +39,12 @@ func base64DecodeAttr(value types.String) *string {
 	if value.IsUnknown() {
 		return nil
 	}
-	return base64Decode(value.ValueStringPointer())
+	return Base64Decode(value.ValueStringPointer())
 }
 
 // mergeResourceSchemas combines multiple resource schemas by merging their attributes and blocks.
 // If an attribute or block exists in multiple schemas, the last one takes precedence.
-func mergeResourceSchemas(schemas ...res_schema.Schema) res_schema.Schema {
+func MergeResourceSchemas(schemas ...res_schema.Schema) res_schema.Schema {
 	result := res_schema.Schema{
 		Attributes: make(map[string]res_schema.Attribute),
 		Blocks:     make(map[string]res_schema.Block),
@@ -69,7 +69,7 @@ func mergeResourceSchemas(schemas ...res_schema.Schema) res_schema.Schema {
 
 // mergeDataSourceSchemas combines multiple datasource schemas by merging their attributes and blocks.
 // If an attribute or block exists in multiple schemas, the last one takes precedence.
-func mergeDataSourceSchemas(schemas ...ds_schema.Schema) ds_schema.Schema {
+func MergeDataSourceSchemas(schemas ...ds_schema.Schema) ds_schema.Schema {
 	result := ds_schema.Schema{
 		Attributes: make(map[string]ds_schema.Attribute),
 		Blocks:     make(map[string]ds_schema.Block),
