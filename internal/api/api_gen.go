@@ -2078,10 +2078,10 @@ type UpdateEnvsByApplicationUuidJSONBody struct {
 	} `json:"data"`
 }
 
-// ExecuteCommandApplicationJSONBody defines parameters for ExecuteCommandApplication.
-type ExecuteCommandApplicationJSONBody struct {
-	// Command Command to execute.
-	Command *string `json:"command,omitempty"`
+// GetApplicationLogsByUuidParams defines parameters for GetApplicationLogsByUuid.
+type GetApplicationLogsByUuidParams struct {
+	// Lines Number of lines to show from the end of the logs.
+	Lines *int32 `form:"lines,omitempty" json:"lines,omitempty"`
 }
 
 // StartApplicationByUuidParams defines parameters for StartApplicationByUuid.
@@ -2769,6 +2769,9 @@ type DeployByTagOrUuidParams struct {
 
 	// Force Force rebuild (without cache)
 	Force *bool `form:"force,omitempty" json:"force,omitempty"`
+
+	// Pr Pull Request Id for deploying specific PR builds. Cannot be used with tag parameter.
+	Pr *int `form:"pr,omitempty" json:"pr,omitempty"`
 }
 
 // CreateProjectJSONBody defines parameters for CreateProject.
@@ -2877,6 +2880,9 @@ type CreateServiceJSONBody struct {
 	// DestinationUuid Destination UUID. Required if server has multiple destinations.
 	DestinationUuid *string `json:"destination_uuid,omitempty"`
 
+	// DockerComposeRaw The Docker Compose raw content.
+	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
+
 	// EnvironmentName Environment name. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentName string `json:"environment_name"`
 
@@ -2896,7 +2902,7 @@ type CreateServiceJSONBody struct {
 	ServerUuid string `json:"server_uuid"`
 
 	// Type The one-click service type
-	Type CreateServiceJSONBodyType `json:"type"`
+	Type *CreateServiceJSONBodyType `json:"type,omitempty"`
 }
 
 // CreateServiceJSONBodyType defines parameters for CreateService.
@@ -2915,6 +2921,39 @@ type DeleteServiceByUuidParams struct {
 
 	// DeleteConnectedNetworks Delete connected networks.
 	DeleteConnectedNetworks *bool `form:"delete_connected_networks,omitempty" json:"delete_connected_networks,omitempty"`
+}
+
+// UpdateServiceByUuidJSONBody defines parameters for UpdateServiceByUuid.
+type UpdateServiceByUuidJSONBody struct {
+	// ConnectToDockerNetwork Connect the service to the predefined docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
+
+	// Description The service description.
+	Description *string `json:"description,omitempty"`
+
+	// DestinationUuid The destination UUID.
+	DestinationUuid *string `json:"destination_uuid,omitempty"`
+
+	// DockerComposeRaw The Docker Compose raw content.
+	DockerComposeRaw string `json:"docker_compose_raw"`
+
+	// EnvironmentName The environment name.
+	EnvironmentName string `json:"environment_name"`
+
+	// EnvironmentUuid The environment UUID.
+	EnvironmentUuid string `json:"environment_uuid"`
+
+	// InstantDeploy The flag to indicate if the service should be deployed instantly.
+	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// Name The service name.
+	Name *string `json:"name,omitempty"`
+
+	// ProjectUuid The project UUID.
+	ProjectUuid string `json:"project_uuid"`
+
+	// ServerUuid The server UUID.
+	ServerUuid string `json:"server_uuid"`
 }
 
 // UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
@@ -3021,9 +3060,6 @@ type CreateEnvByApplicationUuidJSONRequestBody CreateEnvByApplicationUuidJSONBod
 // UpdateEnvsByApplicationUuidJSONRequestBody defines body for UpdateEnvsByApplicationUuid for application/json ContentType.
 type UpdateEnvsByApplicationUuidJSONRequestBody UpdateEnvsByApplicationUuidJSONBody
 
-// ExecuteCommandApplicationJSONRequestBody defines body for ExecuteCommandApplication for application/json ContentType.
-type ExecuteCommandApplicationJSONRequestBody ExecuteCommandApplicationJSONBody
-
 // CreateDatabaseClickhouseJSONRequestBody defines body for CreateDatabaseClickhouse for application/json ContentType.
 type CreateDatabaseClickhouseJSONRequestBody CreateDatabaseClickhouseJSONBody
 
@@ -3071,6 +3107,9 @@ type UpdateServerByUuidJSONRequestBody UpdateServerByUuidJSONBody
 
 // CreateServiceJSONRequestBody defines body for CreateService for application/json ContentType.
 type CreateServiceJSONRequestBody CreateServiceJSONBody
+
+// UpdateServiceByUuidJSONRequestBody defines body for UpdateServiceByUuid for application/json ContentType.
+type UpdateServiceByUuidJSONRequestBody UpdateServiceByUuidJSONBody
 
 // UpdateEnvByServiceUuidJSONRequestBody defines body for UpdateEnvByServiceUuid for application/json ContentType.
 type UpdateEnvByServiceUuidJSONRequestBody UpdateEnvByServiceUuidJSONBody
@@ -3338,10 +3377,8 @@ type ClientInterface interface {
 	// DeleteEnvByApplicationUuid request
 	DeleteEnvByApplicationUuid(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ExecuteCommandApplicationWithBody request with any body
-	ExecuteCommandApplicationWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ExecuteCommandApplication(ctx context.Context, uuid string, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetApplicationLogsByUuid request
+	GetApplicationLogsByUuid(ctx context.Context, uuid string, params *GetApplicationLogsByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RestartApplicationByUuid request
 	RestartApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3420,6 +3457,9 @@ type ClientInterface interface {
 
 	// ListDeployments request
 	ListDeployments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListDeploymentsByAppUuid request
+	ListDeploymentsByAppUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetDeploymentByUuid request
 	GetDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3518,6 +3558,11 @@ type ClientInterface interface {
 
 	// GetServiceByUuid request
 	GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateServiceByUuidWithBody request with any body
+	UpdateServiceByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateServiceByUuid(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListEnvsByServiceUuid request
 	ListEnvsByServiceUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3868,20 +3913,8 @@ func (c *Client) DeleteEnvByApplicationUuid(ctx context.Context, uuid string, en
 	return c.Client.Do(req)
 }
 
-func (c *Client) ExecuteCommandApplicationWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExecuteCommandApplicationRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ExecuteCommandApplication(ctx context.Context, uuid string, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewExecuteCommandApplicationRequest(c.Server, uuid, body)
+func (c *Client) GetApplicationLogsByUuid(ctx context.Context, uuid string, params *GetApplicationLogsByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetApplicationLogsByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4230,6 +4263,18 @@ func (c *Client) DeployByTagOrUuid(ctx context.Context, params *DeployByTagOrUui
 
 func (c *Client) ListDeployments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewListDeploymentsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListDeploymentsByAppUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListDeploymentsByAppUuidRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4650,6 +4695,30 @@ func (c *Client) DeleteServiceByUuid(ctx context.Context, uuid string, params *D
 
 func (c *Client) GetServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetServiceByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateServiceByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServiceByUuidRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateServiceByUuid(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateServiceByUuidRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -5532,19 +5601,8 @@ func NewDeleteEnvByApplicationUuidRequest(server string, uuid string, envUuid st
 	return req, nil
 }
 
-// NewExecuteCommandApplicationRequest calls the generic ExecuteCommandApplication builder with application/json body
-func NewExecuteCommandApplicationRequest(server string, uuid string, body ExecuteCommandApplicationJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewExecuteCommandApplicationRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewExecuteCommandApplicationRequestWithBody generates requests for ExecuteCommandApplication with any type of body
-func NewExecuteCommandApplicationRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+// NewGetApplicationLogsByUuidRequest generates requests for GetApplicationLogsByUuid
+func NewGetApplicationLogsByUuidRequest(server string, uuid string, params *GetApplicationLogsByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5559,7 +5617,7 @@ func NewExecuteCommandApplicationRequestWithBody(server string, uuid string, con
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/applications/%s/execute", pathParam0)
+	operationPath := fmt.Sprintf("/applications/%s/logs", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -5569,12 +5627,32 @@ func NewExecuteCommandApplicationRequestWithBody(server string, uuid string, con
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Lines != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lines", runtime.ParamLocationQuery, *params.Lines); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -6423,6 +6501,22 @@ func NewDeployByTagOrUuidRequest(server string, params *DeployByTagOrUuidParams)
 
 		}
 
+		if params.Pr != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "pr", runtime.ParamLocationQuery, *params.Pr); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -6444,6 +6538,40 @@ func NewListDeploymentsRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/deployments")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewListDeploymentsByAppUuidRequest generates requests for ListDeploymentsByAppUuid
+func NewListDeploymentsByAppUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/deployments/applications/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7497,6 +7625,53 @@ func NewGetServiceByUuidRequest(server string, uuid string) (*http.Request, erro
 	return req, nil
 }
 
+// NewUpdateServiceByUuidRequest calls the generic UpdateServiceByUuid builder with application/json body
+func NewUpdateServiceByUuidRequest(server string, uuid string, body UpdateServiceByUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateServiceByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUpdateServiceByUuidRequestWithBody generates requests for UpdateServiceByUuid with any type of body
+func NewUpdateServiceByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/services/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewListEnvsByServiceUuidRequest generates requests for ListEnvsByServiceUuid
 func NewListEnvsByServiceUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -8099,10 +8274,8 @@ type ClientWithResponsesInterface interface {
 	// DeleteEnvByApplicationUuidWithResponse request
 	DeleteEnvByApplicationUuidWithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvByApplicationUuidResponse, error)
 
-	// ExecuteCommandApplicationWithBodyWithResponse request with any body
-	ExecuteCommandApplicationWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error)
-
-	ExecuteCommandApplicationWithResponse(ctx context.Context, uuid string, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error)
+	// GetApplicationLogsByUuidWithResponse request
+	GetApplicationLogsByUuidWithResponse(ctx context.Context, uuid string, params *GetApplicationLogsByUuidParams, reqEditors ...RequestEditorFn) (*GetApplicationLogsByUuidResponse, error)
 
 	// RestartApplicationByUuidWithResponse request
 	RestartApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartApplicationByUuidResponse, error)
@@ -8181,6 +8354,9 @@ type ClientWithResponsesInterface interface {
 
 	// ListDeploymentsWithResponse request
 	ListDeploymentsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDeploymentsResponse, error)
+
+	// ListDeploymentsByAppUuidWithResponse request
+	ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error)
 
 	// GetDeploymentByUuidWithResponse request
 	GetDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDeploymentByUuidResponse, error)
@@ -8279,6 +8455,11 @@ type ClientWithResponsesInterface interface {
 
 	// GetServiceByUuidWithResponse request
 	GetServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetServiceByUuidResponse, error)
+
+	// UpdateServiceByUuidWithBodyWithResponse request with any body
+	UpdateServiceByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error)
+
+	UpdateServiceByUuidWithResponse(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error)
 
 	// ListEnvsByServiceUuidWithResponse request
 	ListEnvsByServiceUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListEnvsByServiceUuidResponse, error)
@@ -8719,12 +8900,11 @@ func (r DeleteEnvByApplicationUuidResponse) StatusCode() int {
 	return 0
 }
 
-type ExecuteCommandApplicationResponse struct {
+type GetApplicationLogsByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *struct {
-		Message  *string `json:"message,omitempty"`
-		Response *string `json:"response,omitempty"`
+		Logs *string `json:"logs,omitempty"`
 	}
 	JSON400 *N400
 	JSON401 *N401
@@ -8732,7 +8912,7 @@ type ExecuteCommandApplicationResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r ExecuteCommandApplicationResponse) Status() string {
+func (r GetApplicationLogsByUuidResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -8740,7 +8920,7 @@ func (r ExecuteCommandApplicationResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ExecuteCommandApplicationResponse) StatusCode() int {
+func (r GetApplicationLogsByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9255,6 +9435,30 @@ func (r ListDeploymentsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ListDeploymentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListDeploymentsByAppUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Application
+	JSON400      *N400
+	JSON401      *N401
+}
+
+// Status returns HTTPResponse.Status
+func (r ListDeploymentsByAppUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListDeploymentsByAppUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9996,6 +10200,37 @@ func (r GetServiceByUuidResponse) StatusCode() int {
 	return 0
 }
 
+type UpdateServiceByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Domains Service domains.
+		Domains *[]string `json:"domains,omitempty"`
+
+		// Uuid Service UUID.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateServiceByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateServiceByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ListEnvsByServiceUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -10569,21 +10804,13 @@ func (c *ClientWithResponses) DeleteEnvByApplicationUuidWithResponse(ctx context
 	return ParseDeleteEnvByApplicationUuidResponse(rsp)
 }
 
-// ExecuteCommandApplicationWithBodyWithResponse request with arbitrary body returning *ExecuteCommandApplicationResponse
-func (c *ClientWithResponses) ExecuteCommandApplicationWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error) {
-	rsp, err := c.ExecuteCommandApplicationWithBody(ctx, uuid, contentType, body, reqEditors...)
+// GetApplicationLogsByUuidWithResponse request returning *GetApplicationLogsByUuidResponse
+func (c *ClientWithResponses) GetApplicationLogsByUuidWithResponse(ctx context.Context, uuid string, params *GetApplicationLogsByUuidParams, reqEditors ...RequestEditorFn) (*GetApplicationLogsByUuidResponse, error) {
+	rsp, err := c.GetApplicationLogsByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseExecuteCommandApplicationResponse(rsp)
-}
-
-func (c *ClientWithResponses) ExecuteCommandApplicationWithResponse(ctx context.Context, uuid string, body ExecuteCommandApplicationJSONRequestBody, reqEditors ...RequestEditorFn) (*ExecuteCommandApplicationResponse, error) {
-	rsp, err := c.ExecuteCommandApplication(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseExecuteCommandApplicationResponse(rsp)
+	return ParseGetApplicationLogsByUuidResponse(rsp)
 }
 
 // RestartApplicationByUuidWithResponse request returning *RestartApplicationByUuidResponse
@@ -10836,6 +11063,15 @@ func (c *ClientWithResponses) ListDeploymentsWithResponse(ctx context.Context, r
 		return nil, err
 	}
 	return ParseListDeploymentsResponse(rsp)
+}
+
+// ListDeploymentsByAppUuidWithResponse request returning *ListDeploymentsByAppUuidResponse
+func (c *ClientWithResponses) ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error) {
+	rsp, err := c.ListDeploymentsByAppUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListDeploymentsByAppUuidResponse(rsp)
 }
 
 // GetDeploymentByUuidWithResponse request returning *GetDeploymentByUuidResponse
@@ -11144,6 +11380,23 @@ func (c *ClientWithResponses) GetServiceByUuidWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseGetServiceByUuidResponse(rsp)
+}
+
+// UpdateServiceByUuidWithBodyWithResponse request with arbitrary body returning *UpdateServiceByUuidResponse
+func (c *ClientWithResponses) UpdateServiceByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error) {
+	rsp, err := c.UpdateServiceByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateServiceByUuidResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateServiceByUuidWithResponse(ctx context.Context, uuid string, body UpdateServiceByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateServiceByUuidResponse, error) {
+	rsp, err := c.UpdateServiceByUuid(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateServiceByUuidResponse(rsp)
 }
 
 // ListEnvsByServiceUuidWithResponse request returning *ListEnvsByServiceUuidResponse
@@ -11974,15 +12227,15 @@ func ParseDeleteEnvByApplicationUuidResponse(rsp *http.Response) (*DeleteEnvByAp
 	return response, nil
 }
 
-// ParseExecuteCommandApplicationResponse parses an HTTP response from a ExecuteCommandApplicationWithResponse call
-func ParseExecuteCommandApplicationResponse(rsp *http.Response) (*ExecuteCommandApplicationResponse, error) {
+// ParseGetApplicationLogsByUuidResponse parses an HTTP response from a GetApplicationLogsByUuidWithResponse call
+func ParseGetApplicationLogsByUuidResponse(rsp *http.Response) (*GetApplicationLogsByUuidResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ExecuteCommandApplicationResponse{
+	response := &GetApplicationLogsByUuidResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -11990,8 +12243,7 @@ func ParseExecuteCommandApplicationResponse(rsp *http.Response) (*ExecuteCommand
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest struct {
-			Message  *string `json:"message,omitempty"`
-			Response *string `json:"response,omitempty"`
+			Logs *string `json:"logs,omitempty"`
 		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -12846,6 +13098,46 @@ func ParseListDeploymentsResponse(rsp *http.Response) (*ListDeploymentsResponse,
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ApplicationDeploymentQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListDeploymentsByAppUuidResponse parses an HTTP response from a ListDeploymentsByAppUuidWithResponse call
+func ParseListDeploymentsByAppUuidResponse(rsp *http.Response) (*ListDeploymentsByAppUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListDeploymentsByAppUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Application
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14106,6 +14398,59 @@ func ParseGetServiceByUuidResponse(rsp *http.Response) (*GetServiceByUuidRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Service
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateServiceByUuidResponse parses an HTTP response from a UpdateServiceByUuidWithResponse call
+func ParseUpdateServiceByUuidResponse(rsp *http.Response) (*UpdateServiceByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateServiceByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Domains Service domains.
+			Domains *[]string `json:"domains,omitempty"`
+
+			// Uuid Service UUID.
+			Uuid *string `json:"uuid,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
