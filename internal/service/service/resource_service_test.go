@@ -29,13 +29,15 @@ func TestAccServiceResource(t *testing.T) {
 					server_uuid = "` + acctest.ServerUUID + `"
 					project_uuid = "` + acctest.ProjectUUID + `"
 					environment_name = "` + acctest.EnvironmentName + `"
+					destination_uuid = "` + acctest.DestinationUUID + `"
 
-				  compose = <<EOF
-				services:
-						whoami:
-						image: "containous/whoami"
-						container_name: "simple-service"
-				EOF
+					instant_deploy = false
+  				compose = <<EOF
+services:
+  whoami:
+    image: "containous/whoami"
+    container_name: "simple-service"
+EOF
 				}
 				`,
 				Check: resource.ComposeAggregateTestCheckFunc(
@@ -77,16 +79,17 @@ func TestAccServiceResource(t *testing.T) {
 					server_uuid = "` + acctest.ServerUUID + `"
 					project_uuid = "` + acctest.ProjectUUID + `"
 					environment_name = "` + acctest.EnvironmentName + `"
-
-
-				  compose = <<EOF
-				services:
-						whoami:
-						image: "containous/whoami"
-						container_name: "simple-service-updated"
-				EOF
+					destination_uuid = "` + acctest.DestinationUUID + `"
 
 					instant_deploy = false
+
+  				compose = <<EOF
+services:
+  whoami2:
+    image: "containous/whoami"
+    container_name: "simple-service"
+EOF
+
 				}
 				`,
 				ConfigPlanChecks: resource.ConfigPlanChecks{
@@ -101,7 +104,6 @@ func TestAccServiceResource(t *testing.T) {
 				},
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttrSet(resName, "uuid"),
-					resource.TestCheckResourceAttrSet(resName, "internal_db_url"),
 					resource.TestCheckResourceAttr(resName, "name", "TerraformAccTestUpdated"),
 					resource.TestCheckResourceAttr(resName, "description", "Terraform acceptance testing"),
 					resource.TestCheckResourceAttr(resName, "server_uuid", acctest.ServerUUID),

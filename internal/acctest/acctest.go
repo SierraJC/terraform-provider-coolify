@@ -20,6 +20,7 @@ const (
 	EnvironmentName = "production"
 	ApplicationUUID = "mc8gw00wscww4gskgk0gwgw0"
 	ServiceUUID     = "i0800ok00gcww840kk8sok0s"
+	DestinationUUID = "kgso0w8"
 )
 
 var TestAccProtoV6ProviderFactories = map[string]func() (tfprotov6.ProviderServer, error){
