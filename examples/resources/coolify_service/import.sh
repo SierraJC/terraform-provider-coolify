@@ -1,0 +1,1 @@
+terraform import coolify_service.example <service_uuid>
