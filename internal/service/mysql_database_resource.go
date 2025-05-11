@@ -16,6 +16,7 @@ import (
 	"terraform-provider-coolify/internal/api"
 	"terraform-provider-coolify/internal/expand"
 	"terraform-provider-coolify/internal/provider/util"
+	sutil "terraform-provider-coolify/internal/service/util"
 )
 
 var (
@@ -69,7 +70,7 @@ func (r *mysqlDatabaseResource) Schema(ctx context.Context, req resource.SchemaR
 		},
 	}
 
-	resp.Schema = mergeResourceSchemas(commonSchema, mysqlSchema)
+	resp.Schema = sutil.MergeResourceSchemas(commonSchema, mysqlSchema)
 }
 
 func (r *mysqlDatabaseResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
@@ -104,7 +105,7 @@ func (r *mysqlDatabaseResource) Create(ctx context.Context, req resource.CreateR
 		LimitsMemoryReservation: plan.LimitsMemoryReservation.ValueStringPointer(),
 		LimitsMemorySwap:        plan.LimitsMemorySwap.ValueStringPointer(),
 		LimitsMemorySwappiness:  expand.Int64(plan.LimitsMemorySwappiness),
-		MysqlConf:               base64EncodeAttr(plan.MysqlConf),
+		MysqlConf:               sutil.Base64EncodeAttr(plan.MysqlConf),
 		MysqlDatabase:           plan.MysqlDatabase.ValueStringPointer(),
 		MysqlPassword:           expand.String(plan.MysqlPassword),
 		MysqlRootPassword:       expand.String(plan.MysqlRootPassword),
@@ -186,7 +187,7 @@ func (r *mysqlDatabaseResource) Update(ctx context.Context, req resource.UpdateR
 		LimitsMemorySwap:        plan.LimitsMemorySwap.ValueStringPointer(),
 		LimitsMemorySwappiness:  expand.Int64(plan.LimitsMemorySwappiness),
 		Name:                    plan.Name.ValueStringPointer(),
-		MysqlConf:               base64EncodeAttr(plan.MysqlConf),
+		MysqlConf:               sutil.Base64EncodeAttr(plan.MysqlConf),
 		MysqlDatabase:           plan.MysqlDatabase.ValueStringPointer(),
 		MysqlRootPassword:       expand.String(plan.MysqlRootPassword),
 		MysqlPassword:           expand.String(plan.MysqlPassword),
