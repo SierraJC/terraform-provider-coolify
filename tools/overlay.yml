@@ -56,7 +56,7 @@ actions:
         security:
           - bearerAuth: []
 
-  - target: $.paths['/projects/{uuid}', '/applications/{uuid}', '/services/{uuid}', '/security/keys/{uuid}'].patch
+  - target: $.paths['/security/keys/{uuid}'].patch
     description: add missing `uuid` parameters to patch operations
     update:
       parameters:
@@ -214,21 +214,3 @@ actions:
                 internal_db_url:
                   type: string
               type: object
-
-  # add fingerprint to private key schema
-  - target: $.components.schemas.PrivateKey.properties
-    description: Add fingerprint to PrivateKey schema
-    update:
-      fingerprint:
-        type: string
-
-  - target: $.paths['/deployments/applications/{uuid}'].get
-    description: add missing `uuid` parameters to get operations
-    update:
-      parameters:
-        - name: uuid
-          in: path
-          required: true
-          schema:
-            type: string
-

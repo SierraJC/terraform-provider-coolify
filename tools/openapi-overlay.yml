@@ -1316,6 +1316,14 @@ paths:
             summary: Update
             description: 'Update application by UUID.'
             operationId: update-application-by-uuid
+            parameters:
+                - name: uuid
+                  in: path
+                  description: 'UUID of the application.'
+                  required: true
+                  schema:
+                    type: string
+                    format: ""
             requestBody:
                 description: 'Application updated.'
                 required: true
@@ -1532,12 +1540,6 @@ paths:
                     $ref: '#/components/responses/404'
             security:
                 - bearerAuth: []
-            parameters:
-                - name: uuid
-                  in: path
-                  required: true
-                  schema:
-                    type: string
     '/applications/{uuid}/logs':
         get:
             tags:
@@ -3111,7 +3113,7 @@ paths:
             tags:
                 - Deployments
             summary: Deploy
-            description: 'Deploy by tag or uuid. `Post` request also accepted.'
+            description: 'Deploy by tag or uuid. `Post` request also accepted with `uuid` and `tag` json body.'
             operationId: deploy-by-tag-or-uuid
             parameters:
                 - name: tag
@@ -3156,6 +3158,30 @@ paths:
             summary: 'List application deployments'
             description: 'List application deployments by using the app uuid'
             operationId: list-deployments-by-app-uuid
+            parameters:
+                - name: uuid
+                  in: path
+                  description: 'UUID of the application.'
+                  required: true
+                  schema:
+                    type: string
+                    format: ""
+                - name: skip
+                  in: query
+                  description: 'Number of records to skip.'
+                  required: false
+                  schema:
+                    type: integer
+                    default: 0
+                    minimum: 0
+                - name: take
+                  in: query
+                  description: 'Number of records to take.'
+                  required: false
+                  schema:
+                    type: integer
+                    default: 10
+                    minimum: 1
             responses:
                 '200':
                     description: 'List application deployments by using the app uuid.'
@@ -3171,12 +3197,6 @@ paths:
                     $ref: '#/components/responses/400'
             security:
                 - bearerAuth: []
-            parameters:
-                - name: uuid
-                  in: path
-                  required: true
-                  schema:
-                    type: string
     /version:
         get:
             summary: Version
@@ -3395,6 +3415,14 @@ paths:
             summary: Update
             description: 'Update Project.'
             operationId: update-project-by-uuid
+            parameters:
+                - name: uuid
+                  in: path
+                  description: 'UUID of the project.'
+                  required: true
+                  schema:
+                    type: string
+                    format: ""
             requestBody:
                 description: 'Project updated.'
                 required: true
@@ -3428,12 +3456,6 @@ paths:
                     $ref: '#/components/responses/404'
             security:
                 - bearerAuth: []
-            parameters:
-                - name: uuid
-                  in: path
-                  required: true
-                  schema:
-                    type: string
     '/projects/{uuid}/{environment_name_or_uuid}':
         get:
             tags:
@@ -4157,6 +4179,14 @@ paths:
             summary: Update
             description: 'Update service by UUID.'
             operationId: update-service-by-uuid
+            parameters:
+                - name: uuid
+                  in: path
+                  description: 'UUID of the service.'
+                  required: true
+                  schema:
+                    type: string
+                    format: ""
             requestBody:
                 description: 'Service updated.'
                 required: true
@@ -4220,12 +4250,6 @@ paths:
                     $ref: '#/components/responses/404'
             security:
                 - bearerAuth: []
-            parameters:
-                - name: uuid
-                  in: path
-                  required: true
-                  schema:
-                    type: string
     '/services/{uuid}/envs':
         get:
             tags:
@@ -4971,6 +4995,10 @@ components:
                 compose_parsing_version:
                     type: string
                     description: 'How Coolify parse the compose file.'
+                custom_nginx_configuration:
+                    type: string
+                    nullable: true
+                    description: 'Custom Nginx configuration base64 encoded.'
                 is_http_basic_auth_enabled:
                     type: boolean
                     description: 'HTTP Basic Authentication enabled.'
@@ -4982,10 +5010,6 @@ components:
                     type: string
                     nullable: true
                     description: 'Password for HTTP Basic Authentication'
-                custom_nginx_configuration:
-                    type: string
-                    nullable: true
-                    description: 'Custom Nginx configuration base64 encoded.'
             type: object
         ApplicationDeploymentQueue:
             description: 'Project model'
