@@ -22,7 +22,7 @@ func TestAccTeamsDataSource(t *testing.T) {
 			{
 				Config: `data "coolify_teams" "test" {}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckResourceAttr(resName, "teams.#", "5"),
+					resource.TestCheckResourceAttr(resName, "teams.#", "2"),
 					// Check the first team in the list
 					resource.TestCheckResourceAttr(resName, "teams.0.id", "0"),
 					resource.TestCheckResourceAttr(resName, "teams.0.name", "Root Team"),
@@ -39,11 +39,10 @@ func TestAccTeamsDataSource(t *testing.T) {
 						}
 					}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckResourceAttr(resName, "teams.#", "3"),
+					resource.TestCheckResourceAttr(resName, "teams.#", "2"),
 					resource.TestCheckResourceAttr(resName, "teams.0.name", "Root Team"),
 					resource.TestCheckResourceAttr(resName, "teams.0.id", "0"),
-					resource.TestCheckResourceAttr(resName, "teams.1.id", "1"),
-					resource.TestCheckResourceAttr(resName, "teams.2.id", "2"),
+					resource.TestCheckResourceAttr(resName, "teams.1.id", "5"),
 					// todo: fix acceptance test server, multiple teams with the same name
 				),
 			},

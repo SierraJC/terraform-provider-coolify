@@ -20,7 +20,7 @@ func TestAccServiceDataSource(t *testing.T) {
 				}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr(resName, "uuid", acctest.ServiceUUID),
-					resource.TestCheckResourceAttr(resName, "created_at", "2024-11-18T06:03:18.000000Z"),
+					resource.TestCheckResourceAttr(resName, "created_at", "2025-05-11T12:22:34.000000Z"),
 					resource.TestCheckResourceAttrSet(resName, "docker_compose"),
 					resource.TestCheckResourceAttr(resName, "name", "service-"+acctest.ServiceUUID),
 					resource.TestCheckNoResourceAttr(resName, "description"),

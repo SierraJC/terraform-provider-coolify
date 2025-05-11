@@ -21,10 +21,10 @@ func TestAccTeamDataSource(t *testing.T) {
 			// With ID
 			{
 				Config: `data "coolify_team" "test" {
-					id = 1
+					id = 5
 				}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckResourceAttr(resName, "id", "1"),
+					resource.TestCheckResourceAttr(resName, "id", "5"),
 					resource.TestCheckResourceAttr(resName, "name", "Test"),
 					resource.TestCheckResourceAttr(resName, "personal_team", "false"),
 					resource.TestCheckResourceAttr(resName, "members.#", "1"),

@@ -19,7 +19,7 @@ const (
 	ProjectUUID     = "uoswco88w8swo40k48o8kcwk"
 	EnvironmentName = "production"
 	ApplicationUUID = "mc8gw00wscww4gskgk0gwgw0"
-	ServiceUUID     = "i0800ok00gcww840kk8sok0s"
+	ServiceUUID     = "joscs8wg0owkggsc4gwkw84k"
 	DestinationUUID = "kgso0w8"
 )
 
