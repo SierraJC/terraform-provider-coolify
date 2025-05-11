@@ -66,6 +66,11 @@ func ApplicationsDataSourceSchema(ctx context.Context) schema.Schema {
 							Description:         "Custom labels.",
 							MarkdownDescription: "Custom labels.",
 						},
+						"custom_network_aliases": schema.StringAttribute{
+							Computed:            true,
+							Description:         "Network aliases for Docker container.",
+							MarkdownDescription: "Network aliases for Docker container.",
+						},
 						"custom_nginx_configuration": schema.StringAttribute{
 							Computed:            true,
 							Description:         "Custom Nginx configuration base64 encoded.",
@@ -236,6 +241,16 @@ func ApplicationsDataSourceSchema(ctx context.Context) schema.Schema {
 							Description:         "Health check timeout in seconds.",
 							MarkdownDescription: "Health check timeout in seconds.",
 						},
+						"http_basic_auth_password": schema.StringAttribute{
+							Computed:            true,
+							Description:         "Password for HTTP Basic Authentication",
+							MarkdownDescription: "Password for HTTP Basic Authentication",
+						},
+						"http_basic_auth_username": schema.StringAttribute{
+							Computed:            true,
+							Description:         "Username for HTTP Basic Authentication",
+							MarkdownDescription: "Username for HTTP Basic Authentication",
+						},
 						"id": schema.Int64Attribute{
 							Computed:            true,
 							Description:         "The application identifier in the database.",
@@ -245,6 +260,11 @@ func ApplicationsDataSourceSchema(ctx context.Context) schema.Schema {
 							Computed:            true,
 							Description:         "Install command.",
 							MarkdownDescription: "Install command.",
+						},
+						"is_http_basic_auth_enabled": schema.BoolAttribute{
+							Computed:            true,
+							Description:         "HTTP Basic Authentication enabled.",
+							MarkdownDescription: "HTTP Basic Authentication enabled.",
 						},
 						"limits_cpu_shares": schema.Int64Attribute{
 							Computed:            true,
@@ -610,6 +630,24 @@ func (t ApplicationsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 			fmt.Sprintf(`custom_labels expected to be basetypes.StringValue, was: %T`, customLabelsAttribute))
 	}
 
+	customNetworkAliasesAttribute, ok := attributes["custom_network_aliases"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`custom_network_aliases is missing from object`)
+
+		return nil, diags
+	}
+
+	customNetworkAliasesVal, ok := customNetworkAliasesAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`custom_network_aliases expected to be basetypes.StringValue, was: %T`, customNetworkAliasesAttribute))
+	}
+
 	customNginxConfigurationAttribute, ok := attributes["custom_nginx_configuration"]
 
 	if !ok {
@@ -1222,6 +1260,42 @@ func (t ApplicationsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 			fmt.Sprintf(`health_check_timeout expected to be basetypes.Int64Value, was: %T`, healthCheckTimeoutAttribute))
 	}
 
+	httpBasicAuthPasswordAttribute, ok := attributes["http_basic_auth_password"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`http_basic_auth_password is missing from object`)
+
+		return nil, diags
+	}
+
+	httpBasicAuthPasswordVal, ok := httpBasicAuthPasswordAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`http_basic_auth_password expected to be basetypes.StringValue, was: %T`, httpBasicAuthPasswordAttribute))
+	}
+
+	httpBasicAuthUsernameAttribute, ok := attributes["http_basic_auth_username"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`http_basic_auth_username is missing from object`)
+
+		return nil, diags
+	}
+
+	httpBasicAuthUsernameVal, ok := httpBasicAuthUsernameAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`http_basic_auth_username expected to be basetypes.StringValue, was: %T`, httpBasicAuthUsernameAttribute))
+	}
+
 	idAttribute, ok := attributes["id"]
 
 	if !ok {
@@ -1256,6 +1330,24 @@ func (t ApplicationsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 		diags.AddError(
 			"Attribute Wrong Type",
 			fmt.Sprintf(`install_command expected to be basetypes.StringValue, was: %T`, installCommandAttribute))
+	}
+
+	isHttpBasicAuthEnabledAttribute, ok := attributes["is_http_basic_auth_enabled"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`is_http_basic_auth_enabled is missing from object`)
+
+		return nil, diags
+	}
+
+	isHttpBasicAuthEnabledVal, ok := isHttpBasicAuthEnabledAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`is_http_basic_auth_enabled expected to be basetypes.BoolValue, was: %T`, isHttpBasicAuthEnabledAttribute))
 	}
 
 	limitsCpuSharesAttribute, ok := attributes["limits_cpu_shares"]
@@ -1848,6 +1940,7 @@ func (t ApplicationsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 		CustomDockerRunOptions:          customDockerRunOptionsVal,
 		CustomHealthcheckFound:          customHealthcheckFoundVal,
 		CustomLabels:                    customLabelsVal,
+		CustomNetworkAliases:            customNetworkAliasesVal,
 		CustomNginxConfiguration:        customNginxConfigurationVal,
 		DeletedAt:                       deletedAtVal,
 		Description:                     descriptionVal,
@@ -1882,8 +1975,11 @@ func (t ApplicationsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 		HealthCheckScheme:               healthCheckSchemeVal,
 		HealthCheckStartPeriod:          healthCheckStartPeriodVal,
 		HealthCheckTimeout:              healthCheckTimeoutVal,
+		HttpBasicAuthPassword:           httpBasicAuthPasswordVal,
+		HttpBasicAuthUsername:           httpBasicAuthUsernameVal,
 		Id:                              idVal,
 		InstallCommand:                  installCommandVal,
+		IsHttpBasicAuthEnabled:          isHttpBasicAuthEnabledVal,
 		LimitsCpuShares:                 limitsCpuSharesVal,
 		LimitsCpus:                      limitsCpusVal,
 		LimitsCpuset:                    limitsCpusetVal,
@@ -2145,6 +2241,24 @@ func NewApplicationsValue(attributeTypes map[string]attr.Type, attributes map[st
 			fmt.Sprintf(`custom_labels expected to be basetypes.StringValue, was: %T`, customLabelsAttribute))
 	}
 
+	customNetworkAliasesAttribute, ok := attributes["custom_network_aliases"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`custom_network_aliases is missing from object`)
+
+		return NewApplicationsValueUnknown(), diags
+	}
+
+	customNetworkAliasesVal, ok := customNetworkAliasesAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`custom_network_aliases expected to be basetypes.StringValue, was: %T`, customNetworkAliasesAttribute))
+	}
+
 	customNginxConfigurationAttribute, ok := attributes["custom_nginx_configuration"]
 
 	if !ok {
@@ -2757,6 +2871,42 @@ func NewApplicationsValue(attributeTypes map[string]attr.Type, attributes map[st
 			fmt.Sprintf(`health_check_timeout expected to be basetypes.Int64Value, was: %T`, healthCheckTimeoutAttribute))
 	}
 
+	httpBasicAuthPasswordAttribute, ok := attributes["http_basic_auth_password"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`http_basic_auth_password is missing from object`)
+
+		return NewApplicationsValueUnknown(), diags
+	}
+
+	httpBasicAuthPasswordVal, ok := httpBasicAuthPasswordAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`http_basic_auth_password expected to be basetypes.StringValue, was: %T`, httpBasicAuthPasswordAttribute))
+	}
+
+	httpBasicAuthUsernameAttribute, ok := attributes["http_basic_auth_username"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`http_basic_auth_username is missing from object`)
+
+		return NewApplicationsValueUnknown(), diags
+	}
+
+	httpBasicAuthUsernameVal, ok := httpBasicAuthUsernameAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`http_basic_auth_username expected to be basetypes.StringValue, was: %T`, httpBasicAuthUsernameAttribute))
+	}
+
 	idAttribute, ok := attributes["id"]
 
 	if !ok {
@@ -2791,6 +2941,24 @@ func NewApplicationsValue(attributeTypes map[string]attr.Type, attributes map[st
 		diags.AddError(
 			"Attribute Wrong Type",
 			fmt.Sprintf(`install_command expected to be basetypes.StringValue, was: %T`, installCommandAttribute))
+	}
+
+	isHttpBasicAuthEnabledAttribute, ok := attributes["is_http_basic_auth_enabled"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`is_http_basic_auth_enabled is missing from object`)
+
+		return NewApplicationsValueUnknown(), diags
+	}
+
+	isHttpBasicAuthEnabledVal, ok := isHttpBasicAuthEnabledAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`is_http_basic_auth_enabled expected to be basetypes.BoolValue, was: %T`, isHttpBasicAuthEnabledAttribute))
 	}
 
 	limitsCpuSharesAttribute, ok := attributes["limits_cpu_shares"]
@@ -3383,6 +3551,7 @@ func NewApplicationsValue(attributeTypes map[string]attr.Type, attributes map[st
 		CustomDockerRunOptions:          customDockerRunOptionsVal,
 		CustomHealthcheckFound:          customHealthcheckFoundVal,
 		CustomLabels:                    customLabelsVal,
+		CustomNetworkAliases:            customNetworkAliasesVal,
 		CustomNginxConfiguration:        customNginxConfigurationVal,
 		DeletedAt:                       deletedAtVal,
 		Description:                     descriptionVal,
@@ -3417,8 +3586,11 @@ func NewApplicationsValue(attributeTypes map[string]attr.Type, attributes map[st
 		HealthCheckScheme:               healthCheckSchemeVal,
 		HealthCheckStartPeriod:          healthCheckStartPeriodVal,
 		HealthCheckTimeout:              healthCheckTimeoutVal,
+		HttpBasicAuthPassword:           httpBasicAuthPasswordVal,
+		HttpBasicAuthUsername:           httpBasicAuthUsernameVal,
 		Id:                              idVal,
 		InstallCommand:                  installCommandVal,
+		IsHttpBasicAuthEnabled:          isHttpBasicAuthEnabledVal,
 		LimitsCpuShares:                 limitsCpuSharesVal,
 		LimitsCpus:                      limitsCpusVal,
 		LimitsCpuset:                    limitsCpusetVal,
@@ -3532,6 +3704,7 @@ type ApplicationsValue struct {
 	CustomDockerRunOptions          basetypes.StringValue `tfsdk:"custom_docker_run_options"`
 	CustomHealthcheckFound          basetypes.BoolValue   `tfsdk:"custom_healthcheck_found"`
 	CustomLabels                    basetypes.StringValue `tfsdk:"custom_labels"`
+	CustomNetworkAliases            basetypes.StringValue `tfsdk:"custom_network_aliases"`
 	CustomNginxConfiguration        basetypes.StringValue `tfsdk:"custom_nginx_configuration"`
 	DeletedAt                       basetypes.StringValue `tfsdk:"deleted_at"`
 	Description                     basetypes.StringValue `tfsdk:"description"`
@@ -3566,8 +3739,11 @@ type ApplicationsValue struct {
 	HealthCheckScheme               basetypes.StringValue `tfsdk:"health_check_scheme"`
 	HealthCheckStartPeriod          basetypes.Int64Value  `tfsdk:"health_check_start_period"`
 	HealthCheckTimeout              basetypes.Int64Value  `tfsdk:"health_check_timeout"`
+	HttpBasicAuthPassword           basetypes.StringValue `tfsdk:"http_basic_auth_password"`
+	HttpBasicAuthUsername           basetypes.StringValue `tfsdk:"http_basic_auth_username"`
 	Id                              basetypes.Int64Value  `tfsdk:"id"`
 	InstallCommand                  basetypes.StringValue `tfsdk:"install_command"`
+	IsHttpBasicAuthEnabled          basetypes.BoolValue   `tfsdk:"is_http_basic_auth_enabled"`
 	LimitsCpuShares                 basetypes.Int64Value  `tfsdk:"limits_cpu_shares"`
 	LimitsCpus                      basetypes.StringValue `tfsdk:"limits_cpus"`
 	LimitsCpuset                    basetypes.StringValue `tfsdk:"limits_cpuset"`
@@ -3604,7 +3780,7 @@ type ApplicationsValue struct {
 }
 
 func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 77)
+	attrTypes := make(map[string]tftypes.Type, 81)
 
 	var val tftypes.Value
 	var err error
@@ -3618,6 +3794,7 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 	attrTypes["custom_docker_run_options"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["custom_healthcheck_found"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["custom_labels"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["custom_network_aliases"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["custom_nginx_configuration"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["deleted_at"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["description"] = basetypes.StringType{}.TerraformType(ctx)
@@ -3652,8 +3829,11 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 	attrTypes["health_check_scheme"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["health_check_start_period"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["health_check_timeout"] = basetypes.Int64Type{}.TerraformType(ctx)
+	attrTypes["http_basic_auth_password"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["http_basic_auth_username"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["id"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["install_command"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["is_http_basic_auth_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["limits_cpu_shares"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["limits_cpus"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["limits_cpuset"] = basetypes.StringType{}.TerraformType(ctx)
@@ -3691,7 +3871,7 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 77)
+		vals := make(map[string]tftypes.Value, 81)
 
 		val, err = v.BaseDirectory.ToTerraformValue(ctx)
 
@@ -3764,6 +3944,14 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 		}
 
 		vals["custom_labels"] = val
+
+		val, err = v.CustomNetworkAliases.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["custom_network_aliases"] = val
 
 		val, err = v.CustomNginxConfiguration.ToTerraformValue(ctx)
 
@@ -4037,6 +4225,22 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 
 		vals["health_check_timeout"] = val
 
+		val, err = v.HttpBasicAuthPassword.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["http_basic_auth_password"] = val
+
+		val, err = v.HttpBasicAuthUsername.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["http_basic_auth_username"] = val
+
 		val, err = v.Id.ToTerraformValue(ctx)
 
 		if err != nil {
@@ -4052,6 +4256,14 @@ func (v ApplicationsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 		}
 
 		vals["install_command"] = val
+
+		val, err = v.IsHttpBasicAuthEnabled.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["is_http_basic_auth_enabled"] = val
 
 		val, err = v.LimitsCpuShares.ToTerraformValue(ctx)
 
@@ -4348,6 +4560,7 @@ func (v ApplicationsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 		"custom_docker_run_options":           basetypes.StringType{},
 		"custom_healthcheck_found":            basetypes.BoolType{},
 		"custom_labels":                       basetypes.StringType{},
+		"custom_network_aliases":              basetypes.StringType{},
 		"custom_nginx_configuration":          basetypes.StringType{},
 		"deleted_at":                          basetypes.StringType{},
 		"description":                         basetypes.StringType{},
@@ -4382,8 +4595,11 @@ func (v ApplicationsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 		"health_check_scheme":                 basetypes.StringType{},
 		"health_check_start_period":           basetypes.Int64Type{},
 		"health_check_timeout":                basetypes.Int64Type{},
+		"http_basic_auth_password":            basetypes.StringType{},
+		"http_basic_auth_username":            basetypes.StringType{},
 		"id":                                  basetypes.Int64Type{},
 		"install_command":                     basetypes.StringType{},
+		"is_http_basic_auth_enabled":          basetypes.BoolType{},
 		"limits_cpu_shares":                   basetypes.Int64Type{},
 		"limits_cpus":                         basetypes.StringType{},
 		"limits_cpuset":                       basetypes.StringType{},
@@ -4438,6 +4654,7 @@ func (v ApplicationsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 			"custom_docker_run_options":           v.CustomDockerRunOptions,
 			"custom_healthcheck_found":            v.CustomHealthcheckFound,
 			"custom_labels":                       v.CustomLabels,
+			"custom_network_aliases":              v.CustomNetworkAliases,
 			"custom_nginx_configuration":          v.CustomNginxConfiguration,
 			"deleted_at":                          v.DeletedAt,
 			"description":                         v.Description,
@@ -4472,8 +4689,11 @@ func (v ApplicationsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 			"health_check_scheme":                 v.HealthCheckScheme,
 			"health_check_start_period":           v.HealthCheckStartPeriod,
 			"health_check_timeout":                v.HealthCheckTimeout,
+			"http_basic_auth_password":            v.HttpBasicAuthPassword,
+			"http_basic_auth_username":            v.HttpBasicAuthUsername,
 			"id":                                  v.Id,
 			"install_command":                     v.InstallCommand,
+			"is_http_basic_auth_enabled":          v.IsHttpBasicAuthEnabled,
 			"limits_cpu_shares":                   v.LimitsCpuShares,
 			"limits_cpus":                         v.LimitsCpus,
 			"limits_cpuset":                       v.LimitsCpuset,
@@ -4559,6 +4779,10 @@ func (v ApplicationsValue) Equal(o attr.Value) bool {
 	}
 
 	if !v.CustomLabels.Equal(other.CustomLabels) {
+		return false
+	}
+
+	if !v.CustomNetworkAliases.Equal(other.CustomNetworkAliases) {
 		return false
 	}
 
@@ -4698,11 +4922,23 @@ func (v ApplicationsValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.HttpBasicAuthPassword.Equal(other.HttpBasicAuthPassword) {
+		return false
+	}
+
+	if !v.HttpBasicAuthUsername.Equal(other.HttpBasicAuthUsername) {
+		return false
+	}
+
 	if !v.Id.Equal(other.Id) {
 		return false
 	}
 
 	if !v.InstallCommand.Equal(other.InstallCommand) {
+		return false
+	}
+
+	if !v.IsHttpBasicAuthEnabled.Equal(other.IsHttpBasicAuthEnabled) {
 		return false
 	}
 
@@ -4856,6 +5092,7 @@ func (v ApplicationsValue) AttributeTypes(ctx context.Context) map[string]attr.T
 		"custom_docker_run_options":           basetypes.StringType{},
 		"custom_healthcheck_found":            basetypes.BoolType{},
 		"custom_labels":                       basetypes.StringType{},
+		"custom_network_aliases":              basetypes.StringType{},
 		"custom_nginx_configuration":          basetypes.StringType{},
 		"deleted_at":                          basetypes.StringType{},
 		"description":                         basetypes.StringType{},
@@ -4890,8 +5127,11 @@ func (v ApplicationsValue) AttributeTypes(ctx context.Context) map[string]attr.T
 		"health_check_scheme":                 basetypes.StringType{},
 		"health_check_start_period":           basetypes.Int64Type{},
 		"health_check_timeout":                basetypes.Int64Type{},
+		"http_basic_auth_password":            basetypes.StringType{},
+		"http_basic_auth_username":            basetypes.StringType{},
 		"id":                                  basetypes.Int64Type{},
 		"install_command":                     basetypes.StringType{},
+		"is_http_basic_auth_enabled":          basetypes.BoolType{},
 		"limits_cpu_shares":                   basetypes.Int64Type{},
 		"limits_cpus":                         basetypes.StringType{},
 		"limits_cpuset":                       basetypes.StringType{},

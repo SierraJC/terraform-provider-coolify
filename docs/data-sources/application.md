@@ -37,6 +37,7 @@ data "coolify_application" "example" {
 - `custom_docker_run_options` (String) Custom docker run options.
 - `custom_healthcheck_found` (Boolean) Custom healthcheck found.
 - `custom_labels` (String) Custom labels.
+- `custom_network_aliases` (String) Network aliases for Docker container.
 - `custom_nginx_configuration` (String) Custom Nginx configuration base64 encoded.
 - `deleted_at` (String) The date and time when the application was deleted.
 - `description` (String) The application description.
@@ -71,8 +72,11 @@ data "coolify_application" "example" {
 - `health_check_scheme` (String) Health check scheme.
 - `health_check_start_period` (Number) Health check start period in seconds.
 - `health_check_timeout` (Number) Health check timeout in seconds.
+- `http_basic_auth_password` (String, Sensitive) Password for HTTP Basic Authentication
+- `http_basic_auth_username` (String) Username for HTTP Basic Authentication
 - `id` (Number) The application identifier in the database.
 - `install_command` (String) Install command.
+- `is_http_basic_auth_enabled` (Boolean) HTTP Basic Authentication enabled.
 - `limits_cpu_shares` (Number) CPU shares.
 - `limits_cpus` (String) CPU limit.
 - `limits_cpuset` (String) CPU set.

@@ -34,7 +34,7 @@ func (d *applicationDataSource) Schema(ctx context.Context, req datasource.Schem
 	resp.Schema.Description = "Get a Coolify application by `uuid`."
 
 	// Mark sensitive attributes
-	sensitiveAttrs := []string{"manual_webhook_secret_bitbucket", "manual_webhook_secret_gitea", "manual_webhook_secret_github", "manual_webhook_secret_gitlab"}
+	sensitiveAttrs := []string{"manual_webhook_secret_bitbucket", "manual_webhook_secret_gitea", "manual_webhook_secret_github", "manual_webhook_secret_gitlab", "http_basic_auth_password"}
 	for _, attr := range sensitiveAttrs {
 		makeDataSourceAttributeSensitive(resp.Schema.Attributes, attr)
 	}
@@ -90,6 +90,7 @@ func (d *applicationDataSource) ApiToModel(
 		CustomDockerRunOptions:          flatten.String(response.CustomDockerRunOptions),
 		CustomHealthcheckFound:          flatten.Bool(response.CustomHealthcheckFound),
 		CustomLabels:                    flatten.String(response.CustomLabels),
+		CustomNetworkAliases:            flatten.String(response.CustomNetworkAliases),
 		CustomNginxConfiguration:        flatten.String(response.CustomNginxConfiguration),
 		DeletedAt:                       flatten.Time(response.DeletedAt),
 		Description:                     flatten.String(response.Description),
@@ -124,8 +125,11 @@ func (d *applicationDataSource) ApiToModel(
 		HealthCheckScheme:               flatten.String(response.HealthCheckScheme),
 		HealthCheckStartPeriod:          flatten.Int64(response.HealthCheckStartPeriod),
 		HealthCheckTimeout:              flatten.Int64(response.HealthCheckTimeout),
+		HttpBasicAuthPassword:           flatten.String(response.HttpBasicAuthPassword),
+		HttpBasicAuthUsername:           flatten.String(response.HttpBasicAuthUsername),
 		Id:                              flatten.Int64(response.Id),
 		InstallCommand:                  flatten.String(response.InstallCommand),
+		IsHttpBasicAuthEnabled:          flatten.Bool(response.IsHttpBasicAuthEnabled),
 		LimitsCpuShares:                 flatten.Int64(response.LimitsCpuShares),
 		LimitsCpus:                      flatten.String(response.LimitsCpus),
 		LimitsCpuset:                    flatten.String(response.LimitsCpuset),

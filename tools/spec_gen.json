@@ -75,6 +75,13 @@
 						}
 					},
 					{
+						"name": "custom_network_aliases",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Network aliases for Docker container."
+						}
+					},
+					{
 						"name": "custom_nginx_configuration",
 						"string": {
 							"computed_optional_required": "computed",
@@ -313,6 +320,20 @@
 						}
 					},
 					{
+						"name": "http_basic_auth_password",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Password for HTTP Basic Authentication"
+						}
+					},
+					{
+						"name": "http_basic_auth_username",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "Username for HTTP Basic Authentication"
+						}
+					},
+					{
 						"name": "id",
 						"int64": {
 							"computed_optional_required": "computed",
@@ -324,6 +345,13 @@
 						"string": {
 							"computed_optional_required": "computed",
 							"description": "Install command."
+						}
+					},
+					{
+						"name": "is_http_basic_auth_enabled",
+						"bool": {
+							"computed_optional_required": "computed",
+							"description": "HTTP Basic Authentication enabled."
 						}
 					},
 					{
@@ -620,6 +648,13 @@
 										}
 									},
 									{
+										"name": "custom_network_aliases",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "Network aliases for Docker container."
+										}
+									},
+									{
 										"name": "custom_nginx_configuration",
 										"string": {
 											"computed_optional_required": "computed",
@@ -858,6 +893,20 @@
 										}
 									},
 									{
+										"name": "http_basic_auth_password",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "Password for HTTP Basic Authentication"
+										}
+									},
+									{
+										"name": "http_basic_auth_username",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "Username for HTTP Basic Authentication"
+										}
+									},
+									{
 										"name": "id",
 										"int64": {
 											"computed_optional_required": "computed",
@@ -869,6 +918,13 @@
 										"string": {
 											"computed_optional_required": "computed",
 											"description": "Install command."
+										}
+									},
+									{
+										"name": "is_http_basic_auth_enabled",
+										"bool": {
+											"computed_optional_required": "computed",
+											"description": "HTTP Basic Authentication enabled."
 										}
 									},
 									{

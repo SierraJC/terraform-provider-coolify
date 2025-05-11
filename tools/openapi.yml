@@ -248,6 +248,17 @@ paths:
                   type: boolean
                   nullable: true
                   description: 'Use build server.'
+                is_http_basic_auth_enabled:
+                  type: boolean
+                  description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                  type: string
+                  nullable: true
+                  description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                  type: string
+                  nullable: true
+                  description: 'Password for HTTP Basic Authentication'
               type: object
       responses:
         '201':
@@ -487,6 +498,17 @@ paths:
                   type: boolean
                   nullable: true
                   description: 'Use build server.'
+                is_http_basic_auth_enabled:
+                  type: boolean
+                  description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                  type: string
+                  nullable: true
+                  description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                  type: string
+                  nullable: true
+                  description: 'Password for HTTP Basic Authentication'
               type: object
       responses:
         '201':
@@ -726,6 +748,17 @@ paths:
                   type: boolean
                   nullable: true
                   description: 'Use build server.'
+                is_http_basic_auth_enabled:
+                  type: boolean
+                  description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                  type: string
+                  nullable: true
+                  description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                  type: string
+                  nullable: true
+                  description: 'Password for HTTP Basic Authentication'
               type: object
       responses:
         '201':
@@ -912,6 +945,17 @@ paths:
                   type: boolean
                   nullable: true
                   description: 'Use build server.'
+                is_http_basic_auth_enabled:
+                  type: boolean
+                  description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                  type: string
+                  nullable: true
+                  description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                  type: string
+                  nullable: true
+                  description: 'Password for HTTP Basic Authentication'
               type: object
       responses:
         '201':
@@ -1089,6 +1133,17 @@ paths:
                   type: boolean
                   nullable: true
                   description: 'Use build server.'
+                is_http_basic_auth_enabled:
+                  type: boolean
+                  description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                  type: string
+                  nullable: true
+                  description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                  type: string
+                  nullable: true
+                  description: 'Password for HTTP Basic Authentication'
               type: object
       responses:
         '201':
@@ -4777,6 +4832,10 @@ components:
           type: string
           nullable: true
           description: 'Ports mappings.'
+        custom_network_aliases:
+          type: string
+          nullable: true
+          description: 'Network aliases for Docker container.'
         base_directory:
           type: string
           description: 'Base directory for all commands.'
@@ -4984,6 +5043,17 @@ components:
           type: string
           nullable: true
           description: 'Custom Nginx configuration base64 encoded.'
+        is_http_basic_auth_enabled:
+          type: boolean
+          description: 'HTTP Basic Authentication enabled.'
+        http_basic_auth_username:
+          type: string
+          nullable: true
+          description: 'Username for HTTP Basic Authentication'
+        http_basic_auth_password:
+          type: string
+          nullable: true
+          description: 'Password for HTTP Basic Authentication'
       type: object
     ApplicationDeploymentQueue:
       description: 'Project model'

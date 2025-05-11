@@ -48,7 +48,7 @@ func (d *applicationsDataSource) Schema(ctx context.Context, req datasource.Sche
 	}
 
 	// Mark sensitive attributes
-	sensitiveAttrs := []string{"manual_webhook_secret_bitbucket", "manual_webhook_secret_gitea", "manual_webhook_secret_github", "manual_webhook_secret_gitlab"}
+	sensitiveAttrs := []string{"manual_webhook_secret_bitbucket", "manual_webhook_secret_gitea", "manual_webhook_secret_github", "manual_webhook_secret_gitlab", "http_basic_auth_password"}
 	for _, attr := range sensitiveAttrs {
 		makeDataSourceAttributeSensitive(
 			resp.Schema.Attributes["applications"].(schema.SetNestedAttribute).NestedObject.Attributes,
@@ -116,6 +116,7 @@ func (d *applicationsDataSource) ApiToModel(
 			"custom_docker_run_options":           flatten.String(application.CustomDockerRunOptions),
 			"custom_healthcheck_found":            flatten.Bool(application.CustomHealthcheckFound),
 			"custom_labels":                       flatten.String(application.CustomLabels),
+			"custom_network_aliases":              flatten.String(application.CustomNetworkAliases),
 			"custom_nginx_configuration":          flatten.String(application.CustomNginxConfiguration),
 			"deleted_at":                          flatten.Time(application.DeletedAt),
 			"description":                         flatten.String(application.Description),
@@ -150,8 +151,11 @@ func (d *applicationsDataSource) ApiToModel(
 			"health_check_scheme":                 flatten.String(application.HealthCheckScheme),
 			"health_check_start_period":           flatten.Int64(application.HealthCheckStartPeriod),
 			"health_check_timeout":                flatten.Int64(application.HealthCheckTimeout),
+			"http_basic_auth_password":            flatten.String(application.HttpBasicAuthPassword),
+			"http_basic_auth_username":            flatten.String(application.HttpBasicAuthUsername),
 			"id":                                  flatten.Int64(application.Id),
 			"install_command":                     flatten.String(application.InstallCommand),
+			"is_http_basic_auth_enabled":          flatten.Bool(application.IsHttpBasicAuthEnabled),
 			"limits_cpu_shares":                   flatten.Int64(application.LimitsCpuShares),
 			"limits_cpus":                         flatten.String(application.LimitsCpus),
 			"limits_cpuset":                       flatten.String(application.LimitsCpuset),

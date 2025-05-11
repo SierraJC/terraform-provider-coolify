@@ -274,6 +274,9 @@ type Application struct {
 	// CustomLabels Custom labels.
 	CustomLabels *string `json:"custom_labels"`
 
+	// CustomNetworkAliases Network aliases for Docker container.
+	CustomNetworkAliases *string `json:"custom_network_aliases"`
+
 	// CustomNginxConfiguration Custom Nginx configuration base64 encoded.
 	CustomNginxConfiguration *string `json:"custom_nginx_configuration"`
 
@@ -376,11 +379,20 @@ type Application struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// Id The application identifier in the database.
 	Id *int `json:"id,omitempty"`
 
 	// InstallCommand Install command.
 	InstallCommand *string `json:"install_command,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// LimitsCpuShares CPU shares.
 	LimitsCpuShares *int `json:"limits_cpu_shares,omitempty"`
@@ -988,8 +1000,17 @@ type CreateDockerfileApplicationJSONBody struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// LimitsCpuShares CPU shares.
 	LimitsCpuShares *int `json:"limits_cpu_shares,omitempty"`
@@ -1129,8 +1150,17 @@ type CreateDockerimageApplicationJSONBody struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// LimitsCpuShares CPU shares.
 	LimitsCpuShares *int `json:"limits_cpu_shares,omitempty"`
@@ -1303,11 +1333,20 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// InstallCommand The install command.
 	InstallCommand *string `json:"install_command,omitempty"`
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -1507,11 +1546,20 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// InstallCommand The install command.
 	InstallCommand *string `json:"install_command,omitempty"`
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -1705,11 +1753,20 @@ type CreatePublicApplicationJSONBody struct {
 	// HealthCheckTimeout Health check timeout in seconds.
 	HealthCheckTimeout *int `json:"health_check_timeout,omitempty"`
 
+	// HttpBasicAuthPassword Password for HTTP Basic Authentication
+	HttpBasicAuthPassword *string `json:"http_basic_auth_password"`
+
+	// HttpBasicAuthUsername Username for HTTP Basic Authentication
+	HttpBasicAuthUsername *string `json:"http_basic_auth_username"`
+
 	// InstallCommand The install command.
 	InstallCommand *string `json:"install_command,omitempty"`
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
+	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -2779,6 +2836,15 @@ type DeployByTagOrUuidParams struct {
 	Pr *int `form:"pr,omitempty" json:"pr,omitempty"`
 }
 
+// ListDeploymentsByAppUuidParams defines parameters for ListDeploymentsByAppUuid.
+type ListDeploymentsByAppUuidParams struct {
+	// Skip Number of records to skip.
+	Skip *int `form:"skip,omitempty" json:"skip,omitempty"`
+
+	// Take Number of records to take.
+	Take *int `form:"take,omitempty" json:"take,omitempty"`
+}
+
 // CreateProjectJSONBody defines parameters for CreateProject.
 type CreateProjectJSONBody struct {
 	// Description The description of the project.
@@ -3464,7 +3530,7 @@ type ClientInterface interface {
 	ListDeployments(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListDeploymentsByAppUuid request
-	ListDeploymentsByAppUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListDeploymentsByAppUuid(ctx context.Context, uuid string, params *ListDeploymentsByAppUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetDeploymentByUuid request
 	GetDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4278,8 +4344,8 @@ func (c *Client) ListDeployments(ctx context.Context, reqEditors ...RequestEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListDeploymentsByAppUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListDeploymentsByAppUuidRequest(c.Server, uuid)
+func (c *Client) ListDeploymentsByAppUuid(ctx context.Context, uuid string, params *ListDeploymentsByAppUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListDeploymentsByAppUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6561,7 +6627,7 @@ func NewListDeploymentsRequest(server string) (*http.Request, error) {
 }
 
 // NewListDeploymentsByAppUuidRequest generates requests for ListDeploymentsByAppUuid
-func NewListDeploymentsByAppUuidRequest(server string, uuid string) (*http.Request, error) {
+func NewListDeploymentsByAppUuidRequest(server string, uuid string, params *ListDeploymentsByAppUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6584,6 +6650,44 @@ func NewListDeploymentsByAppUuidRequest(server string, uuid string) (*http.Reque
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Skip != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "skip", runtime.ParamLocationQuery, *params.Skip); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Take != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "take", runtime.ParamLocationQuery, *params.Take); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -8361,7 +8465,7 @@ type ClientWithResponsesInterface interface {
 	ListDeploymentsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDeploymentsResponse, error)
 
 	// ListDeploymentsByAppUuidWithResponse request
-	ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error)
+	ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, params *ListDeploymentsByAppUuidParams, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error)
 
 	// GetDeploymentByUuidWithResponse request
 	GetDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDeploymentByUuidResponse, error)
@@ -9816,6 +9920,9 @@ type DeletePrivateKeyByUuidResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON422 *struct {
+		Message *string `json:"message,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -11071,8 +11178,8 @@ func (c *ClientWithResponses) ListDeploymentsWithResponse(ctx context.Context, r
 }
 
 // ListDeploymentsByAppUuidWithResponse request returning *ListDeploymentsByAppUuidResponse
-func (c *ClientWithResponses) ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error) {
-	rsp, err := c.ListDeploymentsByAppUuid(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) ListDeploymentsByAppUuidWithResponse(ctx context.Context, uuid string, params *ListDeploymentsByAppUuidParams, reqEditors ...RequestEditorFn) (*ListDeploymentsByAppUuidResponse, error) {
+	rsp, err := c.ListDeploymentsByAppUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -13791,6 +13898,15 @@ func ParseDeletePrivateKeyByUuidResponse(rsp *http.Response) (*DeletePrivateKeyB
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 

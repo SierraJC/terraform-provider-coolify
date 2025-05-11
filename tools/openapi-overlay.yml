@@ -246,6 +246,17 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                is_http_basic_auth_enabled:
+                                    type: boolean
+                                    description: 'HTTP Basic Authentication enabled.'
+                                http_basic_auth_username:
+                                    type: string
+                                    nullable: true
+                                    description: 'Username for HTTP Basic Authentication'
+                                http_basic_auth_password:
+                                    type: string
+                                    nullable: true
+                                    description: 'Password for HTTP Basic Authentication'
                             type: object
             responses:
                 '201':
@@ -484,6 +495,17 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                is_http_basic_auth_enabled:
+                                    type: boolean
+                                    description: 'HTTP Basic Authentication enabled.'
+                                http_basic_auth_username:
+                                    type: string
+                                    nullable: true
+                                    description: 'Username for HTTP Basic Authentication'
+                                http_basic_auth_password:
+                                    type: string
+                                    nullable: true
+                                    description: 'Password for HTTP Basic Authentication'
                             type: object
             responses:
                 '201':
@@ -722,6 +744,17 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                is_http_basic_auth_enabled:
+                                    type: boolean
+                                    description: 'HTTP Basic Authentication enabled.'
+                                http_basic_auth_username:
+                                    type: string
+                                    nullable: true
+                                    description: 'Username for HTTP Basic Authentication'
+                                http_basic_auth_password:
+                                    type: string
+                                    nullable: true
+                                    description: 'Password for HTTP Basic Authentication'
                             type: object
             responses:
                 '201':
@@ -907,6 +940,17 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                is_http_basic_auth_enabled:
+                                    type: boolean
+                                    description: 'HTTP Basic Authentication enabled.'
+                                http_basic_auth_username:
+                                    type: string
+                                    nullable: true
+                                    description: 'Username for HTTP Basic Authentication'
+                                http_basic_auth_password:
+                                    type: string
+                                    nullable: true
+                                    description: 'Password for HTTP Basic Authentication'
                             type: object
             responses:
                 '201':
@@ -1083,6 +1127,17 @@ paths:
                                     type: boolean
                                     nullable: true
                                     description: 'Use build server.'
+                                is_http_basic_auth_enabled:
+                                    type: boolean
+                                    description: 'HTTP Basic Authentication enabled.'
+                                http_basic_auth_username:
+                                    type: string
+                                    nullable: true
+                                    description: 'Username for HTTP Basic Authentication'
+                                http_basic_auth_password:
+                                    type: string
+                                    nullable: true
+                                    description: 'Password for HTTP Basic Authentication'
                             type: object
             responses:
                 '201':
@@ -4709,6 +4764,10 @@ components:
                     type: string
                     nullable: true
                     description: 'Ports mappings.'
+                custom_network_aliases:
+                    type: string
+                    nullable: true
+                    description: 'Network aliases for Docker container.'
                 base_directory:
                     type: string
                     description: 'Base directory for all commands.'
@@ -4912,6 +4971,17 @@ components:
                 compose_parsing_version:
                     type: string
                     description: 'How Coolify parse the compose file.'
+                is_http_basic_auth_enabled:
+                    type: boolean
+                    description: 'HTTP Basic Authentication enabled.'
+                http_basic_auth_username:
+                    type: string
+                    nullable: true
+                    description: 'Username for HTTP Basic Authentication'
+                http_basic_auth_password:
+                    type: string
+                    nullable: true
+                    description: 'Password for HTTP Basic Authentication'
                 custom_nginx_configuration:
                     type: string
                     nullable: true

@@ -57,6 +57,11 @@ func ApplicationDataSourceSchema(ctx context.Context) schema.Schema {
 				Description:         "Custom labels.",
 				MarkdownDescription: "Custom labels.",
 			},
+			"custom_network_aliases": schema.StringAttribute{
+				Computed:            true,
+				Description:         "Network aliases for Docker container.",
+				MarkdownDescription: "Network aliases for Docker container.",
+			},
 			"custom_nginx_configuration": schema.StringAttribute{
 				Computed:            true,
 				Description:         "Custom Nginx configuration base64 encoded.",
@@ -227,6 +232,16 @@ func ApplicationDataSourceSchema(ctx context.Context) schema.Schema {
 				Description:         "Health check timeout in seconds.",
 				MarkdownDescription: "Health check timeout in seconds.",
 			},
+			"http_basic_auth_password": schema.StringAttribute{
+				Computed:            true,
+				Description:         "Password for HTTP Basic Authentication",
+				MarkdownDescription: "Password for HTTP Basic Authentication",
+			},
+			"http_basic_auth_username": schema.StringAttribute{
+				Computed:            true,
+				Description:         "Username for HTTP Basic Authentication",
+				MarkdownDescription: "Username for HTTP Basic Authentication",
+			},
 			"id": schema.Int64Attribute{
 				Computed:            true,
 				Description:         "The application identifier in the database.",
@@ -236,6 +251,11 @@ func ApplicationDataSourceSchema(ctx context.Context) schema.Schema {
 				Computed:            true,
 				Description:         "Install command.",
 				MarkdownDescription: "Install command.",
+			},
+			"is_http_basic_auth_enabled": schema.BoolAttribute{
+				Computed:            true,
+				Description:         "HTTP Basic Authentication enabled.",
+				MarkdownDescription: "HTTP Basic Authentication enabled.",
 			},
 			"limits_cpu_shares": schema.Int64Attribute{
 				Computed:            true,
@@ -411,6 +431,7 @@ type ApplicationModel struct {
 	CustomDockerRunOptions          types.String `tfsdk:"custom_docker_run_options"`
 	CustomHealthcheckFound          types.Bool   `tfsdk:"custom_healthcheck_found"`
 	CustomLabels                    types.String `tfsdk:"custom_labels"`
+	CustomNetworkAliases            types.String `tfsdk:"custom_network_aliases"`
 	CustomNginxConfiguration        types.String `tfsdk:"custom_nginx_configuration"`
 	DeletedAt                       types.String `tfsdk:"deleted_at"`
 	Description                     types.String `tfsdk:"description"`
@@ -445,8 +466,11 @@ type ApplicationModel struct {
 	HealthCheckScheme               types.String `tfsdk:"health_check_scheme"`
 	HealthCheckStartPeriod          types.Int64  `tfsdk:"health_check_start_period"`
 	HealthCheckTimeout              types.Int64  `tfsdk:"health_check_timeout"`
+	HttpBasicAuthPassword           types.String `tfsdk:"http_basic_auth_password"`
+	HttpBasicAuthUsername           types.String `tfsdk:"http_basic_auth_username"`
 	Id                              types.Int64  `tfsdk:"id"`
 	InstallCommand                  types.String `tfsdk:"install_command"`
+	IsHttpBasicAuthEnabled          types.Bool   `tfsdk:"is_http_basic_auth_enabled"`
 	LimitsCpuShares                 types.Int64  `tfsdk:"limits_cpu_shares"`
 	LimitsCpus                      types.String `tfsdk:"limits_cpus"`
 	LimitsCpuset                    types.String `tfsdk:"limits_cpuset"`
