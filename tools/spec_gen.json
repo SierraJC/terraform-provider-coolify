@@ -1128,7 +1128,8 @@
 					{
 						"name": "fingerprint",
 						"string": {
-							"computed_optional_required": "computed"
+							"computed_optional_required": "computed",
+							"description": "The fingerprint of the private key."
 						}
 					},
 					{
@@ -1153,6 +1154,13 @@
 						"name": "private_key",
 						"string": {
 							"computed_optional_required": "computed"
+						}
+					},
+					{
+						"name": "public_key",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The public key of the private key."
 						}
 					},
 					{
@@ -1195,7 +1203,8 @@
 									{
 										"name": "fingerprint",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The fingerprint of the private key."
 										}
 									},
 									{
@@ -1220,6 +1229,13 @@
 										"name": "private_key",
 										"string": {
 											"computed_optional_required": "computed"
+										}
+									},
+									{
+										"name": "public_key",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "The public key of the private key."
 										}
 									},
 									{
@@ -3073,7 +3089,8 @@
 					{
 						"name": "fingerprint",
 						"string": {
-							"computed_optional_required": "computed"
+							"computed_optional_required": "computed",
+							"description": "The fingerprint of the private key."
 						}
 					},
 					{
@@ -3086,6 +3103,13 @@
 						"name": "is_git_related",
 						"bool": {
 							"computed_optional_required": "computed"
+						}
+					},
+					{
+						"name": "public_key",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The public key of the private key."
 						}
 					},
 					{

@@ -16,6 +16,7 @@ type privateKeyModel struct {
 	IsGitRelated types.Bool   `tfsdk:"is_git_related"`
 	Name         types.String `tfsdk:"name"`
 	PrivateKey   types.String `tfsdk:"private_key"`
+	PublicKey    types.String `tfsdk:"public_key"`
 	TeamId       types.Int64  `tfsdk:"team_id"`
 	Uuid         types.String `tfsdk:"uuid"`
 	CreatedAt    types.String `tfsdk:"created_at"`
@@ -37,6 +38,7 @@ func (m privateKeyModel) FromAPI(apiModel *api.PrivateKey) privateKeyModel {
 		IsGitRelated: flatten.Bool(apiModel.IsGitRelated),
 		Name:         flatten.String(apiModel.Name),
 		PrivateKey:   flatten.String(apiModel.PrivateKey),
+		PublicKey:    flatten.String(apiModel.PublicKey),
 		TeamId:       flatten.Int64(apiModel.TeamId),
 		Uuid:         flatten.String(apiModel.Uuid),
 		CreatedAt:    flatten.String(apiModel.CreatedAt),

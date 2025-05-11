@@ -626,16 +626,21 @@ type PostgresqlDatabase struct {
 
 // PrivateKey Private Key model
 type PrivateKey struct {
-	CreatedAt    *string `json:"created_at,omitempty"`
-	Description  *string `json:"description,omitempty"`
+	CreatedAt   *string `json:"created_at,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// Fingerprint The fingerprint of the private key.
 	Fingerprint  *string `json:"fingerprint,omitempty"`
 	Id           *int    `json:"id,omitempty"`
 	IsGitRelated *bool   `json:"is_git_related,omitempty"`
 	Name         *string `json:"name,omitempty"`
 	PrivateKey   *string `json:"private_key,omitempty"`
-	TeamId       *int    `json:"team_id,omitempty"`
-	UpdatedAt    *string `json:"updated_at,omitempty"`
-	Uuid         *string `json:"uuid,omitempty"`
+
+	// PublicKey The public key of the private key.
+	PublicKey *string `json:"public_key,omitempty"`
+	TeamId    *int    `json:"team_id,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	Uuid      *string `json:"uuid,omitempty"`
 }
 
 // Project Project model

@@ -69,11 +69,12 @@ Read-Only:
 
 - `created_at` (String)
 - `description` (String)
-- `fingerprint` (String)
+- `fingerprint` (String) The fingerprint of the private key.
 - `id` (Number)
 - `is_git_related` (Boolean)
 - `name` (String)
 - `private_key` (String, Sensitive)
+- `public_key` (String) The public key of the private key.
 - `team_id` (Number)
 - `updated_at` (String)
 - `uuid` (String) Private Key UUID

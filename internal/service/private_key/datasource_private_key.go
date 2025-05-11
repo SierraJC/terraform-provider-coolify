@@ -35,7 +35,9 @@ func (d *privateKeyDataSource) Schema(ctx context.Context, req datasource.Schema
 				Computed: true,
 			},
 			"fingerprint": schema.StringAttribute{
-				Computed: true,
+				Computed:            true,
+				Description:         "The fingerprint of the private key.",
+				MarkdownDescription: "The fingerprint of the private key.",
 			},
 			"id": schema.Int64Attribute{
 				Computed: true,
@@ -49,6 +51,11 @@ func (d *privateKeyDataSource) Schema(ctx context.Context, req datasource.Schema
 			"private_key": schema.StringAttribute{
 				Computed:  true,
 				Sensitive: true,
+			},
+			"public_key": schema.StringAttribute{
+				Computed:            true,
+				Description:         "The public key of the private key.",
+				MarkdownDescription: "The public key of the private key.",
 			},
 			"team_id": schema.Int64Attribute{
 				Computed: true,

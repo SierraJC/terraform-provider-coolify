@@ -66,6 +66,11 @@ func (r *privateKeyResource) Schema(ctx context.Context, req resource.SchemaRequ
 				Required:  true,
 				Sensitive: true,
 			},
+			"public_key": schema.StringAttribute{
+				Computed:            true,
+				Description:         "The public key of the private key.",
+				MarkdownDescription: "The public key of the private key.",
+			},
 			"team_id": schema.Int64Attribute{
 				Computed:      true,
 				PlanModifiers: []planmodifier.Int64{int64planmodifier.UseStateForUnknown()},
@@ -75,8 +80,10 @@ func (r *privateKeyResource) Schema(ctx context.Context, req resource.SchemaRequ
 				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
 			},
 			"fingerprint": schema.StringAttribute{
-				Computed:      true,
-				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
+				Computed:            true,
+				PlanModifiers:       []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
+				Description:         "The fingerprint of the private key.",
+				MarkdownDescription: "The fingerprint of the private key.",
 			},
 			"created_at": schema.StringAttribute{
 				Computed:      true,

@@ -28,7 +28,9 @@ func PrivateKeysDataSourceSchema(ctx context.Context) schema.Schema {
 							Computed: true,
 						},
 						"fingerprint": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The fingerprint of the private key.",
+							MarkdownDescription: "The fingerprint of the private key.",
 						},
 						"id": schema.Int64Attribute{
 							Computed: true,
@@ -41,6 +43,11 @@ func PrivateKeysDataSourceSchema(ctx context.Context) schema.Schema {
 						},
 						"private_key": schema.StringAttribute{
 							Computed: true,
+						},
+						"public_key": schema.StringAttribute{
+							Computed:            true,
+							Description:         "The public key of the private key.",
+							MarkdownDescription: "The public key of the private key.",
 						},
 						"team_id": schema.Int64Attribute{
 							Computed: true,
@@ -219,6 +226,24 @@ func (t PrivateKeysType) ValueFromObject(ctx context.Context, in basetypes.Objec
 			fmt.Sprintf(`private_key expected to be basetypes.StringValue, was: %T`, privateKeyAttribute))
 	}
 
+	publicKeyAttribute, ok := attributes["public_key"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`public_key is missing from object`)
+
+		return nil, diags
+	}
+
+	publicKeyVal, ok := publicKeyAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`public_key expected to be basetypes.StringValue, was: %T`, publicKeyAttribute))
+	}
+
 	teamIdAttribute, ok := attributes["team_id"]
 
 	if !ok {
@@ -285,6 +310,7 @@ func (t PrivateKeysType) ValueFromObject(ctx context.Context, in basetypes.Objec
 		IsGitRelated: isGitRelatedVal,
 		Name:         nameVal,
 		PrivateKey:   privateKeyVal,
+		PublicKey:    publicKeyVal,
 		TeamId:       teamIdVal,
 		UpdatedAt:    updatedAtVal,
 		Uuid:         uuidVal,
@@ -481,6 +507,24 @@ func NewPrivateKeysValue(attributeTypes map[string]attr.Type, attributes map[str
 			fmt.Sprintf(`private_key expected to be basetypes.StringValue, was: %T`, privateKeyAttribute))
 	}
 
+	publicKeyAttribute, ok := attributes["public_key"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`public_key is missing from object`)
+
+		return NewPrivateKeysValueUnknown(), diags
+	}
+
+	publicKeyVal, ok := publicKeyAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`public_key expected to be basetypes.StringValue, was: %T`, publicKeyAttribute))
+	}
+
 	teamIdAttribute, ok := attributes["team_id"]
 
 	if !ok {
@@ -547,6 +591,7 @@ func NewPrivateKeysValue(attributeTypes map[string]attr.Type, attributes map[str
 		IsGitRelated: isGitRelatedVal,
 		Name:         nameVal,
 		PrivateKey:   privateKeyVal,
+		PublicKey:    publicKeyVal,
 		TeamId:       teamIdVal,
 		UpdatedAt:    updatedAtVal,
 		Uuid:         uuidVal,
@@ -629,6 +674,7 @@ type PrivateKeysValue struct {
 	IsGitRelated basetypes.BoolValue   `tfsdk:"is_git_related"`
 	Name         basetypes.StringValue `tfsdk:"name"`
 	PrivateKey   basetypes.StringValue `tfsdk:"private_key"`
+	PublicKey    basetypes.StringValue `tfsdk:"public_key"`
 	TeamId       basetypes.Int64Value  `tfsdk:"team_id"`
 	UpdatedAt    basetypes.StringValue `tfsdk:"updated_at"`
 	Uuid         basetypes.StringValue `tfsdk:"uuid"`
@@ -636,7 +682,7 @@ type PrivateKeysValue struct {
 }
 
 func (v PrivateKeysValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 10)
+	attrTypes := make(map[string]tftypes.Type, 11)
 
 	var val tftypes.Value
 	var err error
@@ -648,6 +694,7 @@ func (v PrivateKeysValue) ToTerraformValue(ctx context.Context) (tftypes.Value, 
 	attrTypes["is_git_related"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["name"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["private_key"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["public_key"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["team_id"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["updated_at"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["uuid"] = basetypes.StringType{}.TerraformType(ctx)
@@ -656,7 +703,7 @@ func (v PrivateKeysValue) ToTerraformValue(ctx context.Context) (tftypes.Value, 
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 10)
+		vals := make(map[string]tftypes.Value, 11)
 
 		val, err = v.CreatedAt.ToTerraformValue(ctx)
 
@@ -713,6 +760,14 @@ func (v PrivateKeysValue) ToTerraformValue(ctx context.Context) (tftypes.Value, 
 		}
 
 		vals["private_key"] = val
+
+		val, err = v.PublicKey.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["public_key"] = val
 
 		val, err = v.TeamId.ToTerraformValue(ctx)
 
@@ -775,6 +830,7 @@ func (v PrivateKeysValue) ToObjectValue(ctx context.Context) (basetypes.ObjectVa
 		"is_git_related": basetypes.BoolType{},
 		"name":           basetypes.StringType{},
 		"private_key":    basetypes.StringType{},
+		"public_key":     basetypes.StringType{},
 		"team_id":        basetypes.Int64Type{},
 		"updated_at":     basetypes.StringType{},
 		"uuid":           basetypes.StringType{},
@@ -798,6 +854,7 @@ func (v PrivateKeysValue) ToObjectValue(ctx context.Context) (basetypes.ObjectVa
 			"is_git_related": v.IsGitRelated,
 			"name":           v.Name,
 			"private_key":    v.PrivateKey,
+			"public_key":     v.PublicKey,
 			"team_id":        v.TeamId,
 			"updated_at":     v.UpdatedAt,
 			"uuid":           v.Uuid,
@@ -849,6 +906,10 @@ func (v PrivateKeysValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.PublicKey.Equal(other.PublicKey) {
+		return false
+	}
+
 	if !v.TeamId.Equal(other.TeamId) {
 		return false
 	}
@@ -881,6 +942,7 @@ func (v PrivateKeysValue) AttributeTypes(ctx context.Context) map[string]attr.Ty
 		"is_git_related": basetypes.BoolType{},
 		"name":           basetypes.StringType{},
 		"private_key":    basetypes.StringType{},
+		"public_key":     basetypes.StringType{},
 		"team_id":        basetypes.Int64Type{},
 		"updated_at":     basetypes.StringType{},
 		"uuid":           basetypes.StringType{},

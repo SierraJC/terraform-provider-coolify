@@ -20,7 +20,9 @@ func PrivateKeyResourceSchema(ctx context.Context) schema.Schema {
 				Computed: true,
 			},
 			"fingerprint": schema.StringAttribute{
-				Computed: true,
+				Computed:            true,
+				Description:         "The fingerprint of the private key.",
+				MarkdownDescription: "The fingerprint of the private key.",
 			},
 			"id": schema.Int64Attribute{
 				Computed: true,
@@ -34,6 +36,11 @@ func PrivateKeyResourceSchema(ctx context.Context) schema.Schema {
 			},
 			"private_key": schema.StringAttribute{
 				Required: true,
+			},
+			"public_key": schema.StringAttribute{
+				Computed:            true,
+				Description:         "The public key of the private key.",
+				MarkdownDescription: "The public key of the private key.",
 			},
 			"team_id": schema.Int64Attribute{
 				Computed: true,
@@ -58,6 +65,7 @@ type PrivateKeyModel struct {
 	IsGitRelated types.Bool   `tfsdk:"is_git_related"`
 	Name         types.String `tfsdk:"name"`
 	PrivateKey   types.String `tfsdk:"private_key"`
+	PublicKey    types.String `tfsdk:"public_key"`
 	TeamId       types.Int64  `tfsdk:"team_id"`
 	UpdatedAt    types.String `tfsdk:"updated_at"`
 	Uuid         types.String `tfsdk:"uuid"`

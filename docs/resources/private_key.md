@@ -44,9 +44,10 @@ output "public_key" {
 ### Read-Only
 
 - `created_at` (String)
-- `fingerprint` (String)
+- `fingerprint` (String) The fingerprint of the private key.
 - `id` (Number) The ID of this resource.
 - `is_git_related` (Boolean)
+- `public_key` (String) The public key of the private key.
 - `team_id` (Number)
 - `updated_at` (String)
 - `uuid` (String)
