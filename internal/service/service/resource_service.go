@@ -74,7 +74,7 @@ func (r *ServiceResource) Create(ctx context.Context, req resource.CreateRequest
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, *res.JSON201.Uuid, plan)
+	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, *res.JSON201.Uuid, plan)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -94,7 +94,11 @@ func (r *ServiceResource) Read(ctx context.Context, req resource.ReadRequest, re
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -139,7 +143,11 @@ func (r *ServiceResource) Update(ctx context.Context, req resource.UpdateRequest
 		r.client.RestartServiceByUuid(ctx, uuid)
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -201,24 +209,28 @@ func (r *ServiceResource) ReadFromAPI(
 	diags *diag.Diagnostics,
 	uuid string,
 	state ServiceResourceModel,
-) ServiceResourceModel {
+) (ServiceResourceModel, bool) {
 	res, err := r.client.GetServiceByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading service: uuid=%s", uuid),
 			err.Error(),
 		)
-		return ServiceResourceModel{}
+		return ServiceResourceModel{}, false
+	}
+
+	if res.StatusCode() == http.StatusNotFound {
+		return ServiceResourceModel{}, false
 	}
 
 	if res.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading service",
 			fmt.Sprintf("Received %s for service: uuid=%s. Details: %s", res.Status(), uuid, res.Body))
-		return ServiceResourceModel{}
+		return ServiceResourceModel{}, false
 	}
 
 	result := ServiceResourceModel{}.FromAPI(res.JSON200, state)
 
-	return result
+	return result, true
 }

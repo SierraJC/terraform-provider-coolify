@@ -152,7 +152,7 @@ func (r *postgresqlDatabaseResource) Create(ctx context.Context, req resource.Cr
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, createResp.JSON201.Uuid, plan)
+	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, createResp.JSON201.Uuid, plan)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 func (r *postgresqlDatabaseResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -171,7 +171,11 @@ func (r *postgresqlDatabaseResource) Read(ctx context.Context, req resource.Read
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -259,7 +263,11 @@ func (r *postgresqlDatabaseResource) Update(ctx context.Context, req resource.Up
 		r.client.RestartDatabaseByUuid(ctx, uuid)
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -340,28 +348,32 @@ func (r *postgresqlDatabaseResource) ReadFromAPI(
 	diags *diag.Diagnostics,
 	uuid string,
 	state postgresqlDatabaseResourceModel,
-) postgresqlDatabaseResourceModel {
+) (postgresqlDatabaseResourceModel, bool) {
 	readResp, err := r.client.GetDatabaseByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading postgresql database: uuid=%s", uuid),
 			err.Error(),
 		)
-		return postgresqlDatabaseResourceModel{}
+		return postgresqlDatabaseResourceModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return postgresqlDatabaseResourceModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading postgresql database",
 			fmt.Sprintf("Received %s for postgresql database: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return postgresqlDatabaseResourceModel{}
+		return postgresqlDatabaseResourceModel{}, false
 	}
 
 	result, err := postgresqlDatabaseResourceModel{}.FromAPI(readResp.JSON200, state)
 	if err != nil {
 		diags.AddError("Error converting API response to model", err.Error())
-		return postgresqlDatabaseResourceModel{}
+		return postgresqlDatabaseResourceModel{}, false
 	}
 
-	return result
+	return result, true
 }

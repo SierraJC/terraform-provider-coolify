@@ -100,7 +100,7 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
+	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
 	r.copyMissingAttributes(&plan, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -120,7 +120,11 @@ func (r *serverResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	r.copyMissingAttributes(&state, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -187,7 +191,11 @@ func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	r.copyMissingAttributes(&plan, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -243,24 +251,28 @@ func (r *serverResource) ReadFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) resource_server.ServerModel {
+) (resource_server.ServerModel, bool) {
 	readResp, err := r.client.GetServerByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading server: uuid=%s", uuid),
 			err.Error(),
 		)
-		return resource_server.ServerModel{}
+		return resource_server.ServerModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return resource_server.ServerModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading server",
 			fmt.Sprintf("Received %s for server: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return resource_server.ServerModel{}
+		return resource_server.ServerModel{}, false
 	}
 
-	return r.ApiToModel(ctx, diags, readResp.JSON200)
+	return r.ApiToModel(ctx, diags, readResp.JSON200), true
 }
 
 func (r *serverResource) ApiToModel(

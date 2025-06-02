@@ -131,7 +131,7 @@ func (r *mysqlDatabaseResource) Create(ctx context.Context, req resource.CreateR
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, createResp.JSON201.Uuid, plan)
+	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, createResp.JSON201.Uuid, plan)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -151,7 +151,11 @@ func (r *mysqlDatabaseResource) Read(ctx context.Context, req resource.ReadReque
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString(), state)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -214,7 +218,11 @@ func (r *mysqlDatabaseResource) Update(ctx context.Context, req resource.UpdateR
 		r.client.RestartDatabaseByUuid(ctx, uuid)
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -294,28 +302,32 @@ func (r *mysqlDatabaseResource) ReadFromAPI(
 	diags *diag.Diagnostics,
 	uuid string,
 	state mysqlDatabaseResourceModel,
-) mysqlDatabaseResourceModel {
+) (mysqlDatabaseResourceModel, bool) {
 	readResp, err := r.client.GetDatabaseByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading MySQL database: uuid=%s", uuid),
 			err.Error(),
 		)
-		return mysqlDatabaseResourceModel{}
+		return mysqlDatabaseResourceModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return mysqlDatabaseResourceModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading MySQL database",
 			fmt.Sprintf("Received %s for MySQL database: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return mysqlDatabaseResourceModel{}
+		return mysqlDatabaseResourceModel{}, false
 	}
 
 	result, err := mysqlDatabaseResourceModel{}.FromAPI(readResp.JSON200, state)
 	if err != nil {
 		diags.AddError("Error converting API response to model", err.Error())
-		return mysqlDatabaseResourceModel{}
+		return mysqlDatabaseResourceModel{}, false
 	}
 
-	return result
+	return result, true
 }

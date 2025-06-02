@@ -133,7 +133,7 @@ func (r *privateKeyResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
+	data, _ := r.readFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -153,7 +153,11 @@ func (r *privateKeyResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	data, ok := r.readFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -201,7 +205,11 @@ func (r *privateKeyResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
+	data, ok := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -258,22 +266,26 @@ func (r *privateKeyResource) readFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) privateKeyResourceModel {
+) (privateKeyResourceModel, bool) {
 	readResp, err := r.client.GetPrivateKeyByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading private key: uuid=%s", uuid),
 			err.Error(),
 		)
-		return privateKeyResourceModel{}
+		return privateKeyResourceModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return privateKeyResourceModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading private key",
 			fmt.Sprintf("Received %s for private key: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return privateKeyResourceModel{}
+		return privateKeyResourceModel{}, false
 	}
 
-	return privateKeyResourceModel{}.FromAPI(readResp.JSON200)
+	return privateKeyResourceModel{}.FromAPI(readResp.JSON200), true
 }

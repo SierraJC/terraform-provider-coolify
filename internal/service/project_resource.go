@@ -91,7 +91,7 @@ func (r *projectResource) Create(ctx context.Context, req resource.CreateRequest
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
+	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
 	r.copyMissingAttributes(&plan, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -111,7 +111,11 @@ func (r *projectResource) Read(ctx context.Context, req resource.ReadRequest, re
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	r.copyMissingAttributes(&state, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -161,7 +165,11 @@ func (r *projectResource) Update(ctx context.Context, req resource.UpdateRequest
 		return
 	}
 
-	data := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid)
+	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	r.copyMissingAttributes(&plan, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -208,24 +216,28 @@ func (r *projectResource) ReadFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) resource_project.ProjectModel {
+) (resource_project.ProjectModel, bool) {
 	readResp, err := r.client.GetProjectByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading project: uuid=%s", uuid),
 			err.Error(),
 		)
-		return resource_project.ProjectModel{}
+		return resource_project.ProjectModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return resource_project.ProjectModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading project",
 			fmt.Sprintf("Received %s for project: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return resource_project.ProjectModel{}
+		return resource_project.ProjectModel{}, false
 	}
 
-	return r.ApiToModel(ctx, diags, readResp.JSON200)
+	return r.ApiToModel(ctx, diags, readResp.JSON200), true
 }
 
 func (r *projectResource) ApiToModel(

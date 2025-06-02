@@ -139,7 +139,7 @@ func (r *serviceEnvsResource) Create(ctx context.Context, req resource.CreateReq
 		plan.Env[i].Uuid = types.StringPointerValue(createResp.JSON201.Uuid)
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
+	data, _ := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
 	data.Env = r.filterRelevantEnvs(plan.Env, data.Env)
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -161,7 +161,11 @@ func (r *serviceEnvsResource) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	data, ok := r.readFromAPI(ctx, &resp.Diagnostics, state.Uuid.ValueString())
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if len(state.Env) > 0 {
 		data.Env = r.filterRelevantEnvs(state.Env, data.Env)
 	}
@@ -251,7 +255,11 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 		}
 	}
 
-	data := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
+	data, ok := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
+	if !ok {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	data.Env = r.filterRelevantEnvs(plan.Env, data.Env)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -317,26 +325,30 @@ func (r *serviceEnvsResource) readFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) serviceEnvsResourceModel {
+) (serviceEnvsResourceModel, bool) {
 	readResp, err := r.client.ListEnvsByServiceUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading service envs: uuid=%s", uuid),
 			err.Error(),
 		)
-		return serviceEnvsResourceModel{}
+		return serviceEnvsResourceModel{}, false
+	}
+
+	if readResp.StatusCode() == http.StatusNotFound {
+		return serviceEnvsResourceModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading service envs",
 			fmt.Sprintf("Received %s for service envs: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return serviceEnvsResourceModel{}
+		return serviceEnvsResourceModel{}, false
 	}
 
 	model := r.apiToModel(ctx, diags, readResp.JSON200)
 	model.Uuid = types.StringValue(uuid)
-	return model
+	return model, true
 }
 
 func (r *serviceEnvsResource) apiToModel(
