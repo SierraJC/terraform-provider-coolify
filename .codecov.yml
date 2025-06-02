@@ -8,9 +8,15 @@ coverage:
       default:
         target: auto
         threshold: 10%
+        flags:
+          - unit
+          - acceptance
     patch:
       default:
         informational: true
+        flags:
+          - unit
+          - acceptance
 
 comment:
   require_changes: true
