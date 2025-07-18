@@ -72,6 +72,8 @@ resource "coolify_postgresql_database" "example" {
 
 Import is supported using the following syntax:
 
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
+
 ```shell
 terraform import coolify_postgresql_database.example <server_uuid>/<project_uuid>/<environment_name>/<database_uuid>
 ```
