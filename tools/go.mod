@@ -1,13 +1,13 @@
 module tools
 
-go 1.23.2
+go 1.24
 
 require (
 	github.com/hashicorp/terraform-plugin-codegen-framework v0.4.1
 	github.com/hashicorp/terraform-plugin-codegen-openapi v0.3.0
 	github.com/hashicorp/terraform-plugin-docs v0.21.0
 	github.com/oapi-codegen/oapi-codegen/v2 v2.4.1
-	github.com/speakeasy-api/openapi-overlay v0.10.2
+	github.com/speakeasy-api/openapi-overlay v0.10.3
 )
 
 require (
