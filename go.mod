@@ -1,6 +1,6 @@
 module terraform-provider-coolify
 
-go 1.23.2
+go 1.24
 
 require (
 	github.com/hashicorp/go-retryablehttp v0.7.8
