@@ -94,8 +94,8 @@ jobs:
     timeout-minutes: 15
 
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.tool }}-${{ matrix.version }}
-      cancel-in-progress: true
+      group: acceptance-tests
+      cancel-in-progress: false
 
     strategy:
       fail-fast: false
@@ -106,9 +106,9 @@ jobs:
           # - tool: terraform
           #   version: v1.5.7
           - tool: terraform
-            version: v1.11.x
+            version: v1.12.x
           # - tool: opentofu
-          #   version: v1.9.x
+          #   version: v1.10.x
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
