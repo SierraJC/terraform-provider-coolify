@@ -134,7 +134,7 @@ jobs:
           echo TF_ACC_PROVIDER_NAMESPACE="hashicorp" >> $GITHUB_ENV
           echo TF_ACC_PROVIDER_HOST="registry.opentofu.org" >> $GITHUB_ENV
 
-      - uses: tailscale/github-action@84a3f23bb4d843bcf4da6cf824ec1be473daf4de # v3
+      - uses: tailscale/github-action@a392da0a182bba0e9613b6243ebd69529b1878aa # v4
         with:
           # oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           # oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
