@@ -101,12 +101,13 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
+		// Note: L'API Coolify n'accepte que key, value, is_preview, is_literal lors de la création
+		// Les autres champs (is_build_time, is_multiline, is_shown_once) doivent être mis à jour après
 		createResp, err := r.client.CreateEnvByApplicationUuidWithResponse(ctx, uuid, api.CreateEnvByApplicationUuidJSONRequestBody{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
-			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
-			IsPreview:   env.IsPreview.ValueBoolPointer(),
-			Key:         env.Key.ValueStringPointer(),
-			Value:       env.Value.ValueStringPointer(),
+			IsLiteral: env.IsLiteral.ValueBoolPointer(),
+			IsPreview: env.IsPreview.ValueBoolPointer(),
+			Key:       env.Key.ValueStringPointer(),
+			Value:     env.Value.ValueStringPointer(),
 		})
 
 		if err != nil {
@@ -127,6 +128,42 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 
 		// Set the UUID from the response
 		plan.Env[i].Uuid = types.StringPointerValue(createResp.JSON201.Uuid)
+	}
+
+	// Après la création, faire un bulk update pour les champs non-supportés en création
+	// (is_build_time, is_multiline, is_shown_once)
+	var bulkUpdateEnvs = []updateEnvsByApplicationUuidJSONRequestBodyItem{}
+	for _, env := range plan.Env {
+		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByApplicationUuidJSONRequestBodyItem{
+			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
+			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
+			IsMultiline: env.IsMultiline.ValueBoolPointer(),
+			IsPreview:   env.IsPreview.ValueBoolPointer(),
+			IsShownOnce: env.IsShownOnce.ValueBoolPointer(),
+			Key:         env.Key.ValueStringPointer(),
+			Value:       env.Value.ValueStringPointer(),
+		})
+	}
+
+	if len(bulkUpdateEnvs) > 0 {
+		updateResp, err := r.client.UpdateEnvsByApplicationUuidWithResponse(ctx, uuid, api.UpdateEnvsByApplicationUuidJSONRequestBody{
+			Data: bulkUpdateEnvs,
+		})
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				fmt.Sprintf("Error updating application envs after creation: uuid=%s", uuid),
+				err.Error(),
+			)
+			return
+		}
+
+		if updateResp.StatusCode() != http.StatusCreated {
+			resp.Diagnostics.AddError(
+				"Unexpected HTTP status code updating application envs after creation",
+				fmt.Sprintf("Received %s updating application envs: uuid=%s. Details: %s", updateResp.Status(), uuid, updateResp.Body))
+			return
+		}
 	}
 
 	data, _ := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
