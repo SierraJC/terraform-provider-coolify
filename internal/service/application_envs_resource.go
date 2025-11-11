@@ -101,8 +101,6 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
-		// Note: L'API Coolify n'accepte que key, value, is_preview, is_literal lors de la création
-		// Les autres champs (is_build_time, is_multiline, is_shown_once) doivent être mis à jour après
 		createResp, err := r.client.CreateEnvByApplicationUuidWithResponse(ctx, uuid, api.CreateEnvByApplicationUuidJSONRequestBody{
 			IsLiteral: env.IsLiteral.ValueBoolPointer(),
 			IsPreview: env.IsPreview.ValueBoolPointer(),
@@ -126,12 +124,9 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 			return
 		}
 
-		// Set the UUID from the response
 		plan.Env[i].Uuid = types.StringPointerValue(createResp.JSON201.Uuid)
 	}
 
-	// Après la création, faire un bulk update pour les champs non-supportés en création
-	// (is_build_time, is_multiline, is_shown_once)
 	var bulkUpdateEnvs = []updateEnvsByApplicationUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
 		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByApplicationUuidJSONRequestBodyItem{
@@ -215,26 +210,22 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 
 	uuid := plan.Uuid.ValueString()
 
-	// Update API call logic
 	tflog.Debug(ctx, "Updating application envs", map[string]interface{}{
 		"uuid": uuid,
 	})
 
-	// Create a map of current state envs for fast lookup
 	stateEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
 	for _, env := range state.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		stateEnvs[key] = env
 	}
 
-	// Create a map of plan envs for fast lookup
 	planEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
 	for _, env := range plan.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		planEnvs[key] = env
 	}
 
-	// Delete envs that are in state but not in plan
 	for key, env := range stateEnvs {
 		if _, exists := planEnvs[key]; !exists {
 			_, err := r.client.DeleteEnvByApplicationUuidWithResponse(ctx, uuid, env.Uuid.ValueString())
@@ -294,7 +285,6 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state applicationEnvsResourceModel
 
-	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -312,8 +302,6 @@ func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.Delet
 func (r *applicationEnvsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("uuid"), req, resp)
 }
-
-// MARK: Helper Functions
 
 func (r *applicationEnvsResource) filterRelevantEnvs(
 	stateEnvs []resource_application_envs.ApplicationEnvsModel,

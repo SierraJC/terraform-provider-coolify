@@ -36,7 +36,6 @@ func (r *applicationResource) Schema(ctx context.Context, req resource.SchemaReq
 	resp.Schema = ApplicationModel{}.Schema(ctx)
 	resp.Schema.Description = "Create, read, update, and delete a Coolify application resource."
 
-	// Mark sensitive attributes
 	sensitiveAttrs := []string{
 		"manual_webhook_secret_bitbucket",
 		"manual_webhook_secret_gitea",
@@ -63,7 +62,6 @@ func (r *applicationResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	// Validate required fields based on source_type
 	if diags := r.validateCreatePlan(ctx, plan); diags.HasError() {
 		resp.Diagnostics.Append(diags...)
 		return
@@ -354,9 +352,6 @@ func (r *applicationResource) Delete(ctx context.Context, req resource.DeleteReq
 func (r *applicationResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("uuid"), req, resp)
 }
-
-
-// MARK: Helper Functions
 
 func (r *applicationResource) ReadFromAPI(
 	ctx context.Context,
