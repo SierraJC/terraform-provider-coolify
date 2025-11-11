@@ -173,10 +173,12 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 			},
 			// Git-based fields
 			"git_repository": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Git repository URL. Required for public, private-github-app, and private-deploy-key source types.",
-				PlanModifiers: []planmodifier.String{stringplanmodifier.UseStateForUnknown()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Git repository URL. Required for public, private-github-app, and private-deploy-key source types.",
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.UseStateForUnknown(),
+				},
 			},
 			"git_branch": schema.StringAttribute{
 				Optional:    true,
@@ -221,10 +223,12 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 			},
 			// Optional common fields
 			"base_directory": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Base directory for all commands.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Base directory for all commands.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"build_command":                     schema.StringAttribute{Optional: true, Description: "Build command."},
 			"start_command":                     schema.StringAttribute{Optional: true, Description: "Start command."},
@@ -232,102 +236,132 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 			"publish_directory":                 schema.StringAttribute{Optional: true, Description: "Publish directory."},
 			"ports_mappings":                    schema.StringAttribute{Optional: true, Description: "Ports mappings."},
 			"git_commit_sha": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Git commit SHA.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Git commit SHA.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"is_static":                         schema.BoolAttribute{Optional: true, Description: "Flag to indicate if the application is static."},
 			"static_image": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Static image (e.g., nginx:alpine).",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Static image (e.g., nginx:alpine).",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"health_check_enabled": schema.BoolAttribute{Optional: true, Description: "Health check enabled."},
 			"health_check_path": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check path.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check path.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"health_check_port": schema.StringAttribute{Optional: true, Description: "Health check port."},
 			"health_check_host": schema.StringAttribute{Optional: true, Description: "Health check host."},
 			"health_check_method": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check method.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check method.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"health_check_return_code": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check return code.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check return code.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"health_check_scheme": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check scheme.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check scheme.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"health_check_response_text": schema.StringAttribute{Optional: true, Description: "Health check response text."},
 			"health_check_interval": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check interval in seconds.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check interval in seconds.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"health_check_timeout": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check timeout in seconds.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check timeout in seconds.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"health_check_retries": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check retries count.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check retries count.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"health_check_start_period": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Health check start period in seconds.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Health check start period in seconds.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"limits_memory":                      schema.StringAttribute{Optional: true, Description: "Memory limit."},
 			"limits_memory_swap": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Memory swap limit.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Memory swap limit.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"limits_memory_swappiness": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Memory swappiness.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Memory swappiness.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"limits_memory_reservation": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Memory reservation.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Memory reservation.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"limits_cpus":                        schema.StringAttribute{Optional: true, Description: "CPU limit."},
 			"limits_cpuset":                      schema.StringAttribute{Optional: true, Description: "CPU set."},
 			"limits_cpu_shares": schema.Int64Attribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "CPU shares.",
-				PlanModifiers: []planmodifier.Int64{UseStateForUnknownUnlessNullInt64()},
+				Optional:    true,
+				Computed:    true,
+				Description: "CPU shares.",
+				PlanModifiers: []planmodifier.Int64{
+					UseStateForUnknownUnlessNullInt64(),
+				},
 			},
 			"custom_labels": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Custom labels.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Custom labels.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"custom_docker_run_options":          schema.StringAttribute{Optional: true, Description: "Custom docker run options."},
 			"post_deployment_command":            schema.StringAttribute{Optional: true, Description: "Post deployment command."},
@@ -341,18 +375,22 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 			"redirect":                            schema.StringAttribute{Optional: true, Description: "How to set redirect with Traefik / Caddy. www<->non-www."},
 			"use_build_server":                    schema.BoolAttribute{Optional: true, Description: "Use build server."},
 			"is_http_basic_auth_enabled": schema.BoolAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "HTTP Basic Authentication enabled.",
-				PlanModifiers: []planmodifier.Bool{UseStateForUnknownUnlessNullBool()},
+				Optional:    true,
+				Computed:    true,
+				Description: "HTTP Basic Authentication enabled.",
+				PlanModifiers: []planmodifier.Bool{
+					UseStateForUnknownUnlessNullBool(),
+				},
 			},
 			"http_basic_auth_username":            schema.StringAttribute{Optional: true, Description: "Username for HTTP Basic Authentication"},
 			"http_basic_auth_password":            schema.StringAttribute{Optional: true, Sensitive: true, Description: "Password for HTTP Basic Authentication"},
 			"docker_compose_location": schema.StringAttribute{
-				Optional:      true,
-				Computed:      true,
-				Description:   "Docker Compose location.",
-				PlanModifiers: []planmodifier.String{UseStateForUnknownUnlessNullString()},
+				Optional:    true,
+				Computed:    true,
+				Description: "Docker Compose location.",
+				PlanModifiers: []planmodifier.String{
+					UseStateForUnknownUnlessNullString(),
+				},
 			},
 			"docker_compose_custom_start_command": schema.StringAttribute{Optional: true, Description: "Docker Compose custom start command."},
 			"docker_compose_custom_build_command": schema.StringAttribute{Optional: true, Description: "Docker Compose custom build command."},
@@ -361,57 +399,44 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 	}
 }
 
-// preserveGitRepository preserves the state git_repository if it exists and is different from API
-// This handles the case where API returns "user/repo" but user configured "https://github.com/user/repo"
 func preserveGitRepository(stateVal types.String, apiVal types.String) types.String {
-	// If state is null/unknown, return API value
 	if stateVal.IsNull() || stateVal.IsUnknown() {
 		return apiVal
 	}
-	// If state has a full URL and API has short format, preserve state
 	stateStr := stateVal.ValueString()
 	apiStr := apiVal.ValueString()
 	if stateStr != "" && apiStr != "" && stateStr != apiStr {
-		// Check if state is a full URL and API is short format
 		if (strings.HasPrefix(stateStr, "http://") || strings.HasPrefix(stateStr, "https://") || strings.HasPrefix(stateStr, "git@")) &&
 			!strings.Contains(apiStr, "://") && !strings.HasPrefix(apiStr, "git@") {
-			// State has full URL, API has short format - preserve state
 			return stateVal
 		}
-		// If both are different but neither is clearly a URL format issue, preserve state
-		// This handles edge cases where formats differ
 		return stateVal
 	}
-	// If values match or state is empty, return API value
 	return apiVal
 }
 
 func (m ApplicationModel) FromAPI(app *api.Application, state ApplicationModel) ApplicationModel {
-	// Simplification: Return API values as-is
-	// For fields not returned by API or that should be preserved from state, we keep the state value
-
-	// Special handling for git_repository: API may return shortened format
 	apiGitRepo := flatten.String(app.GitRepository)
 	preservedGitRepo := preserveGitRepository(state.GitRepository, apiGitRepo)
 
 	return ApplicationModel{
 		Uuid:                          flatten.String(app.Uuid),
-		SourceType:                    state.SourceType, // Not returned by API
-		ProjectUuid:                   state.ProjectUuid, // Not returned by API
-		ServerUuid:                    state.ServerUuid, // Not returned by API
-		EnvironmentName:                state.EnvironmentName, // Not returned by API
-		EnvironmentUuid:                state.EnvironmentUuid, // Not returned by API
-		DestinationUuid:                state.DestinationUuid, // Not returned by API
+		SourceType:                    state.SourceType,
+		ProjectUuid:                   state.ProjectUuid,
+		ServerUuid:                    state.ServerUuid,
+		EnvironmentName:                state.EnvironmentName,
+		EnvironmentUuid:                state.EnvironmentUuid,
+		DestinationUuid:                state.DestinationUuid,
 		Name:                          flatten.String(app.Name),
 		Description:                   flatten.String(app.Description),
-		Domains:                       flatten.String(app.Fqdn), // API returns "fqdn", map to "domains"
-		InstantDeploy:                 state.InstantDeploy, // Not returned by API
-		GitRepository:                 preservedGitRepo, // Special handling for URL format
+		Domains:                       flatten.String(app.Fqdn),
+		InstantDeploy:                 state.InstantDeploy,
+		GitRepository:                 preservedGitRepo,
 		GitBranch:                     flatten.String(app.GitBranch),
 		BuildPack:                     flatten.String((*string)(app.BuildPack)),
 		PortsExposes:                  flatten.String(app.PortsExposes),
-		GithubAppUuid:                  state.GithubAppUuid, // Not returned by API
-		PrivateKeyUuid:                state.PrivateKeyUuid, // Not returned by API
+		GithubAppUuid:                  state.GithubAppUuid,
+		PrivateKeyUuid:                state.PrivateKeyUuid,
 		Dockerfile:                    flatten.String(app.Dockerfile),
 		DockerRegistryImageName:        flatten.String(app.DockerRegistryImageName),
 		DockerRegistryImageTag:         flatten.String(app.DockerRegistryImageTag),
@@ -423,7 +448,7 @@ func (m ApplicationModel) FromAPI(app *api.Application, state ApplicationModel) 
 		PublishDirectory:               flatten.String(app.PublishDirectory),
 		PortsMappings:                  flatten.String(app.PortsMappings),
 		GitCommitSha:                   flatten.String(app.GitCommitSha),
-		IsStatic:                       state.IsStatic, // Not returned by API
+		IsStatic:                       state.IsStatic,
 		StaticImage:                    flatten.String(app.StaticImage),
 		HealthCheckEnabled:             flatten.Bool(app.HealthCheckEnabled),
 		HealthCheckPath:                flatten.String(app.HealthCheckPath),
@@ -450,15 +475,15 @@ func (m ApplicationModel) FromAPI(app *api.Application, state ApplicationModel) 
 		PostDeploymentCommandContainer: flatten.String(app.PostDeploymentCommandContainer),
 		PreDeploymentCommand:           flatten.String(app.PreDeploymentCommand),
 		PreDeploymentCommandContainer: flatten.String(app.PreDeploymentCommandContainer),
-		ManualWebhookSecretGithub:      state.ManualWebhookSecretGithub, // Sensitive, not returned by API
-		ManualWebhookSecretGitlab:      state.ManualWebhookSecretGitlab, // Sensitive, not returned by API
-		ManualWebhookSecretBitbucket:   state.ManualWebhookSecretBitbucket, // Sensitive, not returned by API
-		ManualWebhookSecretGitea:        state.ManualWebhookSecretGitea, // Sensitive, not returned by API
+		ManualWebhookSecretGithub:      state.ManualWebhookSecretGithub,
+		ManualWebhookSecretGitlab:      state.ManualWebhookSecretGitlab,
+		ManualWebhookSecretBitbucket:   state.ManualWebhookSecretBitbucket,
+		ManualWebhookSecretGitea:        state.ManualWebhookSecretGitea,
 		Redirect:                       flatten.String((*string)(app.Redirect)),
-		UseBuildServer:                 state.UseBuildServer, // Not returned by API
+		UseBuildServer:                 state.UseBuildServer,
 		IsHttpBasicAuthEnabled:         flatten.Bool(app.IsHttpBasicAuthEnabled),
 		HttpBasicAuthUsername:          flatten.String(app.HttpBasicAuthUsername),
-		HttpBasicAuthPassword:           state.HttpBasicAuthPassword, // Sensitive, not returned by API
+		HttpBasicAuthPassword:           state.HttpBasicAuthPassword,
 		DockerComposeLocation:           flatten.String(app.DockerComposeLocation),
 		DockerComposeCustomStartCommand: flatten.String(app.DockerComposeCustomStartCommand),
 		DockerComposeCustomBuildCommand: flatten.String(app.DockerComposeCustomBuildCommand),
@@ -488,14 +513,13 @@ func (m ApplicationModel) ToAPICreate() (interface{}, error) {
 	}
 }
 
-// validateRedirect validates and converts a redirect string to the appropriate enum type
 func validateRedirect[T ~string](redirect *string) *T {
 	if redirect == nil || *redirect == "" {
 		return nil
 	}
 	validRedirects := map[string]bool{"both": true, "non-www": true, "www": true}
 	if !validRedirects[*redirect] {
-		return nil // Invalid redirect value, return nil to omit from request
+		return nil
 	}
 	enumVal := T(*redirect)
 	return &enumVal
@@ -933,7 +957,7 @@ func (m ApplicationModel) ToAPIUpdate() api.UpdateApplicationByUuidJSONRequestBo
 		DockerComposeRaw:               expand.String(m.DockerComposeRaw),
 		DockerComposeCustomStartCommand: expand.String(m.DockerComposeCustomStartCommand),
 		DockerComposeCustomBuildCommand: expand.String(m.DockerComposeCustomBuildCommand),
-		DockerComposeDomains:           nil, // TODO: handle array
+		DockerComposeDomains:           nil,
 		WatchPaths:                     expand.String(m.WatchPaths),
 		UseBuildServer:                 expand.Bool(m.UseBuildServer),
 		DockerRegistryImageName:        expand.String(m.DockerRegistryImageName),
