@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
           go-version-file: "go.mod"
@@ -41,7 +41,7 @@ jobs:
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]' # Skip Renovate PRs, should be handled by push event
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
           go-version-file: "tools/go.mod"
@@ -62,7 +62,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
           go-version-file: "go.mod"
@@ -75,7 +75,7 @@ jobs:
           go install github.com/jstemmer/go-junit-report/v2@latest
           $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
 
-      - uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
+      - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -110,7 +110,7 @@ jobs:
           # - tool: opentofu
           #   version: v1.10.x
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
           go-version-file: "go.mod"
@@ -164,7 +164,7 @@ jobs:
           COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
         timeout-minutes: 11
 
-      - uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
+      - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.11.x' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
