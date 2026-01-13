@@ -42,7 +42,6 @@ type serviceEnvsResourceModel struct {
 
 // Type alias for the anonymous struct used in the generated API code
 type updateEnvsByServiceUuidJSONRequestBodyItem = struct {
-	IsBuildTime *bool   `json:"is_build_time,omitempty"`
 	IsLiteral   *bool   `json:"is_literal,omitempty"`
 	IsMultiline *bool   `json:"is_multiline,omitempty"`
 	IsPreview   *bool   `json:"is_preview,omitempty"`
@@ -112,11 +111,10 @@ func (r *serviceEnvsResource) Create(ctx context.Context, req resource.CreateReq
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
 		createResp, err := r.client.CreateEnvByServiceUuidWithResponse(ctx, uuid, api.CreateEnvByServiceUuidJSONRequestBody{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
-			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
-			IsPreview:   env.IsPreview.ValueBoolPointer(),
-			Key:         env.Key.ValueStringPointer(),
-			Value:       env.Value.ValueStringPointer(),
+			IsLiteral: env.IsLiteral.ValueBoolPointer(),
+			IsPreview: env.IsPreview.ValueBoolPointer(),
+			Key:       env.Key.ValueStringPointer(),
+			Value:     env.Value.ValueStringPointer(),
 		})
 
 		if err != nil {
@@ -224,7 +222,6 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 	var bulkUpdateEnvs = []updateEnvsByServiceUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
 		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByServiceUuidJSONRequestBodyItem{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
 			IsPreview:   env.IsPreview.ValueBoolPointer(),
 			Key:         env.Key.ValueStringPointer(),
@@ -359,7 +356,6 @@ func (r *serviceEnvsResource) apiToModel(
 	envs := make([]resource_service_envs.ServiceEnvsModel, len(*response))
 	for i, env := range *response {
 		envs[i] = resource_service_envs.ServiceEnvsModel{
-			IsBuildTime: flatten.Bool(env.IsBuildTime),
 			IsLiteral:   flatten.Bool(env.IsLiteral),
 			IsMultiline: flatten.Bool(env.IsMultiline),
 			IsPreview:   flatten.Bool(env.IsPreview),

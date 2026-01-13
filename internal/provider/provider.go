@@ -219,6 +219,12 @@ func (p *CoolifyProvider) Resources(ctx context.Context) []func() resource.Resou
 		service.NewServiceEnvsResource,
 		service.NewPostgresqlDatabaseResource,
 		service.NewMySQLDatabaseResource,
+		service.NewRedisDatabaseResource,
+		service.NewMariaDBDatabaseResource,
+		service.NewMongoDBDatabaseResource,
+		service.NewClickhouseDatabaseResource,
+		service.NewDragonflyDatabaseResource,
+		service.NewKeyDBDatabaseResource,
 		service_ds.NewServiceResource,
 	}
 }
