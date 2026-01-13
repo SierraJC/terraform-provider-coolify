@@ -76,6 +76,9 @@ func ServerDataSourceSchema(ctx context.Context) schema.Schema {
 						Description:         "The flag to indicate if the unused volumes should be deleted.",
 						MarkdownDescription: "The flag to indicate if the unused volumes should be deleted.",
 					},
+					"deployment_queue_limit": schema.Int64Attribute{
+						Computed: true,
+					},
 					"docker_cleanup_frequency": schema.StringAttribute{
 						Computed: true,
 					},
@@ -128,6 +131,9 @@ func ServerDataSourceSchema(ctx context.Context) schema.Schema {
 						Computed: true,
 					},
 					"is_swarm_worker": schema.BoolAttribute{
+						Computed: true,
+					},
+					"is_terminal_enabled": schema.BoolAttribute{
 						Computed: true,
 					},
 					"is_usable": schema.BoolAttribute{
@@ -331,6 +337,24 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 			fmt.Sprintf(`delete_unused_volumes expected to be basetypes.BoolValue, was: %T`, deleteUnusedVolumesAttribute))
 	}
 
+	deploymentQueueLimitAttribute, ok := attributes["deployment_queue_limit"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`deployment_queue_limit is missing from object`)
+
+		return nil, diags
+	}
+
+	deploymentQueueLimitVal, ok := deploymentQueueLimitAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`deployment_queue_limit expected to be basetypes.Int64Value, was: %T`, deploymentQueueLimitAttribute))
+	}
+
 	dockerCleanupFrequencyAttribute, ok := attributes["docker_cleanup_frequency"]
 
 	if !ok {
@@ -655,6 +679,24 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 			fmt.Sprintf(`is_swarm_worker expected to be basetypes.BoolValue, was: %T`, isSwarmWorkerAttribute))
 	}
 
+	isTerminalEnabledAttribute, ok := attributes["is_terminal_enabled"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`is_terminal_enabled is missing from object`)
+
+		return nil, diags
+	}
+
+	isTerminalEnabledVal, ok := isTerminalEnabledAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`is_terminal_enabled expected to be basetypes.BoolValue, was: %T`, isTerminalEnabledAttribute))
+	}
+
 	isUsableAttribute, ok := attributes["is_usable"]
 
 	if !ok {
@@ -916,6 +958,7 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 		CreatedAt:                         createdAtVal,
 		DeleteUnusedNetworks:              deleteUnusedNetworksVal,
 		DeleteUnusedVolumes:               deleteUnusedVolumesVal,
+		DeploymentQueueLimit:              deploymentQueueLimitVal,
 		DockerCleanupFrequency:            dockerCleanupFrequencyVal,
 		DockerCleanupThreshold:            dockerCleanupThresholdVal,
 		DynamicTimeout:                    dynamicTimeoutVal,
@@ -934,6 +977,7 @@ func (t SettingsType) ValueFromObject(ctx context.Context, in basetypes.ObjectVa
 		IsSentinelEnabled:                 isSentinelEnabledVal,
 		IsSwarmManager:                    isSwarmManagerVal,
 		IsSwarmWorker:                     isSwarmWorkerVal,
+		IsTerminalEnabled:                 isTerminalEnabledVal,
 		IsUsable:                          isUsableVal,
 		LogdrainAxiomApiKey:               logdrainAxiomApiKeyVal,
 		LogdrainAxiomDatasetName:          logdrainAxiomDatasetNameVal,
@@ -1087,6 +1131,24 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 			fmt.Sprintf(`delete_unused_volumes expected to be basetypes.BoolValue, was: %T`, deleteUnusedVolumesAttribute))
 	}
 
+	deploymentQueueLimitAttribute, ok := attributes["deployment_queue_limit"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`deployment_queue_limit is missing from object`)
+
+		return NewSettingsValueUnknown(), diags
+	}
+
+	deploymentQueueLimitVal, ok := deploymentQueueLimitAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`deployment_queue_limit expected to be basetypes.Int64Value, was: %T`, deploymentQueueLimitAttribute))
+	}
+
 	dockerCleanupFrequencyAttribute, ok := attributes["docker_cleanup_frequency"]
 
 	if !ok {
@@ -1411,6 +1473,24 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 			fmt.Sprintf(`is_swarm_worker expected to be basetypes.BoolValue, was: %T`, isSwarmWorkerAttribute))
 	}
 
+	isTerminalEnabledAttribute, ok := attributes["is_terminal_enabled"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`is_terminal_enabled is missing from object`)
+
+		return NewSettingsValueUnknown(), diags
+	}
+
+	isTerminalEnabledVal, ok := isTerminalEnabledAttribute.(basetypes.BoolValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`is_terminal_enabled expected to be basetypes.BoolValue, was: %T`, isTerminalEnabledAttribute))
+	}
+
 	isUsableAttribute, ok := attributes["is_usable"]
 
 	if !ok {
@@ -1672,6 +1752,7 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 		CreatedAt:                         createdAtVal,
 		DeleteUnusedNetworks:              deleteUnusedNetworksVal,
 		DeleteUnusedVolumes:               deleteUnusedVolumesVal,
+		DeploymentQueueLimit:              deploymentQueueLimitVal,
 		DockerCleanupFrequency:            dockerCleanupFrequencyVal,
 		DockerCleanupThreshold:            dockerCleanupThresholdVal,
 		DynamicTimeout:                    dynamicTimeoutVal,
@@ -1690,6 +1771,7 @@ func NewSettingsValue(attributeTypes map[string]attr.Type, attributes map[string
 		IsSentinelEnabled:                 isSentinelEnabledVal,
 		IsSwarmManager:                    isSwarmManagerVal,
 		IsSwarmWorker:                     isSwarmWorkerVal,
+		IsTerminalEnabled:                 isTerminalEnabledVal,
 		IsUsable:                          isUsableVal,
 		LogdrainAxiomApiKey:               logdrainAxiomApiKeyVal,
 		LogdrainAxiomDatasetName:          logdrainAxiomDatasetNameVal,
@@ -1780,6 +1862,7 @@ type SettingsValue struct {
 	CreatedAt                         basetypes.StringValue `tfsdk:"created_at"`
 	DeleteUnusedNetworks              basetypes.BoolValue   `tfsdk:"delete_unused_networks"`
 	DeleteUnusedVolumes               basetypes.BoolValue   `tfsdk:"delete_unused_volumes"`
+	DeploymentQueueLimit              basetypes.Int64Value  `tfsdk:"deployment_queue_limit"`
 	DockerCleanupFrequency            basetypes.StringValue `tfsdk:"docker_cleanup_frequency"`
 	DockerCleanupThreshold            basetypes.Int64Value  `tfsdk:"docker_cleanup_threshold"`
 	DynamicTimeout                    basetypes.Int64Value  `tfsdk:"dynamic_timeout"`
@@ -1798,6 +1881,7 @@ type SettingsValue struct {
 	IsSentinelEnabled                 basetypes.BoolValue   `tfsdk:"is_sentinel_enabled"`
 	IsSwarmManager                    basetypes.BoolValue   `tfsdk:"is_swarm_manager"`
 	IsSwarmWorker                     basetypes.BoolValue   `tfsdk:"is_swarm_worker"`
+	IsTerminalEnabled                 basetypes.BoolValue   `tfsdk:"is_terminal_enabled"`
 	IsUsable                          basetypes.BoolValue   `tfsdk:"is_usable"`
 	LogdrainAxiomApiKey               basetypes.StringValue `tfsdk:"logdrain_axiom_api_key"`
 	LogdrainAxiomDatasetName          basetypes.StringValue `tfsdk:"logdrain_axiom_dataset_name"`
@@ -1816,7 +1900,7 @@ type SettingsValue struct {
 }
 
 func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 36)
+	attrTypes := make(map[string]tftypes.Type, 38)
 
 	var val tftypes.Value
 	var err error
@@ -1825,6 +1909,7 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 	attrTypes["created_at"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["delete_unused_networks"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["delete_unused_volumes"] = basetypes.BoolType{}.TerraformType(ctx)
+	attrTypes["deployment_queue_limit"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["docker_cleanup_frequency"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["docker_cleanup_threshold"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["dynamic_timeout"] = basetypes.Int64Type{}.TerraformType(ctx)
@@ -1843,6 +1928,7 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 	attrTypes["is_sentinel_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_swarm_manager"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_swarm_worker"] = basetypes.BoolType{}.TerraformType(ctx)
+	attrTypes["is_terminal_enabled"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["is_usable"] = basetypes.BoolType{}.TerraformType(ctx)
 	attrTypes["logdrain_axiom_api_key"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["logdrain_axiom_dataset_name"] = basetypes.StringType{}.TerraformType(ctx)
@@ -1862,7 +1948,7 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 36)
+		vals := make(map[string]tftypes.Value, 38)
 
 		val, err = v.ConcurrentBuilds.ToTerraformValue(ctx)
 
@@ -1895,6 +1981,14 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 		}
 
 		vals["delete_unused_volumes"] = val
+
+		val, err = v.DeploymentQueueLimit.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["deployment_queue_limit"] = val
 
 		val, err = v.DockerCleanupFrequency.ToTerraformValue(ctx)
 
@@ -2039,6 +2133,14 @@ func (v SettingsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, err
 		}
 
 		vals["is_swarm_worker"] = val
+
+		val, err = v.IsTerminalEnabled.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["is_terminal_enabled"] = val
 
 		val, err = v.IsUsable.ToTerraformValue(ctx)
 
@@ -2186,6 +2288,7 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 		"created_at":                            basetypes.StringType{},
 		"delete_unused_networks":                basetypes.BoolType{},
 		"delete_unused_volumes":                 basetypes.BoolType{},
+		"deployment_queue_limit":                basetypes.Int64Type{},
 		"docker_cleanup_frequency":              basetypes.StringType{},
 		"docker_cleanup_threshold":              basetypes.Int64Type{},
 		"dynamic_timeout":                       basetypes.Int64Type{},
@@ -2204,6 +2307,7 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 		"is_sentinel_enabled":                   basetypes.BoolType{},
 		"is_swarm_manager":                      basetypes.BoolType{},
 		"is_swarm_worker":                       basetypes.BoolType{},
+		"is_terminal_enabled":                   basetypes.BoolType{},
 		"is_usable":                             basetypes.BoolType{},
 		"logdrain_axiom_api_key":                basetypes.StringType{},
 		"logdrain_axiom_dataset_name":           basetypes.StringType{},
@@ -2235,6 +2339,7 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 			"created_at":                            v.CreatedAt,
 			"delete_unused_networks":                v.DeleteUnusedNetworks,
 			"delete_unused_volumes":                 v.DeleteUnusedVolumes,
+			"deployment_queue_limit":                v.DeploymentQueueLimit,
 			"docker_cleanup_frequency":              v.DockerCleanupFrequency,
 			"docker_cleanup_threshold":              v.DockerCleanupThreshold,
 			"dynamic_timeout":                       v.DynamicTimeout,
@@ -2253,6 +2358,7 @@ func (v SettingsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue
 			"is_sentinel_enabled":                   v.IsSentinelEnabled,
 			"is_swarm_manager":                      v.IsSwarmManager,
 			"is_swarm_worker":                       v.IsSwarmWorker,
+			"is_terminal_enabled":                   v.IsTerminalEnabled,
 			"is_usable":                             v.IsUsable,
 			"logdrain_axiom_api_key":                v.LogdrainAxiomApiKey,
 			"logdrain_axiom_dataset_name":           v.LogdrainAxiomDatasetName,
@@ -2300,6 +2406,10 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 	}
 
 	if !v.DeleteUnusedVolumes.Equal(other.DeleteUnusedVolumes) {
+		return false
+	}
+
+	if !v.DeploymentQueueLimit.Equal(other.DeploymentQueueLimit) {
 		return false
 	}
 
@@ -2372,6 +2482,10 @@ func (v SettingsValue) Equal(o attr.Value) bool {
 	}
 
 	if !v.IsSwarmWorker.Equal(other.IsSwarmWorker) {
+		return false
+	}
+
+	if !v.IsTerminalEnabled.Equal(other.IsTerminalEnabled) {
 		return false
 	}
 
@@ -2448,6 +2562,7 @@ func (v SettingsValue) AttributeTypes(ctx context.Context) map[string]attr.Type 
 		"created_at":                            basetypes.StringType{},
 		"delete_unused_networks":                basetypes.BoolType{},
 		"delete_unused_volumes":                 basetypes.BoolType{},
+		"deployment_queue_limit":                basetypes.Int64Type{},
 		"docker_cleanup_frequency":              basetypes.StringType{},
 		"docker_cleanup_threshold":              basetypes.Int64Type{},
 		"dynamic_timeout":                       basetypes.Int64Type{},
@@ -2466,6 +2581,7 @@ func (v SettingsValue) AttributeTypes(ctx context.Context) map[string]attr.Type 
 		"is_sentinel_enabled":                   basetypes.BoolType{},
 		"is_swarm_manager":                      basetypes.BoolType{},
 		"is_swarm_worker":                       basetypes.BoolType{},
+		"is_terminal_enabled":                   basetypes.BoolType{},
 		"is_usable":                             basetypes.BoolType{},
 		"logdrain_axiom_api_key":                basetypes.StringType{},
 		"logdrain_axiom_dataset_name":           basetypes.StringType{},

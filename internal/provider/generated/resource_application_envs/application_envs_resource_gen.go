@@ -12,12 +12,6 @@ import (
 func ApplicationEnvsResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Attributes: map[string]schema.Attribute{
-			"is_build_time": schema.BoolAttribute{
-				Optional:            true,
-				Computed:            true,
-				Description:         "The flag to indicate if the environment variable is used in build time.",
-				MarkdownDescription: "The flag to indicate if the environment variable is used in build time.",
-			},
 			"is_literal": schema.BoolAttribute{
 				Optional:            true,
 				Computed:            true,
@@ -64,7 +58,6 @@ func ApplicationEnvsResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type ApplicationEnvsModel struct {
-	IsBuildTime types.Bool   `tfsdk:"is_build_time"`
 	IsLiteral   types.Bool   `tfsdk:"is_literal"`
 	IsMultiline types.Bool   `tfsdk:"is_multiline"`
 	IsPreview   types.Bool   `tfsdk:"is_preview"`

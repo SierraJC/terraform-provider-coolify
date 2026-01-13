@@ -16,16 +16,16 @@ import (
 )
 
 type ServiceModel struct {
-	Uuid                   types.String `tfsdk:"uuid"`
-	Name                   types.String `tfsdk:"name"`
-	Description            types.String `tfsdk:"description"`
-	DestinationUuid        types.String `tfsdk:"destination_uuid"`
-	EnvironmentName        types.String `tfsdk:"environment_name"`
-	EnvironmentUuid        types.String `tfsdk:"environment_uuid"`
-	ProjectUuid            types.String `tfsdk:"project_uuid"`
-	ServerUuid             types.String `tfsdk:"server_uuid"`
-	InstantDeploy          types.Bool   `tfsdk:"instant_deploy"`
-	Compose                types.String `tfsdk:"compose"`
+	Uuid            types.String `tfsdk:"uuid"`
+	Name            types.String `tfsdk:"name"`
+	Description     types.String `tfsdk:"description"`
+	DestinationUuid types.String `tfsdk:"destination_uuid"`
+	EnvironmentName types.String `tfsdk:"environment_name"`
+	EnvironmentUuid types.String `tfsdk:"environment_uuid"`
+	ProjectUuid     types.String `tfsdk:"project_uuid"`
+	ServerUuid      types.String `tfsdk:"server_uuid"`
+	InstantDeploy   types.Bool   `tfsdk:"instant_deploy"`
+	Compose         types.String `tfsdk:"compose"`
 }
 
 func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
@@ -117,11 +117,11 @@ func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
 		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
-		EnvironmentName:  m.EnvironmentName.ValueString(),
-		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
-		ProjectUuid:      m.ProjectUuid.ValueString(),
-		ServerUuid:       m.ServerUuid.ValueString(),
+		EnvironmentName:  m.EnvironmentName.ValueStringPointer(),
+		EnvironmentUuid:  m.EnvironmentUuid.ValueStringPointer(),
+		ProjectUuid:      m.ProjectUuid.ValueStringPointer(),
+		ServerUuid:       m.ServerUuid.ValueStringPointer(),
 		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
-		DockerComposeRaw: *sutil.Base64EncodeAttr(m.Compose),
+		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
 }

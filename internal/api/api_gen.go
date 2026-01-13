@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
@@ -139,6 +140,12 @@ const (
 	Both   UpdateApplicationByUuidJSONBodyRedirect = "both"
 	NonWww UpdateApplicationByUuidJSONBodyRedirect = "non-www"
 	Www    UpdateApplicationByUuidJSONBodyRedirect = "www"
+)
+
+// Defines values for CreateCloudTokenJSONBodyProvider.
+const (
+	Digitalocean CreateCloudTokenJSONBodyProvider = "digitalocean"
+	Hetzner      CreateCloudTokenJSONBodyProvider = "hetzner"
 )
 
 // Defines values for CreateServerJSONBodyProxyType.
@@ -524,6 +531,30 @@ type ApplicationDeploymentQueue struct {
 	UpdatedAt        *string `json:"updated_at,omitempty"`
 }
 
+// ClickhouseDatabase defines model for ClickhouseDatabase.
+type ClickhouseDatabase struct {
+	ClickhouseAdminPassword *string    `json:"clickhouse_admin_password,omitempty"`
+	ClickhouseAdminUser     *string    `json:"clickhouse_admin_user,omitempty"`
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
 // Database defines model for Database.
 type Database struct {
 	union json.RawMessage
@@ -535,6 +566,29 @@ type DatabaseCommon struct {
 	DatabaseType            string     `json:"database_type"`
 	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
 	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
+// DragonflyDatabase defines model for DragonflyDatabase.
+type DragonflyDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	DragonflyPassword       *string    `json:"dragonfly_password,omitempty"`
 	Image                   *string    `json:"image,omitempty"`
 	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
 	IsPublic                *bool      `json:"is_public,omitempty"`
@@ -565,10 +619,11 @@ type Environment struct {
 type EnvironmentVariable struct {
 	CreatedAt        *string `json:"created_at,omitempty"`
 	Id               *int    `json:"id,omitempty"`
-	IsBuildTime      *bool   `json:"is_build_time,omitempty"`
+	IsBuildtime      *bool   `json:"is_buildtime,omitempty"`
 	IsLiteral        *bool   `json:"is_literal,omitempty"`
 	IsMultiline      *bool   `json:"is_multiline,omitempty"`
 	IsPreview        *bool   `json:"is_preview,omitempty"`
+	IsRuntime        *bool   `json:"is_runtime,omitempty"`
 	IsShared         *bool   `json:"is_shared,omitempty"`
 	IsShownOnce      *bool   `json:"is_shown_once,omitempty"`
 	Key              *string `json:"key,omitempty"`
@@ -579,6 +634,83 @@ type EnvironmentVariable struct {
 	Uuid             *string `json:"uuid,omitempty"`
 	Value            *string `json:"value,omitempty"`
 	Version          *string `json:"version,omitempty"`
+}
+
+// KeydbDatabase defines model for KeydbDatabase.
+type KeydbDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	KeydbConf               *string    `json:"keydb_conf"`
+	KeydbPassword           *string    `json:"keydb_password,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
+// MariadbDatabase defines model for MariadbDatabase.
+type MariadbDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	MariadbConf             *string    `json:"mariadb_conf"`
+	MariadbDatabase         *string    `json:"mariadb_database,omitempty"`
+	MariadbPassword         *string    `json:"mariadb_password,omitempty"`
+	MariadbRootPassword     *string    `json:"mariadb_root_password,omitempty"`
+	MariadbUser             *string    `json:"mariadb_user,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
+// MongodbDatabase defines model for MongodbDatabase.
+type MongodbDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	MongoConf               *string    `json:"mongo_conf"`
+	MongoInitdbDatabase     *string    `json:"mongo_initdb_database,omitempty"`
+	MongoInitdbRootPassword *string    `json:"mongo_initdb_root_password,omitempty"`
+	MongoInitdbRootUsername *string    `json:"mongo_initdb_root_username,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
 }
 
 // MysqlDatabase defines model for MysqlDatabase.
@@ -666,6 +798,30 @@ type Project struct {
 	Uuid         *string        `json:"uuid,omitempty"`
 }
 
+// RedisDatabase defines model for RedisDatabase.
+type RedisDatabase struct {
+	CreatedAt               *time.Time `json:"created_at,omitempty"`
+	DatabaseType            string     `json:"database_type"`
+	DeletedAt               *time.Time `json:"deleted_at,omitempty"`
+	Description             *string    `json:"description,omitempty"`
+	Image                   *string    `json:"image,omitempty"`
+	InternalDbUrl           *string    `json:"internal_db_url,omitempty"`
+	IsPublic                *bool      `json:"is_public,omitempty"`
+	LimitsCpuShares         *int       `json:"limits_cpu_shares,omitempty"`
+	LimitsCpus              *string    `json:"limits_cpus,omitempty"`
+	LimitsCpuset            *string    `json:"limits_cpuset"`
+	LimitsMemory            *string    `json:"limits_memory,omitempty"`
+	LimitsMemoryReservation *string    `json:"limits_memory_reservation,omitempty"`
+	LimitsMemorySwap        *string    `json:"limits_memory_swap,omitempty"`
+	LimitsMemorySwappiness  *int       `json:"limits_memory_swappiness,omitempty"`
+	Name                    *string    `json:"name,omitempty"`
+	PublicPort              *int       `json:"public_port"`
+	RedisConf               *string    `json:"redis_conf"`
+	RedisPassword           *string    `json:"redis_password,omitempty"`
+	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
+	Uuid                    string     `json:"uuid"`
+}
+
 // Server Server model
 type Server struct {
 	// Description The server description.
@@ -727,6 +883,7 @@ type ServerSetting struct {
 
 	// DeleteUnusedVolumes The flag to indicate if the unused volumes should be deleted.
 	DeleteUnusedVolumes               *bool   `json:"delete_unused_volumes,omitempty"`
+	DeploymentQueueLimit              *int    `json:"deployment_queue_limit,omitempty"`
 	DockerCleanupFrequency            *string `json:"docker_cleanup_frequency,omitempty"`
 	DockerCleanupThreshold            *int    `json:"docker_cleanup_threshold,omitempty"`
 	DynamicTimeout                    *int    `json:"dynamic_timeout,omitempty"`
@@ -745,6 +902,7 @@ type ServerSetting struct {
 	IsSentinelEnabled                 *bool   `json:"is_sentinel_enabled,omitempty"`
 	IsSwarmManager                    *bool   `json:"is_swarm_manager,omitempty"`
 	IsSwarmWorker                     *bool   `json:"is_swarm_worker,omitempty"`
+	IsTerminalEnabled                 *bool   `json:"is_terminal_enabled,omitempty"`
 	IsUsable                          *bool   `json:"is_usable,omitempty"`
 	LogdrainAxiomApiKey               *string `json:"logdrain_axiom_api_key,omitempty"`
 	LogdrainAxiomDatasetName          *string `json:"logdrain_axiom_dataset_name,omitempty"`
@@ -893,8 +1051,22 @@ type N404 struct {
 	Message *string `json:"message,omitempty"`
 }
 
+// N422 defines model for 422.
+type N422 struct {
+	Errors  *map[string][]string `json:"errors,omitempty"`
+	Message *string              `json:"message,omitempty"`
+}
+
+// N429 defines model for 429.
+type N429 struct {
+	Message *string `json:"message,omitempty"`
+}
+
 // CreateDockercomposeApplicationJSONBody defines parameters for CreateDockercomposeApplication.
 type CreateDockercomposeApplicationJSONBody struct {
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
+
 	// Description The application description.
 	Description *string `json:"description,omitempty"`
 
@@ -909,6 +1081,9 @@ type CreateDockercomposeApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
@@ -928,11 +1103,17 @@ type CreateDockercomposeApplicationJSONBody struct {
 
 // CreateDockerfileApplicationJSONBody defines parameters for CreateDockerfileApplication.
 type CreateDockerfileApplicationJSONBody struct {
+	// AutogenerateDomain If true and domains is empty, auto-generate a domain using the server's wildcard domain or sslip.io fallback. Default: true.
+	AutogenerateDomain *bool `json:"autogenerate_domain,omitempty"`
+
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
 	// BuildPack The build pack type.
 	BuildPack *CreateDockerfileApplicationJSONBodyBuildPack `json:"build_pack,omitempty"`
+
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -963,6 +1144,9 @@ type CreateDockerfileApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// HealthCheckEnabled Health check enabled.
 	HealthCheckEnabled *bool `json:"health_check_enabled,omitempty"`
@@ -1087,6 +1271,12 @@ type CreateDockerfileApplicationJSONBodyRedirect string
 
 // CreateDockerimageApplicationJSONBody defines parameters for CreateDockerimageApplication.
 type CreateDockerimageApplicationJSONBody struct {
+	// AutogenerateDomain If true and domains is empty, auto-generate a domain using the server's wildcard domain or sslip.io fallback. Default: true.
+	AutogenerateDomain *bool `json:"autogenerate_domain,omitempty"`
+
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
+
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
 
@@ -1113,6 +1303,9 @@ type CreateDockerimageApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// HealthCheckEnabled Health check enabled.
 	HealthCheckEnabled *bool `json:"health_check_enabled,omitempty"`
@@ -1234,6 +1427,9 @@ type CreateDockerimageApplicationJSONBodyRedirect string
 
 // CreatePrivateDeployKeyApplicationJSONBody defines parameters for CreatePrivateDeployKeyApplication.
 type CreatePrivateDeployKeyApplicationJSONBody struct {
+	// AutogenerateDomain If true and domains is empty, auto-generate a domain using the server's wildcard domain or sslip.io fallback. Default: true.
+	AutogenerateDomain *bool `json:"autogenerate_domain,omitempty"`
+
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1242,6 +1438,9 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 
 	// BuildPack The build pack type.
 	BuildPack CreatePrivateDeployKeyApplicationJSONBodyBuildPack `json:"build_pack"`
+
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1287,6 +1486,9 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// GitBranch The git branch.
 	GitBranch string `json:"git_branch"`
@@ -1444,6 +1646,9 @@ type CreatePrivateDeployKeyApplicationJSONBodyStaticImage string
 
 // CreatePrivateGithubAppApplicationJSONBody defines parameters for CreatePrivateGithubAppApplication.
 type CreatePrivateGithubAppApplicationJSONBody struct {
+	// AutogenerateDomain If true and domains is empty, auto-generate a domain using the server's wildcard domain or sslip.io fallback. Default: true.
+	AutogenerateDomain *bool `json:"autogenerate_domain,omitempty"`
+
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1452,6 +1657,9 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 
 	// BuildPack The build pack type.
 	BuildPack CreatePrivateGithubAppApplicationJSONBodyBuildPack `json:"build_pack"`
+
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1497,6 +1705,9 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// GitBranch The git branch.
 	GitBranch string `json:"git_branch"`
@@ -1654,6 +1865,9 @@ type CreatePrivateGithubAppApplicationJSONBodyStaticImage string
 
 // CreatePublicApplicationJSONBody defines parameters for CreatePublicApplication.
 type CreatePublicApplicationJSONBody struct {
+	// AutogenerateDomain If true and domains is empty, auto-generate a domain using the server's wildcard domain or sslip.io fallback. Default: true.
+	AutogenerateDomain *bool `json:"autogenerate_domain,omitempty"`
+
 	// BaseDirectory The base directory for all commands.
 	BaseDirectory *string `json:"base_directory,omitempty"`
 
@@ -1662,6 +1876,9 @@ type CreatePublicApplicationJSONBody struct {
 
 	// BuildPack The build pack type.
 	BuildPack CreatePublicApplicationJSONBodyBuildPack `json:"build_pack"`
+
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
 
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
@@ -1707,6 +1924,9 @@ type CreatePublicApplicationJSONBody struct {
 
 	// EnvironmentUuid The environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// GitBranch The git branch.
 	GitBranch string `json:"git_branch"`
@@ -1885,6 +2105,9 @@ type UpdateApplicationByUuidJSONBody struct {
 	// BuildPack The build pack type.
 	BuildPack *UpdateApplicationByUuidJSONBodyBuildPack `json:"build_pack,omitempty"`
 
+	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
+	ConnectToDockerNetwork *bool `json:"connect_to_docker_network,omitempty"`
+
 	// CustomDockerRunOptions Custom docker run options.
 	CustomDockerRunOptions *string `json:"custom_docker_run_options,omitempty"`
 
@@ -1926,6 +2149,9 @@ type UpdateApplicationByUuidJSONBody struct {
 
 	// EnvironmentName The environment name.
 	EnvironmentName *string `json:"environment_name,omitempty"`
+
+	// ForceDomainOverride Force domain usage even if conflicts are detected. Default is false.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// GitBranch The git branch.
 	GitBranch *string `json:"git_branch,omitempty"`
@@ -2068,9 +2294,6 @@ type UpdateApplicationByUuidJSONBodyRedirect string
 
 // UpdateEnvByApplicationUuidJSONBody defines parameters for UpdateEnvByApplicationUuid.
 type UpdateEnvByApplicationUuidJSONBody struct {
-	// IsBuildTime The flag to indicate if the environment variable is used in build time.
-	IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 	IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -2092,9 +2315,6 @@ type UpdateEnvByApplicationUuidJSONBody struct {
 
 // CreateEnvByApplicationUuidJSONBody defines parameters for CreateEnvByApplicationUuid.
 type CreateEnvByApplicationUuidJSONBody struct {
-	// IsBuildTime The flag to indicate if the environment variable is used in build time.
-	IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 	IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -2117,9 +2337,6 @@ type CreateEnvByApplicationUuidJSONBody struct {
 // UpdateEnvsByApplicationUuidJSONBody defines parameters for UpdateEnvsByApplicationUuid.
 type UpdateEnvsByApplicationUuidJSONBody struct {
 	Data []struct {
-		// IsBuildTime The flag to indicate if the environment variable is used in build time.
-		IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 		// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 		IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -2153,6 +2370,27 @@ type StartApplicationByUuidParams struct {
 
 	// InstantDeploy Instant deploy (skip queuing).
 	InstantDeploy *bool `form:"instant_deploy,omitempty" json:"instant_deploy,omitempty"`
+}
+
+// CreateCloudTokenJSONBody defines parameters for CreateCloudToken.
+type CreateCloudTokenJSONBody struct {
+	// Name A friendly name for the token.
+	Name string `json:"name"`
+
+	// Provider The cloud provider.
+	Provider CreateCloudTokenJSONBodyProvider `json:"provider"`
+
+	// Token The API token for the cloud provider.
+	Token string `json:"token"`
+}
+
+// CreateCloudTokenJSONBodyProvider defines parameters for CreateCloudToken.
+type CreateCloudTokenJSONBodyProvider string
+
+// UpdateCloudTokenByUuidJSONBody defines parameters for UpdateCloudTokenByUuid.
+type UpdateCloudTokenByUuidJSONBody struct {
+	// Name The friendly name for the token.
+	Name *string `json:"name,omitempty"`
 }
 
 // CreateDatabaseClickhouseJSONBody defines parameters for CreateDatabaseClickhouse.
@@ -2821,6 +3059,102 @@ type UpdateDatabaseByUuidJSONBody struct {
 	RedisPassword *string `json:"redis_password,omitempty"`
 }
 
+// CreateDatabaseBackupJSONBody defines parameters for CreateDatabaseBackup.
+type CreateDatabaseBackupJSONBody struct {
+	// BackupNow Whether to trigger backup immediately after creation
+	BackupNow *bool `json:"backup_now,omitempty"`
+
+	// DatabaseBackupRetentionAmountLocally Number of backups to retain locally
+	DatabaseBackupRetentionAmountLocally *int `json:"database_backup_retention_amount_locally,omitempty"`
+
+	// DatabaseBackupRetentionAmountS3 Number of backups to retain in S3
+	DatabaseBackupRetentionAmountS3 *int `json:"database_backup_retention_amount_s3,omitempty"`
+
+	// DatabaseBackupRetentionDaysLocally Number of days to retain backups locally
+	DatabaseBackupRetentionDaysLocally *int `json:"database_backup_retention_days_locally,omitempty"`
+
+	// DatabaseBackupRetentionDaysS3 Number of days to retain backups in S3
+	DatabaseBackupRetentionDaysS3 *int `json:"database_backup_retention_days_s3,omitempty"`
+
+	// DatabaseBackupRetentionMaxStorageLocally Max storage (MB) for local backups
+	DatabaseBackupRetentionMaxStorageLocally *int `json:"database_backup_retention_max_storage_locally,omitempty"`
+
+	// DatabaseBackupRetentionMaxStorageS3 Max storage (MB) for S3 backups
+	DatabaseBackupRetentionMaxStorageS3 *int `json:"database_backup_retention_max_storage_s3,omitempty"`
+
+	// DatabasesToBackup Comma separated list of databases to backup
+	DatabasesToBackup *string `json:"databases_to_backup,omitempty"`
+
+	// DumpAll Whether to dump all databases
+	DumpAll *bool `json:"dump_all,omitempty"`
+
+	// Enabled Whether the backup is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+
+	// Frequency Backup frequency (cron expression or: every_minute, hourly, daily, weekly, monthly, yearly)
+	Frequency string `json:"frequency"`
+
+	// S3StorageUuid S3 storage UUID (required if save_s3 is true)
+	S3StorageUuid *string `json:"s3_storage_uuid,omitempty"`
+
+	// SaveS3 Whether to save backups to S3
+	SaveS3 *bool `json:"save_s3,omitempty"`
+}
+
+// DeleteBackupConfigurationByUuidParams defines parameters for DeleteBackupConfigurationByUuid.
+type DeleteBackupConfigurationByUuidParams struct {
+	// DeleteS3 Whether to delete all backup files from S3
+	DeleteS3 *bool `form:"delete_s3,omitempty" json:"delete_s3,omitempty"`
+}
+
+// UpdateDatabaseBackupJSONBody defines parameters for UpdateDatabaseBackup.
+type UpdateDatabaseBackupJSONBody struct {
+	// BackupNow Whether to take a backup now or not
+	BackupNow *bool `json:"backup_now,omitempty"`
+
+	// DatabaseBackupRetentionAmountLocally Retention amount of the backup locally
+	DatabaseBackupRetentionAmountLocally *int `json:"database_backup_retention_amount_locally,omitempty"`
+
+	// DatabaseBackupRetentionAmountS3 Retention amount of the backup in s3
+	DatabaseBackupRetentionAmountS3 *int `json:"database_backup_retention_amount_s3,omitempty"`
+
+	// DatabaseBackupRetentionDaysLocally Retention days of the backup locally
+	DatabaseBackupRetentionDaysLocally *int `json:"database_backup_retention_days_locally,omitempty"`
+
+	// DatabaseBackupRetentionDaysS3 Retention days of the backup in s3
+	DatabaseBackupRetentionDaysS3 *int `json:"database_backup_retention_days_s3,omitempty"`
+
+	// DatabaseBackupRetentionMaxStorageLocally Max storage of the backup locally
+	DatabaseBackupRetentionMaxStorageLocally *int `json:"database_backup_retention_max_storage_locally,omitempty"`
+
+	// DatabaseBackupRetentionMaxStorageS3 Max storage of the backup in S3
+	DatabaseBackupRetentionMaxStorageS3 *int `json:"database_backup_retention_max_storage_s3,omitempty"`
+
+	// DatabasesToBackup Comma separated list of databases to backup
+	DatabasesToBackup *string `json:"databases_to_backup,omitempty"`
+
+	// DumpAll Whether all databases are dumped or not
+	DumpAll *bool `json:"dump_all,omitempty"`
+
+	// Enabled Whether the backup is enabled or not
+	Enabled *bool `json:"enabled,omitempty"`
+
+	// Frequency Frequency of the backup
+	Frequency *string `json:"frequency,omitempty"`
+
+	// S3StorageUuid S3 storage UUID
+	S3StorageUuid *string `json:"s3_storage_uuid,omitempty"`
+
+	// SaveS3 Whether data is saved in s3 or not
+	SaveS3 *bool `json:"save_s3,omitempty"`
+}
+
+// DeleteBackupExecutionByUuidParams defines parameters for DeleteBackupExecutionByUuid.
+type DeleteBackupExecutionByUuidParams struct {
+	// DeleteS3 Whether to delete the backup from S3
+	DeleteS3 *bool `form:"delete_s3,omitempty" json:"delete_s3,omitempty"`
+}
+
 // DeployByTagOrUuidParams defines parameters for DeployByTagOrUuid.
 type DeployByTagOrUuidParams struct {
 	// Tag Tag name(s). Comma separated list is also accepted.
@@ -2845,6 +3179,126 @@ type ListDeploymentsByAppUuidParams struct {
 	Take *int `form:"take,omitempty" json:"take,omitempty"`
 }
 
+// CreateGithubAppJSONBody defines parameters for CreateGithubApp.
+type CreateGithubAppJSONBody struct {
+	// ApiUrl API URL for the GitHub app (e.g., https://api.github.com).
+	ApiUrl string `json:"api_url"`
+
+	// AppId GitHub App ID from GitHub.
+	AppId int `json:"app_id"`
+
+	// ClientId GitHub OAuth App Client ID.
+	ClientId string `json:"client_id"`
+
+	// ClientSecret GitHub OAuth App Client Secret.
+	ClientSecret string `json:"client_secret"`
+
+	// CustomPort Custom port for SSH access (default: 22).
+	CustomPort *int `json:"custom_port,omitempty"`
+
+	// CustomUser Custom user for SSH access (default: git).
+	CustomUser *string `json:"custom_user,omitempty"`
+
+	// HtmlUrl HTML URL for the GitHub app (e.g., https://github.com).
+	HtmlUrl string `json:"html_url"`
+
+	// InstallationId GitHub Installation ID.
+	InstallationId int `json:"installation_id"`
+
+	// IsSystemWide Is this app system-wide (cloud only).
+	IsSystemWide *bool `json:"is_system_wide,omitempty"`
+
+	// Name Name of the GitHub app.
+	Name string `json:"name"`
+
+	// Organization Organization to associate the app with.
+	Organization *string `json:"organization"`
+
+	// PrivateKeyUuid UUID of an existing private key for GitHub App authentication.
+	PrivateKeyUuid string `json:"private_key_uuid"`
+
+	// WebhookSecret Webhook secret for GitHub webhooks.
+	WebhookSecret *string `json:"webhook_secret,omitempty"`
+}
+
+// UpdateGithubAppJSONBody defines parameters for UpdateGithubApp.
+type UpdateGithubAppJSONBody struct {
+	// ApiUrl GitHub API URL
+	ApiUrl *string `json:"api_url,omitempty"`
+
+	// AppId GitHub App ID
+	AppId *int `json:"app_id,omitempty"`
+
+	// ClientId GitHub Client ID
+	ClientId *string `json:"client_id,omitempty"`
+
+	// ClientSecret GitHub Client Secret
+	ClientSecret *string `json:"client_secret,omitempty"`
+
+	// CustomPort Custom port for SSH
+	CustomPort *int `json:"custom_port,omitempty"`
+
+	// CustomUser Custom user for SSH
+	CustomUser *string `json:"custom_user,omitempty"`
+
+	// HtmlUrl GitHub HTML URL
+	HtmlUrl *string `json:"html_url,omitempty"`
+
+	// InstallationId GitHub Installation ID
+	InstallationId *int `json:"installation_id,omitempty"`
+
+	// IsSystemWide Is system wide (non-cloud instances only)
+	IsSystemWide *bool `json:"is_system_wide,omitempty"`
+
+	// Name GitHub App name
+	Name *string `json:"name,omitempty"`
+
+	// Organization GitHub organization
+	Organization *string `json:"organization"`
+
+	// PrivateKeyUuid Private key UUID
+	PrivateKeyUuid *string `json:"private_key_uuid,omitempty"`
+
+	// WebhookSecret GitHub Webhook Secret
+	WebhookSecret *string `json:"webhook_secret,omitempty"`
+}
+
+// GetHetznerImagesParams defines parameters for GetHetznerImages.
+type GetHetznerImagesParams struct {
+	// CloudProviderTokenUuid Cloud provider token UUID. Required if cloud_provider_token_id is not provided.
+	CloudProviderTokenUuid *string `form:"cloud_provider_token_uuid,omitempty" json:"cloud_provider_token_uuid,omitempty"`
+
+	// CloudProviderTokenId Deprecated: Use cloud_provider_token_uuid instead. Cloud provider token UUID.
+	CloudProviderTokenId *string `form:"cloud_provider_token_id,omitempty" json:"cloud_provider_token_id,omitempty"`
+}
+
+// GetHetznerLocationsParams defines parameters for GetHetznerLocations.
+type GetHetznerLocationsParams struct {
+	// CloudProviderTokenUuid Cloud provider token UUID. Required if cloud_provider_token_id is not provided.
+	CloudProviderTokenUuid *string `form:"cloud_provider_token_uuid,omitempty" json:"cloud_provider_token_uuid,omitempty"`
+
+	// CloudProviderTokenId Deprecated: Use cloud_provider_token_uuid instead. Cloud provider token UUID.
+	CloudProviderTokenId *string `form:"cloud_provider_token_id,omitempty" json:"cloud_provider_token_id,omitempty"`
+}
+
+// GetHetznerServerTypesParams defines parameters for GetHetznerServerTypes.
+type GetHetznerServerTypesParams struct {
+	// CloudProviderTokenUuid Cloud provider token UUID. Required if cloud_provider_token_id is not provided.
+	CloudProviderTokenUuid *string `form:"cloud_provider_token_uuid,omitempty" json:"cloud_provider_token_uuid,omitempty"`
+
+	// CloudProviderTokenId Deprecated: Use cloud_provider_token_uuid instead. Cloud provider token UUID.
+	CloudProviderTokenId *string `form:"cloud_provider_token_id,omitempty" json:"cloud_provider_token_id,omitempty"`
+}
+
+// GetHetznerSshKeysParams defines parameters for GetHetznerSshKeys.
+type GetHetznerSshKeysParams struct {
+	// CloudProviderTokenUuid Cloud provider token UUID. Required if cloud_provider_token_id is not provided.
+	CloudProviderTokenUuid *string `form:"cloud_provider_token_uuid,omitempty" json:"cloud_provider_token_uuid,omitempty"`
+
+	// CloudProviderTokenId Deprecated: Use cloud_provider_token_uuid instead. Cloud provider token UUID.
+	CloudProviderTokenId *string `form:"cloud_provider_token_id,omitempty" json:"cloud_provider_token_id,omitempty"`
+}
+
 // CreateProjectJSONBody defines parameters for CreateProject.
 type CreateProjectJSONBody struct {
 	// Description The description of the project.
@@ -2860,6 +3314,12 @@ type UpdateProjectByUuidJSONBody struct {
 	Description *string `json:"description,omitempty"`
 
 	// Name The name of the project.
+	Name *string `json:"name,omitempty"`
+}
+
+// CreateEnvironmentJSONBody defines parameters for CreateEnvironment.
+type CreateEnvironmentJSONBody struct {
+	// Name The name of the environment.
 	Name *string `json:"name,omitempty"`
 }
 
@@ -2909,6 +3369,46 @@ type CreateServerJSONBody struct {
 
 // CreateServerJSONBodyProxyType defines parameters for CreateServer.
 type CreateServerJSONBodyProxyType string
+
+// CreateHetznerServerJSONBody defines parameters for CreateHetznerServer.
+type CreateHetznerServerJSONBody struct {
+	// CloudInitScript Cloud-init YAML script (optional)
+	CloudInitScript *string `json:"cloud_init_script,omitempty"`
+
+	// CloudProviderTokenId Deprecated: Use cloud_provider_token_uuid instead. Cloud provider token UUID.
+	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
+	CloudProviderTokenId *string `json:"cloud_provider_token_id,omitempty"`
+
+	// CloudProviderTokenUuid Cloud provider token UUID. Required if cloud_provider_token_id is not provided.
+	CloudProviderTokenUuid *string `json:"cloud_provider_token_uuid,omitempty"`
+
+	// EnableIpv4 Enable IPv4 (default: true)
+	EnableIpv4 *bool `json:"enable_ipv4,omitempty"`
+
+	// EnableIpv6 Enable IPv6 (default: true)
+	EnableIpv6 *bool `json:"enable_ipv6,omitempty"`
+
+	// HetznerSshKeyIds Additional Hetzner SSH key IDs
+	HetznerSshKeyIds *[]int `json:"hetzner_ssh_key_ids,omitempty"`
+
+	// Image Hetzner image ID
+	Image int `json:"image"`
+
+	// InstantValidate Validate server immediately after creation
+	InstantValidate *bool `json:"instant_validate,omitempty"`
+
+	// Location Hetzner location name
+	Location string `json:"location"`
+
+	// Name Server name (auto-generated if not provided)
+	Name *string `json:"name,omitempty"`
+
+	// PrivateKeyUuid Private key UUID
+	PrivateKeyUuid string `json:"private_key_uuid"`
+
+	// ServerType Hetzner server type name
+	ServerType string `json:"server_type"`
+}
 
 // UpdateServerByUuidJSONBody defines parameters for UpdateServerByUuid.
 type UpdateServerByUuidJSONBody struct {
@@ -3006,13 +3506,13 @@ type UpdateServiceByUuidJSONBody struct {
 	DestinationUuid *string `json:"destination_uuid,omitempty"`
 
 	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw string `json:"docker_compose_raw"`
+	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// EnvironmentName The environment name.
-	EnvironmentName string `json:"environment_name"`
+	EnvironmentName *string `json:"environment_name,omitempty"`
 
 	// EnvironmentUuid The environment UUID.
-	EnvironmentUuid string `json:"environment_uuid"`
+	EnvironmentUuid *string `json:"environment_uuid,omitempty"`
 
 	// InstantDeploy The flag to indicate if the service should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
@@ -3021,17 +3521,14 @@ type UpdateServiceByUuidJSONBody struct {
 	Name *string `json:"name,omitempty"`
 
 	// ProjectUuid The project UUID.
-	ProjectUuid string `json:"project_uuid"`
+	ProjectUuid *string `json:"project_uuid,omitempty"`
 
 	// ServerUuid The server UUID.
-	ServerUuid string `json:"server_uuid"`
+	ServerUuid *string `json:"server_uuid,omitempty"`
 }
 
 // UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
 type UpdateEnvByServiceUuidJSONBody struct {
-	// IsBuildTime The flag to indicate if the environment variable is used in build time.
-	IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 	IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -3053,9 +3550,6 @@ type UpdateEnvByServiceUuidJSONBody struct {
 
 // CreateEnvByServiceUuidJSONBody defines parameters for CreateEnvByServiceUuid.
 type CreateEnvByServiceUuidJSONBody struct {
-	// IsBuildTime The flag to indicate if the environment variable is used in build time.
-	IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 	// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 	IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -3078,9 +3572,6 @@ type CreateEnvByServiceUuidJSONBody struct {
 // UpdateEnvsByServiceUuidJSONBody defines parameters for UpdateEnvsByServiceUuid.
 type UpdateEnvsByServiceUuidJSONBody struct {
 	Data []struct {
-		// IsBuildTime The flag to indicate if the environment variable is used in build time.
-		IsBuildTime *bool `json:"is_build_time,omitempty"`
-
 		// IsLiteral The flag to indicate if the environment variable is a literal, nothing espaced.
 		IsLiteral *bool `json:"is_literal,omitempty"`
 
@@ -3099,6 +3590,12 @@ type UpdateEnvsByServiceUuidJSONBody struct {
 		// Value The value of the environment variable.
 		Value *string `json:"value,omitempty"`
 	} `json:"data"`
+}
+
+// RestartServiceByUuidParams defines parameters for RestartServiceByUuid.
+type RestartServiceByUuidParams struct {
+	// Latest Pull latest images.
+	Latest *bool `form:"latest,omitempty" json:"latest,omitempty"`
 }
 
 // CreateDockercomposeApplicationJSONRequestBody defines body for CreateDockercomposeApplication for application/json ContentType.
@@ -3131,6 +3628,12 @@ type CreateEnvByApplicationUuidJSONRequestBody CreateEnvByApplicationUuidJSONBod
 // UpdateEnvsByApplicationUuidJSONRequestBody defines body for UpdateEnvsByApplicationUuid for application/json ContentType.
 type UpdateEnvsByApplicationUuidJSONRequestBody UpdateEnvsByApplicationUuidJSONBody
 
+// CreateCloudTokenJSONRequestBody defines body for CreateCloudToken for application/json ContentType.
+type CreateCloudTokenJSONRequestBody CreateCloudTokenJSONBody
+
+// UpdateCloudTokenByUuidJSONRequestBody defines body for UpdateCloudTokenByUuid for application/json ContentType.
+type UpdateCloudTokenByUuidJSONRequestBody UpdateCloudTokenByUuidJSONBody
+
 // CreateDatabaseClickhouseJSONRequestBody defines body for CreateDatabaseClickhouse for application/json ContentType.
 type CreateDatabaseClickhouseJSONRequestBody CreateDatabaseClickhouseJSONBody
 
@@ -3158,11 +3661,26 @@ type CreateDatabaseRedisJSONRequestBody CreateDatabaseRedisJSONBody
 // UpdateDatabaseByUuidJSONRequestBody defines body for UpdateDatabaseByUuid for application/json ContentType.
 type UpdateDatabaseByUuidJSONRequestBody UpdateDatabaseByUuidJSONBody
 
+// CreateDatabaseBackupJSONRequestBody defines body for CreateDatabaseBackup for application/json ContentType.
+type CreateDatabaseBackupJSONRequestBody CreateDatabaseBackupJSONBody
+
+// UpdateDatabaseBackupJSONRequestBody defines body for UpdateDatabaseBackup for application/json ContentType.
+type UpdateDatabaseBackupJSONRequestBody UpdateDatabaseBackupJSONBody
+
+// CreateGithubAppJSONRequestBody defines body for CreateGithubApp for application/json ContentType.
+type CreateGithubAppJSONRequestBody CreateGithubAppJSONBody
+
+// UpdateGithubAppJSONRequestBody defines body for UpdateGithubApp for application/json ContentType.
+type UpdateGithubAppJSONRequestBody UpdateGithubAppJSONBody
+
 // CreateProjectJSONRequestBody defines body for CreateProject for application/json ContentType.
 type CreateProjectJSONRequestBody CreateProjectJSONBody
 
 // UpdateProjectByUuidJSONRequestBody defines body for UpdateProjectByUuid for application/json ContentType.
 type UpdateProjectByUuidJSONRequestBody UpdateProjectByUuidJSONBody
+
+// CreateEnvironmentJSONRequestBody defines body for CreateEnvironment for application/json ContentType.
+type CreateEnvironmentJSONRequestBody CreateEnvironmentJSONBody
 
 // CreatePrivateKeyJSONRequestBody defines body for CreatePrivateKey for application/json ContentType.
 type CreatePrivateKeyJSONRequestBody CreatePrivateKeyJSONBody
@@ -3172,6 +3690,9 @@ type UpdatePrivateKeyJSONRequestBody UpdatePrivateKeyJSONBody
 
 // CreateServerJSONRequestBody defines body for CreateServer for application/json ContentType.
 type CreateServerJSONRequestBody CreateServerJSONBody
+
+// CreateHetznerServerJSONRequestBody defines body for CreateHetznerServer for application/json ContentType.
+type CreateHetznerServerJSONRequestBody CreateHetznerServerJSONBody
 
 // UpdateServerByUuidJSONRequestBody defines body for UpdateServerByUuid for application/json ContentType.
 type UpdateServerByUuidJSONRequestBody UpdateServerByUuidJSONBody
@@ -3275,6 +3796,174 @@ func (t *Database) MergeMysqlDatabase(v MysqlDatabase) error {
 	return err
 }
 
+// AsRedisDatabase returns the union data inside the Database as a RedisDatabase
+func (t Database) AsRedisDatabase() (RedisDatabase, error) {
+	var body RedisDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRedisDatabase overwrites any union data inside the Database as the provided RedisDatabase
+func (t *Database) FromRedisDatabase(v RedisDatabase) error {
+	v.DatabaseType = "standalone-redis"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRedisDatabase performs a merge with any union data inside the Database, using the provided RedisDatabase
+func (t *Database) MergeRedisDatabase(v RedisDatabase) error {
+	v.DatabaseType = "standalone-redis"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsMariadbDatabase returns the union data inside the Database as a MariadbDatabase
+func (t Database) AsMariadbDatabase() (MariadbDatabase, error) {
+	var body MariadbDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMariadbDatabase overwrites any union data inside the Database as the provided MariadbDatabase
+func (t *Database) FromMariadbDatabase(v MariadbDatabase) error {
+	v.DatabaseType = "standalone-mariadb"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMariadbDatabase performs a merge with any union data inside the Database, using the provided MariadbDatabase
+func (t *Database) MergeMariadbDatabase(v MariadbDatabase) error {
+	v.DatabaseType = "standalone-mariadb"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsMongodbDatabase returns the union data inside the Database as a MongodbDatabase
+func (t Database) AsMongodbDatabase() (MongodbDatabase, error) {
+	var body MongodbDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMongodbDatabase overwrites any union data inside the Database as the provided MongodbDatabase
+func (t *Database) FromMongodbDatabase(v MongodbDatabase) error {
+	v.DatabaseType = "standalone-mongodb"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMongodbDatabase performs a merge with any union data inside the Database, using the provided MongodbDatabase
+func (t *Database) MergeMongodbDatabase(v MongodbDatabase) error {
+	v.DatabaseType = "standalone-mongodb"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsClickhouseDatabase returns the union data inside the Database as a ClickhouseDatabase
+func (t Database) AsClickhouseDatabase() (ClickhouseDatabase, error) {
+	var body ClickhouseDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromClickhouseDatabase overwrites any union data inside the Database as the provided ClickhouseDatabase
+func (t *Database) FromClickhouseDatabase(v ClickhouseDatabase) error {
+	v.DatabaseType = "standalone-clickhouse"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeClickhouseDatabase performs a merge with any union data inside the Database, using the provided ClickhouseDatabase
+func (t *Database) MergeClickhouseDatabase(v ClickhouseDatabase) error {
+	v.DatabaseType = "standalone-clickhouse"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDragonflyDatabase returns the union data inside the Database as a DragonflyDatabase
+func (t Database) AsDragonflyDatabase() (DragonflyDatabase, error) {
+	var body DragonflyDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDragonflyDatabase overwrites any union data inside the Database as the provided DragonflyDatabase
+func (t *Database) FromDragonflyDatabase(v DragonflyDatabase) error {
+	v.DatabaseType = "standalone-dragonfly"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDragonflyDatabase performs a merge with any union data inside the Database, using the provided DragonflyDatabase
+func (t *Database) MergeDragonflyDatabase(v DragonflyDatabase) error {
+	v.DatabaseType = "standalone-dragonfly"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsKeydbDatabase returns the union data inside the Database as a KeydbDatabase
+func (t Database) AsKeydbDatabase() (KeydbDatabase, error) {
+	var body KeydbDatabase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromKeydbDatabase overwrites any union data inside the Database as the provided KeydbDatabase
+func (t *Database) FromKeydbDatabase(v KeydbDatabase) error {
+	v.DatabaseType = "standalone-keydb"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeKeydbDatabase performs a merge with any union data inside the Database, using the provided KeydbDatabase
+func (t *Database) MergeKeydbDatabase(v KeydbDatabase) error {
+	v.DatabaseType = "standalone-keydb"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 func (t Database) Discriminator() (string, error) {
 	var discriminator struct {
 		Discriminator string `json:"database_type"`
@@ -3291,10 +3980,22 @@ func (t Database) ValueByDiscriminator() (interface{}, error) {
 	switch discriminator {
 	case "DatabaseCommon":
 		return t.AsDatabaseCommon()
+	case "standalone-clickhouse":
+		return t.AsClickhouseDatabase()
+	case "standalone-dragonfly":
+		return t.AsDragonflyDatabase()
+	case "standalone-keydb":
+		return t.AsKeydbDatabase()
+	case "standalone-mariadb":
+		return t.AsMariadbDatabase()
+	case "standalone-mongodb":
+		return t.AsMongodbDatabase()
 	case "standalone-mysql":
 		return t.AsMysqlDatabase()
 	case "standalone-postgresql":
 		return t.AsPostgresqlDatabase()
+	case "standalone-redis":
+		return t.AsRedisDatabase()
 	default:
 		return nil, errors.New("unknown discriminator value: " + discriminator)
 	}
@@ -3460,6 +4161,28 @@ type ClientInterface interface {
 	// StopApplicationByUuid request
 	StopApplicationByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ListCloudTokens request
+	ListCloudTokens(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateCloudTokenWithBody request with any body
+	CreateCloudTokenWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateCloudToken(ctx context.Context, body CreateCloudTokenJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteCloudTokenByUuid request
+	DeleteCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetCloudTokenByUuid request
+	GetCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateCloudTokenByUuidWithBody request with any body
+	UpdateCloudTokenByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateCloudTokenByUuid(ctx context.Context, uuid string, body UpdateCloudTokenByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ValidateCloudTokenByUuid request
+	ValidateCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ListDatabases request
 	ListDatabases(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -3514,6 +4237,28 @@ type ClientInterface interface {
 
 	UpdateDatabaseByUuid(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetDatabaseBackupsByUuid request
+	GetDatabaseBackupsByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateDatabaseBackupWithBody request with any body
+	CreateDatabaseBackupWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateDatabaseBackup(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteBackupConfigurationByUuid request
+	DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateDatabaseBackupWithBody request with any body
+	UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ListBackupExecutions request
+	ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteBackupExecutionByUuid request
+	DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RestartDatabaseByUuid request
 	RestartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -3535,14 +4280,51 @@ type ClientInterface interface {
 	// GetDeploymentByUuid request
 	GetDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CancelDeploymentByUuid request
+	CancelDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DisableApi request
 	DisableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnableApi request
 	EnableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ListGithubApps request
+	ListGithubApps(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateGithubAppWithBody request with any body
+	CreateGithubAppWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateGithubApp(ctx context.Context, body CreateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteGithubApp request
+	DeleteGithubApp(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UpdateGithubAppWithBody request with any body
+	UpdateGithubAppWithBody(ctx context.Context, githubAppId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UpdateGithubApp(ctx context.Context, githubAppId int, body UpdateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LoadRepositories request
+	LoadRepositories(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// LoadBranches request
+	LoadBranches(ctx context.Context, githubAppId int, owner string, repo string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// Healthcheck request
 	Healthcheck(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetHetznerImages request
+	GetHetznerImages(ctx context.Context, params *GetHetznerImagesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetHetznerLocations request
+	GetHetznerLocations(ctx context.Context, params *GetHetznerLocationsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetHetznerServerTypes request
+	GetHetznerServerTypes(ctx context.Context, params *GetHetznerServerTypesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetHetznerSshKeys request
+	GetHetznerSshKeys(ctx context.Context, params *GetHetznerSshKeysParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListProjects request
 	ListProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3562,6 +4344,17 @@ type ClientInterface interface {
 	UpdateProjectByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEnvironments request
+	GetEnvironments(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateEnvironmentWithBody request with any body
+	CreateEnvironmentWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateEnvironment(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteEnvironment request
+	DeleteEnvironment(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetEnvironmentByNameOrUuid request
 	GetEnvironmentByNameOrUuid(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3595,6 +4388,11 @@ type ClientInterface interface {
 	CreateServerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CreateServer(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateHetznerServerWithBody request with any body
+	CreateHetznerServerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateHetznerServer(ctx context.Context, body CreateHetznerServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteServerByUuid request
 	DeleteServerByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3657,7 +4455,7 @@ type ClientInterface interface {
 	DeleteEnvByServiceUuid(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RestartServiceByUuid request
-	RestartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RestartServiceByUuid(ctx context.Context, uuid string, params *RestartServiceByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// StartServiceByUuid request
 	StartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4032,6 +4830,102 @@ func (c *Client) StopApplicationByUuid(ctx context.Context, uuid string, reqEdit
 	return c.Client.Do(req)
 }
 
+func (c *Client) ListCloudTokens(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListCloudTokensRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateCloudTokenWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCloudTokenRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateCloudToken(ctx context.Context, body CreateCloudTokenJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCloudTokenRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteCloudTokenByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCloudTokenByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateCloudTokenByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCloudTokenByUuidRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateCloudTokenByUuid(ctx context.Context, uuid string, body UpdateCloudTokenByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCloudTokenByUuidRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ValidateCloudTokenByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewValidateCloudTokenByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ListDatabases(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewListDatabasesRequest(c.Server)
 	if err != nil {
@@ -4284,6 +5178,102 @@ func (c *Client) UpdateDatabaseByUuid(ctx context.Context, uuid string, body Upd
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetDatabaseBackupsByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDatabaseBackupsByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDatabaseBackupWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseBackupRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateDatabaseBackup(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateDatabaseBackupRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteBackupConfigurationByUuidRequest(c.Server, uuid, scheduledBackupUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateDatabaseBackupRequestWithBody(c.Server, uuid, scheduledBackupUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateDatabaseBackupRequest(c.Server, uuid, scheduledBackupUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListBackupExecutionsRequest(c.Server, uuid, scheduledBackupUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteBackupExecutionByUuidRequest(c.Server, uuid, scheduledBackupUuid, executionUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) RestartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRestartDatabaseByUuidRequest(c.Server, uuid)
 	if err != nil {
@@ -4368,6 +5358,18 @@ func (c *Client) GetDeploymentByUuid(ctx context.Context, uuid string, reqEditor
 	return c.Client.Do(req)
 }
 
+func (c *Client) CancelDeploymentByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCancelDeploymentByUuidRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) DisableApi(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDisableApiRequest(c.Server)
 	if err != nil {
@@ -4392,8 +5394,152 @@ func (c *Client) EnableApi(ctx context.Context, reqEditors ...RequestEditorFn) (
 	return c.Client.Do(req)
 }
 
+func (c *Client) ListGithubApps(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListGithubAppsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateGithubAppWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateGithubAppRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateGithubApp(ctx context.Context, body CreateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateGithubAppRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteGithubApp(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteGithubAppRequest(c.Server, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateGithubAppWithBody(ctx context.Context, githubAppId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateGithubAppRequestWithBody(c.Server, githubAppId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UpdateGithubApp(ctx context.Context, githubAppId int, body UpdateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateGithubAppRequest(c.Server, githubAppId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LoadRepositories(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLoadRepositoriesRequest(c.Server, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) LoadBranches(ctx context.Context, githubAppId int, owner string, repo string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewLoadBranchesRequest(c.Server, githubAppId, owner, repo)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) Healthcheck(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewHealthcheckRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHetznerImages(ctx context.Context, params *GetHetznerImagesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHetznerImagesRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHetznerLocations(ctx context.Context, params *GetHetznerLocationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHetznerLocationsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHetznerServerTypes(ctx context.Context, params *GetHetznerServerTypesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHetznerServerTypesRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetHetznerSshKeys(ctx context.Context, params *GetHetznerSshKeysParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetHetznerSshKeysRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4478,6 +5624,54 @@ func (c *Client) UpdateProjectByUuidWithBody(ctx context.Context, uuid string, c
 
 func (c *Client) UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateProjectByUuidRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetEnvironments(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEnvironmentsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateEnvironmentWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvironmentRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateEnvironment(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvironmentRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteEnvironment(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteEnvironmentRequest(c.Server, uuid, environmentNameOrUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -4622,6 +5816,30 @@ func (c *Client) CreateServerWithBody(ctx context.Context, contentType string, b
 
 func (c *Client) CreateServer(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateServerRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateHetznerServerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateHetznerServerRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateHetznerServer(ctx context.Context, body CreateHetznerServerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateHetznerServerRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4896,8 +6114,8 @@ func (c *Client) DeleteEnvByServiceUuid(ctx context.Context, uuid string, envUui
 	return c.Client.Do(req)
 }
 
-func (c *Client) RestartServiceByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRestartServiceByUuidRequest(c.Server, uuid)
+func (c *Client) RestartServiceByUuid(ctx context.Context, uuid string, params *RestartServiceByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRestartServiceByUuidRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5868,6 +7086,222 @@ func NewStopApplicationByUuidRequest(server string, uuid string) (*http.Request,
 	return req, nil
 }
 
+// NewListCloudTokensRequest generates requests for ListCloudTokens
+func NewListCloudTokensRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateCloudTokenRequest calls the generic CreateCloudToken builder with application/json body
+func NewCreateCloudTokenRequest(server string, body CreateCloudTokenJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateCloudTokenRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateCloudTokenRequestWithBody generates requests for CreateCloudToken with any type of body
+func NewCreateCloudTokenRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteCloudTokenByUuidRequest generates requests for DeleteCloudTokenByUuid
+func NewDeleteCloudTokenByUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetCloudTokenByUuidRequest generates requests for GetCloudTokenByUuid
+func NewGetCloudTokenByUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateCloudTokenByUuidRequest calls the generic UpdateCloudTokenByUuid builder with application/json body
+func NewUpdateCloudTokenByUuidRequest(server string, uuid string, body UpdateCloudTokenByUuidJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateCloudTokenByUuidRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUpdateCloudTokenByUuidRequestWithBody generates requests for UpdateCloudTokenByUuid with any type of body
+func NewUpdateCloudTokenByUuidRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewValidateCloudTokenByUuidRequest generates requests for ValidateCloudTokenByUuid
+func NewValidateCloudTokenByUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/cloud-tokens/%s/validate", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewListDatabasesRequest generates requests for ListDatabases
 func NewListDatabasesRequest(server string) (*http.Request, error) {
 	var err error
@@ -6400,6 +7834,315 @@ func NewUpdateDatabaseByUuidRequestWithBody(server string, uuid string, contentT
 	return req, nil
 }
 
+// NewGetDatabaseBackupsByUuidRequest generates requests for GetDatabaseBackupsByUuid
+func NewGetDatabaseBackupsByUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateDatabaseBackupRequest calls the generic CreateDatabaseBackup builder with application/json body
+func NewCreateDatabaseBackupRequest(server string, uuid string, body CreateDatabaseBackupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateDatabaseBackupRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCreateDatabaseBackupRequestWithBody generates requests for CreateDatabaseBackup with any type of body
+func NewCreateDatabaseBackupRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteBackupConfigurationByUuidRequest generates requests for DeleteBackupConfigurationByUuid
+func NewDeleteBackupConfigurationByUuidRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "scheduled_backup_uuid", runtime.ParamLocationPath, scheduledBackupUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DeleteS3 != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_s3", runtime.ParamLocationQuery, *params.DeleteS3); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateDatabaseBackupRequest calls the generic UpdateDatabaseBackup builder with application/json body
+func NewUpdateDatabaseBackupRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateDatabaseBackupRequestWithBody(server, uuid, scheduledBackupUuid, "application/json", bodyReader)
+}
+
+// NewUpdateDatabaseBackupRequestWithBody generates requests for UpdateDatabaseBackup with any type of body
+func NewUpdateDatabaseBackupRequestWithBody(server string, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "scheduled_backup_uuid", runtime.ParamLocationPath, scheduledBackupUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewListBackupExecutionsRequest generates requests for ListBackupExecutions
+func NewListBackupExecutionsRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "scheduled_backup_uuid", runtime.ParamLocationPath, scheduledBackupUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups/%s/executions", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDeleteBackupExecutionByUuidRequest generates requests for DeleteBackupExecutionByUuid
+func NewDeleteBackupExecutionByUuidRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "scheduled_backup_uuid", runtime.ParamLocationPath, scheduledBackupUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithLocation("simple", false, "execution_uuid", runtime.ParamLocationPath, executionUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/databases/%s/backups/%s/executions/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DeleteS3 != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "delete_s3", runtime.ParamLocationQuery, *params.DeleteS3); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRestartDatabaseByUuidRequest generates requests for RestartDatabaseByUuid
 func NewRestartDatabaseByUuidRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -6732,6 +8475,40 @@ func NewGetDeploymentByUuidRequest(server string, uuid string) (*http.Request, e
 	return req, nil
 }
 
+// NewCancelDeploymentByUuidRequest generates requests for CancelDeploymentByUuid
+func NewCancelDeploymentByUuidRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/deployments/%s/cancel", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDisableApiRequest generates requests for DisableApi
 func NewDisableApiRequest(server string) (*http.Request, error) {
 	var err error
@@ -6786,6 +8563,236 @@ func NewEnableApiRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewListGithubAppsRequest generates requests for ListGithubApps
+func NewListGithubAppsRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateGithubAppRequest calls the generic CreateGithubApp builder with application/json body
+func NewCreateGithubAppRequest(server string, body CreateGithubAppJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateGithubAppRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateGithubAppRequestWithBody generates requests for CreateGithubApp with any type of body
+func NewCreateGithubAppRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteGithubAppRequest generates requests for DeleteGithubApp
+func NewDeleteGithubAppRequest(server string, githubAppId int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "github_app_id", runtime.ParamLocationPath, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUpdateGithubAppRequest calls the generic UpdateGithubApp builder with application/json body
+func NewUpdateGithubAppRequest(server string, githubAppId int, body UpdateGithubAppJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUpdateGithubAppRequestWithBody(server, githubAppId, "application/json", bodyReader)
+}
+
+// NewUpdateGithubAppRequestWithBody generates requests for UpdateGithubApp with any type of body
+func NewUpdateGithubAppRequestWithBody(server string, githubAppId int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "github_app_id", runtime.ParamLocationPath, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewLoadRepositoriesRequest generates requests for LoadRepositories
+func NewLoadRepositoriesRequest(server string, githubAppId int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "github_app_id", runtime.ParamLocationPath, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps/%s/repositories", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewLoadBranchesRequest generates requests for LoadBranches
+func NewLoadBranchesRequest(server string, githubAppId int, owner string, repo string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "github_app_id", runtime.ParamLocationPath, githubAppId)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "owner", runtime.ParamLocationPath, owner)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithLocation("simple", false, "repo", runtime.ParamLocationPath, repo)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/github-apps/%s/repositories/%s/%s/branches", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewHealthcheckRequest generates requests for Healthcheck
 func NewHealthcheckRequest(server string) (*http.Request, error) {
 	var err error
@@ -6803,6 +8810,266 @@ func NewHealthcheckRequest(server string) (*http.Request, error) {
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHetznerImagesRequest generates requests for GetHetznerImages
+func NewGetHetznerImagesRequest(server string, params *GetHetznerImagesParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/hetzner/images")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CloudProviderTokenUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_uuid", runtime.ParamLocationQuery, *params.CloudProviderTokenUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CloudProviderTokenId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_id", runtime.ParamLocationQuery, *params.CloudProviderTokenId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHetznerLocationsRequest generates requests for GetHetznerLocations
+func NewGetHetznerLocationsRequest(server string, params *GetHetznerLocationsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/hetzner/locations")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CloudProviderTokenUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_uuid", runtime.ParamLocationQuery, *params.CloudProviderTokenUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CloudProviderTokenId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_id", runtime.ParamLocationQuery, *params.CloudProviderTokenId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHetznerServerTypesRequest generates requests for GetHetznerServerTypes
+func NewGetHetznerServerTypesRequest(server string, params *GetHetznerServerTypesParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/hetzner/server-types")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CloudProviderTokenUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_uuid", runtime.ParamLocationQuery, *params.CloudProviderTokenUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CloudProviderTokenId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_id", runtime.ParamLocationQuery, *params.CloudProviderTokenId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetHetznerSshKeysRequest generates requests for GetHetznerSshKeys
+func NewGetHetznerSshKeysRequest(server string, params *GetHetznerSshKeysParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/hetzner/ssh-keys")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CloudProviderTokenUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_uuid", runtime.ParamLocationQuery, *params.CloudProviderTokenUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CloudProviderTokenId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cloud_provider_token_id", runtime.ParamLocationQuery, *params.CloudProviderTokenId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -6991,6 +9258,128 @@ func NewUpdateProjectByUuidRequestWithBody(server string, uuid string, contentTy
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetEnvironmentsRequest generates requests for GetEnvironments
+func NewGetEnvironmentsRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/environments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateEnvironmentRequest calls the generic CreateEnvironment builder with application/json body
+func NewCreateEnvironmentRequest(server string, uuid string, body CreateEnvironmentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateEnvironmentRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCreateEnvironmentRequestWithBody generates requests for CreateEnvironment with any type of body
+func NewCreateEnvironmentRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/environments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteEnvironmentRequest generates requests for DeleteEnvironment
+func NewDeleteEnvironmentRequest(server string, uuid string, environmentNameOrUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "environment_name_or_uuid", runtime.ParamLocationPath, environmentNameOrUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/environments/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -7293,6 +9682,46 @@ func NewCreateServerRequestWithBody(server string, contentType string, body io.R
 	}
 
 	operationPath := fmt.Sprintf("/servers")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCreateHetznerServerRequest calls the generic CreateHetznerServer builder with application/json body
+func NewCreateHetznerServerRequest(server string, body CreateHetznerServerJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateHetznerServerRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCreateHetznerServerRequestWithBody generates requests for CreateHetznerServer with any type of body
+func NewCreateHetznerServerRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/servers/hetzner")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7998,7 +10427,7 @@ func NewDeleteEnvByServiceUuidRequest(server string, uuid string, envUuid string
 }
 
 // NewRestartServiceByUuidRequest generates requests for RestartServiceByUuid
-func NewRestartServiceByUuidRequest(server string, uuid string) (*http.Request, error) {
+func NewRestartServiceByUuidRequest(server string, uuid string, params *RestartServiceByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8021,6 +10450,28 @@ func NewRestartServiceByUuidRequest(server string, uuid string) (*http.Request, 
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Latest != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "latest", runtime.ParamLocationQuery, *params.Latest); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -8395,6 +10846,28 @@ type ClientWithResponsesInterface interface {
 	// StopApplicationByUuidWithResponse request
 	StopApplicationByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StopApplicationByUuidResponse, error)
 
+	// ListCloudTokensWithResponse request
+	ListCloudTokensWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListCloudTokensResponse, error)
+
+	// CreateCloudTokenWithBodyWithResponse request with any body
+	CreateCloudTokenWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCloudTokenResponse, error)
+
+	CreateCloudTokenWithResponse(ctx context.Context, body CreateCloudTokenJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCloudTokenResponse, error)
+
+	// DeleteCloudTokenByUuidWithResponse request
+	DeleteCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteCloudTokenByUuidResponse, error)
+
+	// GetCloudTokenByUuidWithResponse request
+	GetCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetCloudTokenByUuidResponse, error)
+
+	// UpdateCloudTokenByUuidWithBodyWithResponse request with any body
+	UpdateCloudTokenByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCloudTokenByUuidResponse, error)
+
+	UpdateCloudTokenByUuidWithResponse(ctx context.Context, uuid string, body UpdateCloudTokenByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCloudTokenByUuidResponse, error)
+
+	// ValidateCloudTokenByUuidWithResponse request
+	ValidateCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ValidateCloudTokenByUuidResponse, error)
+
 	// ListDatabasesWithResponse request
 	ListDatabasesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDatabasesResponse, error)
 
@@ -8449,6 +10922,28 @@ type ClientWithResponsesInterface interface {
 
 	UpdateDatabaseByUuidWithResponse(ctx context.Context, uuid string, body UpdateDatabaseByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseByUuidResponse, error)
 
+	// GetDatabaseBackupsByUuidWithResponse request
+	GetDatabaseBackupsByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDatabaseBackupsByUuidResponse, error)
+
+	// CreateDatabaseBackupWithBodyWithResponse request with any body
+	CreateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseBackupResponse, error)
+
+	CreateDatabaseBackupWithResponse(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseBackupResponse, error)
+
+	// DeleteBackupConfigurationByUuidWithResponse request
+	DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error)
+
+	// UpdateDatabaseBackupWithBodyWithResponse request with any body
+	UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
+
+	UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
+
+	// ListBackupExecutionsWithResponse request
+	ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error)
+
+	// DeleteBackupExecutionByUuidWithResponse request
+	DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error)
+
 	// RestartDatabaseByUuidWithResponse request
 	RestartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartDatabaseByUuidResponse, error)
 
@@ -8470,14 +10965,51 @@ type ClientWithResponsesInterface interface {
 	// GetDeploymentByUuidWithResponse request
 	GetDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDeploymentByUuidResponse, error)
 
+	// CancelDeploymentByUuidWithResponse request
+	CancelDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*CancelDeploymentByUuidResponse, error)
+
 	// DisableApiWithResponse request
 	DisableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DisableApiResponse, error)
 
 	// EnableApiWithResponse request
 	EnableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EnableApiResponse, error)
 
+	// ListGithubAppsWithResponse request
+	ListGithubAppsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListGithubAppsResponse, error)
+
+	// CreateGithubAppWithBodyWithResponse request with any body
+	CreateGithubAppWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGithubAppResponse, error)
+
+	CreateGithubAppWithResponse(ctx context.Context, body CreateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGithubAppResponse, error)
+
+	// DeleteGithubAppWithResponse request
+	DeleteGithubAppWithResponse(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*DeleteGithubAppResponse, error)
+
+	// UpdateGithubAppWithBodyWithResponse request with any body
+	UpdateGithubAppWithBodyWithResponse(ctx context.Context, githubAppId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGithubAppResponse, error)
+
+	UpdateGithubAppWithResponse(ctx context.Context, githubAppId int, body UpdateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGithubAppResponse, error)
+
+	// LoadRepositoriesWithResponse request
+	LoadRepositoriesWithResponse(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*LoadRepositoriesResponse, error)
+
+	// LoadBranchesWithResponse request
+	LoadBranchesWithResponse(ctx context.Context, githubAppId int, owner string, repo string, reqEditors ...RequestEditorFn) (*LoadBranchesResponse, error)
+
 	// HealthcheckWithResponse request
 	HealthcheckWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*HealthcheckResponse, error)
+
+	// GetHetznerImagesWithResponse request
+	GetHetznerImagesWithResponse(ctx context.Context, params *GetHetznerImagesParams, reqEditors ...RequestEditorFn) (*GetHetznerImagesResponse, error)
+
+	// GetHetznerLocationsWithResponse request
+	GetHetznerLocationsWithResponse(ctx context.Context, params *GetHetznerLocationsParams, reqEditors ...RequestEditorFn) (*GetHetznerLocationsResponse, error)
+
+	// GetHetznerServerTypesWithResponse request
+	GetHetznerServerTypesWithResponse(ctx context.Context, params *GetHetznerServerTypesParams, reqEditors ...RequestEditorFn) (*GetHetznerServerTypesResponse, error)
+
+	// GetHetznerSshKeysWithResponse request
+	GetHetznerSshKeysWithResponse(ctx context.Context, params *GetHetznerSshKeysParams, reqEditors ...RequestEditorFn) (*GetHetznerSshKeysResponse, error)
 
 	// ListProjectsWithResponse request
 	ListProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListProjectsResponse, error)
@@ -8497,6 +11029,17 @@ type ClientWithResponsesInterface interface {
 	UpdateProjectByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error)
 
 	UpdateProjectByUuidWithResponse(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error)
+
+	// GetEnvironmentsWithResponse request
+	GetEnvironmentsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentsResponse, error)
+
+	// CreateEnvironmentWithBodyWithResponse request with any body
+	CreateEnvironmentWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error)
+
+	CreateEnvironmentWithResponse(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error)
+
+	// DeleteEnvironmentWithResponse request
+	DeleteEnvironmentWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvironmentResponse, error)
 
 	// GetEnvironmentByNameOrUuidWithResponse request
 	GetEnvironmentByNameOrUuidWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentByNameOrUuidResponse, error)
@@ -8530,6 +11073,11 @@ type ClientWithResponsesInterface interface {
 	CreateServerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateServerResponse, error)
 
 	CreateServerWithResponse(ctx context.Context, body CreateServerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateServerResponse, error)
+
+	// CreateHetznerServerWithBodyWithResponse request with any body
+	CreateHetznerServerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHetznerServerResponse, error)
+
+	CreateHetznerServerWithResponse(ctx context.Context, body CreateHetznerServerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHetznerServerResponse, error)
 
 	// DeleteServerByUuidWithResponse request
 	DeleteServerByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteServerByUuidResponse, error)
@@ -8592,7 +11140,7 @@ type ClientWithResponsesInterface interface {
 	DeleteEnvByServiceUuidWithResponse(ctx context.Context, uuid string, envUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvByServiceUuidResponse, error)
 
 	// RestartServiceByUuidWithResponse request
-	RestartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error)
+	RestartServiceByUuidWithResponse(ctx context.Context, uuid string, params *RestartServiceByUuidParams, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error)
 
 	// StartServiceByUuidWithResponse request
 	StartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*StartServiceByUuidResponse, error)
@@ -8651,7 +11199,19 @@ type CreateDockercomposeApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                                 `json:"domain,omitempty"`
+			Message      *string                                                 `json:"message,omitempty"`
+			ResourceName *string                                                 `json:"resource_name,omitempty"`
+			ResourceType *CreateDockercomposeApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                                 `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreateDockercomposeApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreateDockercomposeApplicationResponse) Status() string {
@@ -8677,7 +11237,19 @@ type CreateDockerfileApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                              `json:"domain,omitempty"`
+			Message      *string                                              `json:"message,omitempty"`
+			ResourceName *string                                              `json:"resource_name,omitempty"`
+			ResourceType *CreateDockerfileApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                              `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreateDockerfileApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreateDockerfileApplicationResponse) Status() string {
@@ -8703,7 +11275,19 @@ type CreateDockerimageApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                               `json:"domain,omitempty"`
+			Message      *string                                               `json:"message,omitempty"`
+			ResourceName *string                                               `json:"resource_name,omitempty"`
+			ResourceType *CreateDockerimageApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                               `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreateDockerimageApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreateDockerimageApplicationResponse) Status() string {
@@ -8729,7 +11313,19 @@ type CreatePrivateDeployKeyApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                                    `json:"domain,omitempty"`
+			Message      *string                                                    `json:"message,omitempty"`
+			ResourceName *string                                                    `json:"resource_name,omitempty"`
+			ResourceType *CreatePrivateDeployKeyApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                                    `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreatePrivateDeployKeyApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreatePrivateDeployKeyApplicationResponse) Status() string {
@@ -8755,7 +11351,19 @@ type CreatePrivateGithubAppApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                                    `json:"domain,omitempty"`
+			Message      *string                                                    `json:"message,omitempty"`
+			ResourceName *string                                                    `json:"resource_name,omitempty"`
+			ResourceType *CreatePrivateGithubAppApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                                    `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreatePrivateGithubAppApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreatePrivateGithubAppApplicationResponse) Status() string {
@@ -8781,7 +11389,19 @@ type CreatePublicApplicationResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                          `json:"domain,omitempty"`
+			Message      *string                                          `json:"message,omitempty"`
+			ResourceName *string                                          `json:"resource_name,omitempty"`
+			ResourceType *CreatePublicApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                          `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type CreatePublicApplication409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreatePublicApplicationResponse) Status() string {
@@ -8860,7 +11480,19 @@ type UpdateApplicationByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                          `json:"domain,omitempty"`
+			Message      *string                                          `json:"message,omitempty"`
+			ResourceName *string                                          `json:"resource_name,omitempty"`
+			ResourceType *UpdateApplicationByUuid409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                          `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 }
+type UpdateApplicationByUuid409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r UpdateApplicationByUuidResponse) Status() string {
@@ -9123,6 +11755,180 @@ func (r StopApplicationByUuidResponse) StatusCode() int {
 	return 0
 }
 
+type ListCloudTokensResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		CreatedAt    *string                     `json:"created_at,omitempty"`
+		Name         *string                     `json:"name,omitempty"`
+		Provider     *ListCloudTokens200Provider `json:"provider,omitempty"`
+		ServersCount *int                        `json:"servers_count,omitempty"`
+		TeamId       *int                        `json:"team_id,omitempty"`
+		UpdatedAt    *string                     `json:"updated_at,omitempty"`
+		Uuid         *string                     `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+}
+type ListCloudTokens200Provider string
+
+// Status returns HTTPResponse.Status
+func (r ListCloudTokensResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListCloudTokensResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateCloudTokenResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		// Uuid The UUID of the token.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateCloudTokenResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateCloudTokenResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteCloudTokenByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteCloudTokenByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteCloudTokenByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetCloudTokenByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		CreatedAt    *string `json:"created_at,omitempty"`
+		Name         *string `json:"name,omitempty"`
+		Provider     *string `json:"provider,omitempty"`
+		ServersCount *int    `json:"servers_count,omitempty"`
+		TeamId       *int    `json:"team_id,omitempty"`
+		UpdatedAt    *string `json:"updated_at,omitempty"`
+		Uuid         *string `json:"uuid,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetCloudTokenByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetCloudTokenByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateCloudTokenByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateCloudTokenByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateCloudTokenByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ValidateCloudTokenByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+		Valid   *bool   `json:"valid,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r ValidateCloudTokenByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ValidateCloudTokenByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ListDatabasesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -9150,8 +11956,13 @@ func (r ListDatabasesResponse) StatusCode() int {
 type CreateDatabaseClickhouseResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9173,8 +11984,13 @@ func (r CreateDatabaseClickhouseResponse) StatusCode() int {
 type CreateDatabaseDragonflyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9196,8 +12012,13 @@ func (r CreateDatabaseDragonflyResponse) StatusCode() int {
 type CreateDatabaseKeydbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9219,8 +12040,13 @@ func (r CreateDatabaseKeydbResponse) StatusCode() int {
 type CreateDatabaseMariadbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9242,8 +12068,13 @@ func (r CreateDatabaseMariadbResponse) StatusCode() int {
 type CreateDatabaseMongodbResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9271,6 +12102,7 @@ type CreateDatabaseMysqlResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9298,6 +12130,7 @@ type CreateDatabasePostgresqlResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9319,8 +12152,13 @@ func (r CreateDatabasePostgresqlResponse) StatusCode() int {
 type CreateDatabaseRedisResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON400      *N400
-	JSON401      *N401
+	JSON201      *struct {
+		InternalDbUrl string `json:"internal_db_url"`
+		Uuid          string `json:"uuid"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9397,6 +12235,7 @@ type UpdateDatabaseByUuidResponse struct {
 	JSON400      *N400
 	JSON401      *N401
 	JSON404      *N404
+	JSON422      *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9409,6 +12248,170 @@ func (r UpdateDatabaseByUuidResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UpdateDatabaseByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetDatabaseBackupsByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *string
+	JSON400      *N400
+	JSON401      *N401
+	JSON404      *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDatabaseBackupsByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDatabaseBackupsByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateDatabaseBackupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		Message *string             `json:"message,omitempty"`
+		Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateDatabaseBackupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateDatabaseBackupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteBackupConfigurationByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON404 *struct {
+		Message *string `json:"message,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteBackupConfigurationByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteBackupConfigurationByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateDatabaseBackupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *N400
+	JSON401      *N401
+	JSON404      *N404
+	JSON422      *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateDatabaseBackupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateDatabaseBackupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ListBackupExecutionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Executions *[]struct {
+			CreatedAt *string `json:"created_at,omitempty"`
+			Filename  *string `json:"filename,omitempty"`
+			Message   *string `json:"message,omitempty"`
+			Size      *int    `json:"size,omitempty"`
+			Status    *string `json:"status,omitempty"`
+			Uuid      *string `json:"uuid,omitempty"`
+		} `json:"executions,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r ListBackupExecutionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListBackupExecutionsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteBackupExecutionByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON404 *struct {
+		Message *string `json:"message,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteBackupExecutionByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteBackupExecutionByUuidResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9599,6 +12602,40 @@ func (r GetDeploymentByUuidResponse) StatusCode() int {
 	return 0
 }
 
+type CancelDeploymentByUuidResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		DeploymentUuid *string `json:"deployment_uuid,omitempty"`
+		Message        *string `json:"message,omitempty"`
+		Status         *string `json:"status,omitempty"`
+	}
+	JSON400 *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON401 *N401
+	JSON403 *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r CancelDeploymentByUuidResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CancelDeploymentByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type DisableApiResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -9657,10 +12694,198 @@ func (r EnableApiResponse) StatusCode() int {
 	return 0
 }
 
+type ListGithubAppsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		ApiUrl         *string `json:"api_url,omitempty"`
+		AppId          *int    `json:"app_id,omitempty"`
+		ClientId       *string `json:"client_id,omitempty"`
+		CustomPort     *int    `json:"custom_port,omitempty"`
+		CustomUser     *string `json:"custom_user,omitempty"`
+		HtmlUrl        *string `json:"html_url,omitempty"`
+		Id             *int    `json:"id,omitempty"`
+		InstallationId *int    `json:"installation_id,omitempty"`
+		IsPublic       *bool   `json:"is_public,omitempty"`
+		IsSystemWide   *bool   `json:"is_system_wide,omitempty"`
+		Name           *string `json:"name,omitempty"`
+		Organization   *string `json:"organization"`
+		PrivateKeyId   *int    `json:"private_key_id,omitempty"`
+		TeamId         *int    `json:"team_id,omitempty"`
+		Type           *string `json:"type,omitempty"`
+		Uuid           *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+}
+
+// Status returns HTTPResponse.Status
+func (r ListGithubAppsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ListGithubAppsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateGithubAppResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		ApiUrl         *string `json:"api_url,omitempty"`
+		AppId          *int    `json:"app_id,omitempty"`
+		ClientId       *string `json:"client_id,omitempty"`
+		CustomPort     *int    `json:"custom_port,omitempty"`
+		CustomUser     *string `json:"custom_user,omitempty"`
+		HtmlUrl        *string `json:"html_url,omitempty"`
+		Id             *int    `json:"id,omitempty"`
+		InstallationId *int    `json:"installation_id,omitempty"`
+		IsSystemWide   *bool   `json:"is_system_wide,omitempty"`
+		Name           *string `json:"name,omitempty"`
+		Organization   *string `json:"organization"`
+		PrivateKeyId   *int    `json:"private_key_id,omitempty"`
+		TeamId         *int    `json:"team_id,omitempty"`
+		Uuid           *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateGithubAppResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateGithubAppResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteGithubAppResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON409 *struct {
+		Message *string `json:"message,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteGithubAppResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteGithubAppResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateGithubAppResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// Data Updated GitHub app data
+		Data    *map[string]interface{} `json:"data,omitempty"`
+		Message *string                 `json:"message,omitempty"`
+	}
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateGithubAppResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateGithubAppResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LoadRepositoriesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Repositories *[]map[string]interface{} `json:"repositories,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r LoadRepositoriesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LoadRepositoriesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type LoadBranchesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Branches *[]map[string]interface{} `json:"branches,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r LoadBranchesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r LoadBranchesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type HealthcheckResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *string
 	JSON400      *N400
 	JSON401      *N401
 }
@@ -9675,6 +12900,142 @@ func (r HealthcheckResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r HealthcheckResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHetznerImagesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		Architecture *string `json:"architecture,omitempty"`
+		Description  *string `json:"description,omitempty"`
+		Id           *int    `json:"id,omitempty"`
+		Name         *string `json:"name,omitempty"`
+		OsFlavor     *string `json:"os_flavor,omitempty"`
+		OsVersion    *string `json:"os_version,omitempty"`
+		Type         *string `json:"type,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHetznerImagesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHetznerImagesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHetznerLocationsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		City        *string  `json:"city,omitempty"`
+		Country     *string  `json:"country,omitempty"`
+		Description *string  `json:"description,omitempty"`
+		Id          *int     `json:"id,omitempty"`
+		Latitude    *float32 `json:"latitude,omitempty"`
+		Longitude   *float32 `json:"longitude,omitempty"`
+		Name        *string  `json:"name,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHetznerLocationsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHetznerLocationsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHetznerServerTypesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		Cores       *int     `json:"cores,omitempty"`
+		Description *string  `json:"description,omitempty"`
+		Disk        *int     `json:"disk,omitempty"`
+		Id          *int     `json:"id,omitempty"`
+		Memory      *float32 `json:"memory,omitempty"`
+		Name        *string  `json:"name,omitempty"`
+		Prices      *[]struct {
+			// Location Datacenter location name
+			Location    *string `json:"location,omitempty"`
+			PriceHourly *struct {
+				Gross *string `json:"gross,omitempty"`
+				Net   *string `json:"net,omitempty"`
+			} `json:"price_hourly,omitempty"`
+			PriceMonthly *struct {
+				Gross *string `json:"gross,omitempty"`
+				Net   *string `json:"net,omitempty"`
+			} `json:"price_monthly,omitempty"`
+		} `json:"prices,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHetznerServerTypesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHetznerServerTypesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetHetznerSshKeysResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]struct {
+		Fingerprint *string `json:"fingerprint,omitempty"`
+		Id          *int    `json:"id,omitempty"`
+		Name        *string `json:"name,omitempty"`
+		PublicKey   *string `json:"public_key,omitempty"`
+	}
+	JSON401 *N401
+	JSON404 *N404
+}
+
+// Status returns HTTPResponse.Status
+func (r GetHetznerSshKeysResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetHetznerSshKeysResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9715,6 +13076,7 @@ type CreateProjectResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9742,6 +13104,7 @@ type DeleteProjectByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9795,6 +13158,7 @@ type UpdateProjectByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9813,6 +13177,85 @@ func (r UpdateProjectByUuidResponse) StatusCode() int {
 	return 0
 }
 
+type GetEnvironmentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Environment
+	JSON400      *N400
+	JSON401      *N401
+	JSON422      *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEnvironmentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEnvironmentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateEnvironmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		// Uuid The UUID of the environment.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateEnvironmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateEnvironmentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteEnvironmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON401 *N401
+	JSON422 *N422
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteEnvironmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteEnvironmentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetEnvironmentByNameOrUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -9820,6 +13263,7 @@ type GetEnvironmentByNameOrUuidResponse struct {
 	JSON400      *N400
 	JSON401      *N401
 	JSON404      *N404
+	JSON422      *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -9894,6 +13338,7 @@ type CreatePrivateKeyResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10025,6 +13470,7 @@ type CreateServerResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10043,6 +13489,42 @@ func (r CreateServerResponse) StatusCode() int {
 	return 0
 }
 
+type CreateHetznerServerResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		// HetznerServerId The Hetzner server ID.
+		HetznerServerId *int `json:"hetzner_server_id,omitempty"`
+
+		// Ip The server IP address.
+		Ip *string `json:"ip,omitempty"`
+
+		// Uuid The UUID of the server.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+	JSON404 *N404
+	JSON422 *N422
+	JSON429 *N429
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateHetznerServerResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateHetznerServerResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type DeleteServerByUuidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -10052,6 +13534,7 @@ type DeleteServerByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10102,6 +13585,7 @@ type UpdateServerByUuidResponse struct {
 	JSON400      *N400
 	JSON401      *N401
 	JSON404      *N404
+	JSON422      *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10188,6 +13672,7 @@ type ValidateServerByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10242,6 +13727,7 @@ type CreateServiceResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10325,6 +13811,7 @@ type UpdateServiceByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10377,6 +13864,7 @@ type UpdateEnvByServiceUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10404,6 +13892,7 @@ type CreateEnvByServiceUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON422 *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10429,6 +13918,7 @@ type UpdateEnvsByServiceUuidResponse struct {
 	JSON400      *N400
 	JSON401      *N401
 	JSON404      *N404
+	JSON422      *N422
 }
 
 // Status returns HTTPResponse.Status
@@ -10680,7 +14170,6 @@ func (r GetMembersByTeamIdResponse) StatusCode() int {
 type VersionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *string
 	JSON400      *N400
 	JSON401      *N401
 }
@@ -10952,6 +14441,76 @@ func (c *ClientWithResponses) StopApplicationByUuidWithResponse(ctx context.Cont
 	return ParseStopApplicationByUuidResponse(rsp)
 }
 
+// ListCloudTokensWithResponse request returning *ListCloudTokensResponse
+func (c *ClientWithResponses) ListCloudTokensWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListCloudTokensResponse, error) {
+	rsp, err := c.ListCloudTokens(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListCloudTokensResponse(rsp)
+}
+
+// CreateCloudTokenWithBodyWithResponse request with arbitrary body returning *CreateCloudTokenResponse
+func (c *ClientWithResponses) CreateCloudTokenWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCloudTokenResponse, error) {
+	rsp, err := c.CreateCloudTokenWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateCloudTokenResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateCloudTokenWithResponse(ctx context.Context, body CreateCloudTokenJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCloudTokenResponse, error) {
+	rsp, err := c.CreateCloudToken(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateCloudTokenResponse(rsp)
+}
+
+// DeleteCloudTokenByUuidWithResponse request returning *DeleteCloudTokenByUuidResponse
+func (c *ClientWithResponses) DeleteCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*DeleteCloudTokenByUuidResponse, error) {
+	rsp, err := c.DeleteCloudTokenByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteCloudTokenByUuidResponse(rsp)
+}
+
+// GetCloudTokenByUuidWithResponse request returning *GetCloudTokenByUuidResponse
+func (c *ClientWithResponses) GetCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetCloudTokenByUuidResponse, error) {
+	rsp, err := c.GetCloudTokenByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetCloudTokenByUuidResponse(rsp)
+}
+
+// UpdateCloudTokenByUuidWithBodyWithResponse request with arbitrary body returning *UpdateCloudTokenByUuidResponse
+func (c *ClientWithResponses) UpdateCloudTokenByUuidWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCloudTokenByUuidResponse, error) {
+	rsp, err := c.UpdateCloudTokenByUuidWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateCloudTokenByUuidResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateCloudTokenByUuidWithResponse(ctx context.Context, uuid string, body UpdateCloudTokenByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCloudTokenByUuidResponse, error) {
+	rsp, err := c.UpdateCloudTokenByUuid(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateCloudTokenByUuidResponse(rsp)
+}
+
+// ValidateCloudTokenByUuidWithResponse request returning *ValidateCloudTokenByUuidResponse
+func (c *ClientWithResponses) ValidateCloudTokenByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ValidateCloudTokenByUuidResponse, error) {
+	rsp, err := c.ValidateCloudTokenByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseValidateCloudTokenByUuidResponse(rsp)
+}
+
 // ListDatabasesWithResponse request returning *ListDatabasesResponse
 func (c *ClientWithResponses) ListDatabasesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListDatabasesResponse, error) {
 	rsp, err := c.ListDatabases(ctx, reqEditors...)
@@ -11132,6 +14691,76 @@ func (c *ClientWithResponses) UpdateDatabaseByUuidWithResponse(ctx context.Conte
 	return ParseUpdateDatabaseByUuidResponse(rsp)
 }
 
+// GetDatabaseBackupsByUuidWithResponse request returning *GetDatabaseBackupsByUuidResponse
+func (c *ClientWithResponses) GetDatabaseBackupsByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetDatabaseBackupsByUuidResponse, error) {
+	rsp, err := c.GetDatabaseBackupsByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDatabaseBackupsByUuidResponse(rsp)
+}
+
+// CreateDatabaseBackupWithBodyWithResponse request with arbitrary body returning *CreateDatabaseBackupResponse
+func (c *ClientWithResponses) CreateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDatabaseBackupResponse, error) {
+	rsp, err := c.CreateDatabaseBackupWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateDatabaseBackupResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateDatabaseBackupWithResponse(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseBackupResponse, error) {
+	rsp, err := c.CreateDatabaseBackup(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateDatabaseBackupResponse(rsp)
+}
+
+// DeleteBackupConfigurationByUuidWithResponse request returning *DeleteBackupConfigurationByUuidResponse
+func (c *ClientWithResponses) DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error) {
+	rsp, err := c.DeleteBackupConfigurationByUuid(ctx, uuid, scheduledBackupUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteBackupConfigurationByUuidResponse(rsp)
+}
+
+// UpdateDatabaseBackupWithBodyWithResponse request with arbitrary body returning *UpdateDatabaseBackupResponse
+func (c *ClientWithResponses) UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
+	rsp, err := c.UpdateDatabaseBackupWithBody(ctx, uuid, scheduledBackupUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateDatabaseBackupResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
+	rsp, err := c.UpdateDatabaseBackup(ctx, uuid, scheduledBackupUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateDatabaseBackupResponse(rsp)
+}
+
+// ListBackupExecutionsWithResponse request returning *ListBackupExecutionsResponse
+func (c *ClientWithResponses) ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error) {
+	rsp, err := c.ListBackupExecutions(ctx, uuid, scheduledBackupUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListBackupExecutionsResponse(rsp)
+}
+
+// DeleteBackupExecutionByUuidWithResponse request returning *DeleteBackupExecutionByUuidResponse
+func (c *ClientWithResponses) DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error) {
+	rsp, err := c.DeleteBackupExecutionByUuid(ctx, uuid, scheduledBackupUuid, executionUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteBackupExecutionByUuidResponse(rsp)
+}
+
 // RestartDatabaseByUuidWithResponse request returning *RestartDatabaseByUuidResponse
 func (c *ClientWithResponses) RestartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartDatabaseByUuidResponse, error) {
 	rsp, err := c.RestartDatabaseByUuid(ctx, uuid, reqEditors...)
@@ -11195,6 +14824,15 @@ func (c *ClientWithResponses) GetDeploymentByUuidWithResponse(ctx context.Contex
 	return ParseGetDeploymentByUuidResponse(rsp)
 }
 
+// CancelDeploymentByUuidWithResponse request returning *CancelDeploymentByUuidResponse
+func (c *ClientWithResponses) CancelDeploymentByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*CancelDeploymentByUuidResponse, error) {
+	rsp, err := c.CancelDeploymentByUuid(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCancelDeploymentByUuidResponse(rsp)
+}
+
 // DisableApiWithResponse request returning *DisableApiResponse
 func (c *ClientWithResponses) DisableApiWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DisableApiResponse, error) {
 	rsp, err := c.DisableApi(ctx, reqEditors...)
@@ -11213,6 +14851,76 @@ func (c *ClientWithResponses) EnableApiWithResponse(ctx context.Context, reqEdit
 	return ParseEnableApiResponse(rsp)
 }
 
+// ListGithubAppsWithResponse request returning *ListGithubAppsResponse
+func (c *ClientWithResponses) ListGithubAppsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListGithubAppsResponse, error) {
+	rsp, err := c.ListGithubApps(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseListGithubAppsResponse(rsp)
+}
+
+// CreateGithubAppWithBodyWithResponse request with arbitrary body returning *CreateGithubAppResponse
+func (c *ClientWithResponses) CreateGithubAppWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateGithubAppResponse, error) {
+	rsp, err := c.CreateGithubAppWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGithubAppResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateGithubAppWithResponse(ctx context.Context, body CreateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateGithubAppResponse, error) {
+	rsp, err := c.CreateGithubApp(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateGithubAppResponse(rsp)
+}
+
+// DeleteGithubAppWithResponse request returning *DeleteGithubAppResponse
+func (c *ClientWithResponses) DeleteGithubAppWithResponse(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*DeleteGithubAppResponse, error) {
+	rsp, err := c.DeleteGithubApp(ctx, githubAppId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteGithubAppResponse(rsp)
+}
+
+// UpdateGithubAppWithBodyWithResponse request with arbitrary body returning *UpdateGithubAppResponse
+func (c *ClientWithResponses) UpdateGithubAppWithBodyWithResponse(ctx context.Context, githubAppId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateGithubAppResponse, error) {
+	rsp, err := c.UpdateGithubAppWithBody(ctx, githubAppId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGithubAppResponse(rsp)
+}
+
+func (c *ClientWithResponses) UpdateGithubAppWithResponse(ctx context.Context, githubAppId int, body UpdateGithubAppJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateGithubAppResponse, error) {
+	rsp, err := c.UpdateGithubApp(ctx, githubAppId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUpdateGithubAppResponse(rsp)
+}
+
+// LoadRepositoriesWithResponse request returning *LoadRepositoriesResponse
+func (c *ClientWithResponses) LoadRepositoriesWithResponse(ctx context.Context, githubAppId int, reqEditors ...RequestEditorFn) (*LoadRepositoriesResponse, error) {
+	rsp, err := c.LoadRepositories(ctx, githubAppId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLoadRepositoriesResponse(rsp)
+}
+
+// LoadBranchesWithResponse request returning *LoadBranchesResponse
+func (c *ClientWithResponses) LoadBranchesWithResponse(ctx context.Context, githubAppId int, owner string, repo string, reqEditors ...RequestEditorFn) (*LoadBranchesResponse, error) {
+	rsp, err := c.LoadBranches(ctx, githubAppId, owner, repo, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseLoadBranchesResponse(rsp)
+}
+
 // HealthcheckWithResponse request returning *HealthcheckResponse
 func (c *ClientWithResponses) HealthcheckWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*HealthcheckResponse, error) {
 	rsp, err := c.Healthcheck(ctx, reqEditors...)
@@ -11220,6 +14928,42 @@ func (c *ClientWithResponses) HealthcheckWithResponse(ctx context.Context, reqEd
 		return nil, err
 	}
 	return ParseHealthcheckResponse(rsp)
+}
+
+// GetHetznerImagesWithResponse request returning *GetHetznerImagesResponse
+func (c *ClientWithResponses) GetHetznerImagesWithResponse(ctx context.Context, params *GetHetznerImagesParams, reqEditors ...RequestEditorFn) (*GetHetznerImagesResponse, error) {
+	rsp, err := c.GetHetznerImages(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHetznerImagesResponse(rsp)
+}
+
+// GetHetznerLocationsWithResponse request returning *GetHetznerLocationsResponse
+func (c *ClientWithResponses) GetHetznerLocationsWithResponse(ctx context.Context, params *GetHetznerLocationsParams, reqEditors ...RequestEditorFn) (*GetHetznerLocationsResponse, error) {
+	rsp, err := c.GetHetznerLocations(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHetznerLocationsResponse(rsp)
+}
+
+// GetHetznerServerTypesWithResponse request returning *GetHetznerServerTypesResponse
+func (c *ClientWithResponses) GetHetznerServerTypesWithResponse(ctx context.Context, params *GetHetznerServerTypesParams, reqEditors ...RequestEditorFn) (*GetHetznerServerTypesResponse, error) {
+	rsp, err := c.GetHetznerServerTypes(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHetznerServerTypesResponse(rsp)
+}
+
+// GetHetznerSshKeysWithResponse request returning *GetHetznerSshKeysResponse
+func (c *ClientWithResponses) GetHetznerSshKeysWithResponse(ctx context.Context, params *GetHetznerSshKeysParams, reqEditors ...RequestEditorFn) (*GetHetznerSshKeysResponse, error) {
+	rsp, err := c.GetHetznerSshKeys(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetHetznerSshKeysResponse(rsp)
 }
 
 // ListProjectsWithResponse request returning *ListProjectsResponse
@@ -11281,6 +15025,41 @@ func (c *ClientWithResponses) UpdateProjectByUuidWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseUpdateProjectByUuidResponse(rsp)
+}
+
+// GetEnvironmentsWithResponse request returning *GetEnvironmentsResponse
+func (c *ClientWithResponses) GetEnvironmentsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentsResponse, error) {
+	rsp, err := c.GetEnvironments(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEnvironmentsResponse(rsp)
+}
+
+// CreateEnvironmentWithBodyWithResponse request with arbitrary body returning *CreateEnvironmentResponse
+func (c *ClientWithResponses) CreateEnvironmentWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error) {
+	rsp, err := c.CreateEnvironmentWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateEnvironmentResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateEnvironmentWithResponse(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error) {
+	rsp, err := c.CreateEnvironment(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateEnvironmentResponse(rsp)
+}
+
+// DeleteEnvironmentWithResponse request returning *DeleteEnvironmentResponse
+func (c *ClientWithResponses) DeleteEnvironmentWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvironmentResponse, error) {
+	rsp, err := c.DeleteEnvironment(ctx, uuid, environmentNameOrUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteEnvironmentResponse(rsp)
 }
 
 // GetEnvironmentByNameOrUuidWithResponse request returning *GetEnvironmentByNameOrUuidResponse
@@ -11386,6 +15165,23 @@ func (c *ClientWithResponses) CreateServerWithResponse(ctx context.Context, body
 		return nil, err
 	}
 	return ParseCreateServerResponse(rsp)
+}
+
+// CreateHetznerServerWithBodyWithResponse request with arbitrary body returning *CreateHetznerServerResponse
+func (c *ClientWithResponses) CreateHetznerServerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHetznerServerResponse, error) {
+	rsp, err := c.CreateHetznerServerWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateHetznerServerResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateHetznerServerWithResponse(ctx context.Context, body CreateHetznerServerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHetznerServerResponse, error) {
+	rsp, err := c.CreateHetznerServer(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateHetznerServerResponse(rsp)
 }
 
 // DeleteServerByUuidWithResponse request returning *DeleteServerByUuidResponse
@@ -11581,8 +15377,8 @@ func (c *ClientWithResponses) DeleteEnvByServiceUuidWithResponse(ctx context.Con
 }
 
 // RestartServiceByUuidWithResponse request returning *RestartServiceByUuidResponse
-func (c *ClientWithResponses) RestartServiceByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error) {
-	rsp, err := c.RestartServiceByUuid(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) RestartServiceByUuidWithResponse(ctx context.Context, uuid string, params *RestartServiceByUuidParams, reqEditors ...RequestEditorFn) (*RestartServiceByUuidResponse, error) {
+	rsp, err := c.RestartServiceByUuid(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -11738,6 +15534,23 @@ func ParseCreateDockercomposeApplicationResponse(rsp *http.Response) (*CreateDoc
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                                 `json:"domain,omitempty"`
+				Message      *string                                                 `json:"message,omitempty"`
+				ResourceName *string                                                 `json:"resource_name,omitempty"`
+				ResourceType *CreateDockercomposeApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                                 `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
 	}
 
 	return response, nil
@@ -11779,6 +15592,23 @@ func ParseCreateDockerfileApplicationResponse(rsp *http.Response) (*CreateDocker
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                              `json:"domain,omitempty"`
+				Message      *string                                              `json:"message,omitempty"`
+				ResourceName *string                                              `json:"resource_name,omitempty"`
+				ResourceType *CreateDockerfileApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                              `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	}
 
@@ -11822,6 +15652,23 @@ func ParseCreateDockerimageApplicationResponse(rsp *http.Response) (*CreateDocke
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                               `json:"domain,omitempty"`
+				Message      *string                                               `json:"message,omitempty"`
+				ResourceName *string                                               `json:"resource_name,omitempty"`
+				ResourceType *CreateDockerimageApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                               `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
 	}
 
 	return response, nil
@@ -11863,6 +15710,23 @@ func ParseCreatePrivateDeployKeyApplicationResponse(rsp *http.Response) (*Create
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                                    `json:"domain,omitempty"`
+				Message      *string                                                    `json:"message,omitempty"`
+				ResourceName *string                                                    `json:"resource_name,omitempty"`
+				ResourceType *CreatePrivateDeployKeyApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                                    `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	}
 
@@ -11906,6 +15770,23 @@ func ParseCreatePrivateGithubAppApplicationResponse(rsp *http.Response) (*Create
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                                    `json:"domain,omitempty"`
+				Message      *string                                                    `json:"message,omitempty"`
+				ResourceName *string                                                    `json:"resource_name,omitempty"`
+				ResourceType *CreatePrivateGithubAppApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                                    `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
 	}
 
 	return response, nil
@@ -11947,6 +15828,23 @@ func ParseCreatePublicApplicationResponse(rsp *http.Response) (*CreatePublicAppl
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                          `json:"domain,omitempty"`
+				Message      *string                                          `json:"message,omitempty"`
+				ResourceName *string                                          `json:"resource_name,omitempty"`
+				ResourceType *CreatePublicApplication409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                          `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	}
 
@@ -12092,6 +15990,23 @@ func ParseUpdateApplicationByUuidResponse(rsp *http.Response) (*UpdateApplicatio
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                          `json:"domain,omitempty"`
+				Message      *string                                          `json:"message,omitempty"`
+				ResourceName *string                                          `json:"resource_name,omitempty"`
+				ResourceType *UpdateApplicationByUuid409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                          `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	}
 
@@ -12541,6 +16456,293 @@ func ParseStopApplicationByUuidResponse(rsp *http.Response) (*StopApplicationByU
 	return response, nil
 }
 
+// ParseListCloudTokensResponse parses an HTTP response from a ListCloudTokensWithResponse call
+func ParseListCloudTokensResponse(rsp *http.Response) (*ListCloudTokensResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListCloudTokensResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			CreatedAt    *string                     `json:"created_at,omitempty"`
+			Name         *string                     `json:"name,omitempty"`
+			Provider     *ListCloudTokens200Provider `json:"provider,omitempty"`
+			ServersCount *int                        `json:"servers_count,omitempty"`
+			TeamId       *int                        `json:"team_id,omitempty"`
+			UpdatedAt    *string                     `json:"updated_at,omitempty"`
+			Uuid         *string                     `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateCloudTokenResponse parses an HTTP response from a CreateCloudTokenWithResponse call
+func ParseCreateCloudTokenResponse(rsp *http.Response) (*CreateCloudTokenResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateCloudTokenResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			// Uuid The UUID of the token.
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteCloudTokenByUuidResponse parses an HTTP response from a DeleteCloudTokenByUuidWithResponse call
+func ParseDeleteCloudTokenByUuidResponse(rsp *http.Response) (*DeleteCloudTokenByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteCloudTokenByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetCloudTokenByUuidResponse parses an HTTP response from a GetCloudTokenByUuidWithResponse call
+func ParseGetCloudTokenByUuidResponse(rsp *http.Response) (*GetCloudTokenByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetCloudTokenByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			CreatedAt    *string `json:"created_at,omitempty"`
+			Name         *string `json:"name,omitempty"`
+			Provider     *string `json:"provider,omitempty"`
+			ServersCount *int    `json:"servers_count,omitempty"`
+			TeamId       *int    `json:"team_id,omitempty"`
+			UpdatedAt    *string `json:"updated_at,omitempty"`
+			Uuid         *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateCloudTokenByUuidResponse parses an HTTP response from a UpdateCloudTokenByUuidWithResponse call
+func ParseUpdateCloudTokenByUuidResponse(rsp *http.Response) (*UpdateCloudTokenByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateCloudTokenByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseValidateCloudTokenByUuidResponse parses an HTTP response from a ValidateCloudTokenByUuidWithResponse call
+func ParseValidateCloudTokenByUuidResponse(rsp *http.Response) (*ValidateCloudTokenByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ValidateCloudTokenByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+			Valid   *bool   `json:"valid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseListDatabasesResponse parses an HTTP response from a ListDatabasesWithResponse call
 func ParseListDatabasesResponse(rsp *http.Response) (*ListDatabasesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -12595,6 +16797,16 @@ func ParseCreateDatabaseClickhouseResponse(rsp *http.Response) (*CreateDatabaseC
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12608,6 +16820,13 @@ func ParseCreateDatabaseClickhouseResponse(rsp *http.Response) (*CreateDatabaseC
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12628,6 +16847,16 @@ func ParseCreateDatabaseDragonflyResponse(rsp *http.Response) (*CreateDatabaseDr
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12641,6 +16870,13 @@ func ParseCreateDatabaseDragonflyResponse(rsp *http.Response) (*CreateDatabaseDr
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12661,6 +16897,16 @@ func ParseCreateDatabaseKeydbResponse(rsp *http.Response) (*CreateDatabaseKeydbR
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12674,6 +16920,13 @@ func ParseCreateDatabaseKeydbResponse(rsp *http.Response) (*CreateDatabaseKeydbR
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12694,6 +16947,16 @@ func ParseCreateDatabaseMariadbResponse(rsp *http.Response) (*CreateDatabaseMari
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12707,6 +16970,13 @@ func ParseCreateDatabaseMariadbResponse(rsp *http.Response) (*CreateDatabaseMari
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12727,6 +16997,16 @@ func ParseCreateDatabaseMongodbResponse(rsp *http.Response) (*CreateDatabaseMong
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12740,6 +17020,13 @@ func ParseCreateDatabaseMongodbResponse(rsp *http.Response) (*CreateDatabaseMong
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12784,6 +17071,13 @@ func ParseCreateDatabaseMysqlResponse(rsp *http.Response) (*CreateDatabaseMysqlR
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -12827,6 +17121,13 @@ func ParseCreateDatabasePostgresqlResponse(rsp *http.Response) (*CreateDatabaseP
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -12846,6 +17147,16 @@ func ParseCreateDatabaseRedisResponse(rsp *http.Response) (*CreateDatabaseRedisR
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			InternalDbUrl string `json:"internal_db_url"`
+			Uuid          string `json:"uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -12859,6 +17170,13 @@ func ParseCreateDatabaseRedisResponse(rsp *http.Response) (*CreateDatabaseRedisR
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -12991,6 +17309,273 @@ func ParseUpdateDatabaseByUuidResponse(rsp *http.Response) (*UpdateDatabaseByUui
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetDatabaseBackupsByUuidResponse parses an HTTP response from a GetDatabaseBackupsByUuidWithResponse call
+func ParseGetDatabaseBackupsByUuidResponse(rsp *http.Response) (*GetDatabaseBackupsByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetDatabaseBackupsByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateDatabaseBackupResponse parses an HTTP response from a CreateDatabaseBackupWithResponse call
+func ParseCreateDatabaseBackupResponse(rsp *http.Response) (*CreateDatabaseBackupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateDatabaseBackupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			Message *string             `json:"message,omitempty"`
+			Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteBackupConfigurationByUuidResponse parses an HTTP response from a DeleteBackupConfigurationByUuidWithResponse call
+func ParseDeleteBackupConfigurationByUuidResponse(rsp *http.Response) (*DeleteBackupConfigurationByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteBackupConfigurationByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateDatabaseBackupResponse parses an HTTP response from a UpdateDatabaseBackupWithResponse call
+func ParseUpdateDatabaseBackupResponse(rsp *http.Response) (*UpdateDatabaseBackupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateDatabaseBackupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseListBackupExecutionsResponse parses an HTTP response from a ListBackupExecutionsWithResponse call
+func ParseListBackupExecutionsResponse(rsp *http.Response) (*ListBackupExecutionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ListBackupExecutionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Executions *[]struct {
+				CreatedAt *string `json:"created_at,omitempty"`
+				Filename  *string `json:"filename,omitempty"`
+				Message   *string `json:"message,omitempty"`
+				Size      *int    `json:"size,omitempty"`
+				Status    *string `json:"status,omitempty"`
+				Uuid      *string `json:"uuid,omitempty"`
+			} `json:"executions,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteBackupExecutionByUuidResponse parses an HTTP response from a DeleteBackupExecutionByUuidWithResponse call
+func ParseDeleteBackupExecutionByUuidResponse(rsp *http.Response) (*DeleteBackupExecutionByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteBackupExecutionByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -13321,6 +17906,68 @@ func ParseGetDeploymentByUuidResponse(rsp *http.Response) (*GetDeploymentByUuidR
 	return response, nil
 }
 
+// ParseCancelDeploymentByUuidResponse parses an HTTP response from a CancelDeploymentByUuidWithResponse call
+func ParseCancelDeploymentByUuidResponse(rsp *http.Response) (*CancelDeploymentByUuidResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CancelDeploymentByUuidResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			DeploymentUuid *string `json:"deployment_uuid,omitempty"`
+			Message        *string `json:"message,omitempty"`
+			Status         *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseDisableApiResponse parses an HTTP response from a DisableApiWithResponse call
 func ParseDisableApiResponse(rsp *http.Response) (*DisableApiResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -13423,22 +18070,39 @@ func ParseEnableApiResponse(rsp *http.Response) (*EnableApiResponse, error) {
 	return response, nil
 }
 
-// ParseHealthcheckResponse parses an HTTP response from a HealthcheckWithResponse call
-func ParseHealthcheckResponse(rsp *http.Response) (*HealthcheckResponse, error) {
+// ParseListGithubAppsResponse parses an HTTP response from a ListGithubAppsWithResponse call
+func ParseListGithubAppsResponse(rsp *http.Response) (*ListGithubAppsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &HealthcheckResponse{
+	response := &ListGithubAppsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
+		var dest []struct {
+			ApiUrl         *string `json:"api_url,omitempty"`
+			AppId          *int    `json:"app_id,omitempty"`
+			ClientId       *string `json:"client_id,omitempty"`
+			CustomPort     *int    `json:"custom_port,omitempty"`
+			CustomUser     *string `json:"custom_user,omitempty"`
+			HtmlUrl        *string `json:"html_url,omitempty"`
+			Id             *int    `json:"id,omitempty"`
+			InstallationId *int    `json:"installation_id,omitempty"`
+			IsPublic       *bool   `json:"is_public,omitempty"`
+			IsSystemWide   *bool   `json:"is_system_wide,omitempty"`
+			Name           *string `json:"name,omitempty"`
+			Organization   *string `json:"organization"`
+			PrivateKeyId   *int    `json:"private_key_id,omitempty"`
+			TeamId         *int    `json:"team_id,omitempty"`
+			Type           *string `json:"type,omitempty"`
+			Uuid           *string `json:"uuid,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -13457,6 +18121,473 @@ func ParseHealthcheckResponse(rsp *http.Response) (*HealthcheckResponse, error) 
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateGithubAppResponse parses an HTTP response from a CreateGithubAppWithResponse call
+func ParseCreateGithubAppResponse(rsp *http.Response) (*CreateGithubAppResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateGithubAppResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			ApiUrl         *string `json:"api_url,omitempty"`
+			AppId          *int    `json:"app_id,omitempty"`
+			ClientId       *string `json:"client_id,omitempty"`
+			CustomPort     *int    `json:"custom_port,omitempty"`
+			CustomUser     *string `json:"custom_user,omitempty"`
+			HtmlUrl        *string `json:"html_url,omitempty"`
+			Id             *int    `json:"id,omitempty"`
+			InstallationId *int    `json:"installation_id,omitempty"`
+			IsSystemWide   *bool   `json:"is_system_wide,omitempty"`
+			Name           *string `json:"name,omitempty"`
+			Organization   *string `json:"organization"`
+			PrivateKeyId   *int    `json:"private_key_id,omitempty"`
+			TeamId         *int    `json:"team_id,omitempty"`
+			Uuid           *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteGithubAppResponse parses an HTTP response from a DeleteGithubAppWithResponse call
+func ParseDeleteGithubAppResponse(rsp *http.Response) (*DeleteGithubAppResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteGithubAppResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUpdateGithubAppResponse parses an HTTP response from a UpdateGithubAppWithResponse call
+func ParseUpdateGithubAppResponse(rsp *http.Response) (*UpdateGithubAppResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UpdateGithubAppResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// Data Updated GitHub app data
+			Data    *map[string]interface{} `json:"data,omitempty"`
+			Message *string                 `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLoadRepositoriesResponse parses an HTTP response from a LoadRepositoriesWithResponse call
+func ParseLoadRepositoriesResponse(rsp *http.Response) (*LoadRepositoriesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LoadRepositoriesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Repositories *[]map[string]interface{} `json:"repositories,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseLoadBranchesResponse parses an HTTP response from a LoadBranchesWithResponse call
+func ParseLoadBranchesResponse(rsp *http.Response) (*LoadBranchesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &LoadBranchesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Branches *[]map[string]interface{} `json:"branches,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHealthcheckResponse parses an HTTP response from a HealthcheckWithResponse call
+func ParseHealthcheckResponse(rsp *http.Response) (*HealthcheckResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HealthcheckResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHetznerImagesResponse parses an HTTP response from a GetHetznerImagesWithResponse call
+func ParseGetHetznerImagesResponse(rsp *http.Response) (*GetHetznerImagesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHetznerImagesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			Architecture *string `json:"architecture,omitempty"`
+			Description  *string `json:"description,omitempty"`
+			Id           *int    `json:"id,omitempty"`
+			Name         *string `json:"name,omitempty"`
+			OsFlavor     *string `json:"os_flavor,omitempty"`
+			OsVersion    *string `json:"os_version,omitempty"`
+			Type         *string `json:"type,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHetznerLocationsResponse parses an HTTP response from a GetHetznerLocationsWithResponse call
+func ParseGetHetznerLocationsResponse(rsp *http.Response) (*GetHetznerLocationsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHetznerLocationsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			City        *string  `json:"city,omitempty"`
+			Country     *string  `json:"country,omitempty"`
+			Description *string  `json:"description,omitempty"`
+			Id          *int     `json:"id,omitempty"`
+			Latitude    *float32 `json:"latitude,omitempty"`
+			Longitude   *float32 `json:"longitude,omitempty"`
+			Name        *string  `json:"name,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHetznerServerTypesResponse parses an HTTP response from a GetHetznerServerTypesWithResponse call
+func ParseGetHetznerServerTypesResponse(rsp *http.Response) (*GetHetznerServerTypesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHetznerServerTypesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			Cores       *int     `json:"cores,omitempty"`
+			Description *string  `json:"description,omitempty"`
+			Disk        *int     `json:"disk,omitempty"`
+			Id          *int     `json:"id,omitempty"`
+			Memory      *float32 `json:"memory,omitempty"`
+			Name        *string  `json:"name,omitempty"`
+			Prices      *[]struct {
+				// Location Datacenter location name
+				Location    *string `json:"location,omitempty"`
+				PriceHourly *struct {
+					Gross *string `json:"gross,omitempty"`
+					Net   *string `json:"net,omitempty"`
+				} `json:"price_hourly,omitempty"`
+				PriceMonthly *struct {
+					Gross *string `json:"gross,omitempty"`
+					Net   *string `json:"net,omitempty"`
+				} `json:"price_monthly,omitempty"`
+			} `json:"prices,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetHetznerSshKeysResponse parses an HTTP response from a GetHetznerSshKeysWithResponse call
+func ParseGetHetznerSshKeysResponse(rsp *http.Response) (*GetHetznerSshKeysResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetHetznerSshKeysResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []struct {
+			Fingerprint *string `json:"fingerprint,omitempty"`
+			Id          *int    `json:"id,omitempty"`
+			Name        *string `json:"name,omitempty"`
+			PublicKey   *string `json:"public_key,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
@@ -13548,6 +18679,13 @@ func ParseCreateProjectResponse(rsp *http.Response) (*CreateProjectResponse, err
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -13596,6 +18734,13 @@ func ParseDeleteProjectByUuidResponse(rsp *http.Response) (*DeleteProjectByUuidR
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -13688,6 +18833,152 @@ func ParseUpdateProjectByUuidResponse(rsp *http.Response) (*UpdateProjectByUuidR
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetEnvironmentsResponse parses an HTTP response from a GetEnvironmentsWithResponse call
+func ParseGetEnvironmentsResponse(rsp *http.Response) (*GetEnvironmentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEnvironmentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Environment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateEnvironmentResponse parses an HTTP response from a CreateEnvironmentWithResponse call
+func ParseCreateEnvironmentResponse(rsp *http.Response) (*CreateEnvironmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateEnvironmentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			// Uuid The UUID of the environment.
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteEnvironmentResponse parses an HTTP response from a DeleteEnvironmentWithResponse call
+func ParseDeleteEnvironmentResponse(rsp *http.Response) (*DeleteEnvironmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteEnvironmentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -13734,6 +19025,13 @@ func ParseGetEnvironmentByNameOrUuidResponse(rsp *http.Response) (*GetEnvironmen
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -13856,6 +19154,13 @@ func ParseCreatePrivateKeyResponse(rsp *http.Response) (*CreatePrivateKeyRespons
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -14080,6 +19385,83 @@ func ParseCreateServerResponse(rsp *http.Response) (*CreateServerResponse, error
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateHetznerServerResponse parses an HTTP response from a CreateHetznerServerWithResponse call
+func ParseCreateHetznerServerResponse(rsp *http.Response) (*CreateHetznerServerResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateHetznerServerResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			// HetznerServerId The Hetzner server ID.
+			HetznerServerId *int `json:"hetzner_server_id,omitempty"`
+
+			// Ip The server IP address.
+			Ip *string `json:"ip,omitempty"`
+
+			// Uuid The UUID of the server.
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest N404
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest N429
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
 	}
 
 	return response, nil
@@ -14128,6 +19510,13 @@ func ParseDeleteServerByUuidResponse(rsp *http.Response) (*DeleteServerByUuidRes
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -14222,6 +19611,13 @@ func ParseUpdateServerByUuidResponse(rsp *http.Response) (*UpdateServerByUuidRes
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -14363,6 +19759,13 @@ func ParseValidateServerByUuidResponse(rsp *http.Response) (*ValidateServerByUui
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -14448,6 +19851,13 @@ func ParseCreateServiceResponse(rsp *http.Response) (*CreateServiceResponse, err
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -14598,6 +20008,13 @@ func ParseUpdateServiceByUuidResponse(rsp *http.Response) (*UpdateServiceByUuidR
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -14694,6 +20111,13 @@ func ParseUpdateEnvByServiceUuidResponse(rsp *http.Response) (*UpdateEnvByServic
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -14743,6 +20167,13 @@ func ParseCreateEnvByServiceUuidResponse(rsp *http.Response) (*CreateEnvByServic
 		}
 		response.JSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
+
 	}
 
 	return response, nil
@@ -14789,6 +20220,13 @@ func ParseUpdateEnvsByServiceUuidResponse(rsp *http.Response) (*UpdateEnvsByServ
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
+		var dest N422
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON422 = &dest
 
 	}
 
@@ -15219,13 +20657,6 @@ func ParseVersionResponse(rsp *http.Response) (*VersionResponse, error) {
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

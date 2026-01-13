@@ -88,6 +88,7 @@ Read-Only:
 - `created_at` (String)
 - `delete_unused_networks` (Boolean) The flag to indicate if the unused networks should be deleted.
 - `delete_unused_volumes` (Boolean) The flag to indicate if the unused volumes should be deleted.
+- `deployment_queue_limit` (Number)
 - `docker_cleanup_frequency` (String)
 - `docker_cleanup_threshold` (Number)
 - `dynamic_timeout` (Number)
@@ -106,6 +107,7 @@ Read-Only:
 - `is_sentinel_enabled` (Boolean)
 - `is_swarm_manager` (Boolean)
 - `is_swarm_worker` (Boolean)
+- `is_terminal_enabled` (Boolean)
 - `is_usable` (Boolean)
 - `logdrain_axiom_api_key` (String)
 - `logdrain_axiom_dataset_name` (String)

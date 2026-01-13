@@ -174,6 +174,96 @@ actions:
                 type: string
 
   - target: $.components.schemas
+    description: Add a new schema for a RedisDatabase
+    update:
+      RedisDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              redis_password:
+                type: string
+              redis_conf:
+                type: string
+                nullable: true
+
+  - target: $.components.schemas
+    description: Add a new schema for a MariadbDatabase
+    update:
+      MariadbDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              mariadb_conf:
+                type: string
+                nullable: true
+              mariadb_database:
+                type: string
+              mariadb_user:
+                type: string
+              mariadb_password:
+                type: string
+              mariadb_root_password:
+                type: string
+
+  - target: $.components.schemas
+    description: Add a new schema for a MongodbDatabase
+    update:
+      MongodbDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              mongo_conf:
+                type: string
+                nullable: true
+              mongo_initdb_root_username:
+                type: string
+              mongo_initdb_root_password:
+                type: string
+              mongo_initdb_database:
+                type: string
+
+  - target: $.components.schemas
+    description: Add a new schema for a ClickhouseDatabase
+    update:
+      ClickhouseDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              clickhouse_admin_user:
+                type: string
+              clickhouse_admin_password:
+                type: string
+
+  - target: $.components.schemas
+    description: Add a new schema for a DragonflyDatabase
+    update:
+      DragonflyDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              dragonfly_password:
+                type: string
+
+  - target: $.components.schemas
+    description: Add a new schema for a KeydbDatabase
+    update:
+      KeydbDatabase:
+        allOf:
+          - $ref: "#/components/schemas/DatabaseCommon"
+          - type: object
+            properties:
+              keydb_password:
+                type: string
+              keydb_conf:
+                type: string
+                nullable: true
+
+  - target: $.components.schemas
     description: Add a new schema for a Database
     update:
       Database:
@@ -182,10 +272,22 @@ actions:
           mapping:
             standalone-postgresql: "#/components/schemas/PostgresqlDatabase"
             standalone-mysql: "#/components/schemas/MysqlDatabase"
+            standalone-redis: "#/components/schemas/RedisDatabase"
+            standalone-mariadb: "#/components/schemas/MariadbDatabase"
+            standalone-mongodb: "#/components/schemas/MongodbDatabase"
+            standalone-clickhouse: "#/components/schemas/ClickhouseDatabase"
+            standalone-dragonfly: "#/components/schemas/DragonflyDatabase"
+            standalone-keydb: "#/components/schemas/KeydbDatabase"
         oneOf:
           - $ref: "#/components/schemas/DatabaseCommon" # Added so codegen creates a struct for usage
           - $ref: "#/components/schemas/PostgresqlDatabase"
           - $ref: "#/components/schemas/MysqlDatabase"
+          - $ref: "#/components/schemas/RedisDatabase"
+          - $ref: "#/components/schemas/MariadbDatabase"
+          - $ref: "#/components/schemas/MongodbDatabase"
+          - $ref: "#/components/schemas/ClickhouseDatabase"
+          - $ref: "#/components/schemas/DragonflyDatabase"
+          - $ref: "#/components/schemas/KeydbDatabase"
 
   - target: $.paths['/databases/{uuid}'].get.responses['200'].content['application/json'].schema
     description: Set response schema to new Database schema
@@ -198,7 +300,7 @@ actions:
       items:
         $ref: "#/components/schemas/Database"
 
-  - target: $.paths['/databases/postgresql', '/databases/mysql'].post.responses
+  - target: $.paths['/databases/postgresql', '/databases/mysql', '/databases/redis', '/databases/mariadb', '/databases/mongodb', '/databases/clickhouse', '/databases/dragonfly', '/databases/keydb'].post.responses
     description: Add missing response to database creation
     update:
       "201":

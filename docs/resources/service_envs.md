@@ -50,7 +50,6 @@ Required:
 
 Optional:
 
-- `is_build_time` (Boolean) The flag to indicate if the environment variable is used in build time.
 - `is_literal` (Boolean) The flag to indicate if the environment variable is a literal, nothing espaced.
 - `is_multiline` (Boolean) The flag to indicate if the environment variable is multiline.
 - `is_preview` (Boolean, Deprecated) Not supported on services and should not be used.

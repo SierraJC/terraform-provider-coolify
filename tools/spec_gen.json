@@ -1585,6 +1585,12 @@
 									}
 								},
 								{
+									"name": "deployment_queue_limit",
+									"int64": {
+										"computed_optional_required": "computed"
+									}
+								},
+								{
 									"name": "docker_cleanup_frequency",
 									"string": {
 										"computed_optional_required": "computed"
@@ -1688,6 +1694,12 @@
 								},
 								{
 									"name": "is_swarm_worker",
+									"bool": {
+										"computed_optional_required": "computed"
+									}
+								},
+								{
+									"name": "is_terminal_enabled",
 									"bool": {
 										"computed_optional_required": "computed"
 									}
@@ -2021,6 +2033,12 @@
 													}
 												},
 												{
+													"name": "deployment_queue_limit",
+													"int64": {
+														"computed_optional_required": "computed"
+													}
+												},
+												{
 													"name": "docker_cleanup_frequency",
 													"string": {
 														"computed_optional_required": "computed"
@@ -2124,6 +2142,12 @@
 												},
 												{
 													"name": "is_swarm_worker",
+													"bool": {
+														"computed_optional_required": "computed"
+													}
+												},
+												{
+													"name": "is_terminal_enabled",
 													"bool": {
 														"computed_optional_required": "computed"
 													}
@@ -2691,13 +2715,6 @@
 			"name": "application_envs",
 			"schema": {
 				"attributes": [
-					{
-						"name": "is_build_time",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is used in build time."
-						}
-					},
 					{
 						"name": "is_literal",
 						"bool": {
@@ -3403,6 +3420,12 @@
 									}
 								},
 								{
+									"name": "deployment_queue_limit",
+									"int64": {
+										"computed_optional_required": "computed"
+									}
+								},
+								{
 									"name": "docker_cleanup_frequency",
 									"string": {
 										"computed_optional_required": "computed"
@@ -3506,6 +3529,12 @@
 								},
 								{
 									"name": "is_swarm_worker",
+									"bool": {
+										"computed_optional_required": "computed"
+									}
+								},
+								{
+									"name": "is_terminal_enabled",
 									"bool": {
 										"computed_optional_required": "computed"
 									}
@@ -3633,13 +3662,6 @@
 			"name": "service_envs",
 			"schema": {
 				"attributes": [
-					{
-						"name": "is_build_time",
-						"bool": {
-							"computed_optional_required": "computed_optional",
-							"description": "The flag to indicate if the environment variable is used in build time."
-						}
-					},
 					{
 						"name": "is_literal",
 						"bool": {

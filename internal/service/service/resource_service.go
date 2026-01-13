@@ -140,7 +140,7 @@ func (r *ServiceResource) Update(ctx context.Context, req resource.UpdateRequest
 	}
 
 	if plan.InstantDeploy.ValueBool() {
-		r.client.RestartServiceByUuid(ctx, uuid)
+		r.client.RestartServiceByUuid(ctx, uuid, nil)
 	}
 
 	data, ok := r.ReadFromAPI(ctx, &resp.Diagnostics, uuid, plan)

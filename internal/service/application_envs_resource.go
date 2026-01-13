@@ -41,7 +41,6 @@ type applicationEnvsResourceModel struct {
 
 // Type alias for the anonymous struct used in the generated API code
 type updateEnvsByApplicationUuidJSONRequestBodyItem = struct {
-	IsBuildTime *bool   `json:"is_build_time,omitempty"`
 	IsLiteral   *bool   `json:"is_literal,omitempty"`
 	IsMultiline *bool   `json:"is_multiline,omitempty"`
 	IsPreview   *bool   `json:"is_preview,omitempty"`
@@ -102,11 +101,10 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
 		createResp, err := r.client.CreateEnvByApplicationUuidWithResponse(ctx, uuid, api.CreateEnvByApplicationUuidJSONRequestBody{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
-			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
-			IsPreview:   env.IsPreview.ValueBoolPointer(),
-			Key:         env.Key.ValueStringPointer(),
-			Value:       env.Value.ValueStringPointer(),
+			IsLiteral: env.IsLiteral.ValueBoolPointer(),
+			IsPreview: env.IsPreview.ValueBoolPointer(),
+			Key:       env.Key.ValueStringPointer(),
+			Value:     env.Value.ValueStringPointer(),
 		})
 
 		if err != nil {
@@ -214,7 +212,6 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 	var bulkUpdateEnvs = []updateEnvsByApplicationUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
 		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByApplicationUuidJSONRequestBodyItem{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
 			IsPreview:   env.IsPreview.ValueBoolPointer(),
 			Key:         env.Key.ValueStringPointer(),
@@ -349,7 +346,6 @@ func (r *applicationEnvsResource) apiToModel(
 	envs := make([]resource_application_envs.ApplicationEnvsModel, len(*response))
 	for i, env := range *response {
 		envs[i] = resource_application_envs.ApplicationEnvsModel{
-			IsBuildTime: flatten.Bool(env.IsBuildTime),
 			IsLiteral:   flatten.Bool(env.IsLiteral),
 			IsMultiline: flatten.Bool(env.IsMultiline),
 			IsPreview:   flatten.Bool(env.IsPreview),
