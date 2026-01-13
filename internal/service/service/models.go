@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
@@ -14,6 +15,13 @@ import (
 	"terraform-provider-coolify/internal/flatten"
 	sutil "terraform-provider-coolify/internal/service/util"
 )
+
+type ServiceUpdateRequest struct {
+	Name             *string `json:"name,omitempty"`
+	Description      *string `json:"description,omitempty"`
+	DockerComposeRaw string  `json:"docker_compose_raw"`
+	InstantDeploy    *bool   `json:"instant_deploy,omitempty"`
+}
 
 type ServiceModel struct {
 	Uuid                   types.String `tfsdk:"uuid"`
@@ -112,16 +120,15 @@ func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
 		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
 }
-func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
-	return api.UpdateServiceByUuidJSONRequestBody{
+func (m ServiceModel) ToAPIUpdate() ServiceUpdateRequest {
+	return ServiceUpdateRequest{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
-		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
-		EnvironmentName:  m.EnvironmentName.ValueString(),
-		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
-		ProjectUuid:      m.ProjectUuid.ValueString(),
-		ServerUuid:       m.ServerUuid.ValueString(),
 		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
 		DockerComposeRaw: *sutil.Base64EncodeAttr(m.Compose),
 	}
+}
+
+func (m ServiceModel) ToAPIUpdateJSON() ([]byte, error) {
+	return json.Marshal(m.ToAPIUpdate())
 }

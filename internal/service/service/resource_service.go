@@ -1,6 +1,7 @@
 package service
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"net/http"
@@ -122,7 +123,16 @@ func (r *ServiceResource) Update(ctx context.Context, req resource.UpdateRequest
 		"uuid": uuid,
 	})
 
-	updateResp, err := r.client.UpdateServiceByUuidWithResponse(ctx, uuid, plan.ToAPIUpdate())
+	updateBody, err := plan.ToAPIUpdateJSON()
+	if err != nil {
+		resp.Diagnostics.AddError(
+			fmt.Sprintf("Error marshaling update request: uuid=%s", uuid),
+			err.Error(),
+		)
+		return
+	}
+
+	updateResp, err := r.client.UpdateServiceByUuidWithBodyWithResponse(ctx, uuid, "application/json", bytes.NewReader(updateBody))
 
 	if err != nil {
 		resp.Diagnostics.AddError(
