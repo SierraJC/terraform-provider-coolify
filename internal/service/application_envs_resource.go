@@ -286,9 +286,17 @@ func (r *applicationEnvsResource) filterRelevantEnvs(
 	}
 
 	var filteredEnvs []resource_application_envs.ApplicationEnvsModel
-	for _, env := range stateEnvs {
-		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
+	for _, stateEnv := range stateEnvs {
+		key := fmt.Sprintf("%s-%t", stateEnv.Key.ValueString(), stateEnv.IsPreview.ValueBool())
 		if apiEnv, exists := apiEnvMap[key]; exists {
+			// Preserve the value from state/plan if the API returns null or empty.
+			// This happens for sensitive values (e.g., when is_shown_once is true).
+			// The API may return null or an empty string for masked values.
+			apiValueIsEmpty := apiEnv.Value.IsNull() || apiEnv.Value.ValueString() == ""
+			stateValueHasContent := !stateEnv.Value.IsNull() && stateEnv.Value.ValueString() != ""
+			if apiValueIsEmpty && stateValueHasContent {
+				apiEnv.Value = stateEnv.Value
+			}
 			filteredEnvs = append(filteredEnvs, apiEnv)
 		}
 	}
