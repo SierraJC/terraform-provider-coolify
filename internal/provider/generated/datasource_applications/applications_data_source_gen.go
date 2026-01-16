@@ -435,12 +435,19 @@ func ApplicationsDataSourceSchema(ctx context.Context) schema.Schema {
 				},
 				Computed: true,
 			},
+			"tag": schema.StringAttribute{
+				Optional:            true,
+				Computed:            true,
+				Description:         "Filter applications by tag name.",
+				MarkdownDescription: "Filter applications by tag name.",
+			},
 		},
 	}
 }
 
 type ApplicationsModel struct {
-	Applications types.Set `tfsdk:"applications"`
+	Applications types.Set    `tfsdk:"applications"`
+	Tag          types.String `tfsdk:"tag"`
 }
 
 var _ basetypes.ObjectTypable = ApplicationsType{}

@@ -162,96 +162,6 @@ const (
 	Traefik UpdateServerByUuidJSONBodyProxyType = "traefik"
 )
 
-// Defines values for CreateServiceJSONBodyType.
-const (
-	Activepieces                CreateServiceJSONBodyType = "activepieces"
-	Appsmith                    CreateServiceJSONBodyType = "appsmith"
-	Appwrite                    CreateServiceJSONBodyType = "appwrite"
-	Authentik                   CreateServiceJSONBodyType = "authentik"
-	Babybuddy                   CreateServiceJSONBodyType = "babybuddy"
-	Budge                       CreateServiceJSONBodyType = "budge"
-	Changedetection             CreateServiceJSONBodyType = "changedetection"
-	Chatwoot                    CreateServiceJSONBodyType = "chatwoot"
-	ClassicpressWithMariadb     CreateServiceJSONBodyType = "classicpress-with-mariadb"
-	ClassicpressWithMysql       CreateServiceJSONBodyType = "classicpress-with-mysql"
-	ClassicpressWithoutDatabase CreateServiceJSONBodyType = "classicpress-without-database"
-	Cloudflared                 CreateServiceJSONBodyType = "cloudflared"
-	CodeServer                  CreateServiceJSONBodyType = "code-server"
-	Dashboard                   CreateServiceJSONBodyType = "dashboard"
-	Directus                    CreateServiceJSONBodyType = "directus"
-	DirectusWithPostgresql      CreateServiceJSONBodyType = "directus-with-postgresql"
-	DockerRegistry              CreateServiceJSONBodyType = "docker-registry"
-	Docuseal                    CreateServiceJSONBodyType = "docuseal"
-	DocusealWithPostgres        CreateServiceJSONBodyType = "docuseal-with-postgres"
-	Dokuwiki                    CreateServiceJSONBodyType = "dokuwiki"
-	Duplicati                   CreateServiceJSONBodyType = "duplicati"
-	Emby                        CreateServiceJSONBodyType = "emby"
-	Embystat                    CreateServiceJSONBodyType = "embystat"
-	Fider                       CreateServiceJSONBodyType = "fider"
-	Filebrowser                 CreateServiceJSONBodyType = "filebrowser"
-	Firefly                     CreateServiceJSONBodyType = "firefly"
-	Formbricks                  CreateServiceJSONBodyType = "formbricks"
-	Ghost                       CreateServiceJSONBodyType = "ghost"
-	Gitea                       CreateServiceJSONBodyType = "gitea"
-	GiteaWithMariadb            CreateServiceJSONBodyType = "gitea-with-mariadb"
-	GiteaWithMysql              CreateServiceJSONBodyType = "gitea-with-mysql"
-	GiteaWithPostgresql         CreateServiceJSONBodyType = "gitea-with-postgresql"
-	Glance                      CreateServiceJSONBodyType = "glance"
-	Glances                     CreateServiceJSONBodyType = "glances"
-	Glitchtip                   CreateServiceJSONBodyType = "glitchtip"
-	Grafana                     CreateServiceJSONBodyType = "grafana"
-	GrafanaWithPostgresql       CreateServiceJSONBodyType = "grafana-with-postgresql"
-	Grocy                       CreateServiceJSONBodyType = "grocy"
-	Heimdall                    CreateServiceJSONBodyType = "heimdall"
-	Homepage                    CreateServiceJSONBodyType = "homepage"
-	Jellyfin                    CreateServiceJSONBodyType = "jellyfin"
-	Kuzzle                      CreateServiceJSONBodyType = "kuzzle"
-	Listmonk                    CreateServiceJSONBodyType = "listmonk"
-	Logto                       CreateServiceJSONBodyType = "logto"
-	Mediawiki                   CreateServiceJSONBodyType = "mediawiki"
-	Meilisearch                 CreateServiceJSONBodyType = "meilisearch"
-	Metabase                    CreateServiceJSONBodyType = "metabase"
-	Metube                      CreateServiceJSONBodyType = "metube"
-	Minio                       CreateServiceJSONBodyType = "minio"
-	Moodle                      CreateServiceJSONBodyType = "moodle"
-	N8n                         CreateServiceJSONBodyType = "n8n"
-	N8nWithPostgresql           CreateServiceJSONBodyType = "n8n-with-postgresql"
-	NextImageTransformation     CreateServiceJSONBodyType = "next-image-transformation"
-	Nextcloud                   CreateServiceJSONBodyType = "nextcloud"
-	Nocodb                      CreateServiceJSONBodyType = "nocodb"
-	Odoo                        CreateServiceJSONBodyType = "odoo"
-	Openblocks                  CreateServiceJSONBodyType = "openblocks"
-	Pairdrop                    CreateServiceJSONBodyType = "pairdrop"
-	Penpot                      CreateServiceJSONBodyType = "penpot"
-	Phpmyadmin                  CreateServiceJSONBodyType = "phpmyadmin"
-	Pocketbase                  CreateServiceJSONBodyType = "pocketbase"
-	Posthog                     CreateServiceJSONBodyType = "posthog"
-	ReactiveResume              CreateServiceJSONBodyType = "reactive-resume"
-	Rocketchat                  CreateServiceJSONBodyType = "rocketchat"
-	Shlink                      CreateServiceJSONBodyType = "shlink"
-	Slash                       CreateServiceJSONBodyType = "slash"
-	Snapdrop                    CreateServiceJSONBodyType = "snapdrop"
-	Statusnook                  CreateServiceJSONBodyType = "statusnook"
-	StirlingPdf                 CreateServiceJSONBodyType = "stirling-pdf"
-	Supabase                    CreateServiceJSONBodyType = "supabase"
-	Syncthing                   CreateServiceJSONBodyType = "syncthing"
-	Tolgee                      CreateServiceJSONBodyType = "tolgee"
-	Trigger                     CreateServiceJSONBodyType = "trigger"
-	TriggerWithExternalDatabase CreateServiceJSONBodyType = "trigger-with-external-database"
-	Twenty                      CreateServiceJSONBodyType = "twenty"
-	Umami                       CreateServiceJSONBodyType = "umami"
-	UnleashWithPostgresql       CreateServiceJSONBodyType = "unleash-with-postgresql"
-	UnleashWithoutDatabase      CreateServiceJSONBodyType = "unleash-without-database"
-	UptimeKuma                  CreateServiceJSONBodyType = "uptime-kuma"
-	Vaultwarden                 CreateServiceJSONBodyType = "vaultwarden"
-	Vikunja                     CreateServiceJSONBodyType = "vikunja"
-	Weblate                     CreateServiceJSONBodyType = "weblate"
-	Whoogle                     CreateServiceJSONBodyType = "whoogle"
-	WordpressWithMariadb        CreateServiceJSONBodyType = "wordpress-with-mariadb"
-	WordpressWithMysql          CreateServiceJSONBodyType = "wordpress-with-mysql"
-	WordpressWithoutDatabase    CreateServiceJSONBodyType = "wordpress-without-database"
-)
-
 // Application Application model
 type Application struct {
 	// BaseDirectory Base directory for all commands.
@@ -790,12 +700,9 @@ type PrivateKey struct {
 // Project Project model
 type Project struct {
 	Description *string `json:"description,omitempty"`
-
-	// Environments The environments of the project.
-	Environments *[]Environment `json:"environments,omitempty"`
-	Id           *int           `json:"id,omitempty"`
-	Name         *string        `json:"name,omitempty"`
-	Uuid         *string        `json:"uuid,omitempty"`
+	Id          *int    `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Uuid        *string `json:"uuid,omitempty"`
 }
 
 // RedisDatabase defines model for RedisDatabase.
@@ -1062,6 +969,12 @@ type N429 struct {
 	Message *string `json:"message,omitempty"`
 }
 
+// ListApplicationsParams defines parameters for ListApplications.
+type ListApplicationsParams struct {
+	// Tag Filter applications by tag name.
+	Tag *string `form:"tag,omitempty" json:"tag,omitempty"`
+}
+
 // CreateDockercomposeApplicationJSONBody defines parameters for CreateDockercomposeApplication.
 type CreateDockercomposeApplicationJSONBody struct {
 	// ConnectToDockerNetwork The flag to connect the service to the predefined Docker network.
@@ -1087,6 +1000,9 @@ type CreateDockercomposeApplicationJSONBody struct {
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
 
 	// Name The application name.
 	Name *string `json:"name,omitempty"`
@@ -1136,7 +1052,7 @@ type CreateDockerfileApplicationJSONBody struct {
 	// Dockerfile The Dockerfile content.
 	Dockerfile string `json:"dockerfile"`
 
-	// Domains The application domains.
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -1192,6 +1108,12 @@ type CreateDockerfileApplicationJSONBody struct {
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
 
 	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
 	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
@@ -1295,7 +1217,7 @@ type CreateDockerimageApplicationJSONBody struct {
 	// DockerRegistryImageTag The docker registry image tag.
 	DockerRegistryImageTag *string `json:"docker_registry_image_tag,omitempty"`
 
-	// Domains The application domains.
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -1351,6 +1273,12 @@ type CreateDockerimageApplicationJSONBody struct {
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
 
 	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
 	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
@@ -1460,14 +1388,17 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 	// DockerComposeCustomStartCommand The Docker Compose custom start command.
 	DockerComposeCustomStartCommand *string `json:"docker_compose_custom_start_command,omitempty"`
 
-	// DockerComposeDomains The Docker Compose domains.
-	DockerComposeDomains *[]interface{} `json:"docker_compose_domains,omitempty"`
+	// DockerComposeDomains Array of URLs to be applied to containers of a dockercompose application.
+	DockerComposeDomains *[]struct {
+		// Domain Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io")
+		Domain *string `json:"domain,omitempty"`
+
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+	} `json:"docker_compose_domains,omitempty"`
 
 	// DockerComposeLocation The Docker Compose location.
 	DockerComposeLocation *string `json:"docker_compose_location,omitempty"`
-
-	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// DockerRegistryImageName The docker registry image name.
 	DockerRegistryImageName *string `json:"docker_registry_image_name,omitempty"`
@@ -1478,7 +1409,10 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 	// Dockerfile The Dockerfile content.
 	Dockerfile *string `json:"dockerfile,omitempty"`
 
-	// Domains The application domains.
+	// DockerfileLocation The Dockerfile location in the repository.
+	DockerfileLocation *string `json:"dockerfile_location,omitempty"`
+
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -1547,8 +1481,20 @@ type CreatePrivateDeployKeyApplicationJSONBody struct {
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
 
+	// IsAutoDeployEnabled The flag to indicate if auto-deploy is enabled on git push. Defaults to true.
+	IsAutoDeployEnabled *bool `json:"is_auto_deploy_enabled,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
+
 	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
 	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
+
+	// IsSpa The flag to indicate if the application is a single-page application (SPA). Only relevant when is_static is true.
+	IsSpa *bool `json:"is_spa,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -1679,14 +1625,17 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 	// DockerComposeCustomStartCommand The Docker Compose custom start command.
 	DockerComposeCustomStartCommand *string `json:"docker_compose_custom_start_command,omitempty"`
 
-	// DockerComposeDomains The Docker Compose domains.
-	DockerComposeDomains *[]interface{} `json:"docker_compose_domains,omitempty"`
+	// DockerComposeDomains Array of URLs to be applied to containers of a dockercompose application.
+	DockerComposeDomains *[]struct {
+		// Domain Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io")
+		Domain *string `json:"domain,omitempty"`
+
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+	} `json:"docker_compose_domains,omitempty"`
 
 	// DockerComposeLocation The Docker Compose location.
 	DockerComposeLocation *string `json:"docker_compose_location,omitempty"`
-
-	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// DockerRegistryImageName The docker registry image name.
 	DockerRegistryImageName *string `json:"docker_registry_image_name,omitempty"`
@@ -1697,7 +1646,10 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 	// Dockerfile The Dockerfile content.
 	Dockerfile *string `json:"dockerfile,omitempty"`
 
-	// Domains The application domains.
+	// DockerfileLocation The Dockerfile location in the repository
+	DockerfileLocation *string `json:"dockerfile_location,omitempty"`
+
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -1769,8 +1721,20 @@ type CreatePrivateGithubAppApplicationJSONBody struct {
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
 
+	// IsAutoDeployEnabled The flag to indicate if auto-deploy is enabled on git push. Defaults to true.
+	IsAutoDeployEnabled *bool `json:"is_auto_deploy_enabled,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
+
 	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
 	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
+
+	// IsSpa The flag to indicate if the application is a single-page application (SPA). Only relevant when is_static is true.
+	IsSpa *bool `json:"is_spa,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -1898,14 +1862,17 @@ type CreatePublicApplicationJSONBody struct {
 	// DockerComposeCustomStartCommand The Docker Compose custom start command.
 	DockerComposeCustomStartCommand *string `json:"docker_compose_custom_start_command,omitempty"`
 
-	// DockerComposeDomains The Docker Compose domains.
-	DockerComposeDomains *[]interface{} `json:"docker_compose_domains,omitempty"`
+	// DockerComposeDomains Array of URLs to be applied to containers of a dockercompose application.
+	DockerComposeDomains *[]struct {
+		// Domain Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io")
+		Domain *string `json:"domain,omitempty"`
+
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+	} `json:"docker_compose_domains,omitempty"`
 
 	// DockerComposeLocation The Docker Compose location.
 	DockerComposeLocation *string `json:"docker_compose_location,omitempty"`
-
-	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// DockerRegistryImageName The docker registry image name.
 	DockerRegistryImageName *string `json:"docker_registry_image_name,omitempty"`
@@ -1916,7 +1883,10 @@ type CreatePublicApplicationJSONBody struct {
 	// Dockerfile The Dockerfile content.
 	Dockerfile *string `json:"dockerfile,omitempty"`
 
-	// Domains The application domains.
+	// DockerfileLocation The Dockerfile location in the repository.
+	DockerfileLocation *string `json:"dockerfile_location,omitempty"`
+
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -1985,8 +1955,20 @@ type CreatePublicApplicationJSONBody struct {
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
 
+	// IsAutoDeployEnabled The flag to indicate if auto-deploy is enabled on git push. Defaults to true.
+	IsAutoDeployEnabled *bool `json:"is_auto_deploy_enabled,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
+
 	// IsHttpBasicAuthEnabled HTTP Basic Authentication enabled.
 	IsHttpBasicAuthEnabled *bool `json:"is_http_basic_auth_enabled,omitempty"`
+
+	// IsSpa The flag to indicate if the application is a single-page application (SPA). Only relevant when is_static is true.
+	IsSpa *bool `json:"is_spa,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -2126,14 +2108,17 @@ type UpdateApplicationByUuidJSONBody struct {
 	// DockerComposeCustomStartCommand The Docker Compose custom start command.
 	DockerComposeCustomStartCommand *string `json:"docker_compose_custom_start_command,omitempty"`
 
-	// DockerComposeDomains The Docker Compose domains.
-	DockerComposeDomains *[]interface{} `json:"docker_compose_domains,omitempty"`
+	// DockerComposeDomains Array of URLs to be applied to containers of a dockercompose application.
+	DockerComposeDomains *[]struct {
+		// Domain Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io")
+		Domain *string `json:"domain,omitempty"`
+
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+	} `json:"docker_compose_domains,omitempty"`
 
 	// DockerComposeLocation The Docker Compose location.
 	DockerComposeLocation *string `json:"docker_compose_location,omitempty"`
-
-	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// DockerRegistryImageName The docker registry image name.
 	DockerRegistryImageName *string `json:"docker_registry_image_name,omitempty"`
@@ -2144,7 +2129,10 @@ type UpdateApplicationByUuidJSONBody struct {
 	// Dockerfile The Dockerfile content.
 	Dockerfile *string `json:"dockerfile,omitempty"`
 
-	// Domains The application domains.
+	// DockerfileLocation The Dockerfile location in the repository.
+	DockerfileLocation *string `json:"dockerfile_location,omitempty"`
+
+	// Domains The application URLs in a comma-separated list.
 	Domains *string `json:"domains,omitempty"`
 
 	// EnvironmentName The environment name.
@@ -2206,6 +2194,18 @@ type UpdateApplicationByUuidJSONBody struct {
 
 	// InstantDeploy The flag to indicate if the application should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
+
+	// IsAutoDeployEnabled The flag to indicate if auto-deploy is enabled on git push. Defaults to true.
+	IsAutoDeployEnabled *bool `json:"is_auto_deploy_enabled,omitempty"`
+
+	// IsContainerLabelEscapeEnabled Escape special characters in labels. By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$. If you want to use env variables inside the labels, turn this off.
+	IsContainerLabelEscapeEnabled *bool `json:"is_container_label_escape_enabled,omitempty"`
+
+	// IsForceHttpsEnabled The flag to indicate if HTTPS is forced. Defaults to true.
+	IsForceHttpsEnabled *bool `json:"is_force_https_enabled,omitempty"`
+
+	// IsSpa The flag to indicate if the application is a single-page application (SPA). Only relevant when is_static is true.
+	IsSpa *bool `json:"is_spa,omitempty"`
 
 	// IsStatic The flag to indicate if the application is static.
 	IsStatic *bool `json:"is_static,omitempty"`
@@ -3451,7 +3451,7 @@ type CreateServiceJSONBody struct {
 	// DestinationUuid Destination UUID. Required if server has multiple destinations.
 	DestinationUuid *string `json:"destination_uuid,omitempty"`
 
-	// DockerComposeRaw The Docker Compose raw content.
+	// DockerComposeRaw The base64 encoded Docker Compose content.
 	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// EnvironmentName Environment name. You need to provide at least one of environment_name or environment_uuid.
@@ -3459,6 +3459,9 @@ type CreateServiceJSONBody struct {
 
 	// EnvironmentUuid Environment UUID. You need to provide at least one of environment_name or environment_uuid.
 	EnvironmentUuid string `json:"environment_uuid"`
+
+	// ForceDomainOverride Force domain override even if conflicts are detected.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// InstantDeploy Start the service immediately after creation.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
@@ -3472,12 +3475,18 @@ type CreateServiceJSONBody struct {
 	// ServerUuid Server UUID.
 	ServerUuid string `json:"server_uuid"`
 
-	// Type The one-click service type
-	Type *CreateServiceJSONBodyType `json:"type,omitempty"`
-}
+	// Type The one-click service type (e.g. "actualbudget", "calibre-web", "gitea-with-mysql" ...)
+	Type *string `json:"type,omitempty"`
 
-// CreateServiceJSONBodyType defines parameters for CreateService.
-type CreateServiceJSONBodyType string
+	// Urls Array of URLs to be applied to containers of a service.
+	Urls *[]struct {
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+
+		// Url Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io").
+		Url *string `json:"url,omitempty"`
+	} `json:"urls,omitempty"`
+}
 
 // DeleteServiceByUuidParams defines parameters for DeleteServiceByUuid.
 type DeleteServiceByUuidParams struct {
@@ -3505,7 +3514,7 @@ type UpdateServiceByUuidJSONBody struct {
 	// DestinationUuid The destination UUID.
 	DestinationUuid *string `json:"destination_uuid,omitempty"`
 
-	// DockerComposeRaw The Docker Compose raw content.
+	// DockerComposeRaw The base64 encoded Docker Compose content.
 	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// EnvironmentName The environment name.
@@ -3513,6 +3522,9 @@ type UpdateServiceByUuidJSONBody struct {
 
 	// EnvironmentUuid The environment UUID.
 	EnvironmentUuid *string `json:"environment_uuid,omitempty"`
+
+	// ForceDomainOverride Force domain override even if conflicts are detected.
+	ForceDomainOverride *bool `json:"force_domain_override,omitempty"`
 
 	// InstantDeploy The flag to indicate if the service should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
@@ -3525,6 +3537,15 @@ type UpdateServiceByUuidJSONBody struct {
 
 	// ServerUuid The server UUID.
 	ServerUuid *string `json:"server_uuid,omitempty"`
+
+	// Urls Array of URLs to be applied to containers of a service.
+	Urls *[]struct {
+		// Name The service name as defined in docker-compose.
+		Name *string `json:"name,omitempty"`
+
+		// Url Comma-separated list of URLs (e.g. "http://app.coolify.io,https://app2.coolify.io").
+		Url *string `json:"url,omitempty"`
+	} `json:"urls,omitempty"`
 }
 
 // UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
@@ -4085,7 +4106,7 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// ListApplications request
-	ListApplications(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListApplications(ctx context.Context, params *ListApplicationsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateDockercomposeApplicationWithBody request with any body
 	CreateDockercomposeApplicationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4246,18 +4267,18 @@ type ClientInterface interface {
 	CreateDatabaseBackup(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteBackupConfigurationByUuid request
-	DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid string, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateDatabaseBackupWithBody request with any body
-	UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid string, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListBackupExecutions request
-	ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteBackupExecutionByUuid request
-	DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid string, executionUuid string, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RestartDatabaseByUuid request
 	RestartDatabaseByUuid(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4482,8 +4503,8 @@ type ClientInterface interface {
 	Version(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) ListApplications(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListApplicationsRequest(c.Server)
+func (c *Client) ListApplications(ctx context.Context, params *ListApplicationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListApplicationsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5214,7 +5235,7 @@ func (c *Client) CreateDatabaseBackup(ctx context.Context, uuid string, body Cre
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteBackupConfigurationByUuid(ctx context.Context, uuid string, scheduledBackupUuid string, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteBackupConfigurationByUuidRequest(c.Server, uuid, scheduledBackupUuid, params)
 	if err != nil {
 		return nil, err
@@ -5226,7 +5247,7 @@ func (c *Client) DeleteBackupConfigurationByUuid(ctx context.Context, uuid strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, scheduledBackupUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateDatabaseBackupRequestWithBody(c.Server, uuid, scheduledBackupUuid, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5238,7 +5259,7 @@ func (c *Client) UpdateDatabaseBackupWithBody(ctx context.Context, uuid string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateDatabaseBackup(ctx context.Context, uuid string, scheduledBackupUuid string, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateDatabaseBackupRequest(c.Server, uuid, scheduledBackupUuid, body)
 	if err != nil {
 		return nil, err
@@ -5250,7 +5271,7 @@ func (c *Client) UpdateDatabaseBackup(ctx context.Context, uuid string, schedule
 	return c.Client.Do(req)
 }
 
-func (c *Client) ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ListBackupExecutions(ctx context.Context, uuid string, scheduledBackupUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewListBackupExecutionsRequest(c.Server, uuid, scheduledBackupUuid)
 	if err != nil {
 		return nil, err
@@ -5262,7 +5283,7 @@ func (c *Client) ListBackupExecutions(ctx context.Context, uuid string, schedule
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteBackupExecutionByUuid(ctx context.Context, uuid string, scheduledBackupUuid string, executionUuid string, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteBackupExecutionByUuidRequest(c.Server, uuid, scheduledBackupUuid, executionUuid, params)
 	if err != nil {
 		return nil, err
@@ -6223,7 +6244,7 @@ func (c *Client) Version(ctx context.Context, reqEditors ...RequestEditorFn) (*h
 }
 
 // NewListApplicationsRequest generates requests for ListApplications
-func NewListApplicationsRequest(server string) (*http.Request, error) {
+func NewListApplicationsRequest(server string, params *ListApplicationsParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6239,6 +6260,28 @@ func NewListApplicationsRequest(server string) (*http.Request, error) {
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -7916,7 +7959,7 @@ func NewCreateDatabaseBackupRequestWithBody(server string, uuid string, contentT
 }
 
 // NewDeleteBackupConfigurationByUuidRequest generates requests for DeleteBackupConfigurationByUuid
-func NewDeleteBackupConfigurationByUuidRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams) (*http.Request, error) {
+func NewDeleteBackupConfigurationByUuidRequest(server string, uuid string, scheduledBackupUuid string, params *DeleteBackupConfigurationByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7979,7 +8022,7 @@ func NewDeleteBackupConfigurationByUuidRequest(server string, uuid string, sched
 }
 
 // NewUpdateDatabaseBackupRequest calls the generic UpdateDatabaseBackup builder with application/json body
-func NewUpdateDatabaseBackupRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody) (*http.Request, error) {
+func NewUpdateDatabaseBackupRequest(server string, uuid string, scheduledBackupUuid string, body UpdateDatabaseBackupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -7990,7 +8033,7 @@ func NewUpdateDatabaseBackupRequest(server string, uuid string, scheduledBackupU
 }
 
 // NewUpdateDatabaseBackupRequestWithBody generates requests for UpdateDatabaseBackup with any type of body
-func NewUpdateDatabaseBackupRequestWithBody(server string, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateDatabaseBackupRequestWithBody(server string, uuid string, scheduledBackupUuid string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8033,7 +8076,7 @@ func NewUpdateDatabaseBackupRequestWithBody(server string, uuid string, schedule
 }
 
 // NewListBackupExecutionsRequest generates requests for ListBackupExecutions
-func NewListBackupExecutionsRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID) (*http.Request, error) {
+func NewListBackupExecutionsRequest(server string, uuid string, scheduledBackupUuid string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8074,7 +8117,7 @@ func NewListBackupExecutionsRequest(server string, uuid string, scheduledBackupU
 }
 
 // NewDeleteBackupExecutionByUuidRequest generates requests for DeleteBackupExecutionByUuid
-func NewDeleteBackupExecutionByUuidRequest(server string, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams) (*http.Request, error) {
+func NewDeleteBackupExecutionByUuidRequest(server string, uuid string, scheduledBackupUuid string, executionUuid string, params *DeleteBackupExecutionByUuidParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10770,7 +10813,7 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// ListApplicationsWithResponse request
-	ListApplicationsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error)
+	ListApplicationsWithResponse(ctx context.Context, params *ListApplicationsParams, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error)
 
 	// CreateDockercomposeApplicationWithBodyWithResponse request with any body
 	CreateDockercomposeApplicationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateDockercomposeApplicationResponse, error)
@@ -10931,18 +10974,18 @@ type ClientWithResponsesInterface interface {
 	CreateDatabaseBackupWithResponse(ctx context.Context, uuid string, body CreateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateDatabaseBackupResponse, error)
 
 	// DeleteBackupConfigurationByUuidWithResponse request
-	DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error)
+	DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error)
 
 	// UpdateDatabaseBackupWithBodyWithResponse request with any body
-	UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
+	UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
 
-	UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
+	UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error)
 
 	// ListBackupExecutionsWithResponse request
-	ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error)
+	ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error)
 
 	// DeleteBackupExecutionByUuidWithResponse request
-	DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error)
+	DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, executionUuid string, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error)
 
 	// RestartDatabaseByUuidWithResponse request
 	RestartDatabaseByUuidWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RestartDatabaseByUuidResponse, error)
@@ -13727,8 +13770,20 @@ type CreateServiceResponse struct {
 	}
 	JSON400 *N400
 	JSON401 *N401
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                `json:"domain,omitempty"`
+			Message      *string                                `json:"message,omitempty"`
+			ResourceName *string                                `json:"resource_name,omitempty"`
+			ResourceType *CreateService409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 	JSON422 *N422
 }
+type CreateService409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r CreateServiceResponse) Status() string {
@@ -13811,8 +13866,20 @@ type UpdateServiceByUuidResponse struct {
 	JSON400 *N400
 	JSON401 *N401
 	JSON404 *N404
+	JSON409 *struct {
+		Conflicts *[]struct {
+			Domain       *string                                      `json:"domain,omitempty"`
+			Message      *string                                      `json:"message,omitempty"`
+			ResourceName *string                                      `json:"resource_name,omitempty"`
+			ResourceType *UpdateServiceByUuid409ConflictsResourceType `json:"resource_type,omitempty"`
+			ResourceUuid *string                                      `json:"resource_uuid"`
+		} `json:"conflicts,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Warning *string `json:"warning,omitempty"`
+	}
 	JSON422 *N422
 }
+type UpdateServiceByUuid409ConflictsResourceType string
 
 // Status returns HTTPResponse.Status
 func (r UpdateServiceByUuidResponse) Status() string {
@@ -14191,8 +14258,8 @@ func (r VersionResponse) StatusCode() int {
 }
 
 // ListApplicationsWithResponse request returning *ListApplicationsResponse
-func (c *ClientWithResponses) ListApplicationsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error) {
-	rsp, err := c.ListApplications(ctx, reqEditors...)
+func (c *ClientWithResponses) ListApplicationsWithResponse(ctx context.Context, params *ListApplicationsParams, reqEditors ...RequestEditorFn) (*ListApplicationsResponse, error) {
+	rsp, err := c.ListApplications(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -14718,7 +14785,7 @@ func (c *ClientWithResponses) CreateDatabaseBackupWithResponse(ctx context.Conte
 }
 
 // DeleteBackupConfigurationByUuidWithResponse request returning *DeleteBackupConfigurationByUuidResponse
-func (c *ClientWithResponses) DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error) {
+func (c *ClientWithResponses) DeleteBackupConfigurationByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, params *DeleteBackupConfigurationByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupConfigurationByUuidResponse, error) {
 	rsp, err := c.DeleteBackupConfigurationByUuid(ctx, uuid, scheduledBackupUuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -14727,7 +14794,7 @@ func (c *ClientWithResponses) DeleteBackupConfigurationByUuidWithResponse(ctx co
 }
 
 // UpdateDatabaseBackupWithBodyWithResponse request with arbitrary body returning *UpdateDatabaseBackupResponse
-func (c *ClientWithResponses) UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
+func (c *ClientWithResponses) UpdateDatabaseBackupWithBodyWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
 	rsp, err := c.UpdateDatabaseBackupWithBody(ctx, uuid, scheduledBackupUuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -14735,7 +14802,7 @@ func (c *ClientWithResponses) UpdateDatabaseBackupWithBodyWithResponse(ctx conte
 	return ParseUpdateDatabaseBackupResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
+func (c *ClientWithResponses) UpdateDatabaseBackupWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, body UpdateDatabaseBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateDatabaseBackupResponse, error) {
 	rsp, err := c.UpdateDatabaseBackup(ctx, uuid, scheduledBackupUuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -14744,7 +14811,7 @@ func (c *ClientWithResponses) UpdateDatabaseBackupWithResponse(ctx context.Conte
 }
 
 // ListBackupExecutionsWithResponse request returning *ListBackupExecutionsResponse
-func (c *ClientWithResponses) ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error) {
+func (c *ClientWithResponses) ListBackupExecutionsWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, reqEditors ...RequestEditorFn) (*ListBackupExecutionsResponse, error) {
 	rsp, err := c.ListBackupExecutions(ctx, uuid, scheduledBackupUuid, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -14753,7 +14820,7 @@ func (c *ClientWithResponses) ListBackupExecutionsWithResponse(ctx context.Conte
 }
 
 // DeleteBackupExecutionByUuidWithResponse request returning *DeleteBackupExecutionByUuidResponse
-func (c *ClientWithResponses) DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid openapi_types.UUID, executionUuid openapi_types.UUID, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error) {
+func (c *ClientWithResponses) DeleteBackupExecutionByUuidWithResponse(ctx context.Context, uuid string, scheduledBackupUuid string, executionUuid string, params *DeleteBackupExecutionByUuidParams, reqEditors ...RequestEditorFn) (*DeleteBackupExecutionByUuidResponse, error) {
 	rsp, err := c.DeleteBackupExecutionByUuid(ctx, uuid, scheduledBackupUuid, executionUuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -19852,6 +19919,23 @@ func ParseCreateServiceResponse(rsp *http.Response) (*CreateServiceResponse, err
 		}
 		response.JSON401 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                `json:"domain,omitempty"`
+				Message      *string                                `json:"message,omitempty"`
+				ResourceName *string                                `json:"resource_name,omitempty"`
+				ResourceType *CreateService409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest N422
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20007,6 +20091,23 @@ func ParseUpdateServiceByUuidResponse(rsp *http.Response) (*UpdateServiceByUuidR
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest struct {
+			Conflicts *[]struct {
+				Domain       *string                                      `json:"domain,omitempty"`
+				Message      *string                                      `json:"message,omitempty"`
+				ResourceName *string                                      `json:"resource_name,omitempty"`
+				ResourceType *UpdateServiceByUuid409ConflictsResourceType `json:"resource_type,omitempty"`
+				ResourceUuid *string                                      `json:"resource_uuid"`
+			} `json:"conflicts,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Warning *string `json:"warning,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
 		var dest N422

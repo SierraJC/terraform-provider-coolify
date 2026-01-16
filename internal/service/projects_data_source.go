@@ -42,21 +42,7 @@ func (d *projectsDataSource) Metadata(ctx context.Context, req datasource.Metada
 
 func (d *projectsDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = datasource_projects.ProjectsDataSourceSchema(ctx)
-	resp.Schema.Description = "Get a list of Coolify projects." +
-		"\nNOTE: Environments are not returned due to an API bug. Combine with `coolify_project` as a temporary workaround."
-
-	// todo: Coolify API bug, environments are not returned
-	if projectsSet, ok := resp.Schema.Attributes["projects"].(schema.SetNestedAttribute); ok {
-		if envAttr, ok := projectsSet.NestedObject.Attributes["environments"].(schema.ListNestedAttribute); ok {
-			envAttr.DeprecationMessage = "The environments field is currently not functional due to an API bug. Use coolify_project data source instead."
-			envAttr.Description = "This field is currently not populated due to a Coolify API bug."
-			envAttr.MarkdownDescription = "*" + envAttr.Description + "*"
-			envAttr.NestedObject.Attributes = map[string]schema.Attribute{}
-
-			projectsSet.NestedObject.Attributes["environments"] = envAttr
-			resp.Schema.Attributes["projects"] = projectsSet
-		}
-	}
+	resp.Schema.Description = "Get a list of Coolify projects."
 
 	resp.Schema.Blocks = map[string]schema.Block{
 		"filter": filter.CreateDatasourceFilter(projectsFilterNames),
@@ -112,37 +98,11 @@ func (d *projectsDataSource) apiToModel(
 	var projects []attr.Value
 
 	for _, project := range *response {
-		var envs []attr.Value
-
-		// todo: Coolify API bug, environments are not returned
-		if project.Environments != nil {
-			for _, env := range *project.Environments {
-				attributes := map[string]attr.Value{
-					"created_at":  flatten.String(env.CreatedAt),
-					"description": flatten.String(env.Description),
-					"id":          flatten.Int64(env.Id),
-					"name":        flatten.String(env.Name),
-					"project_id":  flatten.Int64(env.ProjectId),
-					"updated_at":  flatten.String(env.UpdatedAt),
-				}
-
-				data, diag := datasource_projects.NewEnvironmentsValue(
-					datasource_projects.EnvironmentsValue{}.AttributeTypes(ctx),
-					attributes)
-				diags.Append(diag...)
-				envs = append(envs, data)
-			}
-		}
-
-		envsList, diag := types.ListValueFrom(ctx, datasource_projects.EnvironmentsValue{}.Type(ctx), envs)
-		diags.Append(diag...)
-
 		attributes := map[string]attr.Value{
-			"description":  flatten.String(project.Description),
-			"environments": envsList,
-			"id":           flatten.Int64(project.Id),
-			"name":         flatten.String(project.Name),
-			"uuid":         flatten.String(project.Uuid),
+			"description": flatten.String(project.Description),
+			"id":          flatten.Int64(project.Id),
+			"name":        flatten.String(project.Name),
+			"uuid":        flatten.String(project.Uuid),
 		}
 
 		if !filter.OnAttributes(attributes, filters) {

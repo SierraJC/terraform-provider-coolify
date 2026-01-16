@@ -39,6 +39,7 @@ output "filtered" {
 ### Optional
 
 - `filter` (Block List) Filter results by values (see [below for nested schema](#nestedblock--filter))
+- `tag` (String) Filter applications by tag name.
 
 ### Read-Only
 

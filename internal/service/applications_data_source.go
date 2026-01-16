@@ -71,7 +71,7 @@ func (d *applicationsDataSource) Read(ctx context.Context, req datasource.ReadRe
 		return
 	}
 
-	listResponse, err := d.client.ListApplicationsWithResponse(ctx)
+	listResponse, err := d.client.ListApplicationsWithResponse(ctx, nil)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Error reading applications", err.Error(),

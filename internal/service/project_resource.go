@@ -5,17 +5,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
 	"terraform-provider-coolify/internal/api"
 	"terraform-provider-coolify/internal/flatten"
-	"terraform-provider-coolify/internal/provider/generated/datasource_project"
 	"terraform-provider-coolify/internal/provider/generated/resource_project"
 	"terraform-provider-coolify/internal/provider/util"
 )
@@ -245,31 +242,10 @@ func (r *projectResource) ApiToModel(
 	diags *diag.Diagnostics,
 	response *api.Project,
 ) resource_project.ProjectModel {
-	var elements []attr.Value
-	for _, env := range *response.Environments {
-		attributes := map[string]attr.Value{
-			"created_at":  flatten.String(env.CreatedAt),
-			"description": flatten.String(env.Description),
-			"id":          flatten.Int64(env.Id),
-			"name":        flatten.String(env.Name),
-			"project_id":  flatten.Int64(env.ProjectId),
-			"updated_at":  flatten.String(env.UpdatedAt),
-		}
-
-		data, diag := datasource_project.NewEnvironmentsValue(
-			datasource_project.EnvironmentsValue{}.AttributeTypes(ctx),
-			attributes)
-		diags.Append(diag...)
-		elements = append(elements, data)
-	}
-	dataList, diag := types.ListValueFrom(ctx, datasource_project.EnvironmentsValue{}.Type(ctx), elements)
-	diags.Append(diag...)
-
 	return resource_project.ProjectModel{
-		Description:  flatten.String(response.Description),
-		Environments: dataList,
-		Id:           flatten.Int64(response.Id),
-		Name:         flatten.String(response.Name),
-		Uuid:         flatten.String(response.Uuid),
+		Description: flatten.String(response.Description),
+		Id:          flatten.Int64(response.Id),
+		Name:        flatten.String(response.Name),
+		Uuid:        flatten.String(response.Uuid),
 	}
 }

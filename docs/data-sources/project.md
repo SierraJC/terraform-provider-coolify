@@ -41,18 +41,5 @@ output "project_environments" {
 ### Read-Only
 
 - `description` (String)
-- `environments` (Attributes List) The environments of the project. (see [below for nested schema](#nestedatt--environments))
 - `id` (Number) The ID of this resource.
 - `name` (String)
-
-<a id="nestedatt--environments"></a>
-### Nested Schema for `environments`
-
-Read-Only:
-
-- `created_at` (String)
-- `description` (String)
-- `id` (Number)
-- `name` (String)
-- `project_id` (Number)
-- `updated_at` (String)

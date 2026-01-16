@@ -579,6 +579,13 @@
 			"schema": {
 				"attributes": [
 					{
+						"name": "tag",
+						"string": {
+							"computed_optional_required": "computed_optional",
+							"description": "Filter applications by tag name."
+						}
+					},
+					{
 						"name": "applications",
 						"set_nested": {
 							"computed_optional_required": "computed",
@@ -1337,53 +1344,6 @@
 						}
 					},
 					{
-						"name": "environments",
-						"list_nested": {
-							"computed_optional_required": "computed",
-							"nested_object": {
-								"attributes": [
-									{
-										"name": "created_at",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "description",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "id",
-										"int64": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "name",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "project_id",
-										"int64": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "updated_at",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									}
-								]
-							},
-							"description": "The environments of the project."
-						}
-					},
-					{
 						"name": "id",
 						"int64": {
 							"computed_optional_required": "computed"
@@ -1412,53 +1372,6 @@
 										"name": "description",
 										"string": {
 											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "environments",
-										"list_nested": {
-											"computed_optional_required": "computed",
-											"nested_object": {
-												"attributes": [
-													{
-														"name": "created_at",
-														"string": {
-															"computed_optional_required": "computed"
-														}
-													},
-													{
-														"name": "description",
-														"string": {
-															"computed_optional_required": "computed"
-														}
-													},
-													{
-														"name": "id",
-														"int64": {
-															"computed_optional_required": "computed"
-														}
-													},
-													{
-														"name": "name",
-														"string": {
-															"computed_optional_required": "computed"
-														}
-													},
-													{
-														"name": "project_id",
-														"int64": {
-															"computed_optional_required": "computed"
-														}
-													},
-													{
-														"name": "updated_at",
-														"string": {
-															"computed_optional_required": "computed"
-														}
-													}
-												]
-											},
-											"description": "The environments of the project."
 										}
 									},
 									{
@@ -3223,53 +3136,6 @@
 						"string": {
 							"computed_optional_required": "computed",
 							"description": "The UUID of the project."
-						}
-					},
-					{
-						"name": "environments",
-						"list_nested": {
-							"computed_optional_required": "computed",
-							"nested_object": {
-								"attributes": [
-									{
-										"name": "created_at",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "description",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "id",
-										"int64": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "name",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "project_id",
-										"int64": {
-											"computed_optional_required": "computed"
-										}
-									},
-									{
-										"name": "updated_at",
-										"string": {
-											"computed_optional_required": "computed"
-										}
-									}
-								]
-							},
-							"description": "The environments of the project."
 						}
 					},
 					{

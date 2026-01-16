@@ -4,13 +4,11 @@ page_title: "coolify_projects Data Source - coolify"
 subcategory: ""
 description: |-
   Get a list of Coolify projects.
-  NOTE: Environments are not returned due to an API bug. Combine with coolify_project as a temporary workaround.
 ---
 
 # coolify_projects (Data Source)
 
 Get a list of Coolify projects.
-NOTE: Environments are not returned due to an API bug. Combine with `coolify_project` as a temporary workaround.
 
 ## Example Usage
 
@@ -66,10 +64,6 @@ Required:
 Read-Only:
 
 - `description` (String)
-- `environments` (Attributes List, Deprecated) *This field is currently not populated due to a Coolify API bug.* (see [below for nested schema](#nestedatt--projects--environments))
 - `id` (Number)
 - `name` (String)
 - `uuid` (String)
-
-<a id="nestedatt--projects--environments"></a>
-### Nested Schema for `projects.environments`
