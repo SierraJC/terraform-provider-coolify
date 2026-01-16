@@ -95,7 +95,7 @@ func (m ServiceModel) FromAPI(service *api.Service, state ServiceModel) ServiceM
 		EnvironmentUuid: state.EnvironmentUuid,
 		DestinationUuid: state.DestinationUuid,
 		InstantDeploy:   state.InstantDeploy,
-		Compose:         state.Compose,
+		Compose:         flatten.String(service.DockerComposeRaw),
 	}
 }
 
