@@ -81,7 +81,14 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 			return &value
 		}(),
 		PrivateKeyUuid: plan.PrivateKeyUuid.ValueStringPointer(),
-		User:           plan.User.ValueStringPointer(),
+		ProxyType: func() *api.CreateServerJSONBodyProxyType {
+			if plan.ProxyType.IsUnknown() || plan.ProxyType.IsNull() {
+				return nil
+			}
+			val := api.CreateServerJSONBodyProxyType(plan.ProxyType.ValueString())
+			return &val
+		}(),
+		User: plan.User.ValueStringPointer(),
 	})
 
 	if err != nil {
@@ -168,6 +175,13 @@ func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest,
 			return &value
 		}(),
 		PrivateKeyUuid: plan.PrivateKeyUuid.ValueStringPointer(),
+		ProxyType: func() *api.UpdateServerByUuidJSONBodyProxyType {
+			if plan.ProxyType.IsUnknown() || plan.ProxyType.IsNull() {
+				return nil
+			}
+			val := api.UpdateServerByUuidJSONBodyProxyType(plan.ProxyType.ValueString())
+			return &val
+		}(),
 		User: func() *string {
 			if plan.User.IsUnknown() {
 				return nil
