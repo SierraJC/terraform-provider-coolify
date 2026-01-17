@@ -85,92 +85,92 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit
+  # TODO: Acceptance test server had a meltdown and is in extended maintenance... aussie summers 🥲
+  # acceptance:
+  #   if: ${{ !contains(github.event.head_commit.message, '[skip acc]') }}
+  #   name: Acceptance Tests
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
 
-  acceptance:
-    if: ${{ !contains(github.event.head_commit.message, '[skip acc]') }}
-    name: Acceptance Tests
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+  #   concurrency:
+  #     group: acceptance-tests
+  #     cancel-in-progress: false
 
-    concurrency:
-      group: acceptance-tests
-      cancel-in-progress: false
+  #   strategy:
+  #     fail-fast: false
+  #     # todo: parallelism isn't working due to acceptance test resource name collision
+  #     max-parallel: 1
+  #     matrix:
+  #       include:
+  #         # - tool: terraform
+  #         #   version: v1.5.7
+  #         - tool: terraform
+  #           version: v1.12.x
+  #         # - tool: opentofu
+  #         #   version: v1.10.x
+  #   steps:
+  #     - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+  #     - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+  #       with:
+  #         go-version-file: "go.mod"
+  #         cache: true
+  #     - run: go mod download
 
-    strategy:
-      fail-fast: false
-      # todo: parallelism isn't working due to acceptance test resource name collision
-      max-parallel: 1
-      matrix:
-        include:
-          # - tool: terraform
-          #   version: v1.5.7
-          - tool: terraform
-            version: v1.12.x
-          # - tool: opentofu
-          #   version: v1.10.x
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
-        with:
-          go-version-file: "go.mod"
-          cache: true
-      - run: go mod download
+  #     - if: matrix.tool == 'terraform'
+  #       uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+  #       with:
+  #         terraform_version: ${{ matrix.version }}
+  #         terraform_wrapper: false
 
-      - if: matrix.tool == 'terraform'
-        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
-        with:
-          terraform_version: ${{ matrix.version }}
-          terraform_wrapper: false
+  #     - if: matrix.tool == 'opentofu'
+  #       uses: opentofu/setup-opentofu@9d84900f3238fab8cd84ce47d658d25dd008be2f # v1.0.8
+  #       with:
+  #         tofu_version: ${{ matrix.version }}
+  #         tofu_wrapper: false
+  #     - if: matrix.tool == 'opentofu'
+  #       run: |
+  #         echo TF_ACC_TERRAFORM_PATH="$(which tofu)" >> $GITHUB_ENV
+  #         echo TF_ACC_PROVIDER_NAMESPACE="hashicorp" >> $GITHUB_ENV
+  #         echo TF_ACC_PROVIDER_HOST="registry.opentofu.org" >> $GITHUB_ENV
 
-      - if: matrix.tool == 'opentofu'
-        uses: opentofu/setup-opentofu@9d84900f3238fab8cd84ce47d658d25dd008be2f # v1.0.8
-        with:
-          tofu_version: ${{ matrix.version }}
-          tofu_wrapper: false
-      - if: matrix.tool == 'opentofu'
-        run: |
-          echo TF_ACC_TERRAFORM_PATH="$(which tofu)" >> $GITHUB_ENV
-          echo TF_ACC_PROVIDER_NAMESPACE="hashicorp" >> $GITHUB_ENV
-          echo TF_ACC_PROVIDER_HOST="registry.opentofu.org" >> $GITHUB_ENV
+  #     - uses: tailscale/github-action@53acf823325fe9ca47f4cdaa951f90b4b0de5bb9 # v4
+  #       with:
+  #         # oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+  #         # oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+  #         # NOTE: Using authkey due to Tailnet Lock
+  #         authkey: ${{ secrets.TS_AUTHKEY }}
+  #         statedir: /tmp/tailscale-state/
+  #         tags: tag:ci
+  #         version: 1.78.1
+  #     - name: Check Coolify API health
+  #       run: curl --silent --fail --max-time 15 "${COOLIFY_ENDPOINT}/../health" | grep --quiet "^OK$"
+  #       env:
+  #         COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
 
-      - uses: tailscale/github-action@53acf823325fe9ca47f4cdaa951f90b4b0de5bb9 # v4
-        with:
-          # oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          # oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          # NOTE: Using authkey due to Tailnet Lock
-          authkey: ${{ secrets.TS_AUTHKEY }}
-          statedir: /tmp/tailscale-state/
-          tags: tag:ci
-          version: 1.78.1
-      - name: Check Coolify API health
-        run: curl --silent --fail --max-time 15 "${COOLIFY_ENDPOINT}/../health" | grep --quiet "^OK$"
-        env:
-          COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
+  #     - name: Run go test
+  #       run: |
+  #         go clean -testcache
+  #         go test -v -timeout=10m \
+  #           -cover -coverprofile=coverage.txt -covermode=atomic \
+  #           -run '^(TestAcc|TestProtocol6ProviderServerConfigure)' \
+  #           ./... 2>&1 | tee test-output
+  #         go install github.com/jstemmer/go-junit-report/v2@latest
+  #         $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
+  #       env:
+  #         TF_ACC: "1"
+  #         TF_LOG: WARN
+  #         COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
+  #         COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
+  #       timeout-minutes: 11
 
-      - name: Run go test
-        run: |
-          go clean -testcache
-          go test -v -timeout=10m \
-            -cover -coverprofile=coverage.txt -covermode=atomic \
-            -run '^(TestAcc|TestProtocol6ProviderServerConfigure)' \
-            ./... 2>&1 | tee test-output
-          go install github.com/jstemmer/go-junit-report/v2@latest
-          $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
-        env:
-          TF_ACC: "1"
-          TF_LOG: WARN
-          COOLIFY_ENDPOINT: ${{ secrets.ACC_COOLIFY_ENDPOINT }}
-          COOLIFY_TOKEN: ${{ secrets.ACC_COOLIFY_TOKEN }}
-        timeout-minutes: 11
-
-      - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
-        if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.11.x' }}
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: acceptance
-      - uses: codecov/test-results-action@0fa95f0e1eeaafde2c782583b36b28ad0d8c77d3 # v1.2.1
-        if: ${{ !cancelled() }}
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: acceptance
+  #     - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+  #       if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && matrix.tool == 'terraform' && matrix.version == 'v1.11.x' }}
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         flags: acceptance
+  #     - uses: codecov/test-results-action@0fa95f0e1eeaafde2c782583b36b28ad0d8c77d3 # v1.2.1
+  #       if: ${{ !cancelled() }}
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         flags: acceptance
