@@ -3002,29 +3002,14 @@ type UpdateServiceByUuidJSONBody struct {
 	// Description The service description.
 	Description *string `json:"description,omitempty"`
 
-	// DestinationUuid The destination UUID.
-	DestinationUuid *string `json:"destination_uuid,omitempty"`
-
 	// DockerComposeRaw The Docker Compose raw content.
-	DockerComposeRaw string `json:"docker_compose_raw"`
-
-	// EnvironmentName The environment name.
-	EnvironmentName string `json:"environment_name"`
-
-	// EnvironmentUuid The environment UUID.
-	EnvironmentUuid string `json:"environment_uuid"`
+	DockerComposeRaw *string `json:"docker_compose_raw,omitempty"`
 
 	// InstantDeploy The flag to indicate if the service should be deployed instantly.
 	InstantDeploy *bool `json:"instant_deploy,omitempty"`
 
 	// Name The service name.
 	Name *string `json:"name,omitempty"`
-
-	// ProjectUuid The project UUID.
-	ProjectUuid string `json:"project_uuid"`
-
-	// ServerUuid The server UUID.
-	ServerUuid string `json:"server_uuid"`
 }
 
 // UpdateEnvByServiceUuidJSONBody defines parameters for UpdateEnvByServiceUuid.
