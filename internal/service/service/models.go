@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
@@ -16,24 +15,17 @@ import (
 	sutil "terraform-provider-coolify/internal/service/util"
 )
 
-type ServiceUpdateRequest struct {
-	Name             *string `json:"name,omitempty"`
-	Description      *string `json:"description,omitempty"`
-	DockerComposeRaw string  `json:"docker_compose_raw"`
-	InstantDeploy    *bool   `json:"instant_deploy,omitempty"`
-}
-
 type ServiceModel struct {
-	Uuid                   types.String `tfsdk:"uuid"`
-	Name                   types.String `tfsdk:"name"`
-	Description            types.String `tfsdk:"description"`
-	DestinationUuid        types.String `tfsdk:"destination_uuid"`
-	EnvironmentName        types.String `tfsdk:"environment_name"`
-	EnvironmentUuid        types.String `tfsdk:"environment_uuid"`
-	ProjectUuid            types.String `tfsdk:"project_uuid"`
-	ServerUuid             types.String `tfsdk:"server_uuid"`
-	InstantDeploy          types.Bool   `tfsdk:"instant_deploy"`
-	Compose                types.String `tfsdk:"compose"`
+	Uuid            types.String `tfsdk:"uuid"`
+	Name            types.String `tfsdk:"name"`
+	Description     types.String `tfsdk:"description"`
+	DestinationUuid types.String `tfsdk:"destination_uuid"`
+	EnvironmentName types.String `tfsdk:"environment_name"`
+	EnvironmentUuid types.String `tfsdk:"environment_uuid"`
+	ProjectUuid     types.String `tfsdk:"project_uuid"`
+	ServerUuid      types.String `tfsdk:"server_uuid"`
+	InstantDeploy   types.Bool   `tfsdk:"instant_deploy"`
+	Compose         types.String `tfsdk:"compose"`
 }
 
 func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
@@ -120,15 +112,11 @@ func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
 		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
 }
-func (m ServiceModel) ToAPIUpdate() ServiceUpdateRequest {
-	return ServiceUpdateRequest{
+func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
+	return api.UpdateServiceByUuidJSONRequestBody{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
 		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
-		DockerComposeRaw: *sutil.Base64EncodeAttr(m.Compose),
+		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
-}
-
-func (m ServiceModel) ToAPIUpdateJSON() ([]byte, error) {
-	return json.Marshal(m.ToAPIUpdate())
 }
