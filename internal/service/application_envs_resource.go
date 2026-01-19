@@ -102,11 +102,10 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 	uuid := plan.Uuid.ValueString()
 	for i, env := range plan.Env {
 		createResp, err := r.client.CreateEnvByApplicationUuidWithResponse(ctx, uuid, api.CreateEnvByApplicationUuidJSONRequestBody{
-			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
-			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
-			IsPreview:   env.IsPreview.ValueBoolPointer(),
-			Key:         env.Key.ValueStringPointer(),
-			Value:       env.Value.ValueStringPointer(),
+			IsLiteral: env.IsLiteral.ValueBoolPointer(),
+			IsPreview: env.IsPreview.ValueBoolPointer(),
+			Key:       env.Key.ValueStringPointer(),
+			Value:     env.Value.ValueStringPointer(),
 		})
 
 		if err != nil {
@@ -125,8 +124,41 @@ func (r *applicationEnvsResource) Create(ctx context.Context, req resource.Creat
 			return
 		}
 
-		// Set the UUID from the response
 		plan.Env[i].Uuid = types.StringPointerValue(createResp.JSON201.Uuid)
+	}
+
+	var bulkUpdateEnvs = []updateEnvsByApplicationUuidJSONRequestBodyItem{}
+	for _, env := range plan.Env {
+		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByApplicationUuidJSONRequestBodyItem{
+			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
+			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
+			IsMultiline: env.IsMultiline.ValueBoolPointer(),
+			IsPreview:   env.IsPreview.ValueBoolPointer(),
+			IsShownOnce: env.IsShownOnce.ValueBoolPointer(),
+			Key:         env.Key.ValueStringPointer(),
+			Value:       env.Value.ValueStringPointer(),
+		})
+	}
+
+	if len(bulkUpdateEnvs) > 0 {
+		updateResp, err := r.client.UpdateEnvsByApplicationUuidWithResponse(ctx, uuid, api.UpdateEnvsByApplicationUuidJSONRequestBody{
+			Data: bulkUpdateEnvs,
+		})
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				fmt.Sprintf("Error updating application envs after creation: uuid=%s", uuid),
+				err.Error(),
+			)
+			return
+		}
+
+		if updateResp.StatusCode() != http.StatusCreated {
+			resp.Diagnostics.AddError(
+				"Unexpected HTTP status code updating application envs after creation",
+				fmt.Sprintf("Received %s updating application envs: uuid=%s. Details: %s", updateResp.Status(), uuid, updateResp.Body))
+			return
+		}
 	}
 
 	data, _ := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
@@ -178,26 +210,22 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 
 	uuid := plan.Uuid.ValueString()
 
-	// Update API call logic
 	tflog.Debug(ctx, "Updating application envs", map[string]interface{}{
 		"uuid": uuid,
 	})
 
-	// Create a map of current state envs for fast lookup
 	stateEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
 	for _, env := range state.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		stateEnvs[key] = env
 	}
 
-	// Create a map of plan envs for fast lookup
 	planEnvs := make(map[string]resource_application_envs.ApplicationEnvsModel)
 	for _, env := range plan.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
 		planEnvs[key] = env
 	}
 
-	// Delete envs that are in state but not in plan
 	for key, env := range stateEnvs {
 		if _, exists := planEnvs[key]; !exists {
 			_, err := r.client.DeleteEnvByApplicationUuidWithResponse(ctx, uuid, env.Uuid.ValueString())
@@ -257,7 +285,6 @@ func (r *applicationEnvsResource) Update(ctx context.Context, req resource.Updat
 func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state applicationEnvsResourceModel
 
-	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -275,8 +302,6 @@ func (r *applicationEnvsResource) Delete(ctx context.Context, req resource.Delet
 func (r *applicationEnvsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("uuid"), req, resp)
 }
-
-// MARK: Helper Functions
 
 func (r *applicationEnvsResource) filterRelevantEnvs(
 	stateEnvs []resource_application_envs.ApplicationEnvsModel,
