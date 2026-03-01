@@ -237,7 +237,7 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 	var bulkUpdateEnvs = []updateEnvsByServiceUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
 		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
-		
+
 		// Check if this env is new or modified
 		if stateEnv, exists := stateEnvs[key]; !exists {
 			// New env var
@@ -252,7 +252,7 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 				envsChanged = true
 			}
 		}
-		
+
 		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByServiceUuidJSONRequestBodyItem{
 			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
