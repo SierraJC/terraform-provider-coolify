@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -158,7 +159,7 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 
 		err = wait.WaitForCondition(timeoutCtx, 5*time.Second, func() (bool, error) {
 			// Re-read server state
-			currentData, found := r.ReadFromAPI(ctx, &resp.Diagnostics, serverUuid)
+			currentData, found := r.ReadFromAPI(timeoutCtx, &resp.Diagnostics, serverUuid)
 			if !found {
 				return false, fmt.Errorf("server not found during validation wait")
 			}
@@ -184,10 +185,22 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 		})
 
 		if err != nil {
-			resp.Diagnostics.AddError(
-				"Server validation timeout",
-				fmt.Sprintf("Server %s did not become validated within %s: %s", serverUuid, createTimeout, err),
-			)
+			if errors.Is(err, context.DeadlineExceeded) {
+				resp.Diagnostics.AddError(
+					"Server validation timeout",
+					fmt.Sprintf("Server %s did not become validated within %s", serverUuid, createTimeout),
+				)
+			} else if errors.Is(err, context.Canceled) {
+				resp.Diagnostics.AddError(
+					"Server validation cancelled",
+					fmt.Sprintf("Server %s validation was cancelled: %s", serverUuid, err),
+				)
+			} else {
+				resp.Diagnostics.AddError(
+					"Server validation failed",
+					fmt.Sprintf("Server %s validation failed: %s", serverUuid, err),
+				)
+			}
 			return
 		}
 

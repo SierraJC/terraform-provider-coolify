@@ -53,7 +53,6 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 			},
 			"destination_uuid": schema.StringAttribute{
 				Optional:    true,
-				Computed:    true,
 				Description: "UUID of the destination. Optional - if omitted, Coolify will auto-select the first available destination on the server. Required only when the server has multiple destinations.",
 			},
 			"environment_name": schema.StringAttribute{

@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -287,7 +288,7 @@ func (r *ServiceResource) waitForDeploymentIfNeeded(
 
 	err := wait.WaitForCondition(timeoutCtx, 5*time.Second, func() (bool, error) {
 		// Re-read service state
-		currentData, found := r.ReadFromAPI(ctx, diags, uuid, *data)
+		currentData, found := r.ReadFromAPI(timeoutCtx, diags, uuid, *data)
 		if !found {
 			return false, fmt.Errorf("service not found during deployment wait")
 		}
@@ -318,10 +319,22 @@ func (r *ServiceResource) waitForDeploymentIfNeeded(
 	})
 
 	if err != nil {
-		diags.AddError(
-			"Service deployment timeout",
-			fmt.Sprintf("Service %s did not become healthy within %s: %s", uuid, deploymentTimeout, err),
-		)
+		if errors.Is(err, context.DeadlineExceeded) {
+			diags.AddError(
+				"Service deployment timeout",
+				fmt.Sprintf("Service %s did not become healthy within %s", uuid, deploymentTimeout),
+			)
+		} else if errors.Is(err, context.Canceled) {
+			diags.AddError(
+				"Service deployment cancelled",
+				fmt.Sprintf("Service %s deployment was cancelled: %s", uuid, err),
+			)
+		} else {
+			diags.AddError(
+				"Service deployment failed",
+				fmt.Sprintf("Service %s deployment failed: %s", uuid, err),
+			)
+		}
 		return err
 	}
 

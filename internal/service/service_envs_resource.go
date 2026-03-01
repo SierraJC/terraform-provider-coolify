@@ -216,9 +216,13 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 		planEnvs[key] = env
 	}
 
+	// Track whether actual env changes occurred
+	envsChanged := false
+
 	// Delete envs that are in state but not in plan
 	for key, env := range stateEnvs {
 		if _, exists := planEnvs[key]; !exists {
+			envsChanged = true
 			_, err := r.client.DeleteEnvByServiceUuidWithResponse(ctx, uuid, env.Uuid.ValueString())
 			if err != nil {
 				resp.Diagnostics.AddError(
@@ -232,6 +236,23 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 
 	var bulkUpdateEnvs = []updateEnvsByServiceUuidJSONRequestBodyItem{}
 	for _, env := range plan.Env {
+		key := fmt.Sprintf("%s-%t", env.Key.ValueString(), env.IsPreview.ValueBool())
+		
+		// Check if this env is new or modified
+		if stateEnv, exists := stateEnvs[key]; !exists {
+			// New env var
+			envsChanged = true
+		} else {
+			// Check if any field changed
+			if !env.Value.Equal(stateEnv.Value) ||
+				!env.IsBuildTime.Equal(stateEnv.IsBuildTime) ||
+				!env.IsLiteral.Equal(stateEnv.IsLiteral) ||
+				!env.IsMultiline.Equal(stateEnv.IsMultiline) ||
+				!env.IsShownOnce.Equal(stateEnv.IsShownOnce) {
+				envsChanged = true
+			}
+		}
+		
 		bulkUpdateEnvs = append(bulkUpdateEnvs, updateEnvsByServiceUuidJSONRequestBodyItem{
 			IsBuildTime: env.IsBuildTime.ValueBoolPointer(),
 			IsLiteral:   env.IsLiteral.ValueBoolPointer(),
@@ -272,8 +293,8 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 	data.Env = r.filterRelevantEnvs(plan.Env, data.Env)
 	data.RedeployOnChange = plan.RedeployOnChange
 
-	// Trigger redeployment if requested
-	if !plan.RedeployOnChange.IsNull() && plan.RedeployOnChange.ValueBool() {
+	// Trigger redeployment if requested and env vars actually changed
+	if envsChanged && !plan.RedeployOnChange.IsNull() && plan.RedeployOnChange.ValueBool() {
 		tflog.Debug(ctx, "Triggering service redeployment after env update", map[string]interface{}{
 			"uuid": uuid,
 		})
