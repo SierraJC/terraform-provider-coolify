@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -15,18 +16,20 @@ import (
 )
 
 type ServiceModel struct {
-	Uuid                   types.String `tfsdk:"uuid"`
-	Name                   types.String `tfsdk:"name"`
-	Description            types.String `tfsdk:"description"`
-	DestinationUuid        types.String `tfsdk:"destination_uuid"`
-	EnvironmentName        types.String `tfsdk:"environment_name"`
-	EnvironmentUuid        types.String `tfsdk:"environment_uuid"`
-	ProjectUuid            types.String `tfsdk:"project_uuid"`
-	ServerUuid             types.String `tfsdk:"server_uuid"`
-	InstantDeploy          types.Bool   `tfsdk:"instant_deploy"`
-	Compose                types.String `tfsdk:"compose"`
-	Status                 types.String `tfsdk:"status"`
-	ServerStatus           types.String `tfsdk:"server_status"`
+	Uuid                   types.String   `tfsdk:"uuid"`
+	Name                   types.String   `tfsdk:"name"`
+	Description            types.String   `tfsdk:"description"`
+	DestinationUuid        types.String   `tfsdk:"destination_uuid"`
+	EnvironmentName        types.String   `tfsdk:"environment_name"`
+	EnvironmentUuid        types.String   `tfsdk:"environment_uuid"`
+	ProjectUuid            types.String   `tfsdk:"project_uuid"`
+	ServerUuid             types.String   `tfsdk:"server_uuid"`
+	InstantDeploy          types.Bool     `tfsdk:"instant_deploy"`
+	Compose                types.String   `tfsdk:"compose"`
+	Status                 types.String   `tfsdk:"status"`
+	ServerStatus           types.String   `tfsdk:"server_status"`
+	WaitForDeployment      types.Bool     `tfsdk:"wait_for_deployment"`
+	Timeouts               timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
@@ -88,6 +91,18 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 				Computed:    true,
 				Description: "The functional status of the server where the service is running.",
 			},
+			"wait_for_deployment": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(false),
+				Description: "Wait for service deployment (status becomes running:healthy) during creation and updates. Defaults to false.",
+			},
+		},
+		Blocks: map[string]schema.Block{
+			"timeouts": timeouts.Block(ctx, timeouts.Opts{
+				Create: true,
+				Update: true,
+			}),
 		},
 	}
 }
@@ -106,6 +121,8 @@ func (m ServiceModel) FromAPI(service *api.Service, state ServiceModel) ServiceM
 		DestinationUuid: state.DestinationUuid,
 		InstantDeploy:   state.InstantDeploy,
 		Compose:         state.Compose,
+		WaitForDeployment: state.WaitForDeployment,
+		Timeouts:        state.Timeouts,
 	}
 }
 

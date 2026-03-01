@@ -27,9 +27,9 @@ Closes #(issue number)
 
 <!-- Describe the changes you made in detail -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Testing
 
@@ -49,15 +49,15 @@ Closes #(issue number)
 
 <!-- Describe manual testing you performed -->
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 **Tested with:**
-- Terraform version: 
-- Provider version: 
-- Coolify version: 
-- Go version: 
+- Terraform version:
+- Provider version:
+- Coolify version:
+- Go version:
 
 ## Documentation
 

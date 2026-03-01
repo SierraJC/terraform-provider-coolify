@@ -36,8 +36,9 @@ type serviceEnvsResource struct {
 }
 
 type serviceEnvsResourceModel struct {
-	Uuid types.String                             `tfsdk:"uuid"`
-	Env  []resource_service_envs.ServiceEnvsModel `tfsdk:"env"`
+	Uuid            types.String                             `tfsdk:"uuid"`
+	Env             []resource_service_envs.ServiceEnvsModel `tfsdk:"env"`
+	RedeployOnChange types.Bool                               `tfsdk:"redeploy_on_change"`
 }
 
 // Type alias for the anonymous struct used in the generated API code
@@ -77,6 +78,12 @@ func (r *serviceEnvsResource) Schema(ctx context.Context, req resource.SchemaReq
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
+			},
+			"redeploy_on_change": schema.BoolAttribute{
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(false),
+				Description: "Automatically redeploy the service when environment variables change. Defaults to false.",
 			},
 		},
 		Blocks: map[string]schema.Block{
@@ -141,6 +148,7 @@ func (r *serviceEnvsResource) Create(ctx context.Context, req resource.CreateReq
 
 	data, _ := r.readFromAPI(ctx, &resp.Diagnostics, uuid)
 	data.Env = r.filterRelevantEnvs(plan.Env, data.Env)
+	data.RedeployOnChange = plan.RedeployOnChange
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
@@ -169,6 +177,7 @@ func (r *serviceEnvsResource) Read(ctx context.Context, req resource.ReadRequest
 	if len(state.Env) > 0 {
 		data.Env = r.filterRelevantEnvs(state.Env, data.Env)
 	}
+	data.RedeployOnChange = state.RedeployOnChange
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -261,6 +270,22 @@ func (r *serviceEnvsResource) Update(ctx context.Context, req resource.UpdateReq
 		return
 	}
 	data.Env = r.filterRelevantEnvs(plan.Env, data.Env)
+	data.RedeployOnChange = plan.RedeployOnChange
+
+	// Trigger redeployment if requested
+	if !plan.RedeployOnChange.IsNull() && plan.RedeployOnChange.ValueBool() {
+		tflog.Debug(ctx, "Triggering service redeployment after env update", map[string]interface{}{
+			"uuid": uuid,
+		})
+		_, err := r.client.RestartServiceByUuidWithResponse(ctx, uuid)
+		if err != nil {
+			resp.Diagnostics.AddWarning(
+				"Failed to trigger service redeployment",
+				fmt.Sprintf("Environment variables were updated successfully, but redeployment failed: %s", err),
+			)
+		}
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 

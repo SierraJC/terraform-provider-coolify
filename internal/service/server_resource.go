@@ -4,11 +4,16 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
+	"time"
 
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
@@ -16,6 +21,7 @@ import (
 	"terraform-provider-coolify/internal/flatten"
 	"terraform-provider-coolify/internal/provider/generated/resource_server"
 	"terraform-provider-coolify/internal/provider/util"
+	"terraform-provider-coolify/internal/wait"
 )
 
 var (
@@ -30,6 +36,13 @@ func NewServerResource() resource.Resource {
 
 type serverResource struct {
 	client *api.ClientWithResponses
+}
+
+// serverResourceModel wraps the generated model with additional fields
+type serverResourceModel struct {
+	resource_server.ServerModel
+	WaitForValidation types.Bool     `tfsdk:"wait_for_validation"`
+	Timeouts          timeouts.Value `tfsdk:"timeouts"`
 }
 
 func (r *serverResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -50,6 +63,21 @@ func (r *serverResource) Schema(ctx context.Context, req resource.SchemaRequest,
 	for _, attr := range validateNonEmptyStrings {
 		makeResourceAttributeNonEmpty(resp.Schema.Attributes, attr)
 	}
+
+	// Add wait_for_validation attribute
+	resp.Schema.Attributes["wait_for_validation"] = schema.BoolAttribute{
+		Optional:    true,
+		Computed:    true,
+		Default:     booldefault.StaticBool(false),
+		Description: "Wait for server validation (is_reachable && is_usable) to complete during creation. Defaults to false.",
+	}
+
+	// Add timeouts block
+	resp.Schema.Blocks = map[string]schema.Block{
+		"timeouts": timeouts.Block(ctx, timeouts.Opts{
+			Create: true,
+		}),
+	}
 }
 
 func (r *serverResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
@@ -57,7 +85,7 @@ func (r *serverResource) Configure(ctx context.Context, req resource.ConfigureRe
 }
 
 func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var plan resource_server.ServerModel
+	var plan serverResourceModel
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
@@ -101,11 +129,78 @@ func (r *serverResource) Create(ctx context.Context, req resource.CreateRequest,
 	}
 
 	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, *createResp.JSON201.Uuid)
+	data.WaitForValidation = plan.WaitForValidation
+	data.Timeouts = plan.Timeouts
+
+	// Check if we should wait for validation
+	if !plan.WaitForValidation.IsNull() && plan.WaitForValidation.ValueBool() {
+		// Get timeout from timeouts block (default 3 minutes)
+		var timeoutsValue timeouts.Value
+		resp.Diagnostics.Append(req.Plan.GetAttribute(ctx, path.Root("timeouts"), &timeoutsValue)...)
+		if resp.Diagnostics.HasError() {
+			return
+		}
+
+		createTimeout, diags := timeoutsValue.Create(ctx, 3*time.Minute)
+		resp.Diagnostics.Append(diags...)
+		if resp.Diagnostics.HasError() {
+			return
+		}
+
+		timeoutCtx, cancel := context.WithTimeout(ctx, createTimeout)
+		defer cancel()
+
+		serverUuid := *createResp.JSON201.Uuid
+		tflog.Debug(ctx, "Waiting for server validation", map[string]interface{}{
+			"uuid":    serverUuid,
+			"timeout": createTimeout.String(),
+		})
+
+		err = wait.WaitForCondition(timeoutCtx, 5*time.Second, func() (bool, error) {
+			// Re-read server state
+			currentData, found := r.ReadFromAPI(ctx, &resp.Diagnostics, serverUuid)
+			if !found {
+				return false, fmt.Errorf("server not found during validation wait")
+			}
+
+			// Check for validation errors first
+			if !currentData.ValidationLogs.IsNull() && currentData.ValidationLogs.ValueString() != "" {
+				logContent := currentData.ValidationLogs.ValueString()
+				if strings.Contains(strings.ToLower(logContent), "error") || strings.Contains(strings.ToLower(logContent), "failed") {
+					return false, fmt.Errorf("server validation failed: %s", logContent)
+				}
+			}
+
+			// Check settings flags
+			isReachable := !currentData.Settings.IsReachable.IsNull() && currentData.Settings.IsReachable.ValueBool()
+			isUsable := !currentData.Settings.IsUsable.IsNull() && currentData.Settings.IsUsable.ValueBool()
+
+			if isReachable && isUsable {
+				data = currentData // Update data with validated state
+				return true, nil
+			}
+
+			return false, nil // Keep waiting
+		})
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				"Server validation timeout",
+				fmt.Sprintf("Server %s did not become validated within %s: %s", serverUuid, createTimeout, err),
+			)
+			return
+		}
+
+		tflog.Debug(ctx, "Server validation completed", map[string]interface{}{
+			"uuid": serverUuid,
+		})
+	}
+
 	r.copyMissingAttributes(&plan, &data)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 func (r *serverResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state resource_server.ServerModel
+	var state serverResourceModel
 
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
 	if resp.Diagnostics.HasError() {
@@ -130,8 +225,8 @@ func (r *serverResource) Read(ctx context.Context, req resource.ReadRequest, res
 }
 
 func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan resource_server.ServerModel
-	var state resource_server.ServerModel
+	var plan serverResourceModel
+	var state serverResourceModel
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
 	if resp.Diagnostics.HasError() {
@@ -201,7 +296,7 @@ func (r *serverResource) Update(ctx context.Context, req resource.UpdateRequest,
 }
 
 func (r *serverResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var state resource_server.ServerModel
+	var state serverResourceModel
 
 	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
@@ -232,12 +327,14 @@ func (r *serverResource) ImportState(ctx context.Context, req resource.ImportSta
 }
 
 func (r *serverResource) copyMissingAttributes(
-	plan *resource_server.ServerModel,
-	data *resource_server.ServerModel,
+	plan *serverResourceModel,
+	data *serverResourceModel,
 ) {
 	// Values that are not returned in API response
 	data.InstantValidate = plan.InstantValidate
 	data.PrivateKeyUuid = plan.PrivateKeyUuid
+	data.WaitForValidation = plan.WaitForValidation
+	data.Timeouts = plan.Timeouts
 
 	if plan.PrivateKeyUuid.IsNull() {
 		data.PrivateKeyUuid = types.StringValue("")
@@ -251,28 +348,30 @@ func (r *serverResource) ReadFromAPI(
 	ctx context.Context,
 	diags *diag.Diagnostics,
 	uuid string,
-) (resource_server.ServerModel, bool) {
+) (serverResourceModel, bool) {
 	readResp, err := r.client.GetServerByUuidWithResponse(ctx, uuid)
 	if err != nil {
 		diags.AddError(
 			fmt.Sprintf("Error reading server: uuid=%s", uuid),
 			err.Error(),
 		)
-		return resource_server.ServerModel{}, false
+		return serverResourceModel{}, false
 	}
 
 	if readResp.StatusCode() == http.StatusNotFound {
-		return resource_server.ServerModel{}, false
+		return serverResourceModel{}, false
 	}
 
 	if readResp.StatusCode() != http.StatusOK {
 		diags.AddError(
 			"Unexpected HTTP status code reading server",
 			fmt.Sprintf("Received %s for server: uuid=%s. Details: %s", readResp.Status(), uuid, readResp.Body))
-		return resource_server.ServerModel{}, false
+		return serverResourceModel{}, false
 	}
 
-	return r.ApiToModel(ctx, diags, readResp.JSON200), true
+	return serverResourceModel{
+		ServerModel: r.ApiToModel(ctx, diags, readResp.JSON200),
+	}, true
 }
 
 func (r *serverResource) ApiToModel(

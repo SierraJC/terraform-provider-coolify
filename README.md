@@ -40,6 +40,13 @@ Before you begin using the Coolify Terraform Provider, ensure you have completed
 
 ## ✨ Enhanced Features in This Fork
 
+### Operational Automation (New!)
+- ✅ **Server validation waiter** - `wait_for_validation` on `coolify_server` eliminates manual validation clicks
+- ✅ **Service deployment waiter** - `wait_for_deployment` on `coolify_service` ensures health before completion
+- ✅ **Auto-redeploy on change** - `redeploy_on_change` on `coolify_service_envs` restarts services when config changes
+- ✅ **Configurable timeouts** - All waiters support customizable timeout blocks
+
+### Resource Enhancements
 - ✅ **`coolify_environment` resource** - Full CRUD for project environments (upstream blocked)
 - ✅ **Optional `destination_uuid`** - Services auto-select destinations when omitted
 - ✅ **Computed status attributes** - Services expose `status` and `server_status` from API
@@ -59,14 +66,63 @@ Before you begin using the Coolify Terraform Provider, ensure you have completed
 | - Project Environments     | ✔️       | ⛔          | **✨ New in this fork**              |
 | Resources                  | ⛔       | ⛔          |                                      |
 | Databases                  | ⚒️       | ➖          | PostgreSQL & MySQL only              |
-| Services                   | ✔️       | ⚒️          | **✨ Enhanced with status fields**   |
-| - Service Environments     | ✔️       | ➖          |                                      |
+| - MariaDB                  | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| - MongoDB                  | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| - Redis                    | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| - Clickhouse               | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| - KeyDB                    | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| - Dragonfly                | ⛔       | ⛔          | **Blocked: OpenAPI spec incomplete** |
+| Services                   | ✔️       | ⚒️          | **✨ Enhanced with waiters**         |
+| - Service Environments     | ✔️       | ➖          | **✨ Enhanced with auto-redeploy**   |
 | Applications               | ⚒️       | ✔️          |                                      |
 | - Application Environments | ✔️       | ➖          |                                      |
 
 ✔️ Supported ⚒️ Partial Support ➖ Planned ⛔ Blocked by Coolify API
 
 The provider is currently limited by the [Coolify API](https://github.com/coollabsio/coolify/blob/main/openapi.yaml), which is still in development. As the API matures, more resources will be added to the provider.
+
+### Known Blockers
+
+**Database Types (MariaDB, MongoDB, Redis, Clickhouse, KeyDB, Dragonfly)**:
+- **Issue**: Coolify OpenAPI spec defines these database creation endpoints as returning HTTP 200 instead of 201
+- **Impact**: No response schema defined - missing critical fields like `uuid` and `internal_db_url`
+- **Workaround**: None - requires upstream fix in Coolify's OpenAPI specification
+- **Next Steps**: Open issue with Coolify project to add proper 201 response schemas for database creation endpoints
+
+**Services List Data Source**:
+- **Status**: Deferred (lower priority than operational automation features)
+- **API**: `ListServices` endpoint exists and is functional
+- **Effort**: ~2-3 hours implementation following `coolify_servers` pattern
+
+## Future Development
+
+### Planned Features
+
+**Database Types** (Blocked - awaiting upstream fix):
+- MariaDB database resource
+- MongoDB database resource
+- Redis database resource
+- Clickhouse database resource
+- KeyDB database resource
+- Dragonfly database resource
+
+**Next Steps**:
+1. Open issue with Coolify project about incomplete OpenAPI spec for database endpoints
+2. Request proper 201 response schemas with `uuid` and `internal_db_url` fields
+3. Once fixed, regenerate API client and implement all 6 database types (~6-8 hours)
+
+**Additional Data Sources**:
+- `coolify_services` - List all services with filtering support (~2-3 hours)
+
+### Testing & Validation Needed
+
+The following features are implemented but require real-world testing:
+- Server validation waiter with various timeout configurations
+- Service deployment waiter across different service types
+- Redeploy on change with complex environment variable updates
+- Timeout behavior under slow network conditions
+
+**Contributions welcome!** If you test these features with actual Coolify infrastructure, please report your findings.
 
 ## Using This Provider
 

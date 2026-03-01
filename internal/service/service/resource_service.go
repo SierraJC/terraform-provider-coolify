@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -14,6 +15,7 @@ import (
 
 	"terraform-provider-coolify/internal/api"
 	"terraform-provider-coolify/internal/provider/util"
+	"terraform-provider-coolify/internal/wait"
 )
 
 var (
@@ -75,6 +77,12 @@ func (r *ServiceResource) Create(ctx context.Context, req resource.CreateRequest
 	}
 
 	data, _ := r.ReadFromAPI(ctx, &resp.Diagnostics, *res.JSON201.Uuid, plan)
+
+	// Wait for deployment if requested
+	if err := r.waitForDeploymentIfNeeded(ctx, &plan, &resp.Diagnostics, *res.JSON201.Uuid, &data, true); err != nil {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -148,6 +156,12 @@ func (r *ServiceResource) Update(ctx context.Context, req resource.UpdateRequest
 		resp.State.RemoveResource(ctx)
 		return
 	}
+
+	// Wait for deployment if requested
+	if err := r.waitForDeploymentIfNeeded(ctx, &plan, &resp.Diagnostics, uuid, &data, false); err != nil {
+		return
+	}
+
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
@@ -233,4 +247,87 @@ func (r *ServiceResource) ReadFromAPI(
 	result := ServiceResourceModel{}.FromAPI(res.JSON200, state)
 
 	return result, true
+}
+
+func (r *ServiceResource) waitForDeploymentIfNeeded(
+	ctx context.Context,
+	plan *ServiceResourceModel,
+	diags *diag.Diagnostics,
+	uuid string,
+	data *ServiceResourceModel,
+	isCreate bool,
+) error {
+	// Check if we should wait for deployment
+	if data.WaitForDeployment.IsNull() || !data.WaitForDeployment.ValueBool() {
+		return nil
+	}
+
+	// Get timeout from timeouts block (default 10 minutes for deployments)
+	var deploymentTimeout time.Duration
+	var diagsTimeout diag.Diagnostics
+
+	if isCreate {
+		deploymentTimeout, diagsTimeout = plan.Timeouts.Create(ctx, 10*time.Minute)
+	} else {
+		deploymentTimeout, diagsTimeout = plan.Timeouts.Update(ctx, 10*time.Minute)
+	}
+
+	diags.Append(diagsTimeout...)
+	if diags.HasError() {
+		return fmt.Errorf("failed to parse deployment timeout")
+	}
+
+	timeoutCtx, cancel := context.WithTimeout(ctx, deploymentTimeout)
+	defer cancel()
+
+	tflog.Debug(ctx, "Waiting for service deployment", map[string]interface{}{
+		"uuid":    uuid,
+		"timeout": deploymentTimeout.String(),
+	})
+
+	err := wait.WaitForCondition(timeoutCtx, 5*time.Second, func() (bool, error) {
+		// Re-read service state
+		currentData, found := r.ReadFromAPI(ctx, diags, uuid, *data)
+		if !found {
+			return false, fmt.Errorf("service not found during deployment wait")
+		}
+
+		// Check status field (format: "status:health" or "status:health:excluded")
+		if !currentData.Status.IsNull() && currentData.Status.ValueString() != "" {
+			status := currentData.Status.ValueString()
+			parts := strings.Split(status, ":")
+
+			// Check if running and healthy
+			if len(parts) >= 2 {
+				statusStr := parts[0]
+				health := parts[1]
+
+				if statusStr == "running" && health == "healthy" {
+					*data = currentData // Update data with deployed state
+					return true, nil
+				}
+
+				// Check for failure states
+				if statusStr == "exited" || statusStr == "error" {
+					return false, fmt.Errorf("service deployment failed with status: %s", status)
+				}
+			}
+		}
+
+		return false, nil // Keep waiting
+	})
+
+	if err != nil {
+		diags.AddError(
+			"Service deployment timeout",
+			fmt.Sprintf("Service %s did not become healthy within %s: %s", uuid, deploymentTimeout, err),
+		)
+		return err
+	}
+
+	tflog.Debug(ctx, "Service deployment completed", map[string]interface{}{
+		"uuid": uuid,
+	})
+
+	return nil
 }
