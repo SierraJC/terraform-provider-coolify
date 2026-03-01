@@ -1,0 +1,157 @@
+---
+name: Bug Report
+description: Report a bug or unexpected behavior
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this form as completely as possible.
+
+        Before submitting, please search [existing issues](https://github.com/patrikwm/terraform-provider-coolify/issues?q=is%3Aissue) to avoid duplicates.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: I have tested with the latest version of the provider
+          required: false
+
+  - type: input
+    id: terraform-version
+    attributes:
+      label: Terraform Version
+      description: Run `terraform version` to get this information
+      placeholder: "e.g., 1.6.0"
+    validations:
+      required: true
+
+  - type: input
+    id: provider-version
+    attributes:
+      label: Provider Version
+      description: |
+        Which version of the Coolify provider are you using?
+        Check your `terraform.lock.hcl` or run `terraform version`
+      placeholder: "e.g., 0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: coolify-version
+    attributes:
+      label: Coolify Version
+      description: What version of Coolify are you connecting to?
+      placeholder: "e.g., v4.0.0-beta.381"
+    validations:
+      required: false
+
+  - type: input
+    id: go-version
+    attributes:
+      label: Go Version (if building from source)
+      description: Run `go version` if you built the provider yourself
+      placeholder: "e.g., go1.24.1"
+    validations:
+      required: false
+
+  - type: textarea
+    id: affected-resources
+    attributes:
+      label: Affected Resource(s)
+      description: Which resources or data sources are affected?
+      placeholder: |
+        - coolify_service
+        - coolify_environment
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear description of what the bug is
+      placeholder: Tell us what you're experiencing
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe the expected outcome
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Describe what actually occurred
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Create a terraform file with...
+        2. Run `terraform apply`
+        3. Observe error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: terraform-config
+    attributes:
+      label: Terraform Configuration
+      description: |
+        Please provide the relevant Terraform configuration.
+        **Remove any sensitive information like tokens, passwords, or IP addresses.**
+      render: hcl
+      placeholder: |
+        resource "coolify_service" "example" {
+          # your configuration here
+        }
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Debug Output/Logs
+      description: |
+        If applicable, run with `TF_LOG=DEBUG terraform apply` and provide relevant log output.
+        **Remove any sensitive information.**
+      render: shell
+      placeholder: Paste debug logs here
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context about the problem here.
+        - Screenshots
+        - Environment details (OS, architecture)
+        - Related issues
+      placeholder: Any additional information that might help
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to submit a PR to fix this issue
+          required: false

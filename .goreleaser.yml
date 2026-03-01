@@ -58,7 +58,7 @@ release:
     - glob: "terraform-registry-manifest.json"
       name_template: "{{ .ProjectName }}_{{ .Version }}_manifest.json"
   footer: |
-    **Full Changelog**: https://github.com/SierraJC/terraform-provider-coolify/compare/{{ .PreviousTag }}...{{ if .IsNightly }}nightly{{ else }}{{ .Tag }}{{ end }}
+    **Full Changelog**: https://github.com/patrikwm/terraform-provider-coolify/compare/{{ .PreviousTag }}...{{ if .IsNightly }}nightly{{ else }}{{ .Tag }}{{ end }}
 
 changelog:
   sort: asc

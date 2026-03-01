@@ -1345,37 +1345,50 @@
 									{
 										"name": "created_at",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The date and time when the environment was created."
 										}
 									},
 									{
 										"name": "description",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The description of the environment."
 										}
 									},
 									{
 										"name": "id",
 										"int64": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The unique identifier of the environment (database ID)."
 										}
 									},
 									{
 										"name": "name",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The name of the environment."
 										}
 									},
 									{
 										"name": "project_id",
 										"int64": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The unique identifier of the project this environment belongs to."
 										}
 									},
 									{
 										"name": "updated_at",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The date and time when the environment was last updated."
+										}
+									},
+									{
+										"name": "uuid",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "The UUID of the environment."
 										}
 									}
 								]
@@ -1423,37 +1436,50 @@
 													{
 														"name": "created_at",
 														"string": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The date and time when the environment was created."
 														}
 													},
 													{
 														"name": "description",
 														"string": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The description of the environment."
 														}
 													},
 													{
 														"name": "id",
 														"int64": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The unique identifier of the environment (database ID)."
 														}
 													},
 													{
 														"name": "name",
 														"string": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The name of the environment."
 														}
 													},
 													{
 														"name": "project_id",
 														"int64": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The unique identifier of the project this environment belongs to."
 														}
 													},
 													{
 														"name": "updated_at",
 														"string": {
-															"computed_optional_required": "computed"
+															"computed_optional_required": "computed",
+															"description": "The date and time when the environment was last updated."
+														}
+													},
+													{
+														"name": "uuid",
+														"string": {
+															"computed_optional_required": "computed",
+															"description": "The UUID of the environment."
 														}
 													}
 												]
@@ -2382,10 +2408,24 @@
 						}
 					},
 					{
+						"name": "server_status",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The functional status of the server where the service is running."
+						}
+					},
+					{
 						"name": "service_type",
 						"string": {
 							"computed_optional_required": "computed",
 							"description": "The type of the service."
+						}
+					},
+					{
+						"name": "status",
+						"string": {
+							"computed_optional_required": "computed",
+							"description": "The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy)."
 						}
 					},
 					{
@@ -3217,37 +3257,50 @@
 									{
 										"name": "created_at",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The date and time when the environment was created."
 										}
 									},
 									{
 										"name": "description",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The description of the environment."
 										}
 									},
 									{
 										"name": "id",
 										"int64": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The unique identifier of the environment (database ID)."
 										}
 									},
 									{
 										"name": "name",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The name of the environment."
 										}
 									},
 									{
 										"name": "project_id",
 										"int64": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The unique identifier of the project this environment belongs to."
 										}
 									},
 									{
 										"name": "updated_at",
 										"string": {
-											"computed_optional_required": "computed"
+											"computed_optional_required": "computed",
+											"description": "The date and time when the environment was last updated."
+										}
+									},
+									{
+										"name": "uuid",
+										"string": {
+											"computed_optional_required": "computed",
+											"description": "The UUID of the environment."
 										}
 									}
 								]

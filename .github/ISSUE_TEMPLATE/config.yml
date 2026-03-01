@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Coolify Documentation
+    url: https://coolify.io/docs
+    about: Official Coolify documentation
+  - name: Coolify API Reference
+    url: https://coolify.io/docs/api-reference
+    about: Coolify API documentation for understanding available endpoints
+  - name: Upstream Provider
+    url: https://github.com/SierraJC/terraform-provider-coolify
+    about: Original provider repository (if issue may be upstream)
+  - name: Terraform Registry
+    url: https://registry.terraform.io/providers/patrikwm/coolify/latest/docs
+    about: Provider documentation on Terraform Registry
+  - name: Questions & Discussions
+    url: https://github.com/patrikwm/terraform-provider-coolify/discussions
+    about: Ask questions and discuss ideas with the community

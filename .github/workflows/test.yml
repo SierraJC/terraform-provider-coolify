@@ -76,12 +76,12 @@ jobs:
           $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
 
       - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
-        if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') }}
+        if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') && env.CODECOV_TOKEN != '' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit
       - uses: codecov/test-results-action@0fa95f0e1eeaafde2c782583b36b28ad0d8c77d3 # v1.2.1
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.CODECOV_TOKEN != '' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unit

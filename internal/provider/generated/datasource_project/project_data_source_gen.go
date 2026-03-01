@@ -25,22 +25,39 @@ func ProjectDataSourceSchema(ctx context.Context) schema.Schema {
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"created_at": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The date and time when the environment was created.",
+							MarkdownDescription: "The date and time when the environment was created.",
 						},
 						"description": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The description of the environment.",
+							MarkdownDescription: "The description of the environment.",
 						},
 						"id": schema.Int64Attribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The unique identifier of the environment (database ID).",
+							MarkdownDescription: "The unique identifier of the environment (database ID).",
 						},
 						"name": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The name of the environment.",
+							MarkdownDescription: "The name of the environment.",
 						},
 						"project_id": schema.Int64Attribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The unique identifier of the project this environment belongs to.",
+							MarkdownDescription: "The unique identifier of the project this environment belongs to.",
 						},
 						"updated_at": schema.StringAttribute{
-							Computed: true,
+							Computed:            true,
+							Description:         "The date and time when the environment was last updated.",
+							MarkdownDescription: "The date and time when the environment was last updated.",
+						},
+						"uuid": schema.StringAttribute{
+							Computed:            true,
+							Description:         "The UUID of the environment.",
+							MarkdownDescription: "The UUID of the environment.",
 						},
 					},
 					CustomType: EnvironmentsType{
@@ -209,6 +226,24 @@ func (t EnvironmentsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 			fmt.Sprintf(`updated_at expected to be basetypes.StringValue, was: %T`, updatedAtAttribute))
 	}
 
+	uuidAttribute, ok := attributes["uuid"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`uuid is missing from object`)
+
+		return nil, diags
+	}
+
+	uuidVal, ok := uuidAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`uuid expected to be basetypes.StringValue, was: %T`, uuidAttribute))
+	}
+
 	if diags.HasError() {
 		return nil, diags
 	}
@@ -220,6 +255,7 @@ func (t EnvironmentsType) ValueFromObject(ctx context.Context, in basetypes.Obje
 		Name:        nameVal,
 		ProjectId:   projectIdVal,
 		UpdatedAt:   updatedAtVal,
+		Uuid:        uuidVal,
 		state:       attr.ValueStateKnown,
 	}, diags
 }
@@ -395,6 +431,24 @@ func NewEnvironmentsValue(attributeTypes map[string]attr.Type, attributes map[st
 			fmt.Sprintf(`updated_at expected to be basetypes.StringValue, was: %T`, updatedAtAttribute))
 	}
 
+	uuidAttribute, ok := attributes["uuid"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`uuid is missing from object`)
+
+		return NewEnvironmentsValueUnknown(), diags
+	}
+
+	uuidVal, ok := uuidAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`uuid expected to be basetypes.StringValue, was: %T`, uuidAttribute))
+	}
+
 	if diags.HasError() {
 		return NewEnvironmentsValueUnknown(), diags
 	}
@@ -406,6 +460,7 @@ func NewEnvironmentsValue(attributeTypes map[string]attr.Type, attributes map[st
 		Name:        nameVal,
 		ProjectId:   projectIdVal,
 		UpdatedAt:   updatedAtVal,
+		Uuid:        uuidVal,
 		state:       attr.ValueStateKnown,
 	}, diags
 }
@@ -484,11 +539,12 @@ type EnvironmentsValue struct {
 	Name        basetypes.StringValue `tfsdk:"name"`
 	ProjectId   basetypes.Int64Value  `tfsdk:"project_id"`
 	UpdatedAt   basetypes.StringValue `tfsdk:"updated_at"`
+	Uuid        basetypes.StringValue `tfsdk:"uuid"`
 	state       attr.ValueState
 }
 
 func (v EnvironmentsValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 6)
+	attrTypes := make(map[string]tftypes.Type, 7)
 
 	var val tftypes.Value
 	var err error
@@ -499,12 +555,13 @@ func (v EnvironmentsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 	attrTypes["name"] = basetypes.StringType{}.TerraformType(ctx)
 	attrTypes["project_id"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["updated_at"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["uuid"] = basetypes.StringType{}.TerraformType(ctx)
 
 	objectType := tftypes.Object{AttributeTypes: attrTypes}
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 6)
+		vals := make(map[string]tftypes.Value, 7)
 
 		val, err = v.CreatedAt.ToTerraformValue(ctx)
 
@@ -554,6 +611,14 @@ func (v EnvironmentsValue) ToTerraformValue(ctx context.Context) (tftypes.Value,
 
 		vals["updated_at"] = val
 
+		val, err = v.Uuid.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["uuid"] = val
+
 		if err := tftypes.ValidateValue(objectType, vals); err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
 		}
@@ -590,6 +655,7 @@ func (v EnvironmentsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 		"name":        basetypes.StringType{},
 		"project_id":  basetypes.Int64Type{},
 		"updated_at":  basetypes.StringType{},
+		"uuid":        basetypes.StringType{},
 	}
 
 	if v.IsNull() {
@@ -609,6 +675,7 @@ func (v EnvironmentsValue) ToObjectValue(ctx context.Context) (basetypes.ObjectV
 			"name":        v.Name,
 			"project_id":  v.ProjectId,
 			"updated_at":  v.UpdatedAt,
+			"uuid":        v.Uuid,
 		})
 
 	return objVal, diags
@@ -653,6 +720,10 @@ func (v EnvironmentsValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.Uuid.Equal(other.Uuid) {
+		return false
+	}
+
 	return true
 }
 
@@ -672,5 +743,6 @@ func (v EnvironmentsValue) AttributeTypes(ctx context.Context) map[string]attr.T
 		"name":        basetypes.StringType{},
 		"project_id":  basetypes.Int64Type{},
 		"updated_at":  basetypes.StringType{},
+		"uuid":        basetypes.StringType{},
 	}
 }

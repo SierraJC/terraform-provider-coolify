@@ -553,12 +553,26 @@ type DatabaseCommon struct {
 
 // Environment Environment model
 type Environment struct {
-	CreatedAt   *string `json:"created_at,omitempty"`
+	// CreatedAt The date and time when the environment was created.
+	CreatedAt *string `json:"created_at,omitempty"`
+
+	// Description The description of the environment.
 	Description *string `json:"description,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	ProjectId   *int    `json:"project_id,omitempty"`
-	UpdatedAt   *string `json:"updated_at,omitempty"`
+
+	// Id The unique identifier of the environment (database ID).
+	Id *int `json:"id,omitempty"`
+
+	// Name The name of the environment.
+	Name *string `json:"name,omitempty"`
+
+	// ProjectId The unique identifier of the project this environment belongs to.
+	ProjectId *int `json:"project_id,omitempty"`
+
+	// UpdatedAt The date and time when the environment was last updated.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+
+	// Uuid The UUID of the environment.
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // EnvironmentVariable Environment Variable model
@@ -808,8 +822,14 @@ type Service struct {
 	// ServerId The unique identifier of the server where the service is running.
 	ServerId *int `json:"server_id,omitempty"`
 
+	// ServerStatus The functional status of the server where the service is running.
+	ServerStatus *string `json:"server_status,omitempty"`
+
 	// ServiceType The type of the service.
 	ServiceType *string `json:"service_type,omitempty"`
+
+	// Status The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy).
+	Status *string `json:"status,omitempty"`
 
 	// UpdatedAt The date and time when the service was last updated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -2863,6 +2883,12 @@ type UpdateProjectByUuidJSONBody struct {
 	Name *string `json:"name,omitempty"`
 }
 
+// CreateEnvironmentJSONBody defines parameters for CreateEnvironment.
+type CreateEnvironmentJSONBody struct {
+	// Name The name of the environment.
+	Name *string `json:"name,omitempty"`
+}
+
 // CreatePrivateKeyJSONBody defines parameters for CreatePrivateKey.
 type CreatePrivateKeyJSONBody struct {
 	Description *string `json:"description,omitempty"`
@@ -3163,6 +3189,9 @@ type CreateProjectJSONRequestBody CreateProjectJSONBody
 
 // UpdateProjectByUuidJSONRequestBody defines body for UpdateProjectByUuid for application/json ContentType.
 type UpdateProjectByUuidJSONRequestBody UpdateProjectByUuidJSONBody
+
+// CreateEnvironmentJSONRequestBody defines body for CreateEnvironment for application/json ContentType.
+type CreateEnvironmentJSONRequestBody CreateEnvironmentJSONBody
 
 // CreatePrivateKeyJSONRequestBody defines body for CreatePrivateKey for application/json ContentType.
 type CreatePrivateKeyJSONRequestBody CreatePrivateKeyJSONBody
@@ -3562,6 +3591,17 @@ type ClientInterface interface {
 	UpdateProjectByUuidWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEnvironments request
+	GetEnvironments(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreateEnvironmentWithBody request with any body
+	CreateEnvironmentWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CreateEnvironment(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteEnvironment request
+	DeleteEnvironment(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetEnvironmentByNameOrUuid request
 	GetEnvironmentByNameOrUuid(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4478,6 +4518,54 @@ func (c *Client) UpdateProjectByUuidWithBody(ctx context.Context, uuid string, c
 
 func (c *Client) UpdateProjectByUuid(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateProjectByUuidRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetEnvironments(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEnvironmentsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateEnvironmentWithBody(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvironmentRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreateEnvironment(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateEnvironmentRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteEnvironment(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteEnvironmentRequest(c.Server, uuid, environmentNameOrUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -6995,6 +7083,128 @@ func NewUpdateProjectByUuidRequestWithBody(server string, uuid string, contentTy
 	return req, nil
 }
 
+// NewGetEnvironmentsRequest generates requests for GetEnvironments
+func NewGetEnvironmentsRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/environments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreateEnvironmentRequest calls the generic CreateEnvironment builder with application/json body
+func NewCreateEnvironmentRequest(server string, uuid string, body CreateEnvironmentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCreateEnvironmentRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCreateEnvironmentRequestWithBody generates requests for CreateEnvironment with any type of body
+func NewCreateEnvironmentRequestWithBody(server string, uuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/environments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDeleteEnvironmentRequest generates requests for DeleteEnvironment
+func NewDeleteEnvironmentRequest(server string, uuid string, environmentNameOrUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "environment_name_or_uuid", runtime.ParamLocationPath, environmentNameOrUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetEnvironmentByNameOrUuidRequest generates requests for GetEnvironmentByNameOrUuid
 func NewGetEnvironmentByNameOrUuidRequest(server string, uuid string, environmentNameOrUuid string) (*http.Request, error) {
 	var err error
@@ -8498,6 +8708,17 @@ type ClientWithResponsesInterface interface {
 
 	UpdateProjectByUuidWithResponse(ctx context.Context, uuid string, body UpdateProjectByUuidJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProjectByUuidResponse, error)
 
+	// GetEnvironmentsWithResponse request
+	GetEnvironmentsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentsResponse, error)
+
+	// CreateEnvironmentWithBodyWithResponse request with any body
+	CreateEnvironmentWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error)
+
+	CreateEnvironmentWithResponse(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error)
+
+	// DeleteEnvironmentWithResponse request
+	DeleteEnvironmentWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvironmentResponse, error)
+
 	// GetEnvironmentByNameOrUuidWithResponse request
 	GetEnvironmentByNameOrUuidWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentByNameOrUuidResponse, error)
 
@@ -9807,6 +10028,82 @@ func (r UpdateProjectByUuidResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UpdateProjectByUuidResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetEnvironmentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Environment
+	JSON400      *N400
+	JSON401      *N401
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEnvironmentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEnvironmentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CreateEnvironmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		// Uuid The UUID of the environment.
+		Uuid *string `json:"uuid,omitempty"`
+	}
+	JSON400 *N400
+	JSON401 *N401
+}
+
+// Status returns HTTPResponse.Status
+func (r CreateEnvironmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreateEnvironmentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DeleteEnvironmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Message *string `json:"message,omitempty"`
+	}
+	JSON401 *N401
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteEnvironmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteEnvironmentResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -11281,6 +11578,41 @@ func (c *ClientWithResponses) UpdateProjectByUuidWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseUpdateProjectByUuidResponse(rsp)
+}
+
+// GetEnvironmentsWithResponse request returning *GetEnvironmentsResponse
+func (c *ClientWithResponses) GetEnvironmentsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*GetEnvironmentsResponse, error) {
+	rsp, err := c.GetEnvironments(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEnvironmentsResponse(rsp)
+}
+
+// CreateEnvironmentWithBodyWithResponse request with arbitrary body returning *CreateEnvironmentResponse
+func (c *ClientWithResponses) CreateEnvironmentWithBodyWithResponse(ctx context.Context, uuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error) {
+	rsp, err := c.CreateEnvironmentWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateEnvironmentResponse(rsp)
+}
+
+func (c *ClientWithResponses) CreateEnvironmentWithResponse(ctx context.Context, uuid string, body CreateEnvironmentJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEnvironmentResponse, error) {
+	rsp, err := c.CreateEnvironment(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreateEnvironmentResponse(rsp)
+}
+
+// DeleteEnvironmentWithResponse request returning *DeleteEnvironmentResponse
+func (c *ClientWithResponses) DeleteEnvironmentWithResponse(ctx context.Context, uuid string, environmentNameOrUuid string, reqEditors ...RequestEditorFn) (*DeleteEnvironmentResponse, error) {
+	rsp, err := c.DeleteEnvironment(ctx, uuid, environmentNameOrUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteEnvironmentResponse(rsp)
 }
 
 // GetEnvironmentByNameOrUuidWithResponse request returning *GetEnvironmentByNameOrUuidResponse
@@ -13687,6 +14019,124 @@ func ParseUpdateProjectByUuidResponse(rsp *http.Response) (*UpdateProjectByUuidR
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetEnvironmentsResponse parses an HTTP response from a GetEnvironmentsWithResponse call
+func ParseGetEnvironmentsResponse(rsp *http.Response) (*GetEnvironmentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEnvironmentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Environment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreateEnvironmentResponse parses an HTTP response from a CreateEnvironmentWithResponse call
+func ParseCreateEnvironmentResponse(rsp *http.Response) (*CreateEnvironmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreateEnvironmentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			// Uuid The UUID of the environment.
+			Uuid *string `json:"uuid,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest N400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDeleteEnvironmentResponse parses an HTTP response from a DeleteEnvironmentWithResponse call
+func ParseDeleteEnvironmentResponse(rsp *http.Response) (*DeleteEnvironmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteEnvironmentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Message *string `json:"message,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest N401
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	}
 

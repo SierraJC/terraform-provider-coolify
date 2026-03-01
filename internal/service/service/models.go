@@ -6,7 +6,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
@@ -26,6 +25,8 @@ type ServiceModel struct {
 	ServerUuid             types.String `tfsdk:"server_uuid"`
 	InstantDeploy          types.Bool   `tfsdk:"instant_deploy"`
 	Compose                types.String `tfsdk:"compose"`
+	Status                 types.String `tfsdk:"status"`
+	ServerStatus           types.String `tfsdk:"server_status"`
 }
 
 func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
@@ -50,8 +51,7 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 			"destination_uuid": schema.StringAttribute{
 				Optional:    true,
 				Computed:    true,
-				Description: "UUID of the destination if the server has multiple destinations.",
-				Default:     stringdefault.StaticString(""),
+				Description: "UUID of the destination. Optional - if omitted, Coolify will auto-select the first available destination on the server. Required only when the server has multiple destinations.",
 			},
 			"environment_name": schema.StringAttribute{
 				Required:    true,
@@ -80,6 +80,14 @@ func (m ServiceModel) Schema(ctx context.Context) schema.Schema {
 				Description:         "The Docker Compose raw content.",
 				MarkdownDescription: "The Docker Compose raw content.",
 			},
+			"status": schema.StringAttribute{
+				Computed:    true,
+				Description: "The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy).",
+			},
+			"server_status": schema.StringAttribute{
+				Computed:    true,
+				Description: "The functional status of the server where the service is running.",
+			},
 		},
 	}
 }
@@ -89,6 +97,8 @@ func (m ServiceModel) FromAPI(service *api.Service, state ServiceModel) ServiceM
 		Uuid:            flatten.String(service.Uuid),
 		Name:            flatten.String(service.Name),
 		Description:     flatten.String(service.Description),
+		Status:          flatten.String(service.Status),
+		ServerStatus:    flatten.String(service.ServerStatus),
 		ServerUuid:      state.ServerUuid, // Values not returned by API, so use the plan value
 		ProjectUuid:     state.ProjectUuid,
 		EnvironmentName: state.EnvironmentName,
@@ -100,10 +110,9 @@ func (m ServiceModel) FromAPI(service *api.Service, state ServiceModel) ServiceM
 }
 
 func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
-	return api.CreateServiceJSONRequestBody{
+	body := api.CreateServiceJSONRequestBody{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
-		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
 		EnvironmentName:  m.EnvironmentName.ValueString(),
 		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
 		ProjectUuid:      m.ProjectUuid.ValueString(),
@@ -111,12 +120,16 @@ func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
 		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
 		DockerComposeRaw: sutil.Base64EncodeAttr(m.Compose),
 	}
+	// Only send destination_uuid if it's actually set
+	if !m.DestinationUuid.IsNull() && !m.DestinationUuid.IsUnknown() && m.DestinationUuid.ValueString() != "" {
+		body.DestinationUuid = m.DestinationUuid.ValueStringPointer()
+	}
+	return body
 }
 func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
-	return api.UpdateServiceByUuidJSONRequestBody{
+	body := api.UpdateServiceByUuidJSONRequestBody{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
-		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
 		EnvironmentName:  m.EnvironmentName.ValueString(),
 		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
 		ProjectUuid:      m.ProjectUuid.ValueString(),
@@ -124,4 +137,9 @@ func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
 		InstantDeploy:    m.InstantDeploy.ValueBoolPointer(),
 		DockerComposeRaw: *sutil.Base64EncodeAttr(m.Compose),
 	}
+	// Only send destination_uuid if it's actually set
+	if !m.DestinationUuid.IsNull() && !m.DestinationUuid.IsUnknown() && m.DestinationUuid.ValueString() != "" {
+		body.DestinationUuid = m.DestinationUuid.ValueStringPointer()
+	}
+	return body
 }

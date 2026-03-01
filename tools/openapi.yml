@@ -3511,6 +3511,84 @@ paths:
       security:
         -
           bearerAuth: []
+  '/projects/{uuid}/environments':
+    get:
+      tags:
+        - Projects
+      summary: 'List Environments'
+      description: 'List all environments in a project.'
+      operationId: get-environments
+      parameters:
+        -
+          name: uuid
+          in: path
+          description: 'Project UUID'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'List of environments'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Environment'
+        '401':
+          $ref: '#/components/responses/401'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          description: 'Project not found.'
+      security:
+        -
+          bearerAuth: []
+    post:
+      tags:
+        - Projects
+      summary: 'Create Environment'
+      description: 'Create environment in project.'
+      operationId: create-environment
+      parameters:
+        -
+          name: uuid
+          in: path
+          description: 'Project UUID'
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: 'Environment created.'
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the environment.'
+              type: object
+      responses:
+        '201':
+          description: 'Environment created.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  uuid: { type: string, example: env123, description: 'The UUID of the environment.' }
+                type: object
+        '401':
+          $ref: '#/components/responses/401'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          description: 'Project not found.'
+        '409':
+          description: 'Environment with this name already exists.'
+      security:
+        -
+          bearerAuth: []
   '/projects/{uuid}/{environment_name_or_uuid}':
     get:
       tags:
@@ -3546,6 +3624,45 @@ paths:
           $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404'
+      security:
+        -
+          bearerAuth: []
+    delete:
+      tags:
+        - Projects
+      summary: 'Delete Environment'
+      description: 'Delete environment by name or UUID. Environment must be empty.'
+      operationId: delete-environment
+      parameters:
+        -
+          name: uuid
+          in: path
+          description: 'Project UUID'
+          required: true
+          schema:
+            type: string
+        -
+          name: environment_name_or_uuid
+          in: path
+          description: 'Environment name or UUID'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Environment deleted.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Environment deleted.' }
+                type: object
+        '401':
+          $ref: '#/components/responses/401'
+        '400':
+          description: 'Environment has resources, so it cannot be deleted.'
+        '404':
+          description: 'Project or environment not found.'
       security:
         -
           bearerAuth: []
@@ -5164,16 +5281,25 @@ components:
       properties:
         id:
           type: integer
+          description: 'The unique identifier of the environment (database ID).'
+        uuid:
+          type: string
+          description: 'The UUID of the environment.'
         name:
           type: string
+          description: 'The name of the environment.'
         project_id:
           type: integer
+          description: 'The unique identifier of the project this environment belongs to.'
         created_at:
           type: string
+          description: 'The date and time when the environment was created.'
         updated_at:
           type: string
+          description: 'The date and time when the environment was last updated.'
         description:
           type: string
+          description: 'The description of the environment.'
       type: object
     EnvironmentVariable:
       description: 'Environment Variable model'
@@ -5438,6 +5564,12 @@ components:
         service_type:
           type: string
           description: 'The type of the service.'
+        status:
+          type: string
+          description: 'The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy).'
+        server_status:
+          type: string
+          description: 'The functional status of the server where the service is running.'
         created_at:
           type: string
           description: 'The date and time when the service was created.'

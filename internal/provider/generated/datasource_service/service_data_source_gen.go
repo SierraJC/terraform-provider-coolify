@@ -87,10 +87,20 @@ func ServiceDataSourceSchema(ctx context.Context) schema.Schema {
 				Description:         "The unique identifier of the server where the service is running.",
 				MarkdownDescription: "The unique identifier of the server where the service is running.",
 			},
+			"server_status": schema.StringAttribute{
+				Computed:            true,
+				Description:         "The functional status of the server where the service is running.",
+				MarkdownDescription: "The functional status of the server where the service is running.",
+			},
 			"service_type": schema.StringAttribute{
 				Computed:            true,
 				Description:         "The type of the service.",
 				MarkdownDescription: "The type of the service.",
+			},
+			"status": schema.StringAttribute{
+				Computed:            true,
+				Description:         "The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy).",
+				MarkdownDescription: "The aggregate status of the service from its applications and databases. Format: status:health or status:health:excluded (e.g., running:healthy, degraded:unhealthy).",
 			},
 			"updated_at": schema.StringAttribute{
 				Computed:            true,
@@ -122,7 +132,9 @@ type ServiceModel struct {
 	IsContainerLabelReadonlyEnabled types.Bool   `tfsdk:"is_container_label_readonly_enabled"`
 	Name                            types.String `tfsdk:"name"`
 	ServerId                        types.Int64  `tfsdk:"server_id"`
+	ServerStatus                    types.String `tfsdk:"server_status"`
 	ServiceType                     types.String `tfsdk:"service_type"`
+	Status                          types.String `tfsdk:"status"`
 	UpdatedAt                       types.String `tfsdk:"updated_at"`
 	Uuid                            types.String `tfsdk:"uuid"`
 }
