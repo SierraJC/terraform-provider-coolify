@@ -4193,12 +4193,6 @@ paths:
                 content:
                     application/json:
                         schema:
-                            required:
-                                - server_uuid
-                                - project_uuid
-                                - environment_name
-                                - environment_uuid
-                                - docker_compose_raw
                             properties:
                                 name:
                                     type: string
@@ -4206,21 +4200,6 @@ paths:
                                 description:
                                     type: string
                                     description: 'The service description.'
-                                project_uuid:
-                                    type: string
-                                    description: 'The project UUID.'
-                                environment_name:
-                                    type: string
-                                    description: 'The environment name.'
-                                environment_uuid:
-                                    type: string
-                                    description: 'The environment UUID.'
-                                server_uuid:
-                                    type: string
-                                    description: 'The server UUID.'
-                                destination_uuid:
-                                    type: string
-                                    description: 'The destination UUID.'
                                 instant_deploy:
                                     type: boolean
                                     description: 'The flag to indicate if the service should be deployed instantly.'
