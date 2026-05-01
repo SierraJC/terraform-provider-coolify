@@ -75,7 +75,7 @@ jobs:
           go install github.com/jstemmer/go-junit-report/v2@latest
           $(go env GOPATH)/bin/go-junit-report -in test-output -set-exit-code -iocopy	-out junit.xml
 
-      - uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5.5.4
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6
         if: ${{ !cancelled() && !startsWith(github.head_ref, 'renovate/') }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
