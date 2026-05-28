@@ -909,6 +909,16 @@ func (m ApplicationModel) ToAPIUpdate() api.UpdateApplicationByUuidJSONRequestBo
 	// create-only — identify the app's scope at creation and cannot be
 	// changed afterward (would require app re-creation). They remain in the
 	// Tofu schema for identity purposes but are omitted from update payload.
+	//
+	// NOTE: CustomLabels also omitted from update payload. Coolify v4
+	// re-normalizes labels on every update (decodes base64, adds
+	// tls.certresolver=letsencrypt by default if HTTPS domain present and no
+	// resolver specified, re-encodes). Sending custom_labels in an update body
+	// triggers unintended mutation, breaking adoption of apps with pre-existing
+	// custom Traefik labels (e.g., file-based CF Origin Cert setups where LE
+	// resolver is provided via Traefik dynamic config, not labels). Label
+	// management is deferred to Coolify UI or direct API PATCH (single-field
+	// updates do not trigger re-normalization).
 	return api.UpdateApplicationByUuidJSONRequestBody{
 		Description:                    expand.String(m.Description),
 		Domains:                        expand.String(m.Domains),
@@ -944,7 +954,7 @@ func (m ApplicationModel) ToAPIUpdate() api.UpdateApplicationByUuidJSONRequestBo
 		LimitsCpus:                     expand.String(m.LimitsCpus),
 		LimitsCpuset:                   expand.String(m.LimitsCpuset),
 		LimitsCpuShares:                expand.Int64(m.LimitsCpuShares),
-		CustomLabels:                   expand.String(m.CustomLabels),
+		// CustomLabels omitted (see NOTE above): Coolify normalizes on update.
 		CustomDockerRunOptions:         expand.String(m.CustomDockerRunOptions),
 		PostDeploymentCommand:          expand.String(m.PostDeploymentCommand),
 		PostDeploymentCommandContainer: expand.String(m.PostDeploymentCommandContainer),
