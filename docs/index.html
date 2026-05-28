@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>wappsdev Tofu/Terraform Provider Registry</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 720px; margin: 4rem auto; padding: 0 1rem; color: #222; }
+    code { background: #f4f4f4; padding: 0.15rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
+    pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <h1>wappsdev Tofu/Terraform Provider Registry</h1>
+  <p>This is a private <a href="https://opentofu.org/docs/internals/provider-registry-protocol/">Terraform Provider Registry</a> hosted by wappsdev.</p>
+
+  <h2>Available providers</h2>
+  <ul>
+    <li><strong>wappsdev/coolify</strong> — Coolify v4 provider (forked from <a href="https://github.com/SierraJC/terraform-provider-coolify">SierraJC/terraform-provider-coolify</a>, adds coolify_application resource via PR #87)</li>
+  </ul>
+
+  <h2>Usage</h2>
+  <pre><code>terraform {
+  required_providers {
+    coolify = {
+      source  = "registry.wapps.co/wappsdev/coolify"
+      version = "~> 1.0"
+    }
+  }
+}</code></pre>
+
+  <h2>Trust</h2>
+  <p>Releases are GPG-signed with the <a href="/wappsdev-sigs.gpg">wappsdev-sigs key</a> (key ID <code>6EB7E199D92EA30D</code>, ED25519, expires 2028-05-27).</p>
+
+  <h2>Source</h2>
+  <p>Provider source code: <a href="https://github.com/wappsdev/terraform-provider-coolify">wappsdev/terraform-provider-coolify</a></p>
+</body>
+</html>
