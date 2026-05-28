@@ -14,6 +14,27 @@
     <img src="https://codecov.io/gh/SierraJC/terraform-provider-coolify/graph/badge.svg?token=63aeH0TuP2" /></a>
 </p>
 
+> **⚠️ wappsdev fork notice**
+>
+> This is a wappsdev-maintained fork of [SierraJC/terraform-provider-coolify](https://github.com/SierraJC/terraform-provider-coolify) that includes [PR #87](https://github.com/SierraJC/terraform-provider-coolify/pull/87) (full `coolify_application` resource), which has not been merged upstream as of 2026-05-28.
+>
+> **Custom registry:** `registry.wapps.co/wappsdev/coolify`
+>
+> ```hcl
+> terraform {
+>   required_providers {
+>     coolify = {
+>       source  = "registry.wapps.co/wappsdev/coolify"
+>       version = "~> 1.0"
+>     }
+>   }
+> }
+> ```
+>
+> **Upstream sync:** Manual on-demand merge. See [`docs/UPSTREAM_SYNC.md`](docs/UPSTREAM_SYNC.md).
+
+---
+
 # Terraform Provider for [Coolify](https://coolify.io/) _v4_
 
 _This project is a community-driven initiative and is not affiliated with or an official product of Coolify._
