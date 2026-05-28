@@ -1,0 +1,21 @@
+{
+  "protocols": ["6.0"],
+  "os": "linux",
+  "arch": "arm",
+  "filename": "terraform-provider-coolify_1.0.0_linux_arm.zip",
+  "download_url": "https://github.com/wappsdev/terraform-provider-coolify/releases/download/v1.0.0/terraform-provider-coolify_1.0.0_linux_arm.zip",
+  "shasums_url": "https://github.com/wappsdev/terraform-provider-coolify/releases/download/v1.0.0/terraform-provider-coolify_1.0.0_SHA256SUMS",
+  "shasums_signature_url": "https://github.com/wappsdev/terraform-provider-coolify/releases/download/v1.0.0/terraform-provider-coolify_1.0.0_SHA256SUMS.sig",
+  "shasum": "66ca9d60753eb96e17dc9b1fa31a1457fe89e2775628db0ae3af9c23176ec345",
+  "signing_keys": {
+    "gpg_public_keys": [
+      {
+        "key_id": "6EB7E199D92EA30D",
+        "ascii_armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmDMEahekuxYJKwYBBAHaRw8BAQdAOmN1SROa1wXWQgX1CraH3c5sLwY4SL10Gyvs\nc1ACoJ60HXdhcHBzZGV2LXNpZ3MgPHNpZ3NAd2FwcHMuY28+iJkEExYKAEEWIQTn\nP/LTUkXKAv29gjxut+GZ2S6jDQUCahekuwIbAwUJA8JnAAULCQgHAgIiAgYVCgkI\nCwIEFgIDAQIeBwIXgAAKCRBut+GZ2S6jDR47AQDs15YmG7AlHTB4lNOzz+Z27J4V\nfIiYfNYButcDTCVphQEAj+h0mhv+fqU0mWtq4xlGW6LnoU0e5hq/Kv3seh1NVAa4\nOARqF6S7EgorBgEEAZdVAQUBAQdAW+XbEZ0+204VpQHZl9NeltLoYwpBwzelmAjQ\nrHNpS0oDAQgHiH4EGBYKACYWIQTnP/LTUkXKAv29gjxut+GZ2S6jDQUCahekuwIb\nDAUJA8JnAAAKCRBut+GZ2S6jDZC7AQDUYYFlBGrLysvNmKgWBL25X1S9pcWxsgqk\nCVxKj7dZBAD/eGZ0ICzTmQfHRbpaQJFlMNTo8/cxItL3isPKzizzlgs=\n=r8qq\n-----END PGP PUBLIC KEY BLOCK-----\n",
+        "trust_signature": "",
+        "source": "wappsdev",
+        "source_url": "https://registry.wapps.co/wappsdev-sigs.gpg"
+      }
+    ]
+  }
+}
