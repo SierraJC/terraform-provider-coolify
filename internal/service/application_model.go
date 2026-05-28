@@ -146,9 +146,12 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 				Description: "UUID of the environment. Will replace environment_name in future.",
 			},
 			"destination_uuid": schema.StringAttribute{
-				Optional:    true,
-				Computed:    true,
-				Description: "UUID of the destination if the server has multiple destinations.",
+				Optional: true,
+				// NOTE: Not Computed — Coolify API does not return destination_uuid
+				// in the application response (only destination_id + destination_type),
+				// so the provider cannot populate it after Read/Update. Operator must
+				// set it explicitly when the server has multiple destinations.
+				Description: "UUID of the destination if the server has multiple destinations. Create-only field; cannot be changed after app creation.",
 			},
 			"name": schema.StringAttribute{
 				Optional:    true,
@@ -901,13 +904,13 @@ func (m ApplicationModel) ToAPIUpdate() api.UpdateApplicationByUuidJSONRequestBo
 	redirect := expand.StringOrNil(m.Redirect)
 	redirectEnum := validateRedirect[api.UpdateApplicationByUuidJSONBodyRedirect](redirect)
 
-	// NOTE: Coolify v4 API rejects ProjectUuid, ServerUuid, EnvironmentName
-	// on update (422 "This field is not allowed"). They are create-only.
-	// They remain in the Tofu schema for identity purposes but are omitted
-	// from the update payload.
+	// NOTE: Coolify v4 API rejects ProjectUuid, ServerUuid, EnvironmentName,
+	// DestinationUuid on update (422 "This field is not allowed"). They are
+	// create-only — identify the app's scope at creation and cannot be
+	// changed afterward (would require app re-creation). They remain in the
+	// Tofu schema for identity purposes but are omitted from update payload.
 	return api.UpdateApplicationByUuidJSONRequestBody{
 		Description:                    expand.String(m.Description),
-		DestinationUuid:                expand.StringOrNil(m.DestinationUuid),
 		Domains:                        expand.String(m.Domains),
 		Name:                           expand.String(m.Name),
 		BuildPack:                      buildPackEnum,
