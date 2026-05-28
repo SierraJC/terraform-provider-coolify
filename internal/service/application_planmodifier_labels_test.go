@@ -1,7 +1,11 @@
 package service
 
 import (
+	"context"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 func TestNormalize_empty(t *testing.T) {
@@ -203,5 +207,103 @@ func TestSemanticEqual_table(t *testing.T) {
 					tc.state, tc.config, got, tc.wantEqual)
 			}
 		})
+	}
+}
+
+func TestCoolifyLabelsSemanticEqual_semanticallyEqualSetsPlanToState(t *testing.T) {
+	mod := CoolifyLabelsSemanticEqual()
+	state := types.StringValue("k1=v1\ntraefik.http.routers.foo.tls.certresolver=letsencrypt")
+	config := types.StringValue("k1=v1")
+
+	req := planmodifier.StringRequest{
+		StateValue:  state,
+		PlanValue:   config,
+		ConfigValue: config,
+	}
+	resp := &planmodifier.StringResponse{
+		PlanValue: config,
+	}
+
+	mod.PlanModifyString(context.Background(), req, resp)
+
+	if resp.PlanValue.ValueString() != state.ValueString() {
+		t.Errorf("PlanValue = %q, want %q (state when semantically equal)",
+			resp.PlanValue.ValueString(), state.ValueString())
+	}
+}
+
+func TestCoolifyLabelsSemanticEqual_realDiffLeavesPlanAlone(t *testing.T) {
+	mod := CoolifyLabelsSemanticEqual()
+	state := types.StringValue("k1=v1")
+	config := types.StringValue("k1=v1\nk2=v2")
+
+	req := planmodifier.StringRequest{
+		StateValue:  state,
+		PlanValue:   config,
+		ConfigValue: config,
+	}
+	resp := &planmodifier.StringResponse{
+		PlanValue: config,
+	}
+
+	mod.PlanModifyString(context.Background(), req, resp)
+
+	if resp.PlanValue.ValueString() != config.ValueString() {
+		t.Errorf("PlanValue = %q, want %q (config preserved when real diff)",
+			resp.PlanValue.ValueString(), config.ValueString())
+	}
+}
+
+func TestCoolifyLabelsSemanticEqual_nullStateEarlyReturn(t *testing.T) {
+	mod := CoolifyLabelsSemanticEqual()
+	state := types.StringNull()
+	config := types.StringValue("k1=v1")
+
+	req := planmodifier.StringRequest{
+		StateValue:  state,
+		PlanValue:   config,
+		ConfigValue: config,
+	}
+	resp := &planmodifier.StringResponse{
+		PlanValue: config,
+	}
+
+	mod.PlanModifyString(context.Background(), req, resp)
+
+	if resp.PlanValue.ValueString() != config.ValueString() {
+		t.Errorf("PlanValue = %q, want %q (untouched on null state)",
+			resp.PlanValue.ValueString(), config.ValueString())
+	}
+}
+
+func TestCoolifyLabelsSemanticEqual_unknownPlanEarlyReturn(t *testing.T) {
+	mod := CoolifyLabelsSemanticEqual()
+	state := types.StringValue("k1=v1")
+	planVal := types.StringUnknown()
+
+	req := planmodifier.StringRequest{
+		StateValue:  state,
+		PlanValue:   planVal,
+		ConfigValue: types.StringNull(),
+	}
+	resp := &planmodifier.StringResponse{
+		PlanValue: planVal,
+	}
+
+	mod.PlanModifyString(context.Background(), req, resp)
+
+	if !resp.PlanValue.IsUnknown() {
+		t.Errorf("PlanValue = %v, want unknown (untouched on unknown plan)",
+			resp.PlanValue)
+	}
+}
+
+func TestCoolifyLabelsSemanticEqual_descriptionNotEmpty(t *testing.T) {
+	mod := CoolifyLabelsSemanticEqual()
+	if mod.Description(context.Background()) == "" {
+		t.Error("Description() = empty, want non-empty")
+	}
+	if mod.MarkdownDescription(context.Background()) == "" {
+		t.Error("MarkdownDescription() = empty, want non-empty")
 	}
 }

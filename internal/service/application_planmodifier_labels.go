@@ -1,10 +1,13 @@
 package service
 
 import (
+	"context"
 	"encoding/base64"
 	"regexp"
 	"sort"
 	"strings"
+
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )
 
 // leCertResolverPattern matches Coolify's auto-injected LetsEncrypt cert
@@ -107,4 +110,41 @@ func semanticEqual(a, b string) bool {
 		}
 	}
 	return true
+}
+
+type coolifyLabelsSemanticEqual struct{}
+
+func (m coolifyLabelsSemanticEqual) Description(ctx context.Context) string {
+	return "Suppresses Coolify-driven label normalization (base64 re-encoding, " +
+		"auto-injected letsencrypt certresolver) as semantic no-op."
+}
+
+func (m coolifyLabelsSemanticEqual) MarkdownDescription(ctx context.Context) string {
+	return "Suppresses Coolify-driven label normalization (base64 re-encoding, " +
+		"auto-injected `letsencrypt` certresolver) as semantic no-op."
+}
+
+func (m coolifyLabelsSemanticEqual) PlanModifyString(
+	ctx context.Context,
+	req planmodifier.StringRequest,
+	resp *planmodifier.StringResponse,
+) {
+	if req.StateValue.IsNull() || req.StateValue.IsUnknown() {
+		return
+	}
+	if req.PlanValue.IsNull() || req.PlanValue.IsUnknown() {
+		return
+	}
+	if semanticEqual(req.StateValue.ValueString(), req.PlanValue.ValueString()) {
+		resp.PlanValue = req.StateValue
+	}
+}
+
+// CoolifyLabelsSemanticEqual returns a StringPlanModifier that recognizes
+// Coolify v4's server-side label normalization (base64↔plaintext re-encoding
+// and automatic letsencrypt certresolver injection) as a semantic no-op,
+// preventing perpetual drift on apps where Coolify mutates labels after
+// every PATCH.
+func CoolifyLabelsSemanticEqual() planmodifier.String {
+	return coolifyLabelsSemanticEqual{}
 }
