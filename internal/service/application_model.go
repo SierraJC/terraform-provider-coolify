@@ -901,14 +901,15 @@ func (m ApplicationModel) ToAPIUpdate() api.UpdateApplicationByUuidJSONRequestBo
 	redirect := expand.StringOrNil(m.Redirect)
 	redirectEnum := validateRedirect[api.UpdateApplicationByUuidJSONBodyRedirect](redirect)
 
+	// NOTE: Coolify v4 API rejects ProjectUuid, ServerUuid, EnvironmentName
+	// on update (422 "This field is not allowed"). They are create-only.
+	// They remain in the Tofu schema for identity purposes but are omitted
+	// from the update payload.
 	return api.UpdateApplicationByUuidJSONRequestBody{
 		Description:                    expand.String(m.Description),
 		DestinationUuid:                expand.StringOrNil(m.DestinationUuid),
 		Domains:                        expand.String(m.Domains),
 		Name:                           expand.String(m.Name),
-		ProjectUuid:                    expand.String(m.ProjectUuid),
-		ServerUuid:                     expand.String(m.ServerUuid),
-		EnvironmentName:                expand.String(m.EnvironmentName),
 		BuildPack:                      buildPackEnum,
 		BaseDirectory:                  expand.String(m.BaseDirectory),
 		BuildCommand:                   expand.String(m.BuildCommand),
