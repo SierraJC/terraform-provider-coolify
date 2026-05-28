@@ -1,0 +1,72 @@
+# Regenerate registry JSON manifests after a release is published.
+name: Publish registry
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag (e.g. v1.0.0) — empty regenerates all"
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # to commit docs/v1 changes back to main
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq gpg
+
+      - name: Determine tag
+        id: tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "release" ]; then
+            TAG="$RELEASE_TAG"
+          else
+            TAG="$INPUT_TAG"
+          fi
+          # Validate tag matches semver vX.Y.Z (or empty)
+          if [ -n "$TAG" ] && ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Invalid tag: $TAG" >&2
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Generate registry JSON
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          ./scripts/generate-registry.sh "$TAG"
+
+      - name: Commit + push
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git config user.name "wappsdev-bot"
+          git config user.email "bot@wapps.co"
+          git add docs/v1/
+          if git diff --cached --quiet; then
+            echo "No registry changes — skipping commit."
+            exit 0
+          fi
+          git commit -m "chore(registry): publish $TAG"
+          git push origin main
