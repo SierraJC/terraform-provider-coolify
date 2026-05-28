@@ -100,3 +100,62 @@ func TestNormalize_base64LookingButNotLabels(t *testing.T) {
 		t.Errorf("normalize(SGVsbG8=) = %v, want %v (treat as plaintext)", got, want)
 	}
 }
+
+func TestFilterCertResolver_dropsLetsencrypt(t *testing.T) {
+	in := []string{
+		"k1=v1",
+		"traefik.http.routers.foo.tls.certresolver=letsencrypt",
+		"k2=v2",
+	}
+	got := filterCertResolver(in)
+	want := []string{"k1=v1", "k2=v2"}
+	if len(got) != 2 || got[0] != want[0] || got[1] != want[1] {
+		t.Errorf("filterCertResolver = %v, want %v", got, want)
+	}
+}
+
+func TestFilterCertResolver_preservesCustomCA(t *testing.T) {
+	in := []string{
+		"traefik.http.routers.foo.tls.certresolver=custom-ca",
+	}
+	got := filterCertResolver(in)
+	if len(got) != 1 || got[0] != in[0] {
+		t.Errorf("filterCertResolver dropped custom-ca: %v, want %v", got, in)
+	}
+}
+
+func TestFilterCertResolver_dropsMultipleLEAcrossRouters(t *testing.T) {
+	in := []string{
+		"k1=v1",
+		"traefik.http.routers.foo.tls.certresolver=letsencrypt",
+		"traefik.http.routers.bar.tls.certresolver=letsencrypt",
+		"traefik.http.routers.baz.tls.certresolver=letsencrypt",
+	}
+	got := filterCertResolver(in)
+	if len(got) != 1 || got[0] != "k1=v1" {
+		t.Errorf("filterCertResolver = %v, want [k1=v1] (3 LE lines dropped)", got)
+	}
+}
+
+func TestFilterCertResolver_caseInsensitiveKeyExactValue(t *testing.T) {
+	in := []string{
+		"TRAEFIK.HTTP.ROUTERS.FOO.TLS.CERTRESOLVER=letsencrypt",
+		"traefik.http.routers.bar.tls.certresolver=LETSENCRYPT",
+	}
+	got := filterCertResolver(in)
+	// First line: key matches case-insensitively, value exact → drop.
+	// Second line: value "LETSENCRYPT" is NOT exact-match "letsencrypt" → preserve.
+	if len(got) != 1 || got[0] != in[1] {
+		t.Errorf("filterCertResolver = %v, want [%q] (uppercase value preserved)", got, in[1])
+	}
+}
+
+func TestNormalize_stateWithLEEqualsConfigClean(t *testing.T) {
+	state := "k1=v1\ntraefik.http.routers.foo.tls.certresolver=letsencrypt"
+	config := "k1=v1"
+	ns := normalize(state)
+	nc := normalize(config)
+	if len(ns) != len(nc) || ns[0] != nc[0] {
+		t.Errorf("normalize(state)=%v, normalize(config)=%v — should be equal", ns, nc)
+	}
+}
