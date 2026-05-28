@@ -159,3 +159,49 @@ func TestNormalize_stateWithLEEqualsConfigClean(t *testing.T) {
 		t.Errorf("normalize(state)=%v, normalize(config)=%v — should be equal", ns, nc)
 	}
 }
+
+func TestSemanticEqual_table(t *testing.T) {
+	b64 := base64StdEncodingHelper
+
+	tests := []struct {
+		name      string
+		state     string
+		config    string
+		wantEqual bool
+	}{
+		{"both empty", "", "", true},
+		{"whitespace only", "  \n  \n", "", true},
+		{"identical plaintext", "k1=v1\nk2=v2", "k1=v1\nk2=v2", true},
+		{"reverse order plaintext", "k2=v2\nk1=v1", "k1=v1\nk2=v2", true},
+		{
+			"state base64, config plaintext, same content",
+			b64("k1=v1\nk2=v2"), "k1=v1\nk2=v2", true,
+		},
+		{
+			"state has LE addition",
+			"k1=v1\ntraefik.http.routers.foo.tls.certresolver=letsencrypt", "k1=v1", true,
+		},
+		{
+			"state base64 + LE, config plaintext clean",
+			b64("k1=v1\ntraefik.http.routers.foo.tls.certresolver=letsencrypt"), "k1=v1", true,
+		},
+		{"real diff added line", "k1=v1", "k1=v1\nk2=v2", false},
+		{"real diff changed value", "k1=v1", "k1=v2", false},
+		{
+			"custom certresolver preserved",
+			"k1=v1\ntraefik.http.routers.foo.tls.certresolver=custom-ca", "k1=v1", false,
+		},
+		{"corrupt base64 falls back", "!!!notb64!!!", "!!!notb64!!!", true},
+		{"base64-looking but not labels", "SGVsbG8=", "SGVsbG8=", true},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := semanticEqual(tc.state, tc.config)
+			if got != tc.wantEqual {
+				t.Errorf("semanticEqual(%q, %q) = %v, want %v",
+					tc.state, tc.config, got, tc.wantEqual)
+			}
+		})
+	}
+}

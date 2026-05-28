@@ -91,3 +91,20 @@ func normalize(raw string) []string {
 	sort.Strings(filtered)
 	return filtered
 }
+
+// semanticEqual returns true when two custom_labels strings normalize to the
+// same canonical line set. Used by the plan modifier to recognize Coolify's
+// server-side label mutations as no-ops.
+func semanticEqual(a, b string) bool {
+	na := normalize(a)
+	nb := normalize(b)
+	if len(na) != len(nb) {
+		return false
+	}
+	for i := range na {
+		if na[i] != nb[i] {
+			return false
+		}
+	}
+	return true
+}
