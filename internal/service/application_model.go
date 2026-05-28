@@ -359,11 +359,14 @@ func (m ApplicationModel) Schema(ctx context.Context) schema.Schema {
 				},
 			},
 			"custom_labels": schema.StringAttribute{
-				Optional:    true,
-				Computed:    true,
-				Description: "Custom labels.",
+				Optional: true,
+				Computed: true,
+				Description: "Custom labels. Coolify normalizes server-side (adds " +
+					"tls.certresolver=letsencrypt on Traefik routers, may re-encode " +
+					"base64↔plaintext). Semantic-equality modifier prevents drift loops.",
 				PlanModifiers: []planmodifier.String{
 					UseStateForUnknownUnlessNullString(),
+					CoolifyLabelsSemanticEqual(),
 				},
 			},
 			"custom_docker_run_options":          schema.StringAttribute{Optional: true, Description: "Custom docker run options."},
