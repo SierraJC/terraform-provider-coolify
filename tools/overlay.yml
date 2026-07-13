@@ -77,6 +77,35 @@ actions:
       items:
         $ref: "#/components/schemas/EnvironmentVariable"
 
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.required"
+    description: Reset required fields for service update requests
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.properties.project_uuid"
+    description: Remove read-only project_uuid from service update body
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.properties.environment_name"
+    description: Remove read-only environment_name from service update body
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.properties.environment_uuid"
+    description: Remove read-only environment_uuid from service update body
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.properties.server_uuid"
+    description: Remove read-only server_uuid from service update body
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.properties.destination_uuid"
+    description: Remove read-only destination_uuid from service update body
+    remove: true
+
+  - target: "$.paths['/services/{uuid}'].patch.requestBody.content['application/json'].schema.required"
+    description: Require docker_compose_raw for service update requests
+    update:
+      - docker_compose_raw
+
   - target: $.components.schemas
     description: Add common database properties
     update:
