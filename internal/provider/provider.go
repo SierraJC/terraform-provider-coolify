@@ -215,6 +215,7 @@ func (p *CoolifyProvider) Resources(ctx context.Context) []func() resource.Resou
 		private_key.NewPrivateKeyResource,
 		service.NewServerResource,
 		service.NewProjectResource,
+		service.NewApplicationResource,
 		service.NewApplicationEnvsResource,
 		service.NewServiceEnvsResource,
 		service.NewPostgresqlDatabaseResource,
