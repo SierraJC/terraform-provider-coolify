@@ -93,6 +93,19 @@ resources:
     delete:
       path: /databases/{uuid}
       method: DELETE
+  application:
+    create:
+      path: /applications/public
+      method: POST
+    read:
+      path: /applications/{uuid}
+      method: GET
+    update:
+      path: /applications/{uuid}
+      method: PATCH
+    delete:
+      path: /applications/{uuid}
+      method: DELETE
 
 data_sources:
   private_keys:
