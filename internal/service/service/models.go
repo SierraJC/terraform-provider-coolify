@@ -11,6 +11,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
 	"terraform-provider-coolify/internal/api"
+	"terraform-provider-coolify/internal/expand"
 	"terraform-provider-coolify/internal/flatten"
 	sutil "terraform-provider-coolify/internal/service/util"
 )
@@ -103,7 +104,7 @@ func (m ServiceModel) ToAPICreate() api.CreateServiceJSONRequestBody {
 	return api.CreateServiceJSONRequestBody{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
-		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
+		DestinationUuid:  expand.StringOrNil(m.DestinationUuid),
 		EnvironmentName:  m.EnvironmentName.ValueString(),
 		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
 		ProjectUuid:      m.ProjectUuid.ValueString(),
@@ -116,7 +117,7 @@ func (m ServiceModel) ToAPIUpdate() api.UpdateServiceByUuidJSONRequestBody {
 	return api.UpdateServiceByUuidJSONRequestBody{
 		Name:             m.Name.ValueStringPointer(),
 		Description:      m.Description.ValueStringPointer(),
-		DestinationUuid:  m.DestinationUuid.ValueStringPointer(),
+		DestinationUuid:  expand.StringOrNil(m.DestinationUuid),
 		EnvironmentName:  m.EnvironmentName.ValueString(),
 		EnvironmentUuid:  m.EnvironmentUuid.ValueString(),
 		ProjectUuid:      m.ProjectUuid.ValueString(),
